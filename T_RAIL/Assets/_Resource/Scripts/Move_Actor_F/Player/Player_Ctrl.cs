@@ -28,12 +28,14 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     Animator anim;
 
     public Color hoverColor = Color.white;
-    [SerializeField]
     Highlighter highlighter;
+
+
     Transform Near_Object; // 사다리, 머신건 등 space_state로 할 모든 object담기
     Transform gun_child; // 머신건.... 각도 회전하려면 밑에 자식 오브젝트 담아와야 돼서 총전용
-    [SerializeField]
     MachineGun_Ctrl gun_ctrl; // 그 머신건에 달린 ctrl 스크립트. 머신건을 받아올 떄 마다 얘도 같이
+
+
     bool stair_up; // 사다리 올라가고 있는 중
     bool stair_down; // 사다리 내려가고 있는 중
     bool jump_nextTrain; // 다음칸으로 점프 중
@@ -46,10 +48,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     bool near_stair; // 사다리근처
     bool near_gun; // 머신건 근처
 
-    // 사다리
-    [SerializeField]
     Transform floor1;
-    [SerializeField]
     Transform floor2;
 
 
@@ -66,7 +65,9 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
 
     public GameObject parti_player_move;
 
-
+    // 총알발사
+    float Attack_Gap; //발사간격
+    bool ContinuousFire; // 계속발사할것인지플래그
     /// ////////////////////////////////////////////////////////////////////////
     private void Awake()
     {
@@ -88,6 +89,9 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         anim = GetComponent<Animator>();
         tr = GetComponent<Transform>();
         jump_ok = true;
+
+        Attack_Gap = 0.2f;
+        ContinuousFire = true;
 
     }
 
@@ -398,6 +402,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                 Move('a');
                 anim.SetBool("IsWalk", true);
             }
+
             if (Input.GetKey(KeyCode.D))
             {
                 Move('d');
@@ -538,7 +543,13 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         // 총알 발사
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            gun_ctrl.gun_fire(); // 아직x 
+            StartCoroutine(NextFire());
+            // gun_ctrl.gun_fire(true); // 아직x 
+        }
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            ContinuousFire = false;
+            gun_ctrl.gun_fire(ContinuousFire);
         }
 
         // 카메라 조절은 마우스로
@@ -601,4 +612,26 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
 
 
     /// ////////////////////////////////////////////////////////////////////////
+    /// 총알발사
+    /// 
+    // 연속발사
+    IEnumerator NextFire()
+    {
+        ContinuousFire = true;
+        while (ContinuousFire)
+        {
+            BulletInfoSetting(TrainGameManager.instance.GetObject(0));
+            yield return new WaitForSeconds(Attack_Gap);
+        }
+    }
+
+    // 총알정보셋팅 여기서 물리계산
+    void BulletInfoSetting(GameObject _Bullet)
+    {
+        if (_Bullet == null) return;
+        _Bullet.transform.position = gun_child.GetChild(0).position; //총알 위치 설정
+        _Bullet.transform.rotation = gun_child.localRotation;
+        _Bullet.SetActive(true);
+        _Bullet.GetComponent<Bullet_Ctrl>().CallMoveCoroutin();
+    }
 }

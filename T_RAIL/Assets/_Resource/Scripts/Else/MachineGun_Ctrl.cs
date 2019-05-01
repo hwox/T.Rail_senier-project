@@ -24,9 +24,16 @@ public class MachineGun_Ctrl : MonoBehaviour
         transform.Rotate(0, 0, 10.0f * Time.deltaTime);
     }
 
-    public void gun_fire()
+    public void gun_fire(bool fire)
     {
+        if (fire)
+        {
 
+        }
+        else if(!fire)
+        {
+
+        }
     }
 }
 

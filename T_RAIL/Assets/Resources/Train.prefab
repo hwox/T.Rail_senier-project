@@ -660,7 +660,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1638259029400926
 GameObject:
   m_ObjectHideFlags: 1
@@ -708,6 +708,22 @@ GameObject:
   - component: {fileID: 23842165989811638}
   m_Layer: 0
   m_Name: Cube.013
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1714940842409656
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4827588389591994}
+  - component: {fileID: 33121057613482196}
+  m_Layer: 16
+  m_Name: bulletposition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1299,6 +1315,7 @@ Transform:
   m_LocalPosition: {x: 0.085376136, y: 0.8635855, z: -0.015282198}
   m_LocalScale: {x: -8.0531645, y: -8.0531645, z: -30.969757}
   m_Children:
+  - {fileID: 4827588389591994}
   - {fileID: 4515745202526332}
   - {fileID: 4581756687126144}
   - {fileID: 4856399730818198}
@@ -1521,7 +1538,7 @@ Transform:
   m_LocalScale: {x: -0.19353724, y: -0.74427116, z: -0.7442713}
   m_Children: []
   m_Father: {fileID: 4303736183435634}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4516602204756280
 Transform:
@@ -1589,7 +1606,7 @@ Transform:
   m_LocalScale: {x: -0.72451603, y: -2.7862449, z: -2.7862449}
   m_Children: []
   m_Father: {fileID: 4303736183435634}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4596756543309590
 Transform:
@@ -1782,6 +1799,19 @@ Transform:
   m_Father: {fileID: 4883473226007802}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4827588389591994
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1714940842409656}
+  m_LocalRotation: {x: -0.63247544, y: 0.065290794, z: 0.7677439, w: 0.07925478}
+  m_LocalPosition: {x: -0.17779502, y: 0.0062043928, z: -0.00016841476}
+  m_LocalScale: {x: -0.0035656544, y: -0.012417484, z: -0.012080789}
+  m_Children: []
+  m_Father: {fileID: 4303736183435634}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4831777227345060
 Transform:
   m_ObjectHideFlags: 1
@@ -1819,7 +1849,7 @@ Transform:
   m_LocalScale: {x: -1.5715977, y: -1.5715977, z: -0.4086675}
   m_Children: []
   m_Father: {fileID: 4303736183435634}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4866329322782124
 Transform:
@@ -3103,6 +3133,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1759132773290972}
   m_Mesh: {fileID: 4300010, guid: 89a679bb87f9f9246add52485c4f4482, type: 3}
+--- !u!33 &33121057613482196
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1714940842409656}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &33137523421578154
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -3851,7 +3888,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 3
+  InstantiationId: 8
   isRuntimeInstantiated: 0
 --- !u!114 &114490062990637820
 MonoBehaviour:
@@ -3883,7 +3920,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 5
+  InstantiationId: 7
   isRuntimeInstantiated: 0
 --- !u!114 &114714715675578268
 MonoBehaviour:
@@ -3925,7 +3962,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114246163877717286}
   viewIdField: 0
-  InstantiationId: 7
+  InstantiationId: 5
   isRuntimeInstantiated: 0
 --- !u!114 &114926657734411050
 MonoBehaviour:
@@ -3946,7 +3983,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 8
+  InstantiationId: 3
   isRuntimeInstantiated: 0
 --- !u!137 &137085497657877282
 SkinnedMeshRenderer:

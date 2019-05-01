@@ -52,6 +52,7 @@ public class Enemy1_Ctrl : MonoBehaviour
         {
             // 총알맞으면
             enemy.HP -= 5;
+            Debug.Log(enemy.HP);
         }
 
         if (other.gameObject.layer.Equals(GameValue.train_layer))
@@ -105,7 +106,6 @@ public class Enemy1_Ctrl : MonoBehaviour
 
             if (!Position_Set_Go)
             {
-                Debug.Log("??");
                 // Rhino_child.position -= new Vector3(0, 0, 0.3f);
                 Position_Set_Move = new Vector3(tr.position.x + 5 * Time.deltaTime, tr.position.y, tr.position.z);
             }

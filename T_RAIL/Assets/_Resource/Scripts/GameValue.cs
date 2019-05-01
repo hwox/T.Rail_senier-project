@@ -58,4 +58,8 @@ static class GameValue {
     // enemy1 
     public const int enemy1_FullHp = 100; // 한 텀
 
+
+    // bullet
+    public const float bullet_speed = 40.0f;
+
 }
