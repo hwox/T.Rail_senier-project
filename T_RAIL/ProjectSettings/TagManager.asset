@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - StateController
+  - state
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - PostProcessing
+  - Mountain1
+  - Mountain2
+  - cloud
+  - ItemBox
+  - Passenger
+  - Choice
+  - ladder
+  - machinegun
+  - sofa
+  - NextTrain
+  - PrevTrain
+  - floor2
+  - Player
+  - bullet
+  - enemy
+  - train
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
