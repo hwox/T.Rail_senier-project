@@ -178,6 +178,14 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
 
 
     }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.layer.Equals(GameValue.wall_layer))
+        {
+            player.WallConflictDirection();
+        }
+    }
+ 
     private void OnTriggerExit(Collider other)
     {
         if (!photonView.IsMine) return;
@@ -216,6 +224,11 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         {
             space_state = 0;
             jump_ok = true;
+        }
+
+        if (other.gameObject.layer.Equals(GameValue.wall_layer))
+        {
+            player.WallConflictDirections_Reset();
         }
     }
 

@@ -5,6 +5,8 @@ using Photon.Pun;
 
 public class Player_Actor : Move_Actor {
 
+    public bool WallConflict;
+    public int[] Directions;
 
     public Player_Actor()
     {
@@ -20,8 +22,13 @@ public class Player_Actor : Move_Actor {
             }
         }
 
-        speed =15.0f; // speed 는 km/h 로 따지나 
+        speed = 15.0f; // speed 는 km/h 로 따지나 
+        Directions = new int[4];
 
+        for(int i = 0; i < Directions.Length; i++)
+        {
+            Directions[i] = 1;
+        }
        Where_Train = 1;
        Where_Floor = 1; // 처음에는 1층, 1번째칸에 존재하니까 
 
@@ -39,22 +46,22 @@ public class Player_Actor : Move_Actor {
             //walk일 때만 이동
             switch (key) {
                 case 'a':
-                    position.x -= 0.1f*speed*Time.deltaTime;
+                    position.x -= 0.1f*speed*Time.deltaTime*Directions[0];
                     rotate.y = -90.0f;
                     Direction = 1;
                     break;
                 case 's':
-                    position.z -= 0.1f * speed * Time.deltaTime;
+                    position.z -= 0.1f * speed * Time.deltaTime * Directions[1];
                     rotate.y = 180;
                     Direction = 2;
                     break;
                 case 'd':
-                    position.x += 0.1f * speed * Time.deltaTime;
+                    position.x += 0.1f * speed * Time.deltaTime * Directions[2];
                     rotate.y = 90.0f;
                     Direction = 3;
                     break;
                 case 'w':
-                    position.z += 0.1f * speed * Time.deltaTime;
+                    position.z += 0.1f * speed * Time.deltaTime * Directions[3];
                     rotate.y = 0;
                     Direction = 4;
                     break;
@@ -136,6 +143,42 @@ public class Player_Actor : Move_Actor {
         { 
             Jump_ToNextTrain();
         }
+    }
+
+    public void WallConflictDirection()
+    {
+        if (!WallConflict)
+        {
+            Debug.Log("111");
+            switch (Direction)
+            {
+                case 1:
+                    Directions[0] = 0;
+                    WallConflict = true;
+                    break;
+                case 2:
+                    Directions[1] = 0;
+                    WallConflict = true;
+                    break;
+                case 3:
+                    Directions[2] = 0;
+                    WallConflict = true;
+                    break;
+                case 4:
+                    Directions[3] = 0;
+                    WallConflict = true;
+                    break;
+            }
+        }
+    }
+    public void WallConflictDirections_Reset()
+    {
+        Debug.Log("222");
+        for (int i = 0; i < Directions.Length; i++)
+        {
+            Directions[i] = 1;
+        }
+        WallConflict = false;
     }
 
 }
