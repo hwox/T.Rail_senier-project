@@ -43,7 +43,7 @@ namespace Photon.Pun.Demo.Asteroids
             base.OnEnable();
 
 
-            PhotonNetwork.OfflineMode = true;
+            //PhotonNetwork.OfflineMode = true;
             if(PhotonNetwork.OfflineMode == true)
             {
                 PhotonNetwork.JoinRandomRoom();

@@ -40,3 +40,11 @@
 4/29(월)
 1. onTrainDeleteButton -> deleteTrain 버튼 눌렀을때 호출 -> Train_delete를 모든 클라가 부르게 명령
 그리고 기차가 버튼눌렀을때마다 뒤에있는것부터 지워지게 했고, Trainindex를 train.count로 바꿈
+
+---------------------------------------------------------------------------------
+
+5/2(화)
+1. 몬스터 생성 동기화 
+2. condition_ctrl TrainManager여기에 public으로 연결 
+3. condition_ctrl스크립트의 init_Make함수 내부의 주석 -> Enemy1_ctrl 스크립트 start()부분으로 옮김. train 생성과 같은 이유로 (생성할때 자기를 넣어줌)
++ 혜원아 근데 이거 박스 클릭이 또 안되는게 이전버전으로 새로 커밋했나본데???  text 레이가 다 켜져있고 train의 collider가 다시 커져있어

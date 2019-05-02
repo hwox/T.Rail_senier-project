@@ -28,6 +28,8 @@ public class TrainGameManager : MonoBehaviour
                            // 몇개 붙어있는지 가지고 제일 마지막 위치 -> 기관총
                            // 제일 마지막 위치 -> enemy1 
 
+    //# ConditionCtrl
+    public Condition_Ctrl ConditionCtrl;
 
     // # TrainCtrl
     public Train_Ctrl TrainCtrl;

@@ -6178,6 +6178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 124372804}
   - component: {fileID: 124372805}
+  - component: {fileID: 124372806}
   m_Layer: 0
   m_Name: Condition_Ctrl
   m_TagString: Untagged
@@ -6210,6 +6211,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rhino: {fileID: 1638983666124268, guid: 0dc1f57e44658f44783b6976b851c4c8, type: 2}
+  enemy1: {fileID: 0}
+  enemy1_ctrl: {fileID: 0}
+--- !u!114 &124372806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 124372803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  viewIdField: 11
+  InstantiationId: 11
+  isRuntimeInstantiated: 0
 --- !u!1 &124505049
 GameObject:
   m_ObjectHideFlags: 0
@@ -18294,7 +18318,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 124372805}
-        m_MethodName: Rhino_Add
+        m_MethodName: onRhinoEnemyOnButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -23568,8 +23592,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 0}
-  viewIdField: 1
-  InstantiationId: 1
+  viewIdField: 5000
+  InstantiationId: 5000
   isRuntimeInstantiated: 0
 --- !u!114 &534669911
 MonoBehaviour:
@@ -46823,6 +46847,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trainindex: 0
+  ConditionCtrl: {fileID: 124372805}
   TrainCtrl: {fileID: 1304048000}
   InGame_Notice: {fileID: 623184125}
   InGame_Text: {fileID: 1145628807}
@@ -63562,6 +63587,11 @@ Prefab:
     - target: {fileID: 4255163354078350, guid: 0dc1f57e44658f44783b6976b851c4c8, type: 2}
       propertyPath: m_RootOrder
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114580098122882926, guid: 0dc1f57e44658f44783b6976b851c4c8,
+        type: 2}
+      propertyPath: viewIdField
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dc1f57e44658f44783b6976b851c4c8, type: 2}

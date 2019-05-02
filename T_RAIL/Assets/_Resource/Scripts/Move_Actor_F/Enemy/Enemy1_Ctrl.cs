@@ -35,14 +35,16 @@ public class Enemy1_Ctrl : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
-
         Init_Rhino = tr.position;
         Init_Rhino_child = Rhino_child.position;
 
         enemy.speed = 10.0f;  // enemy1은 스피드 기본고정
         enemy.Damage = E_damage;
         anim.SetBool("IsRun", true);
+
+        TrainGameManager.instance.ConditionCtrl.enemy1 = this.gameObject;
+        TrainGameManager.instance.ConditionCtrl.enemy1_ctrl = this.GetComponent<Enemy1_Ctrl>();
+        this.gameObject.SetActive(false);
     }
 
 
@@ -78,6 +80,7 @@ public class Enemy1_Ctrl : MonoBehaviour
     }
     public void Enemy1_On()
     {
+        anim.SetBool("IsRun", true);
         Position_Set_Destination = new Vector3((GameValue.Train_distance * (TrainGameManager.instance.trainindex) -10), tr.position.y, tr.position.z);
         Position_Set_Go = true;
 
