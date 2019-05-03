@@ -47044,6 +47044,7 @@ MonoBehaviour:
   Info_Canvas: {fileID: 540288765}
   Origin:
   - {fileID: 1927369795080342, guid: 5038b754216e0bd4287ed4d8344ab4d7, type: 2}
+  - {fileID: 1678285436382366, guid: be1791a8985844747ba2d86aec26ff02, type: 2}
   BulletManager: []
   PassengerManager: []
 --- !u!4 &1113577655
