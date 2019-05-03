@@ -149,7 +149,6 @@ public class Player_Actor : Move_Actor {
     {
         if (!WallConflict)
         {
-            Debug.Log("111");
             switch (Direction)
             {
                 case 1:
@@ -173,7 +172,6 @@ public class Player_Actor : Move_Actor {
     }
     public void WallConflictDirections_Reset()
     {
-        Debug.Log("222");
         for (int i = 0; i < Directions.Length; i++)
         {
             Directions[i] = 1;

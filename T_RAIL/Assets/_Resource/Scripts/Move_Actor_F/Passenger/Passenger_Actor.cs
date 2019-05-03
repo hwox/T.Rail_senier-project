@@ -10,7 +10,7 @@ public class Passenger_Actor : Move_Actor
 
 
 
-    Passenger_Actor()
+    public Passenger_Actor()
     {
         base.Actor_Property = (int)Actor.Passenger; // property에 승객이라고 정의
        // base.Coin = Random.Range(0,)

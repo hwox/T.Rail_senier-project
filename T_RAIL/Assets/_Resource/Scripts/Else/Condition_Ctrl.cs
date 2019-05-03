@@ -13,6 +13,7 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks {
 
     public GameObject enemy1;
     public Enemy1_Ctrl enemy1_ctrl;
+
     private void Awake()
     {
         if (PhotonNetwork.IsMasterClient)

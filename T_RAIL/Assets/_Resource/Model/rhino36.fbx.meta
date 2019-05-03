@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 04d61adb9b6ea4f418ac04c13d9184c6
+guid: a608402d214b7d948ab01000d0b2715e
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -23,30 +23,31 @@ ModelImporter:
     100034: Leftleg2
     100036: Leftleg2_end
     100038: Neck
-    100040: Plane
-    100042: rhino
-    100044: //RootNode
-    100046: Rightarm
-    100048: Rightarm2
-    100050: Rightarm2_end
-    100052: RightbowIK
-    100054: RightbowIK_end
-    100056: Rightfoot
-    100058: Rightfoot_end
-    100060: RightfootIK
-    100062: Righthand
-    100064: Righthand_end
-    100066: RighthandIK
-    100068: RightkneeIK
-    100070: RightkneeIK_end
-    100072: Rightleg
-    100074: Rightleg2
-    100076: Rightleg2_end
-    100078: Root
-    100080: Tail
-    100082: Tail_end
-    100084: TailIK
-    100086: TailIK_end
+    100040: rhino
+    100042: //RootNode
+    100044: rhinobody
+    100046: rhinoear
+    100048: Rightarm
+    100050: Rightarm2
+    100052: Rightarm2_end
+    100054: RightbowIK
+    100056: RightbowIK_end
+    100058: Rightfoot
+    100060: Rightfoot_end
+    100062: RightfootIK
+    100064: Righthand
+    100066: Righthand_end
+    100068: RighthandIK
+    100070: RightkneeIK
+    100072: RightkneeIK_end
+    100074: Rightleg
+    100076: Rightleg2
+    100078: Rightleg2_end
+    100080: Root
+    100082: Tail
+    100084: Tail_end
+    100086: TailIK
+    100088: TailIK_end
     400000: Back
     400002: Head
     400004: Head_end
@@ -67,38 +68,41 @@ ModelImporter:
     400034: Leftleg2
     400036: Leftleg2_end
     400038: Neck
-    400040: Plane
-    400042: rhino
-    400044: //RootNode
-    400046: Rightarm
-    400048: Rightarm2
-    400050: Rightarm2_end
-    400052: RightbowIK
-    400054: RightbowIK_end
-    400056: Rightfoot
-    400058: Rightfoot_end
-    400060: RightfootIK
-    400062: Righthand
-    400064: Righthand_end
-    400066: RighthandIK
-    400068: RightkneeIK
-    400070: RightkneeIK_end
-    400072: Rightleg
-    400074: Rightleg2
-    400076: Rightleg2_end
-    400078: Root
-    400080: Tail
-    400082: Tail_end
-    400084: TailIK
-    400086: TailIK_end
+    400040: rhino
+    400042: //RootNode
+    400044: rhinobody
+    400046: rhinoear
+    400048: Rightarm
+    400050: Rightarm2
+    400052: Rightarm2_end
+    400054: RightbowIK
+    400056: RightbowIK_end
+    400058: Rightfoot
+    400060: Rightfoot_end
+    400062: RightfootIK
+    400064: Righthand
+    400066: Righthand_end
+    400068: RighthandIK
+    400070: RightkneeIK
+    400072: RightkneeIK_end
+    400074: Rightleg
+    400076: Rightleg2
+    400078: Rightleg2_end
+    400080: Root
+    400082: Tail
+    400084: Tail_end
+    400086: TailIK
+    400088: TailIK_end
     2100000: Material
     2100002: Material.001
-    4300000: Plane
+    4300000: rhinobody
+    4300002: rhinoear
     7400000: rhinowalk.001
-    7400002: rhino|rhinorun
-    7400004: rhino|rhinorun (1)
+    7400002: rhino|rhinoattack
+    7400004: rhino|rhinorun
     9500000: //RootNode
-    13700000: Plane
+    13700000: rhinobody
+    13700002: rhinoear
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -138,10 +142,38 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: rhino|rhinorun (1)
-      takeName: rhino|rhinorun
+      name: rhinowalk.001
+      takeName: rhinowalk.001
       firstFrame: 0
-      lastFrame: 20
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: rhino|rhinoattack
+      takeName: rhino|rhinoattack
+      firstFrame: 0
+      lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -176,8 +208,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0

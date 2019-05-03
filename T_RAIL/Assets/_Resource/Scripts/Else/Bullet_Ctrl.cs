@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Bullet_Ctrl : MonoBehaviour {
 
+    [SerializeField]
+    Rigidbody rig;
+
+    private void Awake()
+    {
+        rig = GetComponent<Rigidbody>();
+
+    }
 
     public void CallMoveCoroutin()
     {
@@ -19,8 +27,8 @@ public class Bullet_Ctrl : MonoBehaviour {
 
             if (timer > 2)
                 break;
+            rig.AddForce(transform.forward *Time.deltaTime* GameValue.bullet_speed, ForceMode.Impulse);
 
-            transform.Translate(Vector3.forward * Time.deltaTime * GameValue.bullet_speed);
             yield return null;
 
         }

@@ -9,15 +9,11 @@ public class TrainGameManager : MonoBehaviour
     enum prefab_list
     {
         bullet = 0,
+        passenger = 1,
     }
 
 
     public static TrainGameManager instance = null;
-
-    // 여기서 각 플레이어들 체력 관리해야되나?
-    // 여기서 뭐해야될까
-
-    // 아 머리깨지겠네 진짜 스트ㅡ레스당
 
 
     public float Durability { get; set; } // 기차의 내구도
@@ -36,15 +32,21 @@ public class TrainGameManager : MonoBehaviour
 
     public GameObject InGame_Notice; // 게임 내에서의 알림사항 ex) 몬스터 등장
     public Text InGame_Text;
+
     // # UI
     public GameObject Info_Canvas;
 
 
-    // 총알 pool
+    // #Pool
     public GameObject[] Origin; // 프리팹들 원본
-    public List<GameObject> BulletManager; // 생성된 객체들을 저장할 리스트
-    const int nMAKE_BULLET_COUNT = 20;
 
+    // 총알 )
+    public List<GameObject> BulletManager; // 생성된 객체들을 저장할 리스트
+    const int MAKE_BULLET_COUNT = 25;
+
+    // 승객 )
+    public List<GameObject> PassengerManager; // 생성된 객체들을 저장할 리스트
+    const int MAKE_PASSENGER_COUNT = 20;
 
 
 
@@ -66,10 +68,12 @@ public class TrainGameManager : MonoBehaviour
     public void Notice_EnemyAppear()
     {
         InGame_Notice.SetActive(true);
+
+        // 여기는 striingbuilder로 바꾸기
         InGame_Text.text = "코뿔소 등장 ! ";
     }
 
-    /////////////////pool
+    ////////////////////////////////  pool   //////////////////////////////
     ///
     public void SetObject(GameObject _obj, int _count, int prefab_index)
     {
@@ -86,8 +90,11 @@ public class TrainGameManager : MonoBehaviour
                 case (int)prefab_list.bullet:
                     BulletManager.Add(obj); // 
                     break;
+                case (int)prefab_list.passenger:
+                    PassengerManager.Add(obj);
+                    break;
             }
-          
+
 
         }
     }
@@ -97,7 +104,7 @@ public class TrainGameManager : MonoBehaviour
         switch (_objIndex)
         {
             case (int)prefab_list.bullet:
-                if(BulletManager == null)
+                if (BulletManager == null)
                 {
                     return null;
                 }
@@ -122,6 +129,34 @@ public class TrainGameManager : MonoBehaviour
                 }
                 return null;
 
+            case (int)prefab_list.passenger:
+
+                if (PassengerManager == null)
+                {
+                    return null;
+                }
+                int p_Count = PassengerManager.Count;
+
+                for (int i = 0; i < p_Count; i++)
+                {
+                    GameObject obj = PassengerManager[i];
+
+                    //활성화 돼있으면
+                    if (obj.active == true)
+                    {
+                        // 리스트의 마지막까지 돌았는데 다 사용중이다?
+                        if (i == p_Count - 1)
+                        {
+                            SetObject(obj, 1, _objIndex);
+                            return PassengerManager[i + 1];
+                        }
+                        continue;
+                    }
+                    return PassengerManager[i];
+                }
+                return null;
+
+
             default:
                 return null;
 
@@ -136,7 +171,7 @@ public class TrainGameManager : MonoBehaviour
         {
             case (int)prefab_list.bullet:
 
-                if(BulletManager == null)
+                if (BulletManager == null)
                 {
                     return;
                 }
@@ -151,7 +186,27 @@ public class TrainGameManager : MonoBehaviour
                 BulletManager = null;
                 break;
 
+            case (int)prefab_list.passenger:
+
+                if (PassengerManager == null)
+                {
+                    return;
+                }
+
+                int p_Count = PassengerManager.Count;
+
+                for (int i = 0; i < p_Count; i++)
+                {
+                    GameObject obj = PassengerManager[i];
+                    GameObject.Destroy(obj);
+                }
+                PassengerManager = null;
+                break;
 
         }
     }
+    ///////////////////////////////////////////////////////////////////////////////////////
+    ///
+
+
 }

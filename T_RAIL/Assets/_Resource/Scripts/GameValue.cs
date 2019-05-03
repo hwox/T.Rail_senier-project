@@ -61,6 +61,6 @@ static class GameValue {
 
 
     // bullet
-    public const float bullet_speed = 40.0f;
+    public const float bullet_speed = 50.0f;
 
 }
