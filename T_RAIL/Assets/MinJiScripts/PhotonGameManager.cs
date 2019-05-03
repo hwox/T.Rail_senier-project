@@ -36,6 +36,7 @@ namespace Photon.Pun.Demo.Asteroids
         public void Awake()
         {
             Instance = this;
+            //SoundManager.instance.TrainStage1_BGMSoundPlay();
         }
 
         public override void OnEnable()

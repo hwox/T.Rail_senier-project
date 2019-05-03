@@ -174,11 +174,20 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
         InTrain_Passenger -= 1;
     }
 
+    public void onTrainStartButton()
+    {
+        photonView.RPC("RunStartTrain", RpcTarget.All);
+    }
+
+
+    [PunRPC]
     public void RunStartTrain()
     {
         TrainGameManager.instance.speed = GameValue.speed;
         TrainGameManager.instance.speed = 10.0f * speed_count;
     }
+
+
     public void StopTrain()
     {
         TrainGameManager.instance.speed = 0.0f;

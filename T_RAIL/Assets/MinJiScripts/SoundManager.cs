@@ -1,12 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class SoundManager : MonoBehaviour {
+public class SoundManager : MonoBehaviourPunCallbacks {
 
-    public static SoundManager instance = null;
-
-    enum SoundList
+    enum AudioClipList
     {
         buttonClickSound = 0,
         stage1BGM = 1
@@ -18,18 +17,30 @@ public class SoundManager : MonoBehaviour {
         mainScene = 1
     }
 
+    public static SoundManager instance = null;
+
+
     public AudioSource[] audioSources;
     public AudioClip[] sounds;
 
     private void Awake()
     {
+        instance = this;
         DontDestroyOnLoad(this);
     }
 
 
     public void onButtonClickSound()
     {
-        //sounds[]
-        //audioSources[SoundList.buttonClickSound] = 
+        audioSources[(int)AudioSourceList.lobbyScene].PlayOneShot(sounds[(int)AudioClipList.buttonClickSound]);
+        //audioSources[(int)AudioSourceList.lobbyScene].clip = sounds[(int)AudioClipList.buttonClickSound];
+        //audioSources[(int)AudioSourceList.lobbyScene].Play();
+    }
+
+
+    public void TrainStage1_BGMSoundPlay()
+    {
+        audioSources[(int)AudioSourceList.mainScene].clip = (sounds[(int)AudioClipList.stage1BGM]);
+        audioSources[(int)AudioSourceList.mainScene].Play();
     }
 }

@@ -13,7 +13,7 @@ public class TrainGameManager : MonoBehaviour
     }
 
 
-    public static TrainGameManager instance = null;
+    public static TrainGameManager instance = null;// TrainGameManager();
 
 
     public float Durability { get; set; } // 기차의 내구도
