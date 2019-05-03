@@ -48,3 +48,11 @@
 2. condition_ctrl TrainManager여기에 public으로 연결 
 3. condition_ctrl스크립트의 init_Make함수 내부의 주석 -> Enemy1_ctrl 스크립트 start()부분으로 옮김. train 생성과 같은 이유로 (생성할때 자기를 넣어줌)
 + 혜원아 근데 이거 박스 클릭이 또 안되는게 이전버전으로 새로 커밋했나본데???  text 레이가 다 켜져있고 train의 collider가 다시 커져있어
+
+5/3(금욜 아침)
+1. 그거 그... 오프라인 모드 사용하는 법 
+	1. minjiScript폴더 안에 있는 PhotonGameManager스크립트에 들어간다 
+	2. OnEnable() 함수 안에 PhotonNetwork.OfflineMode = true; 를 한다. (내가 테스트할땐 온라인모드 쓸라고 주석걸고 하고있어서 그냥 하면 안되는걸로 보일거야)
+	3. 그리고 Train_stage1 을 바로 실행하면 플레이어 1명에서 시작한다
+
+2.사운드 추가할라고 하는중인데 어떻게 하는건지 잘 모르겠네,,,, 
