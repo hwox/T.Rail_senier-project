@@ -57,7 +57,8 @@ public class TrainGameManager : MonoBehaviour
     }
     private void Start()
     {
-        SetObject(Origin[(int)prefab_list.bullet], 20, (int)prefab_list.bullet); //총알생성
+        SetObject(Origin[(int)prefab_list.bullet], MAKE_BULLET_COUNT, (int)prefab_list.bullet); //총알생성
+        SetObject(Origin[(int)prefab_list.passenger], MAKE_PASSENGER_COUNT, (int)prefab_list.passenger); //승객생성
     }
     public void Error_print()
     {
