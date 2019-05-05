@@ -47115,13 +47115,7 @@ MonoBehaviour:
   Origin:
   - {fileID: 1927369795080342, guid: 5038b754216e0bd4287ed4d8344ab4d7, type: 2}
   - {fileID: 1678285436382366, guid: be1791a8985844747ba2d86aec26ff02, type: 2}
-  - {fileID: 1704425971268086, guid: 54b12baadf47a1a4dbb180ded76bfc6b, type: 2}
-  - {fileID: 1704425971268086, guid: 98c3673523f91a041bfb6475e91decbd, type: 2}
-  - {fileID: 1704425971268086, guid: 49238b0c4de935a4a80a1d8d06e4f62f, type: 2}
-  - {fileID: 1704425971268086, guid: 5ad9638c90cad07418bf77a9f8903f78, type: 2}
-  - {fileID: 1704425971268086, guid: e71d1a55398d3a44195583a84f137fc0, type: 2}
   BulletManager: []
-  BulletDebrisManager: []
   PassengerManager: []
 --- !u!4 &1113577655
 Transform:

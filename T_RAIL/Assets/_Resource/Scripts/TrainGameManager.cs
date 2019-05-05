@@ -10,12 +10,7 @@ public class TrainGameManager : MonoBehaviour
     public enum prefab_list
     {
         bullet = 0,
-        passenger = 1,
-        debris1 = 2,
-        debris2 = 3,
-        debris3 = 4,
-        debris4 = 5,
-        debris5 = 6,
+        passenger = 1
     }
 
 
@@ -49,11 +44,7 @@ public class TrainGameManager : MonoBehaviour
     // 총알 )
     public List<GameObject> BulletManager; // 생성된 객체들을 저장할 리스트
     const int MAKE_BULLET_COUNT = 25;
-    // 총알 잔해 )
 
-    public List<GameObject> BulletDebrisManager; //
-    const int MAKE_BULLETDEBRIS_COUNT = 10; // 한 방에 한 10개 정도?
-    public StringBuilder debris_name = new StringBuilder();
 
     // 승객 )
     public List<GameObject> PassengerManager; // 생성된 객체들을 저장할 리스트
@@ -69,29 +60,18 @@ public class TrainGameManager : MonoBehaviour
     private void Start()
     {
         SetObject_List(); // setobject 해야할 것들
-        Save_DebrisName(); // debris 의 이름들을 (나중에 호출할 때 사용) stringbuilder에 저장
+
     }
     public void Error_print()
     {
         Debug.Log("Error Somewhere");
     }
-    public void Save_DebrisName()
-    {
-        debris_name.Append("debris1");
-        debris_name.Append("debris2");
-        debris_name.Append("debris3");
-        debris_name.Append("debris4");
-        debris_name.Append("debris5");
-    }
+
     public void SetObject_List()
     {
         SetObject(Origin[(int)prefab_list.bullet], MAKE_BULLET_COUNT, (int)prefab_list.bullet); //총알생성
         SetObject(Origin[(int)prefab_list.passenger], MAKE_PASSENGER_COUNT, (int)prefab_list.passenger); //승객생성
-        SetObject(Origin[(int)prefab_list.debris1], MAKE_BULLETDEBRIS_COUNT, (int)prefab_list.debris1); // 총알 잔해 생성
-        SetObject(Origin[(int)prefab_list.debris2], MAKE_BULLETDEBRIS_COUNT, (int)prefab_list.debris2); // 총알 잔해 생성
-        SetObject(Origin[(int)prefab_list.debris3], MAKE_BULLETDEBRIS_COUNT, (int)prefab_list.debris3); // 총알 잔해 생성
-        SetObject(Origin[(int)prefab_list.debris4], MAKE_BULLETDEBRIS_COUNT, (int)prefab_list.debris4); // 총알 잔해 생성
-        SetObject(Origin[(int)prefab_list.debris5], MAKE_BULLETDEBRIS_COUNT, (int)prefab_list.debris5); // 총알 잔해 생성
+   
     }
     public void Notice_EnemyAppear()
     {
@@ -120,13 +100,6 @@ public class TrainGameManager : MonoBehaviour
                     break;
                 case (int)prefab_list.passenger:
                     PassengerManager.Add(obj);
-                    break;
-                case (int)prefab_list.debris1:
-                case (int)prefab_list.debris2:
-                case (int)prefab_list.debris3:
-                case (int)prefab_list.debris4:
-                case (int)prefab_list.debris5:
-                    BulletDebrisManager.Add(obj);
                     break;
             }
 
@@ -190,34 +163,7 @@ public class TrainGameManager : MonoBehaviour
                     return PassengerManager[i];
                 }
                 return null;
-            case (int)prefab_list.debris1:
-            case (int)prefab_list.debris2:
-            case (int)prefab_list.debris3:
-            case (int)prefab_list.debris4:
-            case (int)prefab_list.debris5:
-                if (PassengerManager == null)
-                {
-                    return null;
-                }
-                int d_Count = BulletDebrisManager.Count;
-
-                for (int i = 0; i < d_Count; i += 5)
-                {
-                    for (int j = 0; j < 5; j++)
-                    {
-                        GameObject obj = BulletDebrisManager[i + j];
-                        
-                        if (obj.active == true)
-                        {
-
-                            return null;
-                        }
-                        return BulletDebrisManager[i + j];
-                    }
-
-                }
-                return null;
-
+  
             default:
                 return null;
 
@@ -263,25 +209,8 @@ public class TrainGameManager : MonoBehaviour
                 }
                 PassengerManager = null;
                 break;
-            case (int)prefab_list.debris1:
-            case (int)prefab_list.debris2:
-            case (int)prefab_list.debris3:
-            case (int)prefab_list.debris4:
-            case (int)prefab_list.debris5:
-                if (BulletDebrisManager == null)
-                {
-                    return;
-                }
+ 
 
-                int d_Count = BulletDebrisManager.Count;
-
-                for (int i = 0; i < d_Count; i++)
-                {
-                    GameObject obj = BulletDebrisManager[i];
-                    GameObject.Destroy(obj);
-                }
-                BulletDebrisManager = null;
-                break;
         }
     }
     ///////////////////////////////////////////////////////////////////////////////////////
