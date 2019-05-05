@@ -27,7 +27,7 @@ public class Bullet_Ctrl : MonoBehaviour {
 
             if (timer > 2)
                 break;
-            rig.AddForce(transform.forward *Time.deltaTime* GameValue.bullet_speed, ForceMode.Impulse);
+            rig.AddForce(transform.forward *Time.deltaTime* GameValue.bullet_speed);
 
             yield return null;
 

@@ -54,7 +54,22 @@ public class Enemy1_Ctrl : MonoBehaviour
         {
             // 총알맞으면
             enemy.HP -= 5;
-            Debug.Log(enemy.HP);
+            Debug.Log("터져?");
+                
+            for(int i = 0; i < 10; i++)
+            {
+              //  string str = TrainGameManager.instance.debris_name[i % TrainGameManager.instance.BulletDebrisManager.Count];
+                GameObject obj = TrainGameManager.instance.GetObject((i%5)+2);
+
+                if(obj == null)
+                {
+                    continue;
+                }
+                Debug.Log(obj);
+                obj.transform.position = other.transform.position;
+                obj.SetActive(true);
+                obj.GetComponent<BulletExplosion>().StartExplosionHide();
+            }
         }
 
         if (other.gameObject.layer.Equals(GameValue.train_layer))
