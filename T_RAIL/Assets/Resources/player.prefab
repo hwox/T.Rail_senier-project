@@ -33,7 +33,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1040857288343440
 GameObject:
   m_ObjectHideFlags: 1
@@ -945,8 +945,8 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: be0abb7e71b8437498d9aa1a331aa4ee, type: 2}
   - {fileID: 2100000, guid: e75616a8a383d2c4080b532033000932, type: 2}
-  - {fileID: 2100000, guid: a1deac64fca0fa24d838b557f29cbb17, type: 2}
   - {fileID: 2100000, guid: 7f44de0e06ddc87428ad53c7baa0ab19, type: 2}
+  - {fileID: 2100000, guid: a1deac64fca0fa24d838b557f29cbb17, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1061,6 +1061,9 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 1
     Name: UpToLadder
+  - Type: 4
+    SynchronizeType: 0
+    Name: IsJump
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
@@ -1130,6 +1133,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerUiPrefab: {fileID: 170056, guid: e41946a981c3b444a84d15eb7c608ca4, type: 2}
+  myHatColor: {r: 0, g: 0, b: 0, a: 0}
+  myHat: {fileID: 1531836432078286}
 --- !u!137 &137324106682157858
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
