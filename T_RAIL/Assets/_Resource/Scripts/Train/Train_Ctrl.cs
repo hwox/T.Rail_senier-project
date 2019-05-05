@@ -36,10 +36,10 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
     private void Awake()
     {
         // 기본 초기화
-        TrainGameManager.instance.Durability = GameValue.Durability;
+        TrainGameManager.instance.Defence = GameValue.Durability;
         // speed = GameValue.speed;
-        TrainGameManager.instance.speed = 0;
-        TrainGameManager.instance.noise = GameValue.noise;
+        TrainGameManager.instance.Speed = 0;
+        TrainGameManager.instance.Noise = GameValue.noise;
     }
 
     void Start()
@@ -53,7 +53,7 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
     private void Update()
     {
         if (photonView.IsMine)
-            Run_Meter += (TrainGameManager.instance.speed * 0.2f) * Time.deltaTime;
+            Run_Meter += (TrainGameManager.instance.Speed * 0.2f) * Time.deltaTime;
 
     }
 
@@ -152,7 +152,7 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
         {
             speed_count += 1;
         }
-        TrainGameManager.instance.speed = 10.0f * speed_count;
+        TrainGameManager.instance.Speed = 10.0f * speed_count;
     }
     public void SpeedDown()
     {
@@ -160,7 +160,7 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
         {
             speed_count -= 1;
         }
-        TrainGameManager.instance.speed = 10.0f * speed_count;
+        TrainGameManager.instance.Speed = 10.0f * speed_count;
     }
 
     public void Passenger_In()
@@ -183,14 +183,14 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
     [PunRPC]
     public void RunStartTrain()
     {
-        TrainGameManager.instance.speed = GameValue.speed;
-        TrainGameManager.instance.speed = 10.0f * speed_count;
+        TrainGameManager.instance.Speed = GameValue.speed;
+        TrainGameManager.instance.Speed = 10.0f * speed_count;
     }
 
 
     public void StopTrain()
     {
-        TrainGameManager.instance.speed = 0.0f;
+        TrainGameManager.instance.Speed = 0.0f;
     }
     public void Wheel_Animation_Speed()
     {

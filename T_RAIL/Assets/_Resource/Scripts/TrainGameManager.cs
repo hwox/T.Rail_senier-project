@@ -16,10 +16,21 @@ public class TrainGameManager : MonoBehaviour
 
     public static TrainGameManager instance = null;// TrainGameManager();
 
+    public int AllStat;
+    public int NowsumStat
+    {
+        get
+        {
+            return Speed_stat + Defence_stat + Noise_stat;
+        }
+    }
+    public int Defence_stat { get; set; }
+    public int Speed_stat { get; set; }
+    public int Noise_stat { get; set; }
 
-    public float Durability { get; set; } // 기차의 내구도
-    public float speed { get; set; } // 현재 기차가 달리는 스피드 -> 맵에서 사용할거임
-    public float noise { get; set; } // 현재 기차가 내는 소음
+    public float Defence { get; set; } // 기차의 내구도
+    public float Speed { get; set; } // 현재 기차가 달리는 스피드 -> 맵에서 사용할거임
+    public float Noise { get; set; } // 현재 기차가 내는 소음
 
     public int trainindex; // 지금 기차 몇개 붙어있는지
                            // 몇개 붙어있는지 가지고 제일 마지막 위치 -> 기관총
@@ -56,6 +67,11 @@ public class TrainGameManager : MonoBehaviour
     {
         instance = this;
         DontDestroyOnLoad(gameObject);
+
+        AllStat = 12;
+        Speed_stat = 2;
+        Noise_stat = 2;
+        Defence_stat = 2;
     }
     private void Start()
     {
@@ -71,7 +87,7 @@ public class TrainGameManager : MonoBehaviour
     {
         SetObject(Origin[(int)prefab_list.bullet], MAKE_BULLET_COUNT, (int)prefab_list.bullet); //총알생성
         SetObject(Origin[(int)prefab_list.passenger], MAKE_PASSENGER_COUNT, (int)prefab_list.passenger); //승객생성
-   
+
     }
     public void Notice_EnemyAppear()
     {
@@ -80,7 +96,6 @@ public class TrainGameManager : MonoBehaviour
         // 여기는 striingbuilder로 바꾸기
         InGame_Text.text = "코뿔소 등장 ! ";
     }
-
     ////////////////////////////////  pool   //////////////////////////////
     ///
     public void SetObject(GameObject _obj, int _count, int prefab_index)
@@ -163,7 +178,7 @@ public class TrainGameManager : MonoBehaviour
                     return PassengerManager[i];
                 }
                 return null;
-  
+
             default:
                 return null;
 
@@ -209,7 +224,7 @@ public class TrainGameManager : MonoBehaviour
                 }
                 PassengerManager = null;
                 break;
- 
+
 
         }
     }
