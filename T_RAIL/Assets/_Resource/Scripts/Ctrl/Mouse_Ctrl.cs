@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using UnityEngine.EventSystems;
 
 public class Mouse_Ctrl : MonoBehaviourPunCallbacks
 {
@@ -22,6 +23,7 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
 
     public bool ThisCamOn;
 
+    int IgnoreRay;
 
     //   layerMask = (1 << LayerMask.NameToLayer("Furniture")); 
 
@@ -30,6 +32,8 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
         ThisCamOn = true;
         // ScreenWidth = Screen.width;
         // ScreenHeight = Screen.height;
+        IgnoreRay = 1 << 31;  // ray가 wall을 무시하도록
+        IgnoreRay = ~IgnoreRay;
     }
 
     // Update is called once per frame
@@ -38,21 +42,23 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
 
         if (ThisCamOn)
         {
-
-            if (Input.GetMouseButtonDown(0))
+            // UI이 위가 아니면
+            if (Input.GetMouseButtonDown(0) && EventSystem.current.IsPointerOverGameObject() == false)
             {
 
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
 
+               
                 // 만약에 마우스 클릭이 안된다?
                 // max distance 200.0f을 mathf.infinity로 바꿔볼것
                 //if (Physics.Raycast(ray, out hit))
                 //{
                 //   // Debug.Log(hit.collider.gameObject.layer);
                 //}
-                if (Physics.Raycast(ray, out hit))
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, IgnoreRay))
                 {
+                    Debug.Log(hit.collider.name);
                     // 아... Equals("12") 라고 해서 계속 안됐던거임 흑흑 젠장
                     if (hit.collider.gameObject.layer.Equals(GameValue.itembox_layer))
                     {

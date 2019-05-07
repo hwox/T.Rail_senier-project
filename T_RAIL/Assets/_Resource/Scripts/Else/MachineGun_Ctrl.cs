@@ -17,11 +17,11 @@ public class MachineGun_Ctrl : MonoBehaviour
     public void gun_up()
     {
         
-        transform.Rotate(0, 0, -10.0f * Time.deltaTime);
+        transform.Rotate(0, -10.0f * Time.deltaTime, 0);
     }
     public void gun_down()
     {
-        transform.Rotate(0, 0, 10.0f * Time.deltaTime);
+        transform.Rotate(0, 10.0f * Time.deltaTime, 0);
     }
 
     public void gun_fire(bool fire)
