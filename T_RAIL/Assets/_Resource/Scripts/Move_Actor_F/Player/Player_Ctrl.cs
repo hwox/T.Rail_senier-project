@@ -558,6 +558,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                 {
                     // 주변에 머신건이 있으면?
                     player.Where_Floor = 3;
+                    MCam_Ctrl.EnemyAppear_Cam(true, player.Where_Train);
                     space_state = 0;
                     near_gun = false;
                     Push_Space_UI.SetActive(false);
@@ -584,6 +585,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         if (Input.GetKey(KeyCode.D))
         {
             // 기관총에서 벗어나자!
+            MCam_Ctrl.EnemyAppear_Cam(false, 0);
             player.Where_Floor = 2;
         }
         // 
