@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 33712202371861486}
   - component: {fileID: 23368176309779772}
   - component: {fileID: 65490227093432804}
+  - component: {fileID: 54939420006399282}
   m_Layer: 18
   m_Name: nextTrigger
   m_TagString: Untagged
@@ -577,6 +578,7 @@ GameObject:
   - component: {fileID: 33039557815003202}
   - component: {fileID: 23579777289787558}
   - component: {fileID: 65017923407501396}
+  - component: {fileID: 54183034969508336}
   m_Layer: 19
   m_Name: prevTrigger
   m_TagString: Untagged
@@ -734,7 +736,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1570977697804100
 GameObject:
   m_ObjectHideFlags: 1
@@ -2062,7 +2064,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1568685052463590}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.942, z: 6.5}
+  m_LocalPosition: {x: 0, y: 2.942, z: 6.75}
   m_LocalScale: {x: 5, y: 4.315, z: 0.611}
   m_Children: []
   m_Father: {fileID: 4831777227345060}
@@ -3957,6 +3959,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1957607200395068}
   m_Mesh: {fileID: 4300000, guid: ed506f2b1f74b7847af7ed9f141580bf, type: 3}
+--- !u!54 &54183034969508336
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1413048764710382}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 1
 --- !u!54 &54418791343142806
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -4002,6 +4019,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!54 &54939420006399282
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1018958215290030}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 1
 --- !u!65 &65006347174408022
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -4605,7 +4637,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 1
+  InstantiationId: 7
   isRuntimeInstantiated: 0
 --- !u!114 &114490062990637820
 MonoBehaviour:
@@ -4637,7 +4669,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 3
+  InstantiationId: 6
   isRuntimeInstantiated: 0
 --- !u!114 &114714715675578268
 MonoBehaviour:
@@ -4679,7 +4711,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114246163877717286}
   viewIdField: 0
-  InstantiationId: 6
+  InstantiationId: 3
   isRuntimeInstantiated: 0
 --- !u!114 &114926657734411050
 MonoBehaviour:
@@ -4700,7 +4732,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 7
+  InstantiationId: 1
   isRuntimeInstantiated: 0
 --- !u!137 &137085497657877282
 SkinnedMeshRenderer:

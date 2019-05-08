@@ -36,6 +36,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     MachineGun_Ctrl gun_ctrl; // 그 머신건에 달린 ctrl 스크립트. 머신건을 받아올 떄 마다 얘도 같이
 
 
+    float runTime; // 걷는 거 2초이상 달리기
+
     bool stair_up; // 사다리 올라가고 있는 중
     bool stair_down; // 사다리 내려가고 있는 중
     bool jump_nextTrain; // 다음칸으로 점프 중
@@ -100,6 +102,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         if (!photonView.IsMine) return;
 
 
+
+
         if (jump_ok)
         {
             // 다음칸 trigger
@@ -108,30 +112,21 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
 
                 if (player.Where_Train + 1 <= TrainGameManager.instance.trainindex)
                 {
-
+                    Debug.Log("n");
+                    jump_ok = false;
                     space_state = (int)player_space_state.nextjump;
 
-                    Debug.Log("n");
-                    //  jump_nextTrain = true;
-                    //  anim.SetBool("IsWalk", false);
-                    //   anim.SetBool("IsJump", true);
-
-                    jump_ok = false;
                 }
 
             }
 
             // 이전칸 trigger
-            if (other.gameObject.layer.Equals(GameValue.PrevTrain_layer))
+            else if (other.gameObject.layer.Equals(GameValue.PrevTrain_layer))
             {
 
                 if (player.Where_Train != 0)
                 {
                     Debug.Log("p");
-                    //jump_prevTrain = true;
-                    //anim.SetBool("IsWalk", false);
-                    //anim.SetBool("IsJump", true);
-
 
                     jump_ok = false;
                     space_state = (int)player_space_state.prevjump;
@@ -139,6 +134,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
 
             }
         }
+
+
         if (!stair_up && !stair_down)
         {
 
@@ -180,12 +177,42 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     }
     private void OnTriggerStay(Collider other)
     {
+        //if (jump_ok)
+        //{
+        //    // 다음칸 trigger
+        //    if (other.gameObject.layer.Equals(GameValue.NextTrain_layer))
+        //    {
+
+        //        if (player.Where_Train + 1 <= TrainGameManager.instance.trainindex)
+        //        {
+
+        //            space_state = (int)player_space_state.nextjump;
+
+        //            Debug.Log("stay = n");
+        //            jump_ok = false;
+        //        }
+
+        //    }
+
+        //    // 이전칸 trigger
+        //    else if (other.gameObject.layer.Equals(GameValue.PrevTrain_layer))
+        //    {
+
+        //        if (player.Where_Train != 0)
+        //        {
+        //            Debug.Log("stay = p");
+        //            space_state = (int)player_space_state.prevjump;
+        //            jump_ok = false;
+        //        }
+        //    }
+        //}
+
         if (other.gameObject.layer.Equals(GameValue.wall_layer))
         {
             player.WallConflictDirection();
         }
     }
- 
+
     private void OnTriggerExit(Collider other)
     {
         if (!photonView.IsMine) return;
@@ -226,6 +253,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
             jump_ok = true;
         }
 
+
+
         if (other.gameObject.layer.Equals(GameValue.wall_layer))
         {
             player.WallConflictDirections_Reset();
@@ -239,6 +268,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
+
         if (!photonView.IsMine) return;
 
         // 이 highlight는 나중에 따로 함수로 뺄고야 일단 정리ㅣ되면 빼겟음
@@ -247,6 +277,10 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
             // 근데 이것도 사다리 올라가는 중에는 X 
             highlighter.Hover(hoverColor);
         }
+
+        anim.SetFloat("RunTime", runTime);
+        SetPlayerMoveSpeed();
+
 
         // 키입력
         GetKeyInput();
@@ -334,9 +368,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
 
                     anim.SetBool("IsJump", false);
 
-
-                    // Invoke("Set_JumpOk", 1.0f);
-                    // 여기서 이제 player가 존재하는 기차의 인덱스가 몇번인지도 넘겨주기
                 }
 
             }
@@ -414,31 +445,45 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
             {
                 Move('a');
                 anim.SetBool("IsWalk", true);
+                runTime += Time.deltaTime;
             }
 
             if (Input.GetKey(KeyCode.D))
             {
                 Move('d');
                 anim.SetBool("IsWalk", true);
+                runTime += Time.deltaTime;
             }
             if (Input.GetKey(KeyCode.S))
             {
                 Move('s');
                 anim.SetBool("IsWalk", true);
+                runTime += Time.deltaTime;
             }
             if (Input.GetKey(KeyCode.W))
             {
                 Move('w');
                 anim.SetBool("IsWalk", true);
+                runTime += Time.deltaTime;
             }
 
             if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) ||
                 Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.W))
             {
                 anim.SetBool("IsWalk", false);
+                runTime = 0;
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKey(KeyCode.O))
+            {
+                space_state = 0;
+                jump_ok = true;
+
+                jump_ok = false;
+                space_state = (int)player_space_state.nextjump;
+            }
+
+            if (Input.GetKeyDown(KeyCode.V))
             {
                 // 사다리 가까이서 space누르면 올라가기 == 1
                 // 기관총 앞에서 space누르면 기관총에 장착되기 == 2
@@ -506,7 +551,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                 anim.SetBool("IsWalk", false);
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.V))
             {
                 // 머신건에 앉기
                 if (space_state.Equals((int)player_space_state.Machine_gun))
@@ -578,6 +623,18 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         // 더 필요한 state들은 뒤로 추가하는걸로
     }
 
+    public void SetPlayerMoveSpeed()
+    {
+
+        if (runTime > 2.0f)
+        {
+            player.speed = 35.0f;
+        }
+        else
+        {
+            player.speed = 20.0f;
+        }
+    }
 
     /// ////////////////////////////////////////////////////////////////////////
     ///// UI
@@ -645,7 +702,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         _Bullet.transform.position = gun_child.GetChild(0).position; //총알 위치 설정
         _Bullet.transform.rotation = gun_child.localRotation;
         _Bullet.SetActive(true);
-         _Bullet.GetComponent<Bullet_Ctrl>().CallMoveCoroutin();
-       // _Bullet.GetComponent<Rigidbody>().AddForce(gun_child.transform.forward * Time.deltaTime * GameValue.bullet_speed);
+        _Bullet.GetComponent<Bullet_Ctrl>().CallMoveCoroutin();
+        // _Bullet.GetComponent<Rigidbody>().AddForce(gun_child.transform.forward * Time.deltaTime * GameValue.bullet_speed);
     }
 }
