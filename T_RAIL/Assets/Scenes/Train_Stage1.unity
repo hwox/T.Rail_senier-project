@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657755, g: 0.4964127, b: 0.57481825, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657642, g: 0.49641156, b: 0.5748181, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -86069,6 +86069,7 @@ GameObject:
   - component: {fileID: 1927016313}
   - component: {fileID: 1927016315}
   - component: {fileID: 1927016314}
+  - component: {fileID: 1927016316}
   m_Layer: 0
   m_Name: background
   m_TagString: Untagged
@@ -86084,7 +86085,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1927016312}
   m_LocalRotation: {x: -0.5, y: -0.49999997, z: 0.5, w: 0.50000006}
-  m_LocalPosition: {x: 130, y: 37, z: -253}
+  m_LocalPosition: {x: 130, y: 42, z: -253}
   m_LocalScale: {x: 8000.812, y: 80000.1, z: 165.68121}
   m_Children: []
   m_Father: {fileID: 1473756848}
@@ -86134,6 +86135,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1927016312}
   m_Mesh: {fileID: 4300024, guid: 5c8f926379dfdb54589973c3bb084442, type: 3}
+--- !u!114 &1927016316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1927016312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf5fe82fb48d684b8b4bc3edbc61125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1927663527
 GameObject:
   m_ObjectHideFlags: 0
