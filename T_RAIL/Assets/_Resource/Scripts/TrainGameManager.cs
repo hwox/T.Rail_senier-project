@@ -85,8 +85,8 @@ public class TrainGameManager : MonoBehaviour
 
     public void SetObject_List()
     {
-        SetObject(Origin[(int)prefab_list.bullet], MAKE_BULLET_COUNT, (int)prefab_list.bullet); //총알생성
-        SetObject(Origin[(int)prefab_list.passenger], MAKE_PASSENGER_COUNT, (int)prefab_list.passenger); //승객생성
+        CreateObject(Origin[(int)prefab_list.bullet], MAKE_BULLET_COUNT, (int)prefab_list.bullet); //총알생성
+        CreateObject(Origin[(int)prefab_list.passenger], MAKE_PASSENGER_COUNT, (int)prefab_list.passenger); //승객생성
 
     }
     public void Notice_EnemyAppear()
@@ -98,16 +98,14 @@ public class TrainGameManager : MonoBehaviour
     }
     ////////////////////////////////  pool   //////////////////////////////
     ///
-    public void SetObject(GameObject _obj, int _count, int prefab_index)
+    public void CreateObject(GameObject _obj, int _count, int prefab_index)
     {
         for (int i = 0; i < _count; i++)
         {
             GameObject obj = Instantiate(_obj);
-            obj.transform.localPosition = Vector3.zero; // 위치정하기
+            obj.transform.localPosition = Vector3.zero; 
             obj.SetActive(false);
             obj.transform.parent = transform.GetChild(prefab_index);
-
-
             switch (prefab_index)
             {
                 case (int)prefab_list.bullet:
@@ -117,8 +115,6 @@ public class TrainGameManager : MonoBehaviour
                     PassengerManager.Add(obj);
                     break;
             }
-
-
         }
     }
     public GameObject GetObject(int _objIndex)
@@ -143,7 +139,7 @@ public class TrainGameManager : MonoBehaviour
                         // 리스트의 마지막까지 돌았는데 다 사용중이다?
                         if (i == Count - 1)
                         {
-                            SetObject(obj, 1, _objIndex);
+                            CreateObject(obj, 1, _objIndex);
                             return BulletManager[i + 1];
                         }
                         continue;
@@ -170,7 +166,7 @@ public class TrainGameManager : MonoBehaviour
                         // 리스트의 마지막까지 돌았는데 다 사용중이다?
                         if (i == p_Count - 1)
                         {
-                            SetObject(obj, 1, _objIndex);
+                            CreateObject(obj, 1, _objIndex);
                             return PassengerManager[i + 1];
                         }
                         continue;

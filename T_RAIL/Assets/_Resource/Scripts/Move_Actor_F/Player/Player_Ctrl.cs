@@ -554,12 +554,12 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         }
 
         // 총알 발사
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             StartCoroutine(NextFire());
             // gun_ctrl.gun_fire(true); // 아직x 
         }
-        else if (Input.GetKeyUp(KeyCode.Space))
+        else if (Input.GetKeyUp(KeyCode.F))
         {
             ContinuousFire = false;
             gun_ctrl.gun_fire(ContinuousFire);
