@@ -32,7 +32,7 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
         ThisCamOn = true;
         // ScreenWidth = Screen.width;
         // ScreenHeight = Screen.height;
-        IgnoreRay = 1 << 31;  // ray가 wall을 무시하도록
+        IgnoreRay = 1 << 31;  // ray가 wall(31번 Layer)을 무시하도록
         IgnoreRay = ~IgnoreRay;
     }
 
