@@ -16,12 +16,24 @@ public class MachineGun_Ctrl : MonoBehaviour
 
     public void gun_up()
     {
-        
-        transform.Rotate(0, -10.0f * Time.deltaTime, 0);
+        if (transform.localRotation.y > -40.0f)
+        {
+
+            Quaternion rotation = Quaternion.identity;
+            rotation.eulerAngles = new Vector3(0, -20.0f * Time.deltaTime, 0); 
+            this.gameObject.transform.localRotation *= rotation;
+            Debug.Log(transform.localRotation.y);
+
+        }
     }
     public void gun_down()
     {
-        transform.Rotate(0, 10.0f * Time.deltaTime, 0);
+        if (transform.localRotation.y < 40.0f)
+        {
+            Quaternion rotation = Quaternion.identity;
+            rotation.eulerAngles = new Vector3(0, 20.0f * Time.deltaTime, 0);
+            this.gameObject.transform.localRotation *= rotation; Debug.Log(transform.localRotation.y);
+        }
     }
 
     public void gun_fire(bool fire)
@@ -30,7 +42,7 @@ public class MachineGun_Ctrl : MonoBehaviour
         {
 
         }
-        else if(!fire)
+        else if (!fire)
         {
 
         }

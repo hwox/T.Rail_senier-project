@@ -5,7 +5,7 @@ using UnityEngine;
 public class CamCtrl : MonoBehaviour
 {
 
-
+    public GameObject Enemy_Appear_Cam;
     // 혹시 카메라 전환할때?
 
     Transform tr;
@@ -115,4 +115,20 @@ public class CamCtrl : MonoBehaviour
     }
 
 
+    // enemy_appear_cam_change
+    public void EnemyAppear_Cam(bool onoff, int index)
+    {
+        if (onoff)
+        {
+            Enemy_Appear_Cam.transform.position = new Vector3((index - 1) * GameValue.Train_distance -1, 10.0f, -8.0f);
+            Enemy_Appear_Cam.GetComponent<Camera>().enabled = true;
+            this.GetComponent<Camera>().enabled = false;
+        }
+        else if (!onoff)
+        {
+            this.GetComponent<Camera>().enabled = true;
+            Enemy_Appear_Cam.GetComponent<Camera>().enabled = false;
+
+        }
+    }
 }
