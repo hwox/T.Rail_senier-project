@@ -23,7 +23,7 @@ namespace Photon.Pun.Demo.Asteroids
     {
         public static PhotonGameManager Instance = null;
 
-        //public Text InfoText;
+        public Text InfoText;
 
         public GameObject[] TrailPrefabs;
 
@@ -44,19 +44,19 @@ namespace Photon.Pun.Demo.Asteroids
             base.OnEnable();
 
 
-            PhotonNetwork.OfflineMode = true;
-            if(PhotonNetwork.OfflineMode == true)
-            {
-                PhotonNetwork.JoinRandomRoom();
-                StartGame();
-                return;
-            }
-            else
-            {
-                CountdownTimer.OnCountdownTimerHasExpired += OnCountdownTimerIsExpired;
-            }
+            //PhotonNetwork.OfflineMode = true;
+            //if(PhotonNetwork.OfflineMode == true)
+            //{
+            //    PhotonNetwork.JoinRandomRoom();
+            //    StartGame();
+            //    return;
+            //}
+            //else
+            //{
+            //    CountdownTimer.OnCountdownTimerHasExpired += OnCountdownTimerIsExpired;
+            //}
             
-           // CountdownTimer.OnCountdownTimerHasExpired += OnCountdownTimerIsExpired;
+            CountdownTimer.OnCountdownTimerHasExpired += OnCountdownTimerIsExpired;
         }
 
         public void Start()
@@ -198,6 +198,8 @@ namespace Photon.Pun.Demo.Asteroids
 
         private void StartGame()
         {
+            //if (!PhotonNetwork.IsMasterClient) return;
+
             //float angularStart = (360.0f / PhotonNetwork.CurrentRoom.PlayerCount) * PhotonNetwork.LocalPlayer.GetPlayerNumber();
             //float x = 20.0f * Mathf.Sin(angularStart * Mathf.Deg2Rad);
             //float z = 20.0f * Mathf.Cos(angularStart * Mathf.Deg2Rad);
@@ -211,12 +213,12 @@ namespace Photon.Pun.Demo.Asteroids
             }
             else
             {
-                //PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0, 3.3f, -2.5f), Quaternion.Euler(0, 180, 0), 0);
-                for (int i = 0; i < PhotonNetwork.CurrentRoom.PlayerCount; ++i)
+                //for (int i = 0; i < PhotonNetwork.CurrentRoom.PlayerCount; ++i)
                 {
-                    if (PhotonNetwork.PlayerList[i].NickName == PhotonNetwork.LocalPlayer.NickName)
+                    //if (PhotonNetwork.PlayerList[i].NickName == PhotonNetwork.LocalPlayer.NickName)
                     {
-                        PhotonNetwork.Instantiate(playerPrefab.name, new Vector3(-1 * i * 2, 3.8f, -2.5f), Quaternion.Euler(0, 180, 0), 0);
+                        int id = photonView.ViewID/1000;
+                        PhotonNetwork.Instantiate(playerPrefab.name, new Vector3(-1 * id * 2, 3.8f, -2.5f), Quaternion.Euler(0, 180, 0), 0);
                         Debug.LogError(PhotonNetwork.CurrentRoom.PlayerCount);
                     }
                 }
