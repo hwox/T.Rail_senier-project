@@ -40,5 +40,6 @@ MonoBehaviour:
   - Init_Make
   - Rhino_Add
   - RunStartTrain
+  - Question_Where_I_am
   DisableAutoOpenWizard: 1
   ShowSettings: 1

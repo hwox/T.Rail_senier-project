@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using HighlightingSystem;
 using Photon.Pun;
+using Photon.Realtime;
 
 
 
@@ -71,11 +72,16 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     float Attack_Gap; //발사간격
     bool ContinuousFire; // 계속발사할것인지플래그
     /// ////////////////////////////////////////////////////////////////////////
+    
+    //각 플레이어가 몇번째 칸에 있는지 각자 저장
+    public int[] eachPlayerIn;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
 
         player = new Player_Actor();
+        int[] eachPlayerIn = new int[PhotonNetwork.CountOfPlayersInRooms];
 
         Make_PushSpaceUI();
         Init_Set_Value();
@@ -398,8 +404,23 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         }
 
 
+
+
+        ////플레이어들이 어디에 있는지 확인
+        for (int i = 0; i < PhotonNetwork.CountOfPlayersInRooms; ++i)
+        {
+            //각 플레이어에게 지금 어디냐고 rpc로 물어보고 rpc로 답을 받음
+            photonView.RPC("Question_Where_I_am", PhotonNetwork.PlayerList[i], i, eachPlayerIn[i]);
+        }
     }
 
+    [PunRPC]
+    public void Question_Where_I_am(int who, int whichTrain)
+    {
+        whichTrain = player.Where_Train;
+        eachPlayerIn[who] = whichTrain;
+        Debug.Log(who + "가 어디있냐면" + eachPlayerIn[who]);
+    }
 
     /// ////////////////////////////////////////////////////////////////////////
     // key 관련
@@ -707,4 +728,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         _Bullet.GetComponent<Bullet_Ctrl>().CallMoveCoroutin();
         // _Bullet.GetComponent<Rigidbody>().AddForce(gun_child.transform.forward * Time.deltaTime * GameValue.bullet_speed);
     }
+
+
+    
 }
