@@ -419,11 +419,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         }
 
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> c23f854d1aa3bdbe63edc91d6a2b94f48a7f8d3f
 
 
 
@@ -540,17 +535,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
             }
 
 
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-
-=======
-                jump_ok = false;
-                space_state = (int)player_space_state.nextjump;
-            }
->>>>>>> c23f854d1aa3bdbe63edc91d6a2b94f48a7f8d3f
->>>>>>> ca8eaa651d9e460572b311e7e89c14bfb45d4d2a
 
             if (Input.GetKeyDown(KeyCode.V))
             {
@@ -574,22 +559,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                     // 천장에 올라가면 뚜껑도 setactive.true해줘야되네
                 }
 
-<<<<<<< HEAD
                 else if (jump_now)
-=======
-<<<<<<< HEAD
-                else if (jump_now)
-=======
-
-                if (space_state.Equals((int)player_space_state.prevjump))
->>>>>>> c23f854d1aa3bdbe63edc91d6a2b94f48a7f8d3f
-                {
-                    jump_prevTrain = true;
-                    anim.SetBool("IsWalk", false);
-                    anim.SetBool("IsJump", true);
-                }
-                else if (space_state.Equals((int)player_space_state.nextjump))
->>>>>>> ca8eaa651d9e460572b311e7e89c14bfb45d4d2a
                 {
                     //jump_now = true;
                     anim.SetBool("IsWalk", false);
@@ -698,18 +668,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         }
         if (Input.GetKey(KeyCode.D))
         {
-<<<<<<< HEAD
             gun_ctrl.gun_right();
-=======
-<<<<<<< HEAD
-            m_Fired = false;
-            //  m_CurrentLaunchForce = m_MinLaunchForce;
-            // shoot sound 
-=======
-            ContinuousFire = false;
-            gun_ctrl.gun_fire(ContinuousFire);
->>>>>>> c23f854d1aa3bdbe63edc91d6a2b94f48a7f8d3f
->>>>>>> ca8eaa651d9e460572b311e7e89c14bfb45d4d2a
         }
 
         if (m_CurrentLaunchForce >= m_MaxLaunchForce && !m_Fired)
@@ -733,15 +692,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         }
         // 카메라 조절은 마우스로
 
-<<<<<<< HEAD
-    void Fire()
-    {
-        m_Fired = false;
-        // bullet에 .velocity = m_CurrentLauchForce 전달해주고 
-        BulletInfoSetting(TrainGameManager.instance.GetObject(0), m_CurrentLaunchForce);
-        m_CurrentLaunchForce = m_MinLaunchForce;
-=======
->>>>>>> c23f854d1aa3bdbe63edc91d6a2b94f48a7f8d3f
     }
 
     void Fire()
@@ -799,37 +749,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         }
     }
 
-<<<<<<< HEAD
-=======
-    /// ////////////////////////////////////////////////////////////////////////
-    void WhereTrain_CalculPosition(float position)
-    {
-
-        float traindistance = GameValue.Train_distance; // -13
-        float dist2 = traindistance / 2.0f; // -6.5
-
-        if (position > 7.0f)
-        {
-            player.Where_Floor = 0;
-        }
-        else
-        {
-            for (int i = 0; i < GameValue.MaxTrainNumber; i++)
-            {
-                if (((i * traindistance) + dist2) < position && ((i * traindistance) - dist2) > position)
-                {
-                    Debug.Log("index 여기" + (i + 1));
-                    player.Where_Train = i + 1;
-                }
-
-
-            }
-        }
-
-
-    }
-
->>>>>>> ca8eaa651d9e460572b311e7e89c14bfb45d4d2a
     /// ////////////////////////////////////////////////////////////////////////
     void WhereTrain_CalculPosition(float position)
     {
