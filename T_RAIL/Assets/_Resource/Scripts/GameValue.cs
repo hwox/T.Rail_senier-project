@@ -37,9 +37,12 @@ static class GameValue {
     public const int Train_Standard_HP = 300;
     // 기차 속성의 기본값 
     public const float Durability = 100.0f;
-    public const float speed = 10.0f;
+    public const float speed = 5.0f;
     public const float noise = 100.0f;
 
+
+    // 다음역 까지의 거리
+    public const float NextStationMeter = 4000.0f; // 4km -> 기본속도 3기준 4분
 
     // 기차 간격
     public const float Train_distance = -13.0f;

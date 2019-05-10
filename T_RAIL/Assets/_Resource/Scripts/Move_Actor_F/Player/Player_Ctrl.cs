@@ -119,40 +119,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         if (!photonView.IsMine) return;
 
 
-
-
-        //if (jump_ok)
-        //{
-        //    // 다음칸 trigger
-        //    if (other.gameObject.layer.Equals(GameValue.NextTrain_layer))
-        //    {
-
-        //        if (player.Where_Train + 1 <= TrainGameManager.instance.trainindex)
-        //        {
-        //            Debug.Log("n");
-        //            jump_ok = false;
-        //            space_state = (int)player_space_state.nextjump;
-
-        //        }
-
-        //    }
-
-        //    // 이전칸 trigger
-        //    else if (other.gameObject.layer.Equals(GameValue.PrevTrain_layer))
-        //    {
-
-        //        if (player.Where_Train != 0)
-        //        {
-        //            Debug.Log("p");
-
-        //            jump_ok = false;
-        //            space_state = (int)player_space_state.prevjump;
-        //        }
-
-        //    }
-        //}
-
-
         if (!stair_up && !stair_down)
         {
 
@@ -194,35 +160,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     }
     private void OnTriggerStay(Collider other)
     {
-        //if (jump_ok)
-        //{
-        //    // 다음칸 trigger
-        //    if (other.gameObject.layer.Equals(GameValue.NextTrain_layer))
-        //    {
-
-        //        if (player.Where_Train + 1 <= TrainGameManager.instance.trainindex)
-        //        {
-
-        //            space_state = (int)player_space_state.nextjump;
-
-        //            Debug.Log("stay = n");
-        //            jump_ok = false;
-        //        }
-
-        //    }
-
-        //    // 이전칸 trigger
-        //    else if (other.gameObject.layer.Equals(GameValue.PrevTrain_layer))
-        //    {
-
-        //        if (player.Where_Train != 0)
-        //        {
-        //            Debug.Log("stay = p");
-        //            space_state = (int)player_space_state.prevjump;
-        //            jump_ok = false;
-        //        }
-        //    }
-        //}
 
         if (other.gameObject.layer.Equals(GameValue.wall_layer))
         {
@@ -373,17 +310,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
             {
                 if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
                 {
-                    //if (jump_prevTrain)
-                    //{
-                    //    photonView.RPC("changeMy_Where_Train", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber-1, 0);
-                    //    //player.Where_Train -= 1;
-                    //}
-                    //else if (jump_nextTrain)
-                    //{
-                    //    photonView.RPC("changeMy_Where_Train", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber-1, 1);
-                    //    //player.Where_Train += 1;
-                    //}
-
                     jump_now = true;
 
 
@@ -566,20 +492,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                     anim.SetBool("IsJump", true);
                     jump_now = false;
                 }
-
-                //if (space_state.Equals((int)player_space_state.prevjump))
-                //{
-                //    jump_prevTrain = true;
-                //    anim.SetBool("IsWalk", false);
-                //    anim.SetBool("IsJump", true);
-                //}
-                //else if (space_state.Equals((int)player_space_state.nextjump))
-                //{
-                //    jump_nextTrain = true;
-                //    anim.SetBool("IsWalk", false);
-                //    anim.SetBool("IsJump", true);
-                //}
-
             }
         }
 
@@ -769,8 +681,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                     Debug.Log("index 여기" + (i + 1));
                     player.Where_Train = i + 1;
                 }
-
-
             }
         }
 

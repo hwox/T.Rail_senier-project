@@ -37,6 +37,8 @@ public class TrainGameManager : MonoBehaviour
                            // 몇개 붙어있는지 가지고 제일 마지막 위치 -> 기관총
                            // 제일 마지막 위치 -> enemy1 
 
+    public int StageNumber;
+
     //# ConditionCtrl
     public Condition_Ctrl ConditionCtrl;
 
@@ -44,6 +46,8 @@ public class TrainGameManager : MonoBehaviour
 
     // # TrainCtrl
     public Train_Ctrl TrainCtrl;
+
+    public GameObject StateCtrl;
 
     public GameObject InGame_Notice; // 게임 내에서의 알림사항 ex) 몬스터 등장
     public Text InGame_Text;
@@ -75,9 +79,9 @@ public class TrainGameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         AllStat = 12;
-        Speed_stat = 2;
-        Noise_stat = 2;
-        Defence_stat = 2;
+        Speed_stat = 3;
+        Noise_stat = 3;
+        Defence_stat = 3;
     }
     private void Start()
     {

@@ -51246,8 +51246,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AllStat: 0
   trainindex: 0
+  StageNumber: 0
   ConditionCtrl: {fileID: 124372805}
   TrainCtrl: {fileID: 1304048000}
+  StateCtrl: {fileID: 823881547}
   InGame_Notice: {fileID: 623184125}
   InGame_Text: {fileID: 1145628807}
   Info_Canvas: {fileID: 540288765}

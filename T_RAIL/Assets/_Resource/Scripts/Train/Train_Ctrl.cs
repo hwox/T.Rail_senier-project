@@ -51,8 +51,16 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
     private void Update()
     {
         if (photonView.IsMine)
-            Run_Meter += (TrainGameManager.instance.Speed * 0.2f) * Time.deltaTime;
+            RunMeterCalCulator();
 
+    }
+
+    public void RunMeterCalCulator()
+    {
+        // 2분에 2km
+        Run_Meter += (TrainGameManager.instance.Speed * TrainGameManager.instance.Speed_stat) * Time.deltaTime;
+
+        //Run_Meter
     }
 
     // 기차 추가하기
