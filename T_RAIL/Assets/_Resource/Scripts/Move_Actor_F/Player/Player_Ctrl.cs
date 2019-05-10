@@ -667,7 +667,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
             {
                 if (((i * traindistance) + dist2) < position && ((i * traindistance) - dist2) > position)
                 {
-                    Debug.Log("index 여기" + (i + 1));
+                    //Debug.Log("index 여기" + (i + 1));
                     photonView.RPC("changeMy_Where_Train", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber - 1, i);
                     //player.Where_Train = i + 1;
                 }

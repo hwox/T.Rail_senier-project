@@ -43,5 +43,6 @@ MonoBehaviour:
   - Question_Where_I_am
   - changeMy_Where_Train
   - onTrainScrollBar
+  - setRunMeterZero
   DisableAutoOpenWizard: 1
   ShowSettings: 1
