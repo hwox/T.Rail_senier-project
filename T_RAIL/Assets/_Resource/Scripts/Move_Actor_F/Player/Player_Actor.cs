@@ -114,35 +114,49 @@ public class Player_Actor : Move_Actor {
     public void Jump_ToNextTrain()
     {
         // 여기서 해야될거 position 증가 
-        position.x -= 0.3f * speed * Time.deltaTime;
+        position.x -= 0.15f * speed * Time.deltaTime;
         rotate.y = -90.0f;
         Direction = 1;
 
 
     }
 
-    public void Jump_ToPrevTrain()
-    {
-        // 여기서 해야 할것 position - 
-        position.x += 0.3f * speed * Time.deltaTime;
-        rotate.y = 90.0f;
-        Direction = 3;
 
-    }
-
-    public void Jump_NextTrain(bool prev, bool next)
+    public void Jump()
     {
         // prev, next bool 변수를 ctrl에서 받아서 prev가 true이면 jump_toprevtrain 호출하고
         // next가 true이면 jump_tonexttrain 호출
 
-        if (prev)
-        {
-            Jump_ToPrevTrain();
-        }
+        //if (prev)
+        //{
+        //    Jump_ToPrevTrain();
+        //}
 
-        else if (next)
-        { 
-            Jump_ToNextTrain();
+        //else if (next)
+        //{ 
+        //    Jump_ToNextTrain();
+        //}
+        if (!WallConflict)
+        {
+            switch (Direction)
+            {
+                case 1:
+                    position.x -= 0.15f * speed * Time.deltaTime * Directions[0]; 
+                    rotate.y = -90.0f;
+                    break;
+                case 2:
+                    position.z -= 0.15f * speed * Time.deltaTime * Directions[1]; 
+                    rotate.y = 180;
+                    break;
+                case 3:
+                    position.x += 0.15f * speed * Time.deltaTime * Directions[2]; 
+                    rotate.y = 90.0f;
+                    break;
+                case 4:
+                    position.z += 0.15f * speed * Time.deltaTime * Directions[3];
+                    rotate.y = 0;
+                    break;
+            }
         }
     }
 

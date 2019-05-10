@@ -41,11 +41,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
 
     bool stair_up; // 사다리 올라가고 있는 중
     bool stair_down; // 사다리 내려가고 있는 중
-    bool jump_nextTrain; // 다음칸으로 점프 중
-    bool jump_prevTrain; // 이전칸으로 점프 중
-    bool jump_ok; // 점프 가능한 상태
-    // jump_ok 일때만 triggerenter에서 jump 관련 prev와 next를 인식할 수 있으며 점프 후에는 jump_ok 를 true시키는
-    // 함수가 3초 후에 invoke로 실행되면서 true가 된다.
+    bool jump_now;
 
     int space_state = 0; // 기본은 0인데 space가 눌려지는 상황 (highlight되는 모든애들) 에서 state change
     bool near_stair; // 사다리근처
@@ -111,7 +107,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         MCam_Ctrl = MCam.GetComponent<CamCtrl>();
         anim = GetComponent<Animator>();
         tr = GetComponent<Transform>();
-        jump_ok = true;
+        jump_now = true;
 
         Attack_Gap = 1.0f;
         ContinuousFire = true;
@@ -125,36 +121,36 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
 
 
 
-        if (jump_ok)
-        {
-            // 다음칸 trigger
-            if (other.gameObject.layer.Equals(GameValue.NextTrain_layer))
-            {
+        //if (jump_ok)
+        //{
+        //    // 다음칸 trigger
+        //    if (other.gameObject.layer.Equals(GameValue.NextTrain_layer))
+        //    {
 
-                if (player.Where_Train + 1 <= TrainGameManager.instance.trainindex)
-                {
-                    Debug.Log("n");
-                    jump_ok = false;
-                    space_state = (int)player_space_state.nextjump;
+        //        if (player.Where_Train + 1 <= TrainGameManager.instance.trainindex)
+        //        {
+        //            Debug.Log("n");
+        //            jump_ok = false;
+        //            space_state = (int)player_space_state.nextjump;
 
-                }
+        //        }
 
-            }
+        //    }
 
-            // 이전칸 trigger
-            else if (other.gameObject.layer.Equals(GameValue.PrevTrain_layer))
-            {
+        //    // 이전칸 trigger
+        //    else if (other.gameObject.layer.Equals(GameValue.PrevTrain_layer))
+        //    {
 
-                if (player.Where_Train != 0)
-                {
-                    Debug.Log("p");
+        //        if (player.Where_Train != 0)
+        //        {
+        //            Debug.Log("p");
 
-                    jump_ok = false;
-                    space_state = (int)player_space_state.prevjump;
-                }
+        //            jump_ok = false;
+        //            space_state = (int)player_space_state.prevjump;
+        //        }
 
-            }
-        }
+        //    }
+        //}
 
 
         if (!stair_up && !stair_down)
@@ -261,18 +257,18 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         }
 
 
-        if (other.gameObject.layer.Equals(GameValue.NextTrain_layer))
-        {
-            space_state = 0;
-            jump_ok = true;
-        }
+        //if (other.gameObject.layer.Equals(GameValue.NextTrain_layer))
+        //{
+        //    space_state = 0;
+        //    jump_ok = true;
+        //}
 
-        // 이전칸 trigger
-        if (other.gameObject.layer.Equals(GameValue.PrevTrain_layer))
-        {
-            space_state = 0;
-            jump_ok = true;
-        }
+        //// 이전칸 trigger
+        //if (other.gameObject.layer.Equals(GameValue.PrevTrain_layer))
+        //{
+        //    space_state = 0;
+        //    jump_ok = true;
+        //}
 
 
 
@@ -365,16 +361,16 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         }
 
         // 점프하고 있을 떄 
-        if (jump_nextTrain || jump_prevTrain)
+        if (!jump_now)
         {
             // 일단 가는방향 받아와야 하고
 
-            player.Jump_NextTrain(jump_prevTrain, jump_nextTrain);
-
+            //  player.Jump_NextTrain();
+            player.Jump();
             // 여기서 계속 증가하고 
             if (anim.GetBool("IsJump"))
             {
-                if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f)
+                if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
                 {
                     //if (jump_prevTrain)
                     //{
@@ -387,8 +383,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                     //    //player.Where_Train += 1;
                     //}
 
-                    jump_nextTrain = false;
-                    jump_prevTrain = false;
+                    jump_now = true;
 
 
                     anim.SetBool("IsJump", false);
@@ -503,7 +498,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     void Player_key_floor1()
     {
         // 사다리 올라가는 중 아닐때만 가능
-        if (!stair_up)
+        if (!stair_up && jump_now)
         {
             if (Input.GetKey(KeyCode.A))
             {
@@ -538,14 +533,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                 runTime = 0;
             }
 
-            if (Input.GetKey(KeyCode.O))
-            {
-                space_state = 0;
-                jump_ok = true;
 
-                jump_ok = false;
-                space_state = (int)player_space_state.nextjump;
-            }
+            
 
             if (Input.GetKeyDown(KeyCode.V))
             {
@@ -569,19 +558,26 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                     // 천장에 올라가면 뚜껑도 setactive.true해줘야되네
                 }
 
+                else if(jump_now)
+                {
+                    //jump_now = true;
+                    anim.SetBool("IsWalk", false);
+                    anim.SetBool("IsJump", true);
+                    jump_now = false;
+                }
 
-                if (space_state.Equals((int)player_space_state.prevjump))
-                {
-                    jump_prevTrain = true;
-                    anim.SetBool("IsWalk", false);
-                    anim.SetBool("IsJump", true);
-                }
-                else if (space_state.Equals((int)player_space_state.nextjump))
-                {
-                    jump_nextTrain = true;
-                    anim.SetBool("IsWalk", false);
-                    anim.SetBool("IsJump", true);
-                }
+                //if (space_state.Equals((int)player_space_state.prevjump))
+                //{
+                //    jump_prevTrain = true;
+                //    anim.SetBool("IsWalk", false);
+                //    anim.SetBool("IsJump", true);
+                //}
+                //else if (space_state.Equals((int)player_space_state.nextjump))
+                //{
+                //    jump_nextTrain = true;
+                //    anim.SetBool("IsWalk", false);
+                //    anim.SetBool("IsJump", true);
+                //}
 
             }
         }
@@ -750,25 +746,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
             CurPos = (Vector3)stream.ReceiveNext();
             CurRot = (Quaternion)stream.ReceiveNext();
         }
-    }
-
-
-    /// ////////////////////////////////////////////////////////////////////////
-    // 기차 칸 이동
-    void MoveToNextTrain()
-    {
-        player.Jump_ToNextTrain();
-    }
-    void MoveToPrevTrain()
-    {
-        player.Jump_ToPrevTrain();
-    }
-
-    void Set_JumpOk()
-    {
-        jump_ok = true;
-
-        Debug.Log("jump_ok true");
     }
 
 

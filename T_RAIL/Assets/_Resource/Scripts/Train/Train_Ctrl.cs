@@ -6,8 +6,6 @@ using Photon.Pun;
 
 public class Train_Ctrl : MonoBehaviourPunCallbacks
 {
-
-
     // 여기서 기차의 속성을 총 감독
     // 기차의 Train_Object에는 기차의 '체력' 을 관리.
 
