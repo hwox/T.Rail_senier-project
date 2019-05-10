@@ -9,7 +9,7 @@ public class Bullet_Ctrl : MonoBehaviour
     Rigidbody rig;
 
 
-    public Transform m_FireTransform;
+    Transform tr;
  //   public Slider m_AimSlider;
 
     //float m_MinLaunchForce = 15.0f;
@@ -23,6 +23,7 @@ public class Bullet_Ctrl : MonoBehaviour
     private void Awake()
     {
         rig = GetComponent<Rigidbody>();
+        tr = GetComponent<Transform>();
     }
 
     private void Start()
@@ -52,12 +53,6 @@ public class Bullet_Ctrl : MonoBehaviour
         rig.isKinematic = false;
     }
 
-    public void GetLaunchValue()
-    {
-
-    }
-
-
     IEnumerator MoveBullet()
     {
         float timer = 0;
@@ -67,6 +62,10 @@ public class Bullet_Ctrl : MonoBehaviour
 
             if (timer > 2.0f)
                 break;
+            else if(tr.position.y < 2.0f)
+            {
+                gameObject.SetActive(false);
+            }
 
             // m_AimSlider.value = m_MinLaunchForce;
             Vector3 temp = rig.velocity.normalized;

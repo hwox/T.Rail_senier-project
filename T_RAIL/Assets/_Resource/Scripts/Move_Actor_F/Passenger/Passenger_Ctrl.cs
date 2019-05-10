@@ -13,9 +13,7 @@ public class Passenger_Ctrl : MonoBehaviour {
         pass = new Passenger_Actor();
     }
 
-    // Use this for initialization
   
-
     public void Passenger_Add()
     {
         // 승객 추가

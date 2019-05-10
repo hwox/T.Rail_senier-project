@@ -4,7 +4,7 @@ using UnityEngine;
 using HighlightingSystem;
 using Photon.Pun;
 using Photon.Realtime;
-
+using UnityEngine.UI;
 
 
 
@@ -631,6 +631,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                 // 밑층으로 내려가기
                 if (space_state.Equals((int)player_space_state.Ladder_Down))
                 {
+                    player.position.y = floor2.position.y;
                     TrainGameManager.instance.TrainCtrl.trainscript[player.Where_Train - 1].Ceiling_OnOff(false);
                     anim.SetBool("UpToLadder", true);
                     stair_down = true;
@@ -673,17 +674,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
             gun_ctrl.gun_right();
         }
 
-        // 총알 발사
-        //if (Input.GetKeyDown(KeyCode.F))
-        //{
-        //    StartCoroutine(NextFire());
-        //    // gun_ctrl.gun_fire(true); // 아직x 
-        //}
-        //else if (Input.GetKeyUp(KeyCode.F))
-        //{
-        //    ContinuousFire = false;
-        //    gun_ctrl.gun_fire(ContinuousFire);
-        //}
         if (m_CurrentLaunchForce >= m_MaxLaunchForce && !m_Fired)
         {
             m_CurrentLaunchForce = m_MaxLaunchForce;
@@ -693,15 +683,11 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         {
             m_Fired = false;
           //  m_CurrentLaunchForce = m_MinLaunchForce;
-            Debug.Log("123");
             // shoot sound 
         }
         else if (Input.GetKey(KeyCode.F) && !m_Fired)
         {
-            Debug.Log("#####");
             m_CurrentLaunchForce += m_ChargeSpeed * Time.deltaTime;
-            Debug.Log(m_CurrentLaunchForce);
-            //  m_AimSlider.value = m_CurrentLaunchForce;
         }
         else if (Input.GetKeyUp(KeyCode.F) && !m_Fired)
         {
@@ -788,17 +774,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
 
     /// ////////////////////////////////////////////////////////////////////////
     /// 총알발사
-    /// 
-    // 연속발사
-    //IEnumerator NextFire()
-    //{
-    //    ContinuousFire = true;
-    //    while (ContinuousFire)
-    //    {
-    //        BulletInfoSetting(TrainGameManager.instance.GetObject(0));
-    //        yield return new WaitForSeconds(Attack_Gap);
-    //    }
-    //}
 
     // 총알정보셋팅 여기서 물리계산
     void BulletInfoSetting(GameObject _Bullet, float _value)
@@ -810,8 +785,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         _Bullet.SetActive(true);
 
         _Bullet.GetComponent<Bullet_Ctrl>().CallMoveCoroutin(_value);
-
-        // _Bullet.GetComponent<Rigidbody>().AddForce(gun_child.transform.forward * Time.deltaTime * GameValue.bullet_speed);
     }
 
 
