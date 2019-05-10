@@ -1996,7 +1996,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1057772342422372}
-  m_LocalRotation: {x: -0, y: 0.99529004, z: -0, w: 0.096941784}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0.48000056, y: 4.62, z: 3.7500005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2004,7 +2004,7 @@ Transform:
   - {fileID: 4624976977806080}
   m_Father: {fileID: 4831777227345060}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 78.874, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4736877198099622
 Transform:
   m_ObjectHideFlags: 1
@@ -2091,13 +2091,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1714940842409656}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.185, y: 0.0029, z: -0.0002}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.005}
+  m_LocalRotation: {x: -0.100709006, y: 0, z: 0, w: 0.9949159}
+  m_LocalPosition: {x: -0.185, y: -0.001, z: 0.0005}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 4303736183435634}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -11.56, y: 0, z: 0}
 --- !u!4 &4831777227345060
 Transform:
   m_ObjectHideFlags: 1
@@ -3046,7 +3046,7 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1714940842409656}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -4637,7 +4637,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 7
+  InstantiationId: 1
   isRuntimeInstantiated: 0
 --- !u!114 &114490062990637820
 MonoBehaviour:
@@ -4669,7 +4669,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 6
+  InstantiationId: 3
   isRuntimeInstantiated: 0
 --- !u!114 &114714715675578268
 MonoBehaviour:
@@ -4711,7 +4711,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114246163877717286}
   viewIdField: 0
-  InstantiationId: 3
+  InstantiationId: 6
   isRuntimeInstantiated: 0
 --- !u!114 &114926657734411050
 MonoBehaviour:
@@ -4732,7 +4732,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 1
+  InstantiationId: 7
   isRuntimeInstantiated: 0
 --- !u!137 &137085497657877282
 SkinnedMeshRenderer:

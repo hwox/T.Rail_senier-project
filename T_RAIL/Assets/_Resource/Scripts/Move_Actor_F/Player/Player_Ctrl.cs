@@ -71,7 +71,16 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     // 총알발사
     float Attack_Gap; //발사간격
     bool ContinuousFire; // 계속발사할것인지플래그
-                         /// ////////////////////////////////////////////////////////////////////////
+    float m_MinLaunchForce = 10.0f;
+    float m_MaxLaunchForce = 60.0f;
+    float m_MaxChargeTime = 1.5f;
+
+    float m_CurrentLaunchForce;
+    float m_ChargeSpeed;
+    bool m_Fired;
+
+
+    /// ////////////////////////////////////////////////////////////////////////
 
     public playerListController_minj playerListController;
     public int whereIam;
@@ -104,9 +113,9 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         tr = GetComponent<Transform>();
         jump_ok = true;
 
-        Attack_Gap = 0.2f;
+        Attack_Gap = 1.0f;
         ContinuousFire = true;
-
+        m_ChargeSpeed = (m_MaxLaunchForce - m_MinLaunchForce) / m_MaxChargeTime;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -367,16 +376,16 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
             {
                 if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f)
                 {
-                    if (jump_prevTrain)
-                    {
-                        photonView.RPC("changeMy_Where_Train", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber-1, 0);
-                        //player.Where_Train -= 1;
-                    }
-                    else if (jump_nextTrain)
-                    {
-                        photonView.RPC("changeMy_Where_Train", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber-1, 1);
-                        //player.Where_Train += 1;
-                    }
+                    //if (jump_prevTrain)
+                    //{
+                    //    photonView.RPC("changeMy_Where_Train", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber-1, 0);
+                    //    //player.Where_Train -= 1;
+                    //}
+                    //else if (jump_nextTrain)
+                    //{
+                    //    photonView.RPC("changeMy_Where_Train", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber-1, 1);
+                    //    //player.Where_Train += 1;
+                    //}
 
                     jump_nextTrain = false;
                     jump_prevTrain = false;
@@ -413,6 +422,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
 
         }
 
+
+     
 
 
 
@@ -631,7 +642,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
 
         // 카메라 위치 조정
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.Q))
         {
             // 기관총에서 벗어나자!
             MCam_Ctrl.EnemyAppear_Cam(false, 0);
@@ -648,21 +659,60 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         {
             gun_ctrl.gun_up();
         }
+        if (Input.GetKey(KeyCode.A))
+        {
+            gun_ctrl.gun_left();
+
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            gun_ctrl.gun_right();
+        }
 
         // 총알 발사
-        if (Input.GetKeyDown(KeyCode.F))
+        //if (Input.GetKeyDown(KeyCode.F))
+        //{
+        //    StartCoroutine(NextFire());
+        //    // gun_ctrl.gun_fire(true); // 아직x 
+        //}
+        //else if (Input.GetKeyUp(KeyCode.F))
+        //{
+        //    ContinuousFire = false;
+        //    gun_ctrl.gun_fire(ContinuousFire);
+        //}
+        if (m_CurrentLaunchForce >= m_MaxLaunchForce && !m_Fired)
         {
-            StartCoroutine(NextFire());
-            // gun_ctrl.gun_fire(true); // 아직x 
+            m_CurrentLaunchForce = m_MaxLaunchForce;
+            Fire();
         }
-        else if (Input.GetKeyUp(KeyCode.F))
+        else if (Input.GetKeyDown(KeyCode.F))
         {
-            ContinuousFire = false;
-            gun_ctrl.gun_fire(ContinuousFire);
+            m_Fired = false;
+          //  m_CurrentLaunchForce = m_MinLaunchForce;
+            Debug.Log("123");
+            // shoot sound 
         }
-
+        else if (Input.GetKey(KeyCode.F) && !m_Fired)
+        {
+            Debug.Log("#####");
+            m_CurrentLaunchForce += m_ChargeSpeed * Time.deltaTime;
+            Debug.Log(m_CurrentLaunchForce);
+            //  m_AimSlider.value = m_CurrentLaunchForce;
+        }
+        else if (Input.GetKeyUp(KeyCode.F) && !m_Fired)
+        {
+            Fire();
+        }
         // 카메라 조절은 마우스로
 
+    }
+
+    void Fire()
+    {
+        m_Fired = false;
+        // bullet에 .velocity = m_CurrentLauchForce 전달해주고 
+        BulletInfoSetting(TrainGameManager.instance.GetObject(0),m_CurrentLaunchForce);
+        m_CurrentLaunchForce = m_MinLaunchForce;
     }
 
     public void Move(char key)
@@ -736,30 +786,30 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     /// 총알발사
     /// 
     // 연속발사
-    IEnumerator NextFire()
-    {
-        ContinuousFire = true;
-        while (ContinuousFire)
-        {
-            BulletInfoSetting(TrainGameManager.instance.GetObject(0));
-            yield return new WaitForSeconds(Attack_Gap);
-        }
-    }
+    //IEnumerator NextFire()
+    //{
+    //    ContinuousFire = true;
+    //    while (ContinuousFire)
+    //    {
+    //        BulletInfoSetting(TrainGameManager.instance.GetObject(0));
+    //        yield return new WaitForSeconds(Attack_Gap);
+    //    }
+    //}
 
     // 총알정보셋팅 여기서 물리계산
-    void BulletInfoSetting(GameObject _Bullet)
+    void BulletInfoSetting(GameObject _Bullet, float _value)
     {
         if (_Bullet == null) return;
         _Bullet.transform.position = gun_child.GetChild(0).position; //총알 위치 설정
         _Bullet.transform.rotation = gun_child.localRotation;
-
+        
         _Bullet.SetActive(true);
 
-        _Bullet.GetComponent<Bullet_Ctrl>().CallMoveCoroutin();
+        _Bullet.GetComponent<Bullet_Ctrl>().CallMoveCoroutin(_value);
 
         // _Bullet.GetComponent<Rigidbody>().AddForce(gun_child.transform.forward * Time.deltaTime * GameValue.bullet_speed);
     }
 
 
-    
+
 }
