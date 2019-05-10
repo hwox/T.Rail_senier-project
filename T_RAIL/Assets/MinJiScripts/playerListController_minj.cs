@@ -9,7 +9,7 @@ public class playerListController_minj : MonoBehaviourPunCallbacks {
     public int[] eachPlayerIn;
 
 
-    private void Start()
+    private void Awake()
     {
         eachPlayerIn = new int[PhotonNetwork.CountOfPlayers];
         for (int i = 0; i < PhotonNetwork.CountOfPlayers; ++i)

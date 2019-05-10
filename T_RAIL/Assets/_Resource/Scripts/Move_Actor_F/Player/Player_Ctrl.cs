@@ -74,6 +74,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                          /// ////////////////////////////////////////////////////////////////////////
 
     public playerListController_minj playerListController;
+    public UIState_Ctrl UIState_Ctrl;
     public int whereIam;
 
     private void Awake()
@@ -91,6 +92,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         //생성되면 플레이어 리스트에 스스로를 넣어줌.
         playerListController = GameObject.Find("PlayerList_Ctrl").GetComponent<playerListController_minj>();
         playerListController.playerList.Add(this.gameObject.GetComponent<Player_Ctrl>());
+        UIState_Ctrl = GameObject.Find("UIState_Ctrl").GetComponent<UIState_Ctrl>();
         whereIam = player.Where_Train;
     }
 
@@ -414,22 +416,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         }
 
 
-
-
-        //////플레이어들이 어디에 있는지 확인
-        //for (int i = 0; i < PhotonNetwork.CountOfPlayers; ++i)
-        //{
-        //    //각 플레이어에게 지금 어디냐고 rpc로 물어보고 rpc로 답을 받음
-        //    photonView.RPC("Question_Where_I_am", RpcTarget.All, i); //, eachPlayerIn[i]);
-        //}
     }
-
-    //[PunRPC]
-    //public void Question_Where_I_am(int who)//, int whichTrain)
-    //{
-    //    playerListController.eachPlayerIn[who] = playerListController.playerList[who].player.Where_Train;
-    //}
-
 
     //내 id를 알려주고 내 위치를 변경하라고 알려줌
     [PunRPC]
@@ -441,17 +428,18 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
             case 0:
                 playerListController.playerList[playerID].player.Where_Train -= 1;
                 playerListController.eachPlayerIn[playerID] = playerListController.playerList[playerID].player.Where_Train;
-                Debug.Log(PhotonNetwork.LocalPlayer.ActorNumber - 1 + "의 위치는 : " + playerListController.playerList[playerID].player.Where_Train);
                 break;
 
             //앞칸으로 이동
             case 1:
                 playerListController.playerList[playerID].player.Where_Train += 1;
                 playerListController.eachPlayerIn[playerID] = playerListController.playerList[playerID].player.Where_Train;
-                Debug.Log(PhotonNetwork.LocalPlayer.ActorNumber - 1 + "의 위치는 : " + playerListController.playerList[playerID].player.Where_Train);
                 break;
         }
 
+
+        UIState_Ctrl.CallRPConTrainScrollBar();
+        //UIState_Ctrl.onTrainScrollBar();
     }
 
     /// ////////////////////////////////////////////////////////////////////////
