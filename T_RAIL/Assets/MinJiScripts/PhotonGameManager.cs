@@ -44,17 +44,17 @@ namespace Photon.Pun.Demo.Asteroids
             base.OnEnable();
 
 
-            //PhotonNetwork.OfflineMode = true;
-            //if(PhotonNetwork.OfflineMode == true)
-            //{
-            //    PhotonNetwork.JoinRandomRoom();
-            //    StartGame();
-            //    return;
-            //}
-            //else
-            //{
-            //    CountdownTimer.OnCountdownTimerHasExpired += OnCountdownTimerIsExpired;
-            //}
+            PhotonNetwork.OfflineMode = true;
+            if(PhotonNetwork.OfflineMode == true)
+            {
+                PhotonNetwork.JoinRandomRoom();
+                StartGame();
+                return;
+            }
+            else
+            {
+                CountdownTimer.OnCountdownTimerHasExpired += OnCountdownTimerIsExpired;
+            }
 
             CountdownTimer.OnCountdownTimerHasExpired += OnCountdownTimerIsExpired;
         }
@@ -198,7 +198,7 @@ namespace Photon.Pun.Demo.Asteroids
 
         private void StartGame()
         {
-            //if (!photonView.IsMine) return;
+            //if (!PhotonNetwork.IsMasterClient) return;
 
             //float angularStart = (360.0f / PhotonNetwork.CurrentRoom.PlayerCount) * PhotonNetwork.LocalPlayer.GetPlayerNumber();
             //float x = 20.0f * Mathf.Sin(angularStart * Mathf.Deg2Rad);

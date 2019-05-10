@@ -61,7 +61,7 @@ static class GameValue {
 
 
     // bullet
-    public const float bullet_speed = 30.0f; // 미친 처음에 총알 속력 50? 막 이렇게 했는데 ㅋㅋㅋㅋ600m/s말도안돼
+    public const float bullet_speed = 1000.0f; // 미친 처음에 총알 속력 50? 막 이렇게 했는데 ㅋㅋㅋㅋ600m/s말도안돼
 
     // status
     public const int StatusMAX = 5;
