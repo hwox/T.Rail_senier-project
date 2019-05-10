@@ -31,7 +31,6 @@ public class UIState_Ctrl : MonoBehaviourPunCallbacks
             for (int j = 0; j < 4; ++j)
             {
                 TrainUI[i].transform.GetChild(j + 1).gameObject.SetActive(false);
-                Debug.Log("다꺼짐" + PhotonNetwork.CountOfPlayers);
             }
         }
 
