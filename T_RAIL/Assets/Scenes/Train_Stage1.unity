@@ -40700,6 +40700,34 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 867659582}
   m_CullTransparentMesh: 0
+--- !u!1 &868470211
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 868470212}
+  m_Layer: 0
+  m_Name: Stationpassenger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &868470212
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 868470211}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1113577655}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &872921921
 GameObject:
   m_ObjectHideFlags: 0
@@ -51109,8 +51137,10 @@ MonoBehaviour:
   Origin:
   - {fileID: 1927369795080342, guid: 5038b754216e0bd4287ed4d8344ab4d7, type: 2}
   - {fileID: 1678285436382366, guid: be1791a8985844747ba2d86aec26ff02, type: 2}
+  - {fileID: 1678285436382366, guid: 192218f7df54cec4e821a65f77036f6c, type: 2}
   BulletManager: []
   PassengerManager: []
+  Station_PassengerManager: []
 --- !u!4 &1113577655
 Transform:
   m_ObjectHideFlags: 0
@@ -51123,6 +51153,7 @@ Transform:
   m_Children:
   - {fileID: 2078149776}
   - {fileID: 531018144}
+  - {fileID: 868470212}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -10,7 +10,8 @@ public class TrainGameManager : MonoBehaviour
     public enum prefab_list
     {
         bullet = 0,
-        passenger = 1
+        passenger = 1,
+        stationpassenger = 2
     }
 
 
@@ -63,6 +64,9 @@ public class TrainGameManager : MonoBehaviour
     public List<GameObject> PassengerManager; // 생성된 객체들을 저장할 리스트
     const int MAKE_PASSENGER_COUNT = 20;
 
+    // 역- 승객 )
+    public List<GameObject> Station_PassengerManager;
+    const int MAKE_STATIONPASSENGER_COUNT = 10;
 
 
     private void Awake()
@@ -89,6 +93,7 @@ public class TrainGameManager : MonoBehaviour
     {
         CreateObject(Origin[(int)prefab_list.bullet], MAKE_BULLET_COUNT, (int)prefab_list.bullet); //총알생성
         CreateObject(Origin[(int)prefab_list.passenger], MAKE_PASSENGER_COUNT, (int)prefab_list.passenger); //승객생성
+        CreateObject(Origin[(int)prefab_list.stationpassenger], MAKE_STATIONPASSENGER_COUNT, (int)prefab_list.stationpassenger); //승객생성
 
     }
     public void Notice_EnemyAppear()
@@ -115,6 +120,9 @@ public class TrainGameManager : MonoBehaviour
                     break;
                 case (int)prefab_list.passenger:
                     PassengerManager.Add(obj);
+                    break;
+                case (int)prefab_list.stationpassenger:
+                    Station_PassengerManager.Add(obj);
                     break;
             }
         }
@@ -177,6 +185,33 @@ public class TrainGameManager : MonoBehaviour
                 }
                 return null;
 
+            case (int)prefab_list.stationpassenger:
+
+                if (Station_PassengerManager == null)
+                {
+                    return null;
+                }
+                int sp_Count = Station_PassengerManager.Count;
+
+                for (int i = 0; i < sp_Count; i++)
+                {
+                    GameObject obj = Station_PassengerManager[i];
+
+                    //활성화 돼있으면
+                    if (obj.active == true)
+                    {
+                        // 리스트의 마지막까지 돌았는데 다 사용중이다?
+                        if (i == sp_Count - 1)
+                        {
+                            CreateObject(obj, 1, _objIndex);
+                            return Station_PassengerManager[i + 1];
+                        }
+                        continue;
+                    }
+                    return Station_PassengerManager[i];
+                }
+                return null;
+
             default:
                 return null;
 
@@ -221,6 +256,23 @@ public class TrainGameManager : MonoBehaviour
                     GameObject.Destroy(obj);
                 }
                 PassengerManager = null;
+                break;
+
+            case (int)prefab_list.stationpassenger:
+
+                if (Station_PassengerManager == null)
+                {
+                    return;
+                }
+
+                int sp_Count = Station_PassengerManager.Count;
+
+                for (int i = 0; i < sp_Count; i++)
+                {
+                    GameObject obj = Station_PassengerManager[i];
+                    GameObject.Destroy(obj);
+                }
+                Station_PassengerManager = null;
                 break;
 
 
