@@ -303,6 +303,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
 
         // 키입력
         GetKeyInput();
+        WhereTrain_CalculPosition(player.position.x);
 
         if (stair_up)
         {
@@ -418,7 +419,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         }
 
 
-     
+
 
 
 
@@ -534,7 +535,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
             }
 
 
-            
+
 
             if (Input.GetKeyDown(KeyCode.V))
             {
@@ -558,7 +559,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                     // 천장에 올라가면 뚜껑도 setactive.true해줘야되네
                 }
 
-                else if(jump_now)
+                else if (jump_now)
                 {
                     //jump_now = true;
                     anim.SetBool("IsWalk", false);
@@ -678,7 +679,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         else if (Input.GetKeyDown(KeyCode.F))
         {
             m_Fired = false;
-          //  m_CurrentLaunchForce = m_MinLaunchForce;
+            //  m_CurrentLaunchForce = m_MinLaunchForce;
             // shoot sound 
         }
         else if (Input.GetKey(KeyCode.F) && !m_Fired)
@@ -697,7 +698,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     {
         m_Fired = false;
         // bullet에 .velocity = m_CurrentLauchForce 전달해주고 
-        BulletInfoSetting(TrainGameManager.instance.GetObject(0),m_CurrentLaunchForce);
+        BulletInfoSetting(TrainGameManager.instance.GetObject(0), m_CurrentLaunchForce);
         m_CurrentLaunchForce = m_MinLaunchForce;
     }
 
@@ -748,6 +749,33 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         }
     }
 
+    /// ////////////////////////////////////////////////////////////////////////
+    void WhereTrain_CalculPosition(float position)
+    {
+
+        float traindistance = GameValue.Train_distance; // -13
+        float dist2 = traindistance / 2.0f; // -6.5
+
+        if (position > 7.0f)
+        {
+            player.Where_Floor = 0;
+        }
+        else
+        {
+            for (int i = 0; i < GameValue.MaxTrainNumber; i++)
+            {
+                if (((i * traindistance) + dist2) < position && ((i * traindistance) - dist2) > position)
+                {
+                    Debug.Log("index 여기" + (i + 1));
+                    player.Where_Train = i + 1;
+                }
+
+
+            }
+        }
+
+
+    }
 
     /// ////////////////////////////////////////////////////////////////////////
     /// 총알발사
@@ -758,7 +786,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         if (_Bullet == null) return;
         _Bullet.transform.position = gun_child.GetChild(0).position; //총알 위치 설정
         _Bullet.transform.rotation = gun_child.localRotation;
-        
+
         _Bullet.SetActive(true);
 
         _Bullet.GetComponent<Bullet_Ctrl>().CallMoveCoroutin(_value);
