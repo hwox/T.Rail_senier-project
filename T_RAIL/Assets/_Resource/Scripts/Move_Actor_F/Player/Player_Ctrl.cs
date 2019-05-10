@@ -79,6 +79,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     /// ////////////////////////////////////////////////////////////////////////
 
     public playerListController_minj playerListController;
+    public UIState_Ctrl UIState_Ctrl;
     public int whereIam;
 
     private void Awake()
@@ -96,6 +97,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         //생성되면 플레이어 리스트에 스스로를 넣어줌.
         playerListController = GameObject.Find("PlayerList_Ctrl").GetComponent<playerListController_minj>();
         playerListController.playerList.Add(this.gameObject.GetComponent<Player_Ctrl>());
+        UIState_Ctrl = GameObject.Find("UIState_Ctrl").GetComponent<UIState_Ctrl>();
         whereIam = player.Where_Train;
     }
 
@@ -440,27 +442,14 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
 
     //내 id를 알려주고 내 위치를 변경하라고 알려줌
     [PunRPC]
-    public void changeMy_Where_Train(int playerID, int PrevOrNext)
+    public void changeMy_Where_Train(int playerID, int i)
     {
-        switch (PrevOrNext)
-        {
-            //뒷칸으로 이동
-            case 0:
-                playerListController.playerList[playerID].player.Where_Train -= 1;
-                playerListController.eachPlayerIn[playerID] = playerListController.playerList[playerID].player.Where_Train;
-                Debug.Log(PhotonNetwork.LocalPlayer.ActorNumber - 1 + "의 위치는 : " + playerListController.playerList[playerID].player.Where_Train);
-                break;
+        playerListController.playerList[playerID].player.Where_Train =  i + 1; ;
+        playerListController.eachPlayerIn[playerID] = playerListController.playerList[playerID].player.Where_Train;
 
-            //앞칸으로 이동
-            case 1:
-                playerListController.playerList[playerID].player.Where_Train += 1;
-                playerListController.eachPlayerIn[playerID] = playerListController.playerList[playerID].player.Where_Train;
-                Debug.Log(PhotonNetwork.LocalPlayer.ActorNumber - 1 + "의 위치는 : " + playerListController.playerList[playerID].player.Where_Train);
-                break;
-        }
-
+        UIState_Ctrl.CallRPConTrainScrollBar();
+        //UIState_Ctrl.onTrainScrollBar();
     }
-
     /// ////////////////////////////////////////////////////////////////////////
     // key 관련
 
@@ -767,7 +756,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                 if (((i * traindistance) + dist2) < position && ((i * traindistance) - dist2) > position)
                 {
                     Debug.Log("index 여기" + (i + 1));
-                    player.Where_Train = i + 1;
+                    photonView.RPC("changeMy_Where_Train", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber - 1, i);
+                    //player.Where_Train = i + 1;
                 }
 
 
