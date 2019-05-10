@@ -1123,7 +1123,7 @@ GameObject:
   - component: {fileID: 25739366}
   - component: {fileID: 25739368}
   - component: {fileID: 25739367}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Plane.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2124,7 +2124,7 @@ GameObject:
   - component: {fileID: 36360121}
   - component: {fileID: 36360123}
   - component: {fileID: 36360122}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Plane.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2206,7 +2206,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &38654203
 Transform:
   m_ObjectHideFlags: 0
@@ -2215,7 +2215,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 38654202}
   m_LocalRotation: {x: -0.48923266, y: 0.6271859, z: 0.5312716, w: 0.29161608}
-  m_LocalPosition: {x: -2.72, y: -0.24482688, z: 2.62}
+  m_LocalPosition: {x: -1.9523485, y: -0.24482688, z: 2.6240091}
   m_LocalScale: {x: 37.456215, y: 65.05684, z: 43.380272}
   m_Children: []
   m_Father: {fileID: 571792809}
@@ -4359,7 +4359,7 @@ GameObject:
   - component: {fileID: 82326427}
   - component: {fileID: 82326429}
   - component: {fileID: 82326428}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: mountain2_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4642,7 +4642,7 @@ GameObject:
   - component: {fileID: 87890892}
   - component: {fileID: 87890894}
   - component: {fileID: 87890893}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: mountain2_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5332,7 +5332,7 @@ GameObject:
   - component: {fileID: 101269937}
   - component: {fileID: 101269939}
   - component: {fileID: 101269938}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: mountain2_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6321,7 +6321,7 @@ GameObject:
   - component: {fileID: 121964458}
   m_Layer: 0
   m_Name: plane
-  m_TagString: Plane
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6910,7 +6910,6 @@ RectTransform:
   - {fileID: 392960309}
   - {fileID: 1433532975}
   - {fileID: 623184126}
-  - {fileID: 687722669}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10600,7 +10599,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &193663103
 Transform:
   m_ObjectHideFlags: 0
@@ -12853,7 +12852,7 @@ GameObject:
   - component: {fileID: 248292738}
   m_Layer: 0
   m_Name: plane
-  m_TagString: Plane
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16515,7 +16514,7 @@ GameObject:
   - component: {fileID: 324702853}
   m_Layer: 0
   m_Name: plane
-  m_TagString: Plane
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17241,7 +17240,7 @@ GameObject:
   - component: {fileID: 345476259}
   - component: {fileID: 345476261}
   - component: {fileID: 345476260}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Plane.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19683,7 +19682,7 @@ GameObject:
   - component: {fileID: 403903819}
   - component: {fileID: 403903821}
   - component: {fileID: 403903820}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: mountain2_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22185,7 +22184,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &458463062
 Transform:
   m_ObjectHideFlags: 0
@@ -23915,7 +23914,7 @@ GameObject:
   - component: {fileID: 511454997}
   - component: {fileID: 511454999}
   - component: {fileID: 511454998}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: mountain2_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27376,7 +27375,7 @@ GameObject:
   - component: {fileID: 571792809}
   m_Layer: 0
   m_Name: plane
-  m_TagString: Plane
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29731,7 +29730,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &612126763
 Transform:
   m_ObjectHideFlags: 0
@@ -29740,7 +29739,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 612126762}
   m_LocalRotation: {x: -0.48923266, y: 0.6271859, z: 0.5312716, w: 0.29161608}
-  m_LocalPosition: {x: -3.35, y: -0.04, z: 15.7}
+  m_LocalPosition: {x: -1.9728092, y: -0.2559194, z: 15.7032}
   m_LocalScale: {x: 37.456215, y: 65.05684, z: 43.380272}
   m_Children: []
   m_Father: {fileID: 571792809}
@@ -33048,90 +33047,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 686463128}
   m_Mesh: {fileID: 4300008, guid: 5c8f926379dfdb54589973c3bb084442, type: 3}
---- !u!1 &687722668
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 687722669}
-  - component: {fileID: 687722670}
-  m_Layer: 5
-  m_Name: SliderAim
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &687722669
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 687722668}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1346914795}
-  - {fileID: 1083304553}
-  m_Father: {fileID: 125066332}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -173.5, y: 228.2}
-  m_SizeDelta: {x: 100, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &687722670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 687722668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
-  m_FillRect: {fileID: 1517291508}
-  m_HandleRect: {fileID: 0}
-  m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
-  m_Value: 0.873
-  m_OnValueChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &687903740
 GameObject:
   m_ObjectHideFlags: 0
@@ -33626,7 +33541,7 @@ GameObject:
   - component: {fileID: 696453917}
   - component: {fileID: 696453919}
   - component: {fileID: 696453918}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: mountain1_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34978,7 +34893,7 @@ GameObject:
   - component: {fileID: 728418967}
   m_Layer: 0
   m_Name: plane
-  m_TagString: Plane
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35150,6 +35065,8 @@ MonoBehaviour:
   RailRoad:
   - {fileID: 1391171814}
   - {fileID: 260264141}
+  TrainCtrl: {fileID: 1304048000}
+  RunMeterText: {fileID: 1166070512}
 --- !u!1 &731221877
 GameObject:
   m_ObjectHideFlags: 0
@@ -35393,7 +35310,7 @@ GameObject:
   - component: {fileID: 733902923}
   - component: {fileID: 733902925}
   - component: {fileID: 733902924}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: mountain1_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35469,7 +35386,7 @@ GameObject:
   - component: {fileID: 734724503}
   - component: {fileID: 734724505}
   - component: {fileID: 734724504}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: mountain1_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36444,7 +36361,7 @@ GameObject:
   - component: {fileID: 751540829}
   - component: {fileID: 751540831}
   - component: {fileID: 751540830}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: mountain2_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37139,7 +37056,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &771190139
 Transform:
   m_ObjectHideFlags: 0
@@ -38754,7 +38671,7 @@ GameObject:
   - component: {fileID: 814068252}
   m_Layer: 0
   m_Name: plane
-  m_TagString: Plane
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42288,7 +42205,7 @@ GameObject:
   - component: {fileID: 908481254}
   - component: {fileID: 908481256}
   - component: {fileID: 908481255}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Plane.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45124,7 +45041,7 @@ GameObject:
   - component: {fileID: 983692592}
   - component: {fileID: 983692594}
   - component: {fileID: 983692593}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: mountain2_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49671,40 +49588,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1081369631}
   m_Mesh: {fileID: 4300006, guid: 2cd900e8c87fb5447b1f1dd0453ac896, type: 3}
---- !u!1 &1083304552
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1083304553}
-  m_Layer: 5
-  m_Name: Fill Area
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1083304553
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1083304552}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1517291508}
-  m_Father: {fileID: 687722669}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.25}
-  m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -5, y: 0}
-  m_SizeDelta: {x: -20, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1083408446
 GameObject:
   m_ObjectHideFlags: 0
@@ -49794,7 +49677,7 @@ GameObject:
   - component: {fileID: 1083497480}
   - component: {fileID: 1083497482}
   - component: {fileID: 1083497481}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: mountain2_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52898,102 +52781,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1155276005}
   m_Mesh: {fileID: 4300014, guid: 5c8f926379dfdb54589973c3bb084442, type: 3}
---- !u!1001 &1158142719
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4831777227345060, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4831777227345060, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4831777227345060, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -2.21
-      objectReference: {fileID: 0}
-    - target: {fileID: 4831777227345060, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4831777227345060, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4831777227345060, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4831777227345060, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4831777227345060, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
-      propertyPath: m_RootOrder
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 114077255038464478, guid: 5d9648c5713c24c4ead0d991e0595880,
-        type: 2}
-      propertyPath: ctrl
-      value: 
-      objectReference: {fileID: 1304048000}
-    - target: {fileID: 114926657734411050, guid: 5d9648c5713c24c4ead0d991e0595880,
-        type: 2}
-      propertyPath: viewIdField
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114926657734411050, guid: 5d9648c5713c24c4ead0d991e0595880,
-        type: 2}
-      propertyPath: InstantiationId
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114766929177505650, guid: 5d9648c5713c24c4ead0d991e0595880,
-        type: 2}
-      propertyPath: viewIdField
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114766929177505650, guid: 5d9648c5713c24c4ead0d991e0595880,
-        type: 2}
-      propertyPath: InstantiationId
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114714715675578268, guid: 5d9648c5713c24c4ead0d991e0595880,
-        type: 2}
-      propertyPath: viewIdField
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114505191909343002, guid: 5d9648c5713c24c4ead0d991e0595880,
-        type: 2}
-      propertyPath: viewIdField
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114505191909343002, guid: 5d9648c5713c24c4ead0d991e0595880,
-        type: 2}
-      propertyPath: InstantiationId
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114391987435625026, guid: 5d9648c5713c24c4ead0d991e0595880,
-        type: 2}
-      propertyPath: viewIdField
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 114391987435625026, guid: 5d9648c5713c24c4ead0d991e0595880,
-        type: 2}
-      propertyPath: InstantiationId
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1595425419640846, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &1158206713
 GameObject:
   m_ObjectHideFlags: 0
@@ -56213,7 +56000,7 @@ GameObject:
   - component: {fileID: 1224574264}
   - component: {fileID: 1224574266}
   - component: {fileID: 1224574265}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Plane.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57765,7 +57552,7 @@ GameObject:
   - component: {fileID: 1271304917}
   - component: {fileID: 1271304919}
   - component: {fileID: 1271304918}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: mountain1_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60075,7 +59862,7 @@ GameObject:
   - component: {fileID: 1320569221}
   - component: {fileID: 1320569223}
   - component: {fileID: 1320569222}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Plane.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61041,75 +60828,6 @@ CanvasRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1346012094}
-  m_CullTransparentMesh: 0
---- !u!1 &1346914794
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1346914795}
-  - component: {fileID: 1346914797}
-  - component: {fileID: 1346914796}
-  m_Layer: 5
-  m_Name: Background
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1346914795
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1346914794}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 687722669}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.25}
-  m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1346914796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1346914794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: ae0738907895109428f8efc84514465d, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &1346914797
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1346914794}
   m_CullTransparentMesh: 0
 --- !u!1 &1348319303
 GameObject:
@@ -64865,7 +64583,7 @@ GameObject:
   - component: {fileID: 1406418227}
   - component: {fileID: 1406418229}
   - component: {fileID: 1406418228}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Plane.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65494,7 +65212,7 @@ GameObject:
   - component: {fileID: 1417188089}
   - component: {fileID: 1417188091}
   - component: {fileID: 1417188090}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: mountain2_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65800,7 +65518,7 @@ GameObject:
   - component: {fileID: 1424880612}
   - component: {fileID: 1424880614}
   - component: {fileID: 1424880613}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Plane.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68876,7 +68594,7 @@ GameObject:
   - component: {fileID: 1490682270}
   - component: {fileID: 1490682272}
   - component: {fileID: 1490682271}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: mountain1_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69417,7 +69135,7 @@ GameObject:
   - component: {fileID: 1501032616}
   m_Layer: 0
   m_Name: plane
-  m_TagString: Plane
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70210,75 +69928,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1515923253}
   m_Mesh: {fileID: 4300240, guid: 2cd900e8c87fb5447b1f1dd0453ac896, type: 3}
---- !u!1 &1517291507
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1517291508}
-  - component: {fileID: 1517291510}
-  - component: {fileID: 1517291509}
-  m_Layer: 5
-  m_Name: Fill
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1517291508
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1517291507}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1083304553}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.873, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 10, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1517291509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1517291507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.9756658, b: 0, a: 0.81960785}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: ae0738907895109428f8efc84514465d, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &1517291510
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1517291507}
-  m_CullTransparentMesh: 0
 --- !u!1 &1520236972
 GameObject:
   m_ObjectHideFlags: 0
@@ -71136,7 +70785,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1548943309
 Transform:
   m_ObjectHideFlags: 0
@@ -75895,7 +75544,7 @@ GameObject:
   - component: {fileID: 1653412888}
   m_Layer: 0
   m_Name: plane
-  m_TagString: Plane
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76732,7 +76381,7 @@ GameObject:
   - component: {fileID: 1670747396}
   - component: {fileID: 1670747398}
   - component: {fileID: 1670747397}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: mountain1_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81403,7 +81052,7 @@ GameObject:
   - component: {fileID: 1760760611}
   - component: {fileID: 1760760613}
   - component: {fileID: 1760760612}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: mountain1_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83051,7 +82700,7 @@ GameObject:
   - component: {fileID: 1790660206}
   - component: {fileID: 1790660208}
   - component: {fileID: 1790660207}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: mountain1_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83661,7 +83310,7 @@ GameObject:
   - component: {fileID: 1804069961}
   - component: {fileID: 1804069963}
   - component: {fileID: 1804069962}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Plane.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88274,7 +87923,7 @@ GameObject:
   - component: {fileID: 1898402139}
   - component: {fileID: 1898402141}
   - component: {fileID: 1898402140}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: mountain1_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89314,7 +88963,7 @@ GameObject:
   - component: {fileID: 1914423371}
   m_Layer: 0
   m_Name: plane
-  m_TagString: Plane
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90210,11 +89859,6 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114265445870221514, guid: 5a11f7d26cecab04a811e4777299ae83,
-        type: 2}
-      propertyPath: AimSlider
-      value: 
-      objectReference: {fileID: 687722668}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a11f7d26cecab04a811e4777299ae83, type: 2}
   m_IsPrefabAsset: 0
@@ -90539,7 +90183,7 @@ GameObject:
   - component: {fileID: 1939325785}
   - component: {fileID: 1939325787}
   - component: {fileID: 1939325786}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: mountain2_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92581,7 +92225,7 @@ GameObject:
   - component: {fileID: 1980613763}
   m_Layer: 0
   m_Name: plane
-  m_TagString: Plane
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93801,7 +93445,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2005578790
 Transform:
   m_ObjectHideFlags: 0
@@ -93810,7 +93454,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2005578789}
   m_LocalRotation: {x: -0.48923266, y: 0.6271859, z: 0.5312716, w: 0.29161608}
-  m_LocalPosition: {x: 8.601486, y: 0.9, z: 32.754906}
+  m_LocalPosition: {x: 8.601486, y: 0.5180604, z: 32.754906}
   m_LocalScale: {x: 37.456215, y: 65.05684, z: 43.380272}
   m_Children: []
   m_Father: {fileID: 571792809}
@@ -94795,7 +94439,7 @@ GameObject:
   - component: {fileID: 2028908779}
   - component: {fileID: 2028908781}
   - component: {fileID: 2028908780}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Plane.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96343,6 +95987,82 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2062353034}
   m_Mesh: {fileID: 4300010, guid: 5c8f926379dfdb54589973c3bb084442, type: 3}
+--- !u!1001 &2063428331
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4831777227345060, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831777227345060, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831777227345060, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -2.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831777227345060, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831777227345060, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831777227345060, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831777227345060, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831777227345060, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 114077255038464478, guid: 5d9648c5713c24c4ead0d991e0595880,
+        type: 2}
+      propertyPath: ctrl
+      value: 
+      objectReference: {fileID: 1304048000}
+    - target: {fileID: 114926657734411050, guid: 5d9648c5713c24c4ead0d991e0595880,
+        type: 2}
+      propertyPath: viewIdField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114766929177505650, guid: 5d9648c5713c24c4ead0d991e0595880,
+        type: 2}
+      propertyPath: viewIdField
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114714715675578268, guid: 5d9648c5713c24c4ead0d991e0595880,
+        type: 2}
+      propertyPath: viewIdField
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114505191909343002, guid: 5d9648c5713c24c4ead0d991e0595880,
+        type: 2}
+      propertyPath: viewIdField
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114391987435625026, guid: 5d9648c5713c24c4ead0d991e0595880,
+        type: 2}
+      propertyPath: viewIdField
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1595425419640846, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &2063806245
 GameObject:
   m_ObjectHideFlags: 0
@@ -97141,7 +96861,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2079583875
 Transform:
   m_ObjectHideFlags: 0
@@ -97150,7 +96870,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2079583874}
   m_LocalRotation: {x: -0.48923266, y: 0.6271859, z: 0.5312716, w: 0.29161608}
-  m_LocalPosition: {x: -4.3, y: 0.15, z: -92}
+  m_LocalPosition: {x: -1.7103335, y: -0.9913072, z: -91.95111}
   m_LocalScale: {x: 37.456215, y: 65.05684, z: 43.380272}
   m_Children: []
   m_Father: {fileID: 571792809}
@@ -98815,7 +98535,7 @@ GameObject:
   - component: {fileID: 2107272989}
   - component: {fileID: 2107272991}
   - component: {fileID: 2107272990}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: mountain1_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

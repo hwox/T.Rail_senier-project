@@ -6,6 +6,8 @@ using Photon.Pun;
 
 public class Train_Ctrl : MonoBehaviourPunCallbacks
 {
+
+
     // 여기서 기차의 속성을 총 감독
     // 기차의 Train_Object에는 기차의 '체력' 을 관리.
 
@@ -36,7 +38,7 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
         // 기본 초기화
         TrainGameManager.instance.Defence = GameValue.Durability;
         // speed = GameValue.speed;
-        TrainGameManager.instance.Speed = GameValue.speed;
+        TrainGameManager.instance.Speed = 0;
         TrainGameManager.instance.Noise = GameValue.noise;
     }
 
@@ -143,6 +145,23 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
         trainscript[_removeindex - 1].Machine_Gun_OnOff(true);
     }
 
+
+    public void SpeedUp()
+    {
+        if (speed_count < 4)
+        {
+            speed_count += 1;
+        }
+        TrainGameManager.instance.Speed = 10.0f * speed_count;
+    }
+    public void SpeedDown()
+    {
+        if (speed_count > 1)
+        {
+            speed_count -= 1;
+        }
+        TrainGameManager.instance.Speed = 10.0f * speed_count;
+    }
 
     public void Passenger_In()
     {

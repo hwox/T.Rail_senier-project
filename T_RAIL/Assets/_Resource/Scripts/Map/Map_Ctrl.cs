@@ -21,7 +21,13 @@ public class Map_Ctrl : MonoBehaviour
 
     List<Transform> map_object = new List<Transform>();
 
+    public Train_Ctrl TrainCtrl;// 기차에서 속도 받아와야 하므로.
+
+    public GameObject RunMeterText; // 예시임. 여기말고 나중에 UI용 스크립트 만들어서 그리로 옮길 예정
+
     float map_speed; // 맵이 움직이는 스피드
+
+    float Run_Meter; // 달린 미터. Train_Ctrl에서 받아올거임
 
     int[] on_objectindex;
     Vector3[] Object_InitPosition; // 중요! 순서는 저장된 순서대로임!
@@ -123,7 +129,13 @@ public class Map_Ctrl : MonoBehaviour
 
         MapObject_PositionChange();
 
+        // 나중에 옮길 부분 ㄱ
 
+        Run_Meter = TrainCtrl.Run_Meter;
+        RunMeterText.GetComponent<Text>().text = "달린 거리 : " + Run_Meter.ToString("N1") + "M";
+        // ㄱ
+
+        
         // 휠애니메이션의 속도 
         // 이거 아예 trainctrl로 옮길거임
        // TrainCtrl.Wheel_Animation_Speed();

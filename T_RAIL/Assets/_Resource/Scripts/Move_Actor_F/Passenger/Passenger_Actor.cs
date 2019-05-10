@@ -8,7 +8,8 @@ public class Passenger_Actor : Move_Actor
     public int Hungry { get; set; } // 배고픔
     public int Disease { get; set; } // 질병
 
-    
+
+
     public Passenger_Actor()
     {
         base.Actor_Property = (int)Actor.Passenger; // property에 승객이라고 정의

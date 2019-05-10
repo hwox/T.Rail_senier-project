@@ -9,9 +9,9 @@ public class StateController_Ctrl : MonoBehaviour {
     public void SpeedUP()
     {
         if (TrainGameManager.instance.NowsumStat < TrainGameManager.instance.AllStat &&
-            GameValue.StatusMAX > TrainGameManager.instance.Speed)
+            GameValue.StatusMAX > TrainGameManager.instance.Speed_stat)
         {
-            TrainGameManager.instance.Speed += 1;
+            TrainGameManager.instance.Speed_stat += 1;
             NowStat();    
         }
         else
@@ -21,9 +21,9 @@ public class StateController_Ctrl : MonoBehaviour {
 
     public void SpeedDOWN()
     {
-        if (TrainGameManager.instance.Speed > 0)
+        if (TrainGameManager.instance.Speed_stat > 0)
         {
-            TrainGameManager.instance.Speed -= 1;
+            TrainGameManager.instance.Speed_stat -= 1;
             NowStat();
         }
     }
@@ -31,18 +31,18 @@ public class StateController_Ctrl : MonoBehaviour {
     public void NoiseUP()
     {
         if (TrainGameManager.instance.NowsumStat < TrainGameManager.instance.AllStat &&
-           GameValue.StatusMAX < TrainGameManager.instance.Noise)
+           GameValue.StatusMAX < TrainGameManager.instance.Noise_stat)
         {
-            TrainGameManager.instance.Noise += 1;
+            TrainGameManager.instance.Noise_stat += 1;
             NowStat();
         }
     }
 
     public void NoiseDOWN()
     {
-        if (TrainGameManager.instance.Noise > 0)
+        if (TrainGameManager.instance.Noise_stat > 0)
         {
-            TrainGameManager.instance.Noise -= 1;
+            TrainGameManager.instance.Noise_stat -= 1;
             NowStat();
         }
     }
@@ -50,18 +50,18 @@ public class StateController_Ctrl : MonoBehaviour {
     public void DefenceUP()
     {
         if (TrainGameManager.instance.NowsumStat < TrainGameManager.instance.AllStat &&
-           GameValue.StatusMAX < TrainGameManager.instance.Defence)
+           GameValue.StatusMAX < TrainGameManager.instance.Defence_stat)
         {
-            TrainGameManager.instance.Defence += 1;
+            TrainGameManager.instance.Defence_stat += 1;
             NowStat();
         }
     }
 
     public void DefenceDOWN()
     {
-        if (TrainGameManager.instance.Defence > 0)
+        if (TrainGameManager.instance.Defence_stat > 0)
         {
-            TrainGameManager.instance.Defence -= 1;
+            TrainGameManager.instance.Defence_stat -= 1;
             NowStat();
         }
     }

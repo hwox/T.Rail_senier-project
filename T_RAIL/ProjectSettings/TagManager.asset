@@ -9,7 +9,6 @@ TagManager:
   - SubCamera
   - nTrain
   - pTrain
-  - Plane
   layers:
   - Default
   - TransparentFX
