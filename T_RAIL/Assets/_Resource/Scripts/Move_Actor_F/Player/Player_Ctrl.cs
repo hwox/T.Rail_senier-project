@@ -71,22 +71,28 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     // 총알발사
     float Attack_Gap; //발사간격
     bool ContinuousFire; // 계속발사할것인지플래그
-    /// ////////////////////////////////////////////////////////////////////////
-    
-    //각 플레이어가 몇번째 칸에 있는지 각자 저장
-    public int[] eachPlayerIn;
+                         /// ////////////////////////////////////////////////////////////////////////
+
+    public playerListController_minj playerListController;
+    public int whereIam;
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
 
         player = new Player_Actor();
-        int[] eachPlayerIn = new int[PhotonNetwork.CountOfPlayersInRooms];
 
         Make_PushSpaceUI();
         Init_Set_Value();
     }
 
+    private void Start()
+    {
+        //생성되면 플레이어 리스트에 스스로를 넣어줌.
+        playerListController = GameObject.Find("PlayerList_Ctrl").GetComponent<playerListController_minj>();
+        playerListController.playerList.Add(this.gameObject.GetComponent<Player_Ctrl>());
+        whereIam = player.Where_Train;
+    }
 
     void Init_Set_Value()
     {
@@ -277,6 +283,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
 
         if (!photonView.IsMine) return;
 
+        whereIam = player.Where_Train;
+
         // 이 highlight는 나중에 따로 함수로 뺄고야 일단 정리ㅣ되면 빼겟음
         if (near_stair)
         {
@@ -361,11 +369,13 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                 {
                     if (jump_prevTrain)
                     {
-                        player.Where_Train -= 1;
+                        photonView.RPC("changeMy_Where_Train", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber-1, 0);
+                        //player.Where_Train -= 1;
                     }
                     else if (jump_nextTrain)
                     {
-                        player.Where_Train += 1;
+                        photonView.RPC("changeMy_Where_Train", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber-1, 1);
+                        //player.Where_Train += 1;
                     }
 
                     jump_nextTrain = false;
@@ -406,20 +416,38 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
 
 
 
-        ////플레이어들이 어디에 있는지 확인
-        for (int i = 0; i < PhotonNetwork.CountOfPlayersInRooms; ++i)
-        {
-            //각 플레이어에게 지금 어디냐고 rpc로 물어보고 rpc로 답을 받음
-            photonView.RPC("Question_Where_I_am", PhotonNetwork.PlayerList[i], i, eachPlayerIn[i]);
-        }
+        //////플레이어들이 어디에 있는지 확인
+        //for (int i = 0; i < PhotonNetwork.CountOfPlayers; ++i)
+        //{
+        //    //각 플레이어에게 지금 어디냐고 rpc로 물어보고 rpc로 답을 받음
+        //    photonView.RPC("Question_Where_I_am", RpcTarget.All, i); //, eachPlayerIn[i]);
+        //}
     }
 
+    //[PunRPC]
+    //public void Question_Where_I_am(int who)//, int whichTrain)
+    //{
+    //    playerListController.eachPlayerIn[who] = playerListController.playerList[who].player.Where_Train;
+    //}
+
+
+    //내 id를 알려주고 내 위치를 변경하라고 알려줌
     [PunRPC]
-    public void Question_Where_I_am(int who, int whichTrain)
+    public void changeMy_Where_Train(int playerID, int PrevOrNext)
     {
-        whichTrain = player.Where_Train;
-        eachPlayerIn[who] = whichTrain;
-        Debug.Log(who + "가 어디있냐면" + eachPlayerIn[who]);
+        switch (PrevOrNext)
+        {
+            //뒷칸으로 이동
+            case 0:
+                playerListController.playerList[playerID].player.Where_Train -= 1;
+                break;
+
+            //앞칸으로 이동
+            case 1:
+                playerListController.playerList[playerID].player.Where_Train += 1;
+                break;
+        }
+
     }
 
     /// ////////////////////////////////////////////////////////////////////////

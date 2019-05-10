@@ -14,11 +14,13 @@ public class playerManager_minj : MonoBehaviourPunCallbacks
     public Color myHatColor;
     public GameObject myHat;
 
-    public Player_Ctrl Player_Ctrl;
+    
 
     void Start()
     {
-        Player_Ctrl = GetComponent<Player_Ctrl>();
+        ////생성되면 플레이어 리스트에 스스로를 넣어줌.
+        //playerListController = GameObject.Find("PlayerList_Ctrl").GetComponent<playerListController_minj>();
+        //playerListController.playerList.Add(this.gameObject.GetComponent<Player_Ctrl>());
 
         if (this.playerUiPrefab != null)
         {
@@ -55,6 +57,8 @@ public class playerManager_minj : MonoBehaviourPunCallbacks
         //}
     }
     
+
+
     void CalledOnLevelWasLoaded(int level)
     {
         // check if we are outside the Arena and if it's the case, spawn around the center of the arena in a safe zone
