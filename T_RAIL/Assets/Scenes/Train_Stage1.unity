@@ -51135,7 +51135,7 @@ MonoBehaviour:
   InGame_Text: {fileID: 1145628807}
   Info_Canvas: {fileID: 540288765}
   Origin:
-  - {fileID: 1927369795080342, guid: 5038b754216e0bd4287ed4d8344ab4d7, type: 2}
+  - {fileID: 1389966095280804, guid: 5038b754216e0bd4287ed4d8344ab4d7, type: 2}
   - {fileID: 1678285436382366, guid: be1791a8985844747ba2d86aec26ff02, type: 2}
   - {fileID: 1678285436382366, guid: 192218f7df54cec4e821a65f77036f6c, type: 2}
   BulletManager: []
@@ -97317,11 +97317,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4368989280912456, guid: a1a16f7f9079d2440a9ecf816dc76762, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -9.89
+      value: -0.39
       objectReference: {fileID: 0}
     - target: {fileID: 4368989280912456, guid: a1a16f7f9079d2440a9ecf816dc76762, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.73
+      value: 6.62
       objectReference: {fileID: 0}
     - target: {fileID: 4368989280912456, guid: a1a16f7f9079d2440a9ecf816dc76762, type: 2}
       propertyPath: m_LocalPosition.z
