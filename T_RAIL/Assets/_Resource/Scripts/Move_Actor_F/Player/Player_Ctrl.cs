@@ -451,11 +451,15 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
             //뒷칸으로 이동
             case 0:
                 playerListController.playerList[playerID].player.Where_Train -= 1;
+                playerListController.eachPlayerIn[playerID] = playerListController.playerList[playerID].player.Where_Train;
+                Debug.Log(PhotonNetwork.LocalPlayer.ActorNumber - 1 + "의 위치는 : " + playerListController.playerList[playerID].player.Where_Train);
                 break;
 
             //앞칸으로 이동
             case 1:
                 playerListController.playerList[playerID].player.Where_Train += 1;
+                playerListController.eachPlayerIn[playerID] = playerListController.playerList[playerID].player.Where_Train;
+                Debug.Log(PhotonNetwork.LocalPlayer.ActorNumber - 1 + "의 위치는 : " + playerListController.playerList[playerID].player.Where_Train);
                 break;
         }
 
