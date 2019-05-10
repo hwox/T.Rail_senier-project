@@ -44,18 +44,18 @@ namespace Photon.Pun.Demo.Asteroids
             base.OnEnable();
 
 
-            //PhotonNetwork.OfflineMode = true;
-            //if(PhotonNetwork.OfflineMode == true)
-            //{
-            //    PhotonNetwork.JoinRandomRoom();
-            //    StartGame();
-            //    return;
-            //}
-            //else
-            //{
-            //    CountdownTimer.OnCountdownTimerHasExpired += OnCountdownTimerIsExpired;
-            //}
-            
+            PhotonNetwork.OfflineMode = true;
+            if(PhotonNetwork.OfflineMode == true)
+            {
+                PhotonNetwork.JoinRandomRoom();
+                StartGame();
+                return;
+            }
+            else
+            {
+                CountdownTimer.OnCountdownTimerHasExpired += OnCountdownTimerIsExpired;
+            }
+
             CountdownTimer.OnCountdownTimerHasExpired += OnCountdownTimerIsExpired;
         }
 

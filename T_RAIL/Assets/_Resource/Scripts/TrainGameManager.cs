@@ -274,8 +274,6 @@ public class TrainGameManager : MonoBehaviour
                 }
                 Station_PassengerManager = null;
                 break;
-
-
         }
     }
     ///////////////////////////////////////////////////////////////////////////////////////

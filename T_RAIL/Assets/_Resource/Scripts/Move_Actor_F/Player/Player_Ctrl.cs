@@ -752,8 +752,11 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         if (_Bullet == null) return;
         _Bullet.transform.position = gun_child.GetChild(0).position; //총알 위치 설정
         _Bullet.transform.rotation = gun_child.localRotation;
+
         _Bullet.SetActive(true);
+
         _Bullet.GetComponent<Bullet_Ctrl>().CallMoveCoroutin();
+
         // _Bullet.GetComponent<Rigidbody>().AddForce(gun_child.transform.forward * Time.deltaTime * GameValue.bullet_speed);
     }
 
