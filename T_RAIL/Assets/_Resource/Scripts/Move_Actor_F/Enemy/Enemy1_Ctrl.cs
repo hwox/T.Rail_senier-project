@@ -7,6 +7,8 @@ public class Enemy1_Ctrl : MonoBehaviour
 
     // enemy1 은 ㄷ기차가 달릴 때 뒤에서 따라오는 애들 
 
+    Camera MCam;
+    CamCtrl MCam_Ctrl;
 
     Enemy_Actor enemy;
     [SerializeField]
@@ -25,6 +27,7 @@ public class Enemy1_Ctrl : MonoBehaviour
     Vector3 Init_Rhino_child;
     Vector3 Init_Rhino;
 
+
     private void Awake()
     {
         tr = GetComponent<Transform>();
@@ -42,9 +45,17 @@ public class Enemy1_Ctrl : MonoBehaviour
         enemy.Damage = E_damage;
         anim.SetBool("IsRun", true);
 
+
+        MCam = Camera.main;
+        MCam_Ctrl = MCam.GetComponent<CamCtrl>();
+
+
         TrainGameManager.instance.ConditionCtrl.enemy1 = this.gameObject;
         TrainGameManager.instance.ConditionCtrl.enemy1_ctrl = this.GetComponent<Enemy1_Ctrl>();
         this.gameObject.SetActive(false);
+
+
+
     }
 
 
@@ -53,14 +64,20 @@ public class Enemy1_Ctrl : MonoBehaviour
         if (other.gameObject.layer.Equals(GameValue.bullet_layer))
         {
             // 총알맞으면
+            other.gameObject.SetActive(false);
+            Debug.Log("맞");
+            MCam_Ctrl.Hit_EnemyAppearCam();
+
+
+
             enemy.HP -= 5;
- 
         }
 
         if (other.gameObject.layer.Equals(GameValue.train_layer))
         {
             // 잠깐 뒤로 물러나기
-
+            //iTween.ShakePosition(other.gameObject, iTween.Hash("time", 0.5f, "x", -2.0f));
+            MCam_Ctrl.Hit_EnemyCam(true);
             Debug.Log("기차랑 충돌");
         }
     }
@@ -75,7 +92,6 @@ public class Enemy1_Ctrl : MonoBehaviour
         {
             tr.position = Vector3.Slerp(tr.position, Position_Set_Move, Time.deltaTime);
         }
-
 
     }
     public void Enemy1_On()
@@ -104,6 +120,11 @@ public class Enemy1_Ctrl : MonoBehaviour
 
     IEnumerator Enemy_ActRoutine()
     {
+
+        // 몬스터는 기차 collider의 뒤까지만 달려오는거임 그래서 공격할때만 받게 
+        // 그리고 monster 나와있는 와중에는 train add안되게 막아놔야 됨
+
+
         while (true)
         {
 

@@ -78,7 +78,7 @@ public class TrainGameManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
 
-        AllStat = 12;
+        AllStat = 11;
         Speed_stat = 3;
         Noise_stat = 3;
         Defence_stat = 3;
@@ -282,6 +282,7 @@ public class TrainGameManager : MonoBehaviour
     }
     ///////////////////////////////////////////////////////////////////////////////////////
     ///
+
 
 
 }

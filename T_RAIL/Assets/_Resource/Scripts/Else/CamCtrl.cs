@@ -27,19 +27,6 @@ public class CamCtrl : MonoBehaviour
         MouseSpeed = 0.5f;
     }
 
-    //private void FixedUpdate()
-    //{
-    //    if (player_floor.Equals(1))
-    //    {
-    //        float targetX = tr.position.x;
-
-    //        if (Mathf.Abs(tr.position.x - player_position_x) > 3)
-    //        {
-    //            targetX = Mathf.Lerp(tr.position.x, player_position_x, 15.0f * Time.deltaTime);
-    //        }
-    //        tr.position = new Vector3(targetX, tr.position.y, tr.position.z);
-    //    }
-    //}
     private void LateUpdate()
     {
 
@@ -129,6 +116,30 @@ public class CamCtrl : MonoBehaviour
             this.GetComponent<Camera>().enabled = true;
             Enemy_Appear_Cam.GetComponent<Camera>().enabled = false;
 
+        }
+    }
+
+
+    public void Hit_EnemyAppearCam()
+    {
+        // iTween.ShakePosition(Enemy_Appear_Cam, iTween.Hash("time", 0.5f));
+       // iTween.ShakePosition(Enemy_Appear_Cam, iTween.Hash("time", 0.5f, "x", -2.0f));
+    }
+
+    public void Hit_EnemyCam(bool onoff)
+    {
+        // 기차 공격했을 때
+
+        if (onoff)
+        {
+            // main cam이 켜져있을 때
+            iTween.ShakePosition(gameObject, iTween.Hash("time", 0.5f, "x", -1.0f));
+            iTween.ShakePosition(Enemy_Appear_Cam, iTween.Hash("time", 0.5f, "x", -1.0f));
+        }
+        else if (!onoff)
+        {
+            // enemycam
+            iTween.ShakePosition(Enemy_Appear_Cam, iTween.Hash("time", 0.5f, "x", -1.0f));
         }
     }
 }
