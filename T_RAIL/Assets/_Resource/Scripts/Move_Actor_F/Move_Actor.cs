@@ -45,6 +45,19 @@ public class Rot
         z = _z;
     }
 }
+public class Size
+{
+    public float x { get; set; }
+    public float y { get; set; }
+    public float z { get; set; }
+
+    public Size(float _x, float _y, float _z)
+    {
+        x = _x;
+        y = _y;
+        z = _z;
+    }
+}
 public class Move_Actor
 {
     // 움직이는 것들의 기본이 되는 클래스
@@ -56,6 +69,9 @@ public class Move_Actor
 
     public Pos position { get; set; } 
     public Rot rotate = new Rot(0, 180.0f, 0);
+    public Size size = new Size(1, 1, 1);
+
+
 
     public string Name { get; set; }
     public int HP { get; set; }

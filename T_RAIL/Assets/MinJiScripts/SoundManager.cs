@@ -5,42 +5,72 @@ using Photon.Pun;
 
 public class SoundManager : MonoBehaviourPunCallbacks {
 
-    enum AudioClipList
-    {
-        buttonClickSound = 0,
-        stage1BGM = 1
-    }
+    public AudioSource Lobby_AudioSource;
+    public AudioSource Stage1_AudioSource;
 
-    enum AudioSourceList
-    {
-        lobbyScene = 0,
-        mainScene = 1
-    }
+    //lobby
+    public AudioClip buttonClickSound;
+
+    //stage1
+    public AudioClip stage1BGM;
+    public AudioClip Machine_Gun_Sound;
+    public AudioClip InGameButtonSound;
+    public AudioClip enemy_Sound;
+    public AudioClip Train_Sound;
+
+    //enum AudioClipList
+    //{
+    //    buttonClickSound = 0,
+    //    stage1BGM = 1,
+    //    Machine_Gun_Sound = 2,
+    //    InGameButtonSound = 3,
+    //    enemy_Sound = 4,
+    //    Train_Sound = 5
+    //}
+    //
+    //enum AudioSourceList
+    //{
+    //    lobbyScene = 0,
+    //    mainScene = 1
+    //}
 
     public static SoundManager instance = null;
 
 
-    public AudioSource[] audioSources;
-    public AudioClip[] sounds;
-
     private void Awake()
     {
         instance = this;
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
     }
 
 
     public void onButtonClickSound()
     {
-        audioSources[(int)AudioSourceList.lobbyScene].PlayOneShot(sounds[(int)AudioClipList.buttonClickSound]);
-        //audioSources[(int)AudioSourceList.lobbyScene].clip = sounds[(int)AudioClipList.buttonClickSound];
-        //audioSources[(int)AudioSourceList.lobbyScene].Play();
+        Lobby_AudioSource.PlayOneShot(buttonClickSound);
+        //audioSources[(int)AudioSourceList.lobbyScene].PlayOneShot(sounds[(int)AudioClipList.buttonClickSound]);
     }
 
 
     public void TrainStage1_BGMSoundPlay()
     {
-        audioSources[(int)AudioSourceList.mainScene].clip = (sounds[(int)AudioClipList.stage1BGM]);
-        audioSources[(int)AudioSourceList.mainScene].Play();
+        Stage1_AudioSource.clip = stage1BGM;
+        Stage1_AudioSource.Play();
+        //audioSources[(int)AudioSourceList.mainScene].clip = (sounds[(int)AudioClipList.stage1BGM]);
+        //audioSources[(int)AudioSourceList.mainScene].Play();
+    }
+
+    public void onButtonClickSound_ingame()
+    {
+        Lobby_AudioSource.PlayOneShot(buttonClickSound);
+    }
+
+    public void Machine_Gun_Sound_Play()
+    {
+        Stage1_AudioSource.PlayOneShot( Machine_Gun_Sound);
+    }
+
+    public void Train_Sound_Play()
+    {
+        Stage1_AudioSource.PlayOneShot( Train_Sound);
     }
 }

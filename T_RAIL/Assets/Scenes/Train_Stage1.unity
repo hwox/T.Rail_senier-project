@@ -6826,6 +6826,7 @@ GameObject:
   - component: {fileID: 125066331}
   - component: {fileID: 125066330}
   - component: {fileID: 125066329}
+  - component: {fileID: 125066333}
   m_Layer: 5
   m_Name: UI_Canvas
   m_TagString: Untagged
@@ -6918,6 +6919,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &125066333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 125066328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e9c48d655b451042856b451489e22f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &126560483
 GameObject:
   m_ObjectHideFlags: 0
@@ -11907,6 +11919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Train_Ctrl: {fileID: 1304048000}
+  playerListController: {fileID: 342035268}
 --- !u!114 &216123168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25552,7 +25565,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 437160523}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1113577658}
+        m_MethodName: onButtonClickSound_ingame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &437160523
@@ -30134,11 +30158,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 775df7a216485fa4c833dfc1c51c75c6, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -30580,6 +30604,7 @@ GameObject:
   - component: {fileID: 540288768}
   - component: {fileID: 540288767}
   - component: {fileID: 540288766}
+  - component: {fileID: 540288770}
   m_Layer: 5
   m_Name: Info_Canvas
   m_TagString: Untagged
@@ -30663,6 +30688,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &540288770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 540288765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e9c48d655b451042856b451489e22f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &540863512
 GameObject:
   m_ObjectHideFlags: 0
@@ -45993,6 +46029,7 @@ GameObject:
   - component: {fileID: 885544843}
   - component: {fileID: 885544842}
   - component: {fileID: 885544846}
+  - component: {fileID: 885544847}
   m_Layer: 5
   m_Name: Canvas_UI_Click_Open_State
   m_TagString: Untagged
@@ -46098,6 +46135,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &885544847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 885544841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e9c48d655b451042856b451489e22f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &891347704
 GameObject:
   m_ObjectHideFlags: 0
@@ -56008,17 +56056,19 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1113577653}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b3ecb32d66e59547b21ba146b83cee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSources:
-  - {fileID: 0}
-  - {fileID: 534669912}
-  sounds:
-  - {fileID: 8300000, guid: dff463d8e99364f4da0bc248929ea47c, type: 3}
-  - {fileID: 8300000, guid: 72d3f384763ae8d4e8339ce5baaae693, type: 3}
+  Lobby_AudioSource: {fileID: 0}
+  Stage1_AudioSource: {fileID: 534669912}
+  buttonClickSound: {fileID: 8300000, guid: dff463d8e99364f4da0bc248929ea47c, type: 3}
+  stage1BGM: {fileID: 8300000, guid: 775df7a216485fa4c833dfc1c51c75c6, type: 3}
+  Machine_Gun_Sound: {fileID: 8300000, guid: a44819b7e801cea40adc27634c0ef81c, type: 3}
+  InGameButtonSound: {fileID: 8300000, guid: db09ac3ff7c53944297f646c276d4fdd, type: 3}
+  enemy_Sound: {fileID: 8300000, guid: 3828f76581d12854cbbc0e15cf76255f, type: 3}
+  Train_Sound: {fileID: 8300000, guid: 02341fe39556af140976c0c2f03c927f, type: 3}
 --- !u!114 &1113577660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69973,7 +70023,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1416773117}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1113577658}
+        m_MethodName: onButtonClickSound_ingame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1416773117
