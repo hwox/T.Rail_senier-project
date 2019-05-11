@@ -70,9 +70,6 @@ public class Enemy1_Ctrl : MonoBehaviour
             Debug.Log("맞");
 
             MCam_Ctrl.Hit_EnemyAppearCam();
-
-
-
             enemy.HP -= 5;
         }
 
@@ -148,7 +145,7 @@ public class Enemy1_Ctrl : MonoBehaviour
                     // 공격
 
 
-                    if (enemy.HP < 0)
+                  //  if (enemy.HP < 0)
                     {
                         Retreat = true;
                         // 피가 일정 아래로 내려가서 후퇴면
