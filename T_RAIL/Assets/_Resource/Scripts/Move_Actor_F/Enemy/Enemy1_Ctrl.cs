@@ -75,6 +75,7 @@ public class Enemy1_Ctrl : MonoBehaviour
            
             
             Debug.Log("맞");
+
             MCam_Ctrl.Hit_EnemyAppearCam();
 
 
@@ -86,7 +87,11 @@ public class Enemy1_Ctrl : MonoBehaviour
         {
             // 잠깐 뒤로 물러나기
             //iTween.ShakePosition(other.gameObject, iTween.Hash("time", 0.5f, "x", -2.0f));
+
             MCam_Ctrl.Hit_EnemyCam(true);
+
+            TrainGameManager.instance.TrainCtrl.trainscript[TrainGameManager.instance.trainindex - 1].HP -= E_damage;
+
             Debug.Log("기차랑 충돌");
         }
     }
@@ -101,8 +106,6 @@ public class Enemy1_Ctrl : MonoBehaviour
         //{
         //    tr.position = Vector3.Slerp(tr.position, Position_Set_Move, Time.deltaTime);
         //}
-
-       
 
     }
     public void Enemy1_On()
@@ -155,7 +158,7 @@ public class Enemy1_Ctrl : MonoBehaviour
                         // 피가 일정 아래로 내려가서 후퇴면
                  //   }
                 }
-                // Rhino_child.position -= new Vector3(0, 0, 0.3f);
+                //Rhino_child.position -= new Vector3(0, 0, 0.3f);
                 //Position_Set_Move = new Vector3(tr.position.x + 5 * Time.deltaTime, tr.position.y, tr.position.z);
             }
     

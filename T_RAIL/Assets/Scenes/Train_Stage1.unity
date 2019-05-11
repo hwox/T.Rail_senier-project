@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657642, g: 0.49641156, b: 0.5748181, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657755, g: 0.4964127, b: 0.57481825, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -39680,65 +39680,6 @@ Transform:
   m_Father: {fileID: 2036991940}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!1 &729496716
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1486490393797916, guid: bc5f0187c0993884986006fc0476753a,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 729496717}
-  - component: {fileID: 729496718}
-  m_Layer: 0
-  m_Name: MapCtrl
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &729496717
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4043534408236998, guid: bc5f0187c0993884986006fc0476753a,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 729496716}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -20.460014, y: -10.26453, z: -109.84818}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1473756848}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &729496718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114244300080506638, guid: bc5f0187c0993884986006fc0476753a,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 729496716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09e8fa04cab0f654e87dbad9aa3d00a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Mountain1:
-  - {fileID: 279052119}
-  - {fileID: 1613574473}
-  Cloud:
-  - {fileID: 590762573}
-  - {fileID: 260323505}
-  Mountain2:
-  - {fileID: 586786940}
-  - {fileID: 2129876001}
-  plane:
-  - {fileID: 2036991940}
-  - {fileID: 1922626180}
-  RailRoad:
-  - {fileID: 1391171814}
-  - {fileID: 260264141}
-  playerListCtrl: {fileID: 0}
 --- !u!1 &731221877
 GameObject:
   m_ObjectHideFlags: 0
@@ -72522,6 +72463,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1473756848}
+  - component: {fileID: 1473756849}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -72546,10 +72488,35 @@ Transform:
   - {fileID: 379962441}
   - {fileID: 1317226023}
   - {fileID: 827609276}
-  - {fileID: 729496717}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &1473756849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1473756847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09e8fa04cab0f654e87dbad9aa3d00a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mountain1:
+  - {fileID: 279052119}
+  - {fileID: 1613574473}
+  Cloud:
+  - {fileID: 590762573}
+  - {fileID: 260323505}
+  Mountain2:
+  - {fileID: 586786940}
+  - {fileID: 2129876001}
+  plane:
+  - {fileID: 2036991940}
+  - {fileID: 1922626180}
+  RailRoad:
+  - {fileID: 1391171814}
+  - {fileID: 260264141}
 --- !u!1 &1474382451
 GameObject:
   m_ObjectHideFlags: 0
