@@ -22,7 +22,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
             photonView.RPC("setRunMeterZero", RpcTarget.All);
             UnityEngine.SceneManagement.SceneManager.LoadScene("Station_Stage1");
         }
-        Debug.Log(Train_Ctrl.Run_Meter);
+
 	}
 
 

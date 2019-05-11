@@ -11,7 +11,8 @@ public class TrainGameManager : MonoBehaviour
     {
         bullet = 0,
         passenger = 1,
-        stationpassenger = 2
+        stationpassenger = 2,
+        dustparticle = 3,
     }
 
 
@@ -41,6 +42,8 @@ public class TrainGameManager : MonoBehaviour
 
     public int StageNumber;
 
+    public bool EnemyAppear { get; set; } // 몬스터가 등장한 상황 -> 기차 추가 되면 안됨
+
     //# ConditionCtrl
     public Condition_Ctrl ConditionCtrl;
 
@@ -56,7 +59,6 @@ public class TrainGameManager : MonoBehaviour
 
     // # UI
     public GameObject Info_Canvas;
-
 
     // #Pool
     public GameObject[] Origin; // 프리팹들 원본
@@ -74,6 +76,9 @@ public class TrainGameManager : MonoBehaviour
     public List<GameObject> Station_PassengerManager;
     const int MAKE_STATIONPASSENGER_COUNT = 10;
 
+    // 먼지 파티클
+    public List<GameObject> DustParticle;
+    const int MAKE_DUSTPARTICLE_COUNT = 5;
 
     private void Awake()
     {
@@ -100,12 +105,11 @@ public class TrainGameManager : MonoBehaviour
         CreateObject(Origin[(int)prefab_list.bullet], MAKE_BULLET_COUNT, (int)prefab_list.bullet); //총알생성
         CreateObject(Origin[(int)prefab_list.passenger], MAKE_PASSENGER_COUNT, (int)prefab_list.passenger); //승객생성
         CreateObject(Origin[(int)prefab_list.stationpassenger], MAKE_STATIONPASSENGER_COUNT, (int)prefab_list.stationpassenger); //승객생성
-
+        CreateObject(Origin[(int)prefab_list.dustparticle], MAKE_DUSTPARTICLE_COUNT, (int)prefab_list.dustparticle); //승객생성
     }
     public void Notice_EnemyAppear()
     {
         InGame_Notice.SetActive(true);
-
         // 여기는 striingbuilder로 바꾸기
         InGame_Text.text = "코뿔소 등장 ! ";
     }
@@ -129,6 +133,9 @@ public class TrainGameManager : MonoBehaviour
                     break;
                 case (int)prefab_list.stationpassenger:
                     Station_PassengerManager.Add(obj);
+                    break;
+                case (int)prefab_list.dustparticle:
+                    DustParticle.Add(obj);
                     break;
             }
         }
@@ -217,7 +224,32 @@ public class TrainGameManager : MonoBehaviour
                     return Station_PassengerManager[i];
                 }
                 return null;
+            case (int)prefab_list.dustparticle:
 
+                if (DustParticle == null)
+                {
+                    return null;
+                }
+                int d_Count = DustParticle.Count;
+
+                for (int i = 0; i < d_Count; i++)
+                {
+                    GameObject obj = DustParticle[i];
+
+                    //활성화 돼있으면
+                    if (obj.active == true)
+                    {
+                        // 리스트의 마지막까지 돌았는데 다 사용중이다?
+                        if (i == d_Count - 1)
+                        {
+                            CreateObject(obj, 1, _objIndex);
+                            return DustParticle[i + 1];
+                        }
+                        continue;
+                    }
+                    return DustParticle[i];
+                }
+                return null;
             default:
                 return null;
 

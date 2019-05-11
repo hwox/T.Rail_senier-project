@@ -56,6 +56,7 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks {
     public void Rhino_Add()
     {
         // 
+        TrainGameManager.instance.EnemyAppear = true;
         enemy1.SetActive(true);
         enemy1_ctrl.Enemy1_On();
     }
