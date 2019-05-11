@@ -55886,9 +55886,11 @@ MonoBehaviour:
   - {fileID: 1389966095280804, guid: 5038b754216e0bd4287ed4d8344ab4d7, type: 2}
   - {fileID: 1678285436382366, guid: be1791a8985844747ba2d86aec26ff02, type: 2}
   - {fileID: 1678285436382366, guid: 192218f7df54cec4e821a65f77036f6c, type: 2}
+  - {fileID: 1817153216884416, guid: fa68c90a3c63a684ab5b38a526765f9f, type: 2}
   BulletManager: []
   PassengerManager: []
   Station_PassengerManager: []
+  DustParticle: []
 --- !u!4 &1113577655
 Transform:
   m_ObjectHideFlags: 0
@@ -55902,6 +55904,7 @@ Transform:
   - {fileID: 2078149776}
   - {fileID: 531018144}
   - {fileID: 868470212}
+  - {fileID: 1414837921}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -69899,6 +69902,34 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1413183518}
   m_Mesh: {fileID: 4300034, guid: 2cd900e8c87fb5447b1f1dd0453ac896, type: 3}
+--- !u!1 &1414837920
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1414837921}
+  m_Layer: 0
+  m_Name: DustParticle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1414837921
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1414837920}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1113577655}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1416773113
 GameObject:
   m_ObjectHideFlags: 0
@@ -116151,14 +116182,6 @@ Prefab:
     - target: {fileID: 1651040111872816, guid: a1a16f7f9079d2440a9ecf816dc76762, type: 2}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4368989280912456, guid: a1a16f7f9079d2440a9ecf816dc76762, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4368989280912456, guid: a1a16f7f9079d2440a9ecf816dc76762, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1a16f7f9079d2440a9ecf816dc76762, type: 2}

@@ -312,11 +312,9 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
             {
                 if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
                 {
-                    jump_now = true;
-
-
+                   
                     anim.SetBool("IsJump", false);
-
+                    jump_now = true;
                 }
 
             }
@@ -370,7 +368,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     [PunRPC]
     public void changeMy_Where_Train(int playerID, int i)
     {
-        playerListController.playerList[playerID].player.Where_Train =  i + 1; ;
+        playerListController.playerList[playerID].player.Where_Train = i + 1; ;
         playerListController.eachPlayerIn[playerID] = playerListController.playerList[playerID].player.Where_Train;
 
         UIState_Ctrl.CallRPConTrainScrollBar();
