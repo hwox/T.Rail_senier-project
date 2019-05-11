@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class CamCtrl : MonoBehaviour
+public class CamCtrl : MonoBehaviourPunCallbacks
 {
 
     public GameObject Enemy_Appear_Cam;
@@ -127,6 +128,12 @@ public class CamCtrl : MonoBehaviour
     }
 
     public void Hit_EnemyCam(bool onoff)
+    {
+        photonView.RPC("RPC_HiT_EnemyCam", RpcTarget.All, onoff);
+    }
+
+    [PunRPC]
+    public void RPC_HiT_EnemyCam(bool onoff)
     {
         // 기차 공격했을 때
 

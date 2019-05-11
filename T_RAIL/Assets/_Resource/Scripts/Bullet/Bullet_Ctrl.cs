@@ -41,14 +41,15 @@ public class Bullet_Ctrl : MonoBehaviour
 
     private void OnDisable()
     {
+        rig.isKinematic = true;
 
     }
 
     private void OnEnable()
     {
-        //  m_CurrentLaunchForce = m_MinLaunchForce;
+      //  m_CurrentLaunchForce = m_MinLaunchForce;
+       
 
-        rig.isKinematic = true;
         rig.isKinematic = false;
     }
 
@@ -63,7 +64,6 @@ public class Bullet_Ctrl : MonoBehaviour
                 break;
             else if(tr.position.y < 2.0f)
             {
-
                 gameObject.SetActive(false);
             }
 

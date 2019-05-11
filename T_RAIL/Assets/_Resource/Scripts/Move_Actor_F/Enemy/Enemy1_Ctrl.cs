@@ -66,15 +66,9 @@ public class Enemy1_Ctrl : MonoBehaviour
         if (other.gameObject.layer.Equals(GameValue.bullet_layer))
         {
             // 총알맞으면
-            GameObject parti = TrainGameManager.instance.GetObject(3); // dust 
-            parti.transform.position = other.gameObject.transform.position;
-            parti.SetActive(true);
-            parti.transform.GetChild(0).gameObject.SetActive(true);
-            parti.transform.GetChild(0).GetComponent<ParticleSystem>().Play(true);
             other.gameObject.SetActive(false);
-           
-            
             Debug.Log("맞");
+
             MCam_Ctrl.Hit_EnemyAppearCam();
 
 
@@ -86,7 +80,11 @@ public class Enemy1_Ctrl : MonoBehaviour
         {
             // 잠깐 뒤로 물러나기
             //iTween.ShakePosition(other.gameObject, iTween.Hash("time", 0.5f, "x", -2.0f));
+
             MCam_Ctrl.Hit_EnemyCam(true);
+
+            TrainGameManager.instance.TrainCtrl.trainscript[TrainGameManager.instance.trainindex - 1].HP -= E_damage;
+
             Debug.Log("기차랑 충돌");
         }
     }
@@ -102,14 +100,12 @@ public class Enemy1_Ctrl : MonoBehaviour
         //    tr.position = Vector3.Slerp(tr.position, Position_Set_Move, Time.deltaTime);
         //}
 
-       
-
     }
     public void Enemy1_On()
     {
         anim.SetBool("IsRun", true);
         follow_index = TrainGameManager.instance.trainindex;
-        Position_Set_Destination = new Vector3((GameValue.Train_distance * (follow_index-1) -15), tr.position.y, tr.position.z);
+        Position_Set_Destination = new Vector3((GameValue.Train_distance * follow_index -15), tr.position.y, tr.position.z);
         Position_Set_Go = true;
 
         StartCoroutine(Enemy_ActRoutine());
@@ -148,14 +144,17 @@ public class Enemy1_Ctrl : MonoBehaviour
             {
                 if (!Retreat)
                 {
+
                     // 공격
-                 //   if (enemy.HP < 0)
-               //     {
+
+
+                    if (enemy.HP < 0)
+                    {
                         Retreat = true;
                         // 피가 일정 아래로 내려가서 후퇴면
-                 //   }
+                    }
                 }
-                // Rhino_child.position -= new Vector3(0, 0, 0.3f);
+                //Rhino_child.position -= new Vector3(0, 0, 0.3f);
                 //Position_Set_Move = new Vector3(tr.position.x + 5 * Time.deltaTime, tr.position.y, tr.position.z);
             }
     

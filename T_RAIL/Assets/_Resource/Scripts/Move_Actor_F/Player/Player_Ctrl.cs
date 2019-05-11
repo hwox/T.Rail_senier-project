@@ -24,7 +24,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     }
 
     // 기본 플레이어에 달린 컴포넌트들
-    public Player_Actor player;
+    Player_Actor player;
     Transform tr;
     Animator anim;
 
@@ -158,10 +158,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
             }
         }
 
-        if (other.gameObject.layer.Equals(GameValue.StationPassenger_layer))
-        {
-            Debug.Log("dd");
-        }
+
     }
     private void OnTriggerStay(Collider other)
     {
@@ -315,9 +312,11 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
             {
                 if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
                 {
-                   
-                    anim.SetBool("IsJump", false);
                     jump_now = true;
+
+
+                    anim.SetBool("IsJump", false);
+
                 }
 
             }
@@ -344,7 +343,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                 // 뚜껑에서
                 MCam_Ctrl.GetPlayerX(player.position.x);
                 break;
-          
+
         }
 
 
@@ -371,7 +370,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     [PunRPC]
     public void changeMy_Where_Train(int playerID, int i)
     {
-        playerListController.playerList[playerID].player.Where_Train = i + 1; ;
+        playerListController.playerList[playerID].player.Where_Train =  i + 1; ;
         playerListController.eachPlayerIn[playerID] = playerListController.playerList[playerID].player.Where_Train;
 
         UIState_Ctrl.CallRPConTrainScrollBar();
