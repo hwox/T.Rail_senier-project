@@ -35,7 +35,7 @@ public class UIState_Ctrl : MonoBehaviourPunCallbacks
         }
 
         //플레이어의 숫자만큼 돌면서 각자가 어디있는지 확인
-        for (int i = 0; i < PhotonNetwork.CountOfPlayers; ++i)
+        for (int i = 0; i < PhotonNetwork.CurrentRoom.PlayerCount; ++i)
         {
             if (playerListController.eachPlayerIn[i] != 0)
                 TrainUI[playerListController.eachPlayerIn[i] - 1].transform.GetChild(i + 1).gameObject.SetActive(true);

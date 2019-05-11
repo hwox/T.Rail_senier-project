@@ -55968,7 +55968,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InfoText: {fileID: 915476116}
   TrailPrefabs: []
-  playerPrefab: {fileID: 1014540451394702, guid: 5a11f7d26cecab04a811e4777299ae83,
+  ourplayerPrefab: {fileID: 1014540451394702, guid: 5a11f7d26cecab04a811e4777299ae83,
     type: 2}
 --- !u!114 &1113577657
 MonoBehaviour:
@@ -55982,7 +55982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: {fileID: 915476116}
-  Countdown: 1
+  Countdown: 0
 --- !u!114 &1113577660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108801,15 +108801,11 @@ Prefab:
       propertyPath: viewIdField
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 1014540451394702, guid: 5a11f7d26cecab04a811e4777299ae83, type: 2}
-      propertyPath: m_IsActive
+    - target: {fileID: 114537870420915034, guid: 5a11f7d26cecab04a811e4777299ae83,
+        type: 2}
+      propertyPath: m_SynchronizeParameters.Array.data[4].SynchronizeType
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114265445870221514, guid: 5a11f7d26cecab04a811e4777299ae83,
-        type: 2}
-      propertyPath: AimSlider
-      value: 
-      objectReference: {fileID: 687722668}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a11f7d26cecab04a811e4777299ae83, type: 2}
   m_IsPrefabAsset: 0

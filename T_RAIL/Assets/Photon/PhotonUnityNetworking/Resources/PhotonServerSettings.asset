@@ -44,5 +44,6 @@ MonoBehaviour:
   - changeMy_Where_Train
   - onTrainScrollBar
   - setRunMeterZero
+  - isAttackedByBullet
   DisableAutoOpenWizard: 1
   ShowSettings: 1

@@ -11,10 +11,11 @@ public class playerListController_minj : MonoBehaviourPunCallbacks {
 
     private void Start()
     {
-        eachPlayerIn = new int[PhotonNetwork.CountOfPlayers];
-        for (int i = 0; i < PhotonNetwork.CountOfPlayers; ++i)
+        Debug.Log("eachPlayerIn : " + PhotonNetwork.CurrentRoom.PlayerCount);
+        eachPlayerIn = new int[PhotonNetwork.CurrentRoom.PlayerCount]; //new int[playerList.Count];
+        for (int i = 0; i < PhotonNetwork.CurrentRoom.PlayerCount; ++i)
         {
-            eachPlayerIn[i] = 1;
+            eachPlayerIn[i] = 1;//CountOfPlayers
         }
 
     }

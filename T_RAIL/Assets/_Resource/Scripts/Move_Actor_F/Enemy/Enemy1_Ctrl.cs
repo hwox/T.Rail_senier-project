@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class Enemy1_Ctrl : MonoBehaviour
+public class Enemy1_Ctrl : MonoBehaviourPunCallbacks
 {
     Enemy_Actor enemy;
     Transform tr;
@@ -59,7 +60,7 @@ public class Enemy1_Ctrl : MonoBehaviour
     {
         if (other.gameObject.layer.Equals(GameValue.bullet_layer))
         {
-            // 총알맞으면
+            //총알맞으면
             GameObject parti = TrainGameManager.instance.GetObject(3); // dust 
             parti.transform.position = other.gameObject.transform.position;
             parti.SetActive(true);
@@ -67,11 +68,18 @@ public class Enemy1_Ctrl : MonoBehaviour
             parti.transform.GetChild(0).GetComponent<ParticleSystem>().Play(true);
             other.gameObject.SetActive(false);
 
-            enemy.HP -= 20;
+            //enemy.HP -= 20;
+            photonView.RPC("isAttackedByBullet", RpcTarget.All);
             TrainGameManager.instance.SoundManager.enemy_Sound_Play();
         }
 
 
+    }
+
+    [PunRPC]
+    public void isAttackedByBullet()
+    {
+        enemy.HP -= 20;
     }
 
     void Update()

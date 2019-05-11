@@ -86,6 +86,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     {
         DontDestroyOnLoad(gameObject);
 
+        if (photonView.ViewID % 1000 == 2) Destroy(this.gameObject);
+
         player = new Player_Actor();
 
         Make_PushSpaceUI();
@@ -94,11 +96,16 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
 
     private void Start()
     {
+        //if (!photonView.IsMine) return;
+        if (photonView.ViewID % 1000 == 2) Destroy(this.gameObject);
+
         //생성되면 플레이어 리스트에 스스로를 넣어줌.
         playerListController = GameObject.Find("PlayerList_Ctrl").GetComponent<playerListController_minj>();
         playerListController.playerList.Add(this.gameObject.GetComponent<Player_Ctrl>());
         UIState_Ctrl = GameObject.Find("UIState_Ctrl").GetComponent<UIState_Ctrl>();
         whereIam = player.Where_Train;
+
+        
     }
 
     void Init_Set_Value()
@@ -371,7 +378,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     [PunRPC]
     public void changeMy_Where_Train(int playerID, int i)
     {
-        playerListController.playerList[playerID].player.Where_Train = i + 1; ;
+        Debug.LogError("시발!!! : " + playerID);
+        playerListController.playerList[playerID].player.Where_Train = i;
         playerListController.eachPlayerIn[playerID] = playerListController.playerList[playerID].player.Where_Train;
 
         UIState_Ctrl.CallRPConTrainScrollBar();
@@ -668,7 +676,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                 if (((i * traindistance) + dist2) < position && ((i * traindistance) - dist2) > position)
                 {
                     //Debug.Log("index 여기" + (i + 1));
-                    photonView.RPC("changeMy_Where_Train", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber - 1, i);
+                    photonView.RPC("changeMy_Where_Train", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber - 1, i+1);
                     //player.Where_Train = i + 1;
                 }
             }

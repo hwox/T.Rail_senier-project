@@ -54,7 +54,7 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
             RunMeterCalCulator();
 
 
-        InvokeRepeating("trainSoundInvoke", 1.0f, 10.0f);
+       // InvokeRepeating("trainSoundInvoke", 1.0f, 10.0f);
 
     }
 

@@ -830,7 +830,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1014540451394702}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 4.48, y: 3.8, z: -2.5}
+  m_LocalPosition: {x: 2.11, y: 3.8, z: -2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4379721805300126}
@@ -1041,6 +1041,9 @@ MonoBehaviour:
     type: 2}
   parti_player_move: {fileID: 1980584270595486, guid: 66df08d7c8d70a44d9d722aa67820eef,
     type: 2}
+  playerListController: {fileID: 0}
+  UIState_Ctrl: {fileID: 0}
+  whereIam: 0
 --- !u!114 &114537870420915034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1062,8 +1065,14 @@ MonoBehaviour:
     SynchronizeType: 1
     Name: UpToLadder
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: IsJump
+  - Type: 4
+    SynchronizeType: 1
+    Name: IsRun
+  - Type: 1
+    SynchronizeType: 1
+    Name: RunTime
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
