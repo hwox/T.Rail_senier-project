@@ -194,16 +194,7 @@ public class Player_Actor : Move_Actor {
         WallConflict = false;
     }
 
-   public void UpSize()
-   {
-       size = new Size(2, 2, 2);
 
-   
-   }
-   public void DownSize()
-   {
-       size = new Size(1, 1, 1);
-   }
 
 
 }
