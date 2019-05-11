@@ -55,7 +55,6 @@ public class TrainGameManager : MonoBehaviour
     // # UI
     public GameObject Info_Canvas;
 
-
     // #Pool
     public GameObject[] Origin; // 프리팹들 원본
 
@@ -98,12 +97,10 @@ public class TrainGameManager : MonoBehaviour
         CreateObject(Origin[(int)prefab_list.bullet], MAKE_BULLET_COUNT, (int)prefab_list.bullet); //총알생성
         CreateObject(Origin[(int)prefab_list.passenger], MAKE_PASSENGER_COUNT, (int)prefab_list.passenger); //승객생성
         CreateObject(Origin[(int)prefab_list.stationpassenger], MAKE_STATIONPASSENGER_COUNT, (int)prefab_list.stationpassenger); //승객생성
-
     }
     public void Notice_EnemyAppear()
     {
         InGame_Notice.SetActive(true);
-
         // 여기는 striingbuilder로 바꾸기
         InGame_Text.text = "코뿔소 등장 ! ";
     }
