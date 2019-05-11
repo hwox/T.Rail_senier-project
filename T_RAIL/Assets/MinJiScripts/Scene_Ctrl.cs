@@ -29,5 +29,9 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
     public void setRunMeterZero()
     {
         Train_Ctrl.Run_Meter = 0;
+        Train_Ctrl.Hide();
     }
+
+    
+
 }
