@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657755, g: 0.4964127, b: 0.57481825, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657642, g: 0.49641156, b: 0.5748181, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6826,6 +6826,7 @@ GameObject:
   - component: {fileID: 125066331}
   - component: {fileID: 125066330}
   - component: {fileID: 125066329}
+  - component: {fileID: 125066333}
   m_Layer: 5
   m_Name: UI_Canvas
   m_TagString: Untagged
@@ -6919,6 +6920,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &125066333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 125066328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e9c48d655b451042856b451489e22f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &126560483
 GameObject:
   m_ObjectHideFlags: 0
@@ -11856,6 +11868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b09741412158c14d94211533b9bb300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerListController: {fileID: 342035268}
   Train_Ctrl: {fileID: 1304048000}
 --- !u!114 &216123168
 MonoBehaviour:
@@ -39837,6 +39850,7 @@ MonoBehaviour:
   RailRoad:
   - {fileID: 1391171814}
   - {fileID: 260264141}
+  playerListCtrl: {fileID: 0}
 --- !u!1 &731221877
 GameObject:
   m_ObjectHideFlags: 0

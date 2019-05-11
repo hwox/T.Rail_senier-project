@@ -41,7 +41,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - StationPassenger
   - wall
   m_SortingLayers:
   - name: Default

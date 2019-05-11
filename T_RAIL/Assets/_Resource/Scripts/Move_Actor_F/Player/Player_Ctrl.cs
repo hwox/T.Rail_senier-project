@@ -24,7 +24,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     }
 
     // 기본 플레이어에 달린 컴포넌트들
-    Player_Actor player;
+    public Player_Actor player;
     Transform tr;
     Animator anim;
 
@@ -158,7 +158,10 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
             }
         }
 
-
+        if (other.gameObject.layer.Equals(GameValue.StationPassenger_layer))
+        {
+            Debug.Log("dd");
+        }
     }
     private void OnTriggerStay(Collider other)
     {
@@ -343,7 +346,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                 // 뚜껑에서
                 MCam_Ctrl.GetPlayerX(player.position.x);
                 break;
-
+          
         }
 
 
