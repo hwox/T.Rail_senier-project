@@ -11,7 +11,8 @@ public class TrainGameManager : MonoBehaviour
     {
         bullet = 0,
         passenger = 1,
-        stationpassenger = 2
+        stationpassenger = 2,
+        dustparticle = 3,
     }
 
 
@@ -73,6 +74,9 @@ public class TrainGameManager : MonoBehaviour
     public List<GameObject> Station_PassengerManager;
     const int MAKE_STATIONPASSENGER_COUNT = 10;
 
+    // 먼지 파티클
+    public List<GameObject> DustParticleManager;
+    const int MAKE_DUSTPARTICLE_COUNT = 8;
 
     private void Awake()
     {
@@ -99,6 +103,7 @@ public class TrainGameManager : MonoBehaviour
         CreateObject(Origin[(int)prefab_list.bullet], MAKE_BULLET_COUNT, (int)prefab_list.bullet); //총알생성
         CreateObject(Origin[(int)prefab_list.passenger], MAKE_PASSENGER_COUNT, (int)prefab_list.passenger); //승객생성
         CreateObject(Origin[(int)prefab_list.stationpassenger], MAKE_STATIONPASSENGER_COUNT, (int)prefab_list.stationpassenger); //승객생성
+        CreateObject(Origin[(int)prefab_list.dustparticle], MAKE_DUSTPARTICLE_COUNT, (int)prefab_list.dustparticle); //먼지 파티클
     }
     public void Notice_EnemyAppear()
     {
@@ -126,6 +131,9 @@ public class TrainGameManager : MonoBehaviour
                     break;
                 case (int)prefab_list.stationpassenger:
                     Station_PassengerManager.Add(obj);
+                    break;
+                case (int)prefab_list.dustparticle:
+                    DustParticleManager.Add(obj);
                     break;
             }
         }
@@ -215,6 +223,33 @@ public class TrainGameManager : MonoBehaviour
                 }
                 return null;
 
+            case (int)prefab_list.dustparticle:
+
+                if (DustParticleManager == null)
+                {
+                    return null;
+                }
+                int d_Count = DustParticleManager.Count;
+
+                for (int i = 0; i < d_Count; i++)
+                {
+                    GameObject obj = DustParticleManager[i];
+
+                    //활성화 돼있으면
+                    if (obj.active == true)
+                    {
+                        // 리스트의 마지막까지 돌았는데 다 사용중이다?
+                        if (i == d_Count - 1)
+                        {
+                            CreateObject(obj, 1, _objIndex);
+                            return DustParticleManager[i + 1];
+                        }
+                        continue;
+                    }
+                    return DustParticleManager[i];
+                }
+                return null;
+
             default:
                 return null;
 
@@ -276,6 +311,22 @@ public class TrainGameManager : MonoBehaviour
                     GameObject.Destroy(obj);
                 }
                 Station_PassengerManager = null;
+                break;
+            case (int)prefab_list.dustparticle:
+
+                if (Station_PassengerManager == null)
+                {
+                    return;
+                }
+
+                int d_Count = DustParticleManager.Count;
+
+                for (int i = 0; i < d_Count; i++)
+                {
+                    GameObject obj = DustParticleManager[i];
+                    GameObject.Destroy(obj);
+                }
+                DustParticleManager = null;
                 break;
         }
     }

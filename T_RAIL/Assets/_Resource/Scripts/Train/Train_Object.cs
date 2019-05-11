@@ -31,6 +31,8 @@ public class Train_Object : MonoBehaviourPunCallbacks
     public GameObject Machine_gun;
     public GameObject Ladder;
     public GameObject Ceiling; // 천장
+    public GameObject Back_Wall; // 맨뒤에 칸일 때만 on 되는 collider. 몬스터랑 충돌 & 플레이어 못나가게
+
 
     public GameObject[] choiceInTrainObject;
     [SerializeField]
@@ -195,10 +197,12 @@ public class Train_Object : MonoBehaviourPunCallbacks
             if (i < TrainGameManager.instance.trainindex - 1)
             {
                 ctrl.trainscript[i].Machine_Gun_OnOff(false);
+                Back_Wall.SetActive(false);
             }
             else
             {
                 ctrl.trainscript[i].Machine_Gun_OnOff(true);
+                Back_Wall.SetActive(true);
             }
         }
     }
