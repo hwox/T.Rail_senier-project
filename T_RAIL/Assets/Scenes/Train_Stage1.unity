@@ -11919,6 +11919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Train_Ctrl: {fileID: 1304048000}
+  playerListController: {fileID: 342035268}
 --- !u!114 &216123168
 MonoBehaviour:
   m_ObjectHideFlags: 0
