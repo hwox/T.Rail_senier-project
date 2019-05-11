@@ -589,6 +589,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         else if (Input.GetKeyUp(KeyCode.F) && !m_Fired)
         {
             Fire();
+            TrainGameManager.instance.SoundManager.Machine_Gun_Sound_Play();
         }
         // 카메라 조절은 마우스로
 

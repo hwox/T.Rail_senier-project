@@ -53,6 +53,14 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
         if (photonView.IsMine)
             RunMeterCalCulator();
 
+
+        InvokeRepeating("trainSoundInvoke", 1.0f, 10.0f);
+
+    }
+
+    public void trainSoundInvoke()
+    {
+        TrainGameManager.instance.SoundManager.Train_Sound_Play();
     }
 
     public void RunMeterCalCulator()
@@ -61,6 +69,7 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
         Run_Meter += (TrainGameManager.instance.Speed * TrainGameManager.instance.Speed_stat) * Time.deltaTime;
 
         //Run_Meter
+        
     }
 
     // 기차 추가하기

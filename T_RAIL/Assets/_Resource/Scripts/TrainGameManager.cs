@@ -63,6 +63,9 @@ public class TrainGameManager : MonoBehaviour
     // #Pool
     public GameObject[] Origin; // 프리팹들 원본
 
+    // # Sound
+    public SoundManager SoundManager;
+
     // 총알 )
     public List<GameObject> BulletManager; // 생성된 객체들을 저장할 리스트
     const int MAKE_BULLET_COUNT = 25;

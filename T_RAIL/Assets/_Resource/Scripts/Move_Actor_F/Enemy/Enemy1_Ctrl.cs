@@ -68,6 +68,7 @@ public class Enemy1_Ctrl : MonoBehaviour
             other.gameObject.SetActive(false);
 
             enemy.HP -= 20;
+            TrainGameManager.instance.SoundManager.enemy_Sound_Play();
         }
 
 
