@@ -23,10 +23,12 @@ public class Enemy1_Ctrl : MonoBehaviour
 
     public Transform Rhino_child; // 아니 이거 fbx가 이렇게 안잡으면 제대로 안움직임
 
+    bool Retreat; // 후퇴
 
     Vector3 Init_Rhino_child;
     Vector3 Init_Rhino;
 
+    int follow_index; // 따라갈 기차의 인덱스 
 
     private void Awake()
     {
@@ -88,16 +90,19 @@ public class Enemy1_Ctrl : MonoBehaviour
         {
             Position_Set();
         }
-        else
-        {
-            tr.position = Vector3.Slerp(tr.position, Position_Set_Move, Time.deltaTime);
-        }
+        //else
+        //{
+        //    tr.position = Vector3.Slerp(tr.position, Position_Set_Move, Time.deltaTime);
+        //}
+
+       
 
     }
     public void Enemy1_On()
     {
         anim.SetBool("IsRun", true);
-        Position_Set_Destination = new Vector3((GameValue.Train_distance * (TrainGameManager.instance.trainindex) -10), tr.position.y, tr.position.z);
+        follow_index = TrainGameManager.instance.trainindex;
+        Position_Set_Destination = new Vector3((GameValue.Train_distance * follow_index -15), tr.position.y, tr.position.z);
         Position_Set_Go = true;
 
         StartCoroutine(Enemy_ActRoutine());
@@ -106,11 +111,15 @@ public class Enemy1_Ctrl : MonoBehaviour
 
     void Position_Set()
     {
+
+        tr.LookAt(TrainGameManager.instance.TrainCtrl.train[follow_index - 1].transform);
         tr.position = Vector3.Slerp(tr.position, Position_Set_Destination, Time.deltaTime * 5.0f);
+
+        // 여기서 z값도 좀 왔다갔다 바꾸고
+        // Lookat
 
         if (tr.position.x == Position_Set_Destination.x)
         {
-            Debug.Log("false됐다");
             Position_Set_Go = false;
         }
         
@@ -130,11 +139,23 @@ public class Enemy1_Ctrl : MonoBehaviour
 
             if (!Position_Set_Go)
             {
-                // Rhino_child.position -= new Vector3(0, 0, 0.3f);
-                Position_Set_Move = new Vector3(tr.position.x + 5 * Time.deltaTime, tr.position.y, tr.position.z);
-            }
+                if (!Retreat)
+                {
 
-            yield return new WaitForSeconds(0.05f);
+                    // 공격
+
+
+                    if (enemy.HP < 0)
+                    {
+                        Retreat = true;
+                        // 피가 일정 아래로 내려가서 후퇴면
+                    }
+                }
+                // Rhino_child.position -= new Vector3(0, 0, 0.3f);
+                //Position_Set_Move = new Vector3(tr.position.x + 5 * Time.deltaTime, tr.position.y, tr.position.z);
+            }
+    
+            yield return new WaitForSeconds(4.0f);
         }
     }
 
@@ -142,6 +163,8 @@ public class Enemy1_Ctrl : MonoBehaviour
     {
         tr.position = Init_Rhino;
         Rhino_child.position = Init_Rhino_child;
+        enemy.HP = GameValue.enemy1_FullHp; // 피 다시 원래대로 돌려놓기
+        Retreat = true;
     }
 
 }

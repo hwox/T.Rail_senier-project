@@ -39,6 +39,8 @@ public class TrainGameManager : MonoBehaviour
 
     public int StageNumber;
 
+    public bool EnemyAppear { get; set; } // 몬스터가 등장한 상황 -> 기차 추가 되면 안됨
+
     //# ConditionCtrl
     public Condition_Ctrl ConditionCtrl;
 
