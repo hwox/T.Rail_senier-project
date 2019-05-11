@@ -29,8 +29,8 @@ TagManager:
   - ladder
   - machinegun
   - sofa
-  - 
-  - 
+  - NextTrain
+  - PrevTrain
   - floor2
   - Player
   - bullet
@@ -41,7 +41,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - StationPassenger
   - wall
   m_SortingLayers:
   - name: Default

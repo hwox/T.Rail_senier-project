@@ -19,11 +19,8 @@ public class Player_Actor : Move_Actor {
             if (PhotonNetwork.PlayerList[i].NickName == PhotonNetwork.LocalPlayer.NickName)
             {
                 position = new Pos(-1 * i * 2, 3.8f, -2.5f);
-               
             }
         }
-
-      
 
         speed = 15.0f; // speed 는 km/h 로 따지나 
         Directions = new int[4];
@@ -197,22 +194,16 @@ public class Player_Actor : Move_Actor {
         WallConflict = false;
     }
 
+   public void UpSize()
+   {
+       size = new Size(2, 2, 2);
 
-    public void UpSize()
-    {
-        size = new Size(2,2,2);
-    }
-    public void DownSize()
-    {
-        size = new Size(1, 1, 1);
-    }
-    public void UpPos()
-    {
-        position.y = 2;
-    }
-    public void DownPos()
-    {
-        position.y = 1.74f;
-    }
+   
+   }
+   public void DownSize()
+   {
+       size = new Size(1, 1, 1);
+   }
+
 
 }
