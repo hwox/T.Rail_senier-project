@@ -692,13 +692,14 @@ GameObject:
   - component: {fileID: 33351933493180870}
   - component: {fileID: 23097480862651990}
   - component: {fileID: 65896918801559346}
+  - component: {fileID: 114019026786069498}
   m_Layer: 31
   m_Name: train_collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1570977697804100
 GameObject:
   m_ObjectHideFlags: 1
@@ -1468,8 +1469,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1638259029400926}
-  m_LocalRotation: {x: 0.63247544, y: -0.065290794, z: -0.7677439, w: 0.07925478}
-  m_LocalPosition: {x: 0.085376136, y: 0.8635855, z: -0.015282198}
+  m_LocalRotation: {x: 0.68915635, y: -0.07114197, z: -0.7173, w: 0.07404743}
+  m_LocalPosition: {x: 0.011416078, y: 0.8635855, z: -0.013764381}
   m_LocalScale: {x: -8.0531645, y: -8.0531645, z: -30.969757}
   m_Children:
   - {fileID: 4827588389591994}
@@ -1478,7 +1479,7 @@ Transform:
   - {fileID: 4856399730818198}
   m_Father: {fileID: 4720524556613636}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -78.964005, z: -168.212}
+  m_LocalEulerAnglesHint: {x: 0, y: -87.707, z: -168.212}
 --- !u!4 &4313274504564356
 Transform:
   m_ObjectHideFlags: 1
@@ -4116,8 +4117,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 1.5746185}
+  m_Center: {x: 2.6839292e-16, y: 0, z: -0.2873091}
 --- !u!65 &65986131134446270
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -4267,6 +4268,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf6bfea668b0ea42a708d35b59809a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114019026786069498
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1568685052463590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26d0e1ed174c8164ea6a14f7ece2f7d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114072293856473712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4354,7 +4366,7 @@ MonoBehaviour:
   Machine_gun: {fileID: 1057772342422372}
   Ladder: {fileID: 1755153960668150}
   Ceiling: {fileID: 1754034800640608}
-  Back_Wall: {fileID: 1568685052463590}
+  BackWall: {fileID: 1568685052463590}
   choiceInTrainObject:
   - {fileID: 1873573743894092}
   - {fileID: 1094910921184294}
@@ -4434,7 +4446,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 3
+  InstantiationId: 7
   isRuntimeInstantiated: 0
 --- !u!114 &114490062990637820
 MonoBehaviour:
@@ -4466,7 +4478,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 4
+  InstantiationId: 6
   isRuntimeInstantiated: 0
 --- !u!114 &114714715675578268
 MonoBehaviour:
@@ -4508,7 +4520,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114246163877717286}
   viewIdField: 0
-  InstantiationId: 6
+  InstantiationId: 3
   isRuntimeInstantiated: 0
 --- !u!114 &114926657734411050
 MonoBehaviour:
@@ -4529,7 +4541,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 7
+  InstantiationId: 1
   isRuntimeInstantiated: 0
 --- !u!137 &137085497657877282
 SkinnedMeshRenderer:

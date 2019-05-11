@@ -2166,14 +2166,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b3ecb32d66e59547b21ba146b83cee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Lobby_AudioSource: {fileID: 1228213643}
-  Stage1_AudioSource: {fileID: 0}
-  buttonClickSound: {fileID: 8300000, guid: dff463d8e99364f4da0bc248929ea47c, type: 3}
-  stage1BGM: {fileID: 8300000, guid: 775df7a216485fa4c833dfc1c51c75c6, type: 3}
-  Machine_Gun_Sound: {fileID: 8300000, guid: a44819b7e801cea40adc27634c0ef81c, type: 3}
-  InGameButtonSound: {fileID: 8300000, guid: db09ac3ff7c53944297f646c276d4fdd, type: 3}
-  enemy_Sound: {fileID: 8300000, guid: 3828f76581d12854cbbc0e15cf76255f, type: 3}
-  Train_Sound: {fileID: 8300000, guid: 02341fe39556af140976c0c2f03c927f, type: 3}
+  audioSources:
+  - {fileID: 1228213643}
+  - {fileID: 1935864837}
+  sounds:
+  - {fileID: 8300000, guid: dff463d8e99364f4da0bc248929ea47c, type: 3}
+  - {fileID: 8300000, guid: 72d3f384763ae8d4e8339ce5baaae693, type: 3}
 --- !u!4 &1935864836
 Transform:
   m_ObjectHideFlags: 0
