@@ -9,7 +9,6 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
     public Train_Ctrl Train_Ctrl;
 
 
-
 	// Use this for initialization
 	void Start () {
         DontDestroyOnLoad(this);

@@ -13,7 +13,7 @@ public class Map_Ctrl : MonoBehaviourPunCallbacks
     public Transform[] plane;
     public Transform[] RailRoad;
 
-    public playerListController_minj playerListCtrl;
+  
 
     // 초기 포지션
     Vector3 init_mountain1;
@@ -104,8 +104,7 @@ public class Map_Ctrl : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        if (playerListCtrl.playerList[PhotonNetwork.LocalPlayer.ActorNumber - 1].player.Where_Floor != 4)
-        {
+        
             // 맵의 스피드는 항상 기차의 스피드를 받아오고 있다
             map_speed = TrainGameManager.instance.Speed * TrainGameManager.instance.Speed_stat;
 
@@ -131,7 +130,7 @@ public class Map_Ctrl : MonoBehaviourPunCallbacks
             // 휠애니메이션의 속도 
             // 이거 아예 trainctrl로 옮길거임
             // TrainCtrl.Wheel_Animation_Speed();
-        }
+        
     }
 }
 
