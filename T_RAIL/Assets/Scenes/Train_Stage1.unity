@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657642, g: 0.49641156, b: 0.5748181, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657755, g: 0.4964127, b: 0.57481825, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -25565,7 +25565,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 437160523}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1113577658}
+        m_MethodName: onButtonClickSound_ingame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &437160523
@@ -30147,11 +30158,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 775df7a216485fa4c833dfc1c51c75c6, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -56101,17 +56112,19 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1113577653}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b3ecb32d66e59547b21ba146b83cee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSources:
-  - {fileID: 0}
-  - {fileID: 534669912}
-  sounds:
-  - {fileID: 8300000, guid: dff463d8e99364f4da0bc248929ea47c, type: 3}
-  - {fileID: 8300000, guid: 72d3f384763ae8d4e8339ce5baaae693, type: 3}
+  Lobby_AudioSource: {fileID: 0}
+  Stage1_AudioSource: {fileID: 534669912}
+  buttonClickSound: {fileID: 8300000, guid: dff463d8e99364f4da0bc248929ea47c, type: 3}
+  stage1BGM: {fileID: 8300000, guid: 775df7a216485fa4c833dfc1c51c75c6, type: 3}
+  Machine_Gun_Sound: {fileID: 8300000, guid: a44819b7e801cea40adc27634c0ef81c, type: 3}
+  InGameButtonSound: {fileID: 8300000, guid: db09ac3ff7c53944297f646c276d4fdd, type: 3}
+  enemy_Sound: {fileID: 8300000, guid: 3828f76581d12854cbbc0e15cf76255f, type: 3}
+  Train_Sound: {fileID: 8300000, guid: 02341fe39556af140976c0c2f03c927f, type: 3}
 --- !u!114 &1113577660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70066,7 +70079,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1416773117}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1113577658}
+        m_MethodName: onButtonClickSound_ingame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1416773117

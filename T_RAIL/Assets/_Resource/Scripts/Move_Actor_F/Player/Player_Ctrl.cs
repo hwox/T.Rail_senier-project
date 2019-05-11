@@ -376,6 +376,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     [PunRPC]
     public void changeMy_Where_Train(int playerID, int i)
     {
+        if (playerListController.playerList[playerID].player.Where_Floor == 4) return;
+
         playerListController.playerList[playerID].player.Where_Train =  i + 1; ;
         playerListController.eachPlayerIn[playerID] = playerListController.playerList[playerID].player.Where_Train;
 
