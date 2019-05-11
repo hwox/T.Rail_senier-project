@@ -372,7 +372,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     {
         if (playerListController.playerList[playerID].player.Where_Floor == 4) return;
 
-        playerListController.playerList[playerID].player.Where_Train =  i + 1; ;
+        playerListController.playerList[playerID].player.Where_Train =  i + 1;
         playerListController.eachPlayerIn[playerID] = playerListController.playerList[playerID].player.Where_Train;
 
         UIState_Ctrl.CallRPConTrainScrollBar();
@@ -655,6 +655,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     /// ////////////////////////////////////////////////////////////////////////
     void WhereTrain_CalculPosition(float position)
     {
+        
 
         float traindistance = GameValue.Train_distance; // -13
         float dist2 = traindistance / 2.0f; // -6.5
