@@ -6,11 +6,10 @@ using Photon.Pun;
 public class Scene_Ctrl : MonoBehaviourPunCallbacks {
 
     public Train_Ctrl Train_Ctrl;
+    public playerListController_minj playerListController;
 
-
-
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         DontDestroyOnLoad(this);
 	}
 	
@@ -30,6 +29,9 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
     {
         Train_Ctrl.Run_Meter = 0;
         Train_Ctrl.Hide();
+        playerListController.playerList[PhotonNetwork.LocalPlayer.ActorNumber - 1].player.UpSize();
+        playerListController.playerList[PhotonNetwork.LocalPlayer.ActorNumber - 1].player.DownPos();
+        playerListController.playerList[PhotonNetwork.LocalPlayer.ActorNumber - 1].player.Where_Floor = 4;
     }
 
     

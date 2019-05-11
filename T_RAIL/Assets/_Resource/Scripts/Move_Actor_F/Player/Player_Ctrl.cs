@@ -24,7 +24,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     }
 
     // 기본 플레이어에 달린 컴포넌트들
-    Player_Actor player;
+   public  Player_Actor player;
     Transform tr;
     Animator anim;
 
@@ -224,6 +224,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
+        tr.localScale = new Vector3(player.size.x, player.size.y, player.size.z);
 
         if (!photonView.IsMine) return;
 
@@ -242,7 +243,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
 
         // 키입력
         GetKeyInput();
-        WhereTrain_CalculPosition(player.position.x);
+        
 
         if (stair_up)
         {
@@ -343,6 +344,11 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                 // 뚜껑에서
                 MCam_Ctrl.GetPlayerX(player.position.x);
                 break;
+            case 4:
+                MCam_Ctrl.GetPlayerX(player.position.x);
+
+                break;
+
 
         }
 
@@ -400,6 +406,9 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                 // 2층에 있을 때 머신건 근처에서 스페이스를 누르면 where_floor가 3됨
                 Player_key_MachinGun();
                 break;
+            case 4:
+                Player_key_Station();
+                break;
             default:
                 break;
         }
@@ -415,6 +424,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     // 1층에 올라갔을 때의 키입력 함수
     void Player_key_floor1()
     {
+        WhereTrain_CalculPosition(player.position.x);
         // 사다리 올라가는 중 아닐때만 가능
         if (!stair_up && jump_now)
         {
@@ -491,6 +501,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     // 2층에 올라갔을 때의 키입력 함수
     void Player_key_floor2()
     {
+        WhereTrain_CalculPosition(player.position.x);
         if (!stair_up && !stair_down)
         {
             // 그냥 2층으로 올라온 상태
@@ -542,6 +553,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
 
     void Player_key_MachinGun()
     {
+        WhereTrain_CalculPosition(player.position.x);
         // player.where_floor = 3일 때 호출되는 함수.
         //머신건에 앉아있음
 
@@ -595,6 +607,41 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         }
         // 카메라 조절은 마우스로
 
+    }
+    void Player_key_Station()
+    {
+        if (Input.GetKey(KeyCode.A))
+        {
+            Move('a');
+            anim.SetBool("IsWalk", true);
+            runTime += Time.deltaTime;
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            Move('d');
+            anim.SetBool("IsWalk", true);
+            runTime += Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            Move('s');
+            anim.SetBool("IsWalk", true);
+            runTime += Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.W))
+        {
+            Move('w');
+            anim.SetBool("IsWalk", true);
+            runTime += Time.deltaTime;
+        }
+
+        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) ||
+            Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.W))
+        {
+            anim.SetBool("IsWalk", false);
+            runTime = 0;
+        }
     }
 
     void Fire()
