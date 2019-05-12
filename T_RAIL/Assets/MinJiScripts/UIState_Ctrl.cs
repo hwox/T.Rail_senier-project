@@ -28,10 +28,16 @@ public class UIState_Ctrl : MonoBehaviourPunCallbacks
     {
         for (int i = 0; i < 13; ++i)
         {
-            for (int j = 0; j < 4; ++j)
+            for (int j = 0; j < 5; ++j)
             {
                 TrainUI[i].transform.GetChild(j + 1).gameObject.SetActive(false);
             }
+        }
+
+        //꺼져있는 기차 x 표
+        for (int i = TrainGameManager.instance.trainindex; i < 13; ++i) 
+        {
+            TrainUI[i].transform.GetChild(5).gameObject.SetActive(true);
         }
 
         //플레이어의 숫자만큼 돌면서 각자가 어디있는지 확인
