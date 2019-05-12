@@ -78,15 +78,18 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
     // 기차 추가하기
     public void onTrainAddButtonClick()
     {
-        if (PhotonNetwork.IsMasterClient)
+        if (!TrainGameManager.instance.EnemyAppear)
         {
-            photonView.RPC("Train_Add", RpcTarget.All);
-            Debug.Log("마스터 클라가 눌럿음 ");
-        }
-        else
-        {
-            photonView.RPC("Train_Add", RpcTarget.All);
-            Debug.Log("다른 클라가 눌렀음 ");
+            if (PhotonNetwork.IsMasterClient)
+            {
+                photonView.RPC("Train_Add", RpcTarget.All);
+                Debug.Log("마스터 클라가 눌럿음 ");
+            }
+            else
+            {
+                photonView.RPC("Train_Add", RpcTarget.All);
+                Debug.Log("다른 클라가 눌렀음 ");
+            }
         }
     }
 

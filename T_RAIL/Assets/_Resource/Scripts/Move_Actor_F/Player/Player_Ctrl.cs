@@ -577,7 +577,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                     stair_up = true;
                     anim.SetBool("UpToLadder", true);
                     near_stair = false;
-                    Push_Space_UI.SetActive(false);
+                    //Push_Space_UI.SetActive(false);
 
                     floor1 = Near_Object.transform.GetChild(0);
                     floor2 = Near_Object.transform.GetChild(1);
@@ -591,9 +591,10 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
 
             }
-            else if (Input.GetKeyDown(KeyCode.F))
+
+            if (Input.GetKeyDown(KeyCode.F))
             {
-                //else if (jump_now)
+                if (jump_now)
                 {
                     //jump_now = true;
                     anim.SetBool("IsWalk", false);
