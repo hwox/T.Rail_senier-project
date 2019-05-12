@@ -32,12 +32,15 @@ public class TrainGameManager : MonoBehaviour
 
     public float Defence { get; set; } // 기차의 내구도
     public float Speed { get; set; } // 현재 기차가 달리는 스피드 -> 맵에서 사용할거임
-    public float Noise { get; set; } // 현재 기차가 내는 소음
+    public int Noise { get; set; } // 현재 기차가 내는 소음
 
     public int trainindex; // 지금 기차 몇개 붙어있는지
                            // 몇개 붙어있는지 가지고 제일 마지막 위치 -> 기관총
                            // 제일 마지막 위치 -> enemy1 
 
+    public int totalPassenger; // 승객을 총 태운 횟수
+    public int totalkickoutEnemy; // 적을 총 물리친 횟수
+    public int nowPassenger; // 현재 기차 내부에 남아있는 승객의 총 수
 
 
     public int StageNumber;
@@ -82,6 +85,8 @@ public class TrainGameManager : MonoBehaviour
     // 먼지 파티클
     public List<GameObject> DustParticle;
     const int MAKE_DUSTPARTICLE_COUNT = 5;  public int GetPassengerCount=0; 
+
+
     public bool InStation;
 
     private void Awake()
