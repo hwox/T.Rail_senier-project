@@ -48,5 +48,7 @@ MonoBehaviour:
   - RPC_HiT_EnemyCam
   - StationSceneLoad
   - setPlayerInStationState
+  - SetTrainPlayer
+  - TrainSceneLoad
   DisableAutoOpenWizard: 1
   ShowSettings: 1

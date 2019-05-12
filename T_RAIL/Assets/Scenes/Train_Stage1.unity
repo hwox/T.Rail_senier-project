@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657755, g: 0.4964127, b: 0.57481825, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657642, g: 0.49641156, b: 0.5748181, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -22155,6 +22155,7 @@ GameObject:
   - component: {fileID: 342035267}
   - component: {fileID: 342035268}
   - component: {fileID: 342035269}
+  - component: {fileID: 342035270}
   m_Layer: 0
   m_Name: PlayerList_Ctrl
   m_TagString: Untagged
@@ -22209,6 +22210,17 @@ MonoBehaviour:
   viewIdField: 10
   InstantiationId: 10
   isRuntimeInstantiated: 0
+--- !u!114 &342035270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 342035266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e9c48d655b451042856b451489e22f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &344382103
 GameObject:
   m_ObjectHideFlags: 0
@@ -66384,7 +66396,7 @@ MonoBehaviour:
   Station_PassengerManager: []
   DustParticle: []
   GetPassengerCount: 0
-  InStation: 0
+  Scene_state: 1
 --- !u!4 &1113577655
 Transform:
   m_ObjectHideFlags: 0
@@ -74819,6 +74831,7 @@ GameObject:
   - component: {fileID: 1304048001}
   - component: {fileID: 1304048000}
   - component: {fileID: 1304048002}
+  - component: {fileID: 1304048003}
   m_Layer: 0
   m_Name: Train_Ctrl
   m_TagString: Untagged
@@ -74876,6 +74889,17 @@ MonoBehaviour:
   viewIdField: 9
   InstantiationId: 9
   isRuntimeInstantiated: 0
+--- !u!114 &1304048003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1304047999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e9c48d655b451042856b451489e22f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1305811106
 GameObject:
   m_ObjectHideFlags: 0
@@ -121714,6 +121738,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2140476039}
   - component: {fileID: 2140476040}
+  - component: {fileID: 2140476041}
   m_Layer: 0
   m_Name: StateController_Ctrl
   m_TagString: Untagged
@@ -121746,6 +121771,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UsableStatus: {fileID: 0}
+--- !u!114 &2140476041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2140476038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e9c48d655b451042856b451489e22f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2142582114
 GameObject:
   m_ObjectHideFlags: 0

@@ -87,7 +87,7 @@ public class TrainGameManager : MonoBehaviour
     const int MAKE_DUSTPARTICLE_COUNT = 5;  public int GetPassengerCount=0; 
 
 
-    public bool InStation;
+    public int Scene_state=1;
 
     private void Awake()
     {

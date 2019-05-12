@@ -202,9 +202,14 @@ public class Player_Actor : Move_Actor {
    {
        size = new Size(1, 1, 1);
    }
-    public void DownPos()
+    public void SetStationPlayer(int n)
     {
-        position.y = 1.74f;
+        position = new Pos(-1 * n * 2, 1.74f, -2.5f);
+       
+    }
+    public void SetTrainPlayer(int n)
+    {
+        position = new Pos(-1 * n* 2, 3.8f, -2.5f);
     }
 
 }

@@ -17,7 +17,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
 	// Update is called once per frame
 	void Update () {
 
-        if (!TrainGameManager.instance.InStation)
+        if (TrainGameManager.instance.Scene_state==1)
         {
            
             if (GameValue.NextStationMeter < Train_Ctrl.Run_Meter)
@@ -26,43 +26,61 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
                 photonView.RPC("StationSceneLoad", RpcTarget.All);
             }
         }
+        else if(TrainGameManager.instance.Scene_state == 3)
+        {
+            photonView.RPC("SetTrainPlayer", RpcTarget.All);
+            photonView.RPC("TrainSceneLoad", RpcTarget.All);
+            TrainGameManager.instance.Scene_state = 1;
+        }
+
         
 	}
 
-
     [PunRPC]
-    public void setRunMeterZero()
+    public void SetTrainPlayer()// 기차로 갈때
     {
-        Train_Ctrl.Run_Meter = 0;
-        Train_Ctrl.Hide();
-        TrainGameManager.instance.InStation = true;
-        //Debug.LogError("id : " + (PhotonNetwork.LocalPlayer.ActorNumber - 1 )+ "  floor : " + playerListController.playerList[PhotonNetwork.LocalPlayer.ActorNumber - 1].player.Where_Floor);
-        Debug.LogError("몇명 들어와있는지: " + playerListController.playerList.Count);
-
+        Train_Ctrl.Appear();
         for (int i = 0; i < playerListController.playerList.Count; ++i)
         {
-            playerListController.playerList[i].player.UpSize();
-            playerListController.playerList[i].player.DownPos();
-            playerListController.playerList[i].player.Where_Floor = 4;
+            playerListController.playerList[i].player.DownSize();
+            playerListController.playerList[i].player.SetTrainPlayer(i);
+            playerListController.playerList[i].player.Where_Floor = 1;
             Debug.Log("id : " + (i) + "  floor : " + playerListController.playerList[i].player.Where_Floor);
 
-            //photonView.RPC("setPlayerInStationState", RpcTarget.All, i);
+
         }
+    }
+    [PunRPC]
+    public void TrainSceneLoad()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Train_Stage1");
     }
 
     [PunRPC]
-    public void setPlayerInStationState(int id)
+    public void setRunMeterZero()// 역으로 갈때
     {
-        playerListController.playerList[id].player.UpSize();
-        playerListController.playerList[id].player.DownPos();
-        playerListController.playerList[id].player.Where_Floor = 4;
-        Debug.Log("id : " + (id) + "  floor : " + playerListController.playerList[id].player.Where_Floor);
-    }
+        
+            Train_Ctrl.Run_Meter = 0;
+            Train_Ctrl.Hide();
+         TrainGameManager.instance.Scene_state = 2;
+            //Debug.LogError("id : " + (PhotonNetwork.LocalPlayer.ActorNumber - 1 )+ "  floor : " + playerListController.playerList[PhotonNetwork.LocalPlayer.ActorNumber - 1].player.Where_Floor);
+            Debug.LogError("몇명 들어와있는지: " + playerListController.playerList.Count);
 
+            for (int i = 0; i < playerListController.playerList.Count; ++i)
+            {
+                playerListController.playerList[i].player.UpSize();
+                playerListController.playerList[i].player.SetStationPlayer(i);
+                playerListController.playerList[i].player.Where_Floor = 4;
+                Debug.Log("id : " + (i) + "  floor : " + playerListController.playerList[i].player.Where_Floor);
+
+                //photonView.RPC("setPlayerInStationState", RpcTarget.All, i);
+            }
+        
+    }
     [PunRPC]
     public void StationSceneLoad()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Station_Stage1");
     }
-   
+
 }

@@ -230,7 +230,11 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         }
         if (other.gameObject.layer.Equals(GameValue.sign_layer))
         {
-            //여기서 이제다시 씬으로
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                //여기서 이제다시 기차로
+                TrainGameManager.instance.Scene_state = 3;
+            }
         }
     }
     private void OnTriggerExit(Collider other)
