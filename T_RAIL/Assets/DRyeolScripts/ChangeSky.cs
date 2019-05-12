@@ -18,30 +18,71 @@ public class ChangeSky : MonoBehaviour
     Color Light_A, Light_B;
 
     public Light li;
-    public int light_SpinAngle = 1;
-    public float DaySpeed = 0.1f;
+    float light_SpinAngle = 0.002f;
+    float DaySpeed = 0.002f;
 
-    public static ChangeSky instance = null;
-    public int SkychSign { get; set; }
+   
+    int SkychSign;
+    float time_count = 0;
 
-    private void Awake()
-    {
-        instance = this;
-
-    }
 
 
     void Start()
     {
         StartCoroutine("ChangeSkycolor");
         SkychSign = 0;
+        li = GetComponent<Light>();
     }
 
 
-
-
-
     IEnumerator ChangeSkycolor()
+    {
+        while (true)
+        {
+            double i = 0.1 * time_count;
+            Debug.Log("ddddddddd"+ i);
+            GetComponent<MeshRenderer>().material.color = Color.Lerp(Color_A, Color_B, (float)i );
+            li.color = Color.Lerp(Light_A, Light_B, (float)i);
+            time_count += 0.1f;
+           if(time_count>=16)
+           {
+               time_count = 0;
+               SkychSign += 1;
+               if (SkychSign > 2)
+                   SkychSign = 0;
+           }
+
+            yield return new WaitForSeconds(0.5f);
+        }
+
+    }
+    //for (float i = 0f; i <= 1; i += 0.01f * DaySpeed)
+    //{
+
+    //    GetComponent<MeshRenderer>().material.color = Color.Lerp(Color_A, Color_B, i);
+    //    li.color = Color.Lerp(Light_A, Light_B, i);
+    //    yield return 0;
+    //}
+    //SkychSign += 1;
+    //if (SkychSign == 2)
+    //{
+    //    li.transform.rotation = Quaternion.Euler(35, -75, -70); // 아침에 해뜰때 각도;
+    //}
+    //if (SkychSign > 2)
+    //    SkychSign = 0;
+    //IEnumerator SpinLight()
+    //{
+    //    while (true)
+    //    {
+    //        li.transform.Rotate(0, light_SpinAngle, 0, Space.World);
+    //        yield return 0;
+    //    }
+
+    //}
+
+
+    // Update is called once per frame
+    void Update()
     {
         if (SkychSign == 0)
         {
@@ -58,31 +99,5 @@ public class ChangeSky : MonoBehaviour
             Color_A = Night; Color_B = Day;
             Light_A = NightLight; Light_B = DayLight;
         }
-
-
-        for (float i = 0f; i <= 1; i += 0.01f * DaySpeed)
-        {
-
-            GetComponent<MeshRenderer>().material.color = Color.Lerp(Color_A, Color_B, i);
-            li.color = Color.Lerp(Light_A, Light_B, i);
-            yield return 0;
-        }
-        SkychSign += 1;
-        if (SkychSign == 2)
-        {
-            li.transform.rotation = Quaternion.Euler(35, -75, -70); // 아침에 해뜰때 각도;
-        }
-        if (SkychSign > 2)
-            SkychSign = 0;
-        StartCoroutine("ChangeSkycolor");
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-
-
-
     }
 }

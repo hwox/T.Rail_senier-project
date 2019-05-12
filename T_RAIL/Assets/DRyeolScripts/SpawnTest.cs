@@ -12,9 +12,12 @@ public class SpawnTest : MonoBehaviour
         
         for (int i = 0; i <4; i++)
         {
-            Debug.Log(TrainGameManager.instance.Station_PassengerManager[i] + "dddddddd");
+            if (Random.Range(0, 2) % 2 == 0)
+            {
+                Debug.Log(TrainGameManager.instance.Station_PassengerManager[i] + "dddddddd");
                 TrainGameManager.instance.Station_PassengerManager[i].SetActive(true);
                 TrainGameManager.instance.Station_PassengerManager[i].transform.position = Spawn[i].transform.position;
+            }
             
         }
 
