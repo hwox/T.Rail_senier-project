@@ -9,15 +9,13 @@ public class SpawnTest : MonoBehaviour
    
     void Start()
     {
-        int dontactivenum = Random.Range(1, Spawn.Length);
-        for (int i = 0; i < Spawn.Length; i++)
+        
+        for (int i = 0; i <5 ; i++)
         {
-
-            if (i != dontactivenum)
-            {
+            Debug.Log(TrainGameManager.instance.Station_PassengerManager[i] + "dddddddd");
                 TrainGameManager.instance.Station_PassengerManager[i].SetActive(true);
                 TrainGameManager.instance.Station_PassengerManager[i].transform.position = Spawn[i].transform.position;
-            }
+            
         }
 
     }

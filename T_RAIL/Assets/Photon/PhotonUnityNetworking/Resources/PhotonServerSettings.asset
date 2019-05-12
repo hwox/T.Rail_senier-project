@@ -45,5 +45,6 @@ MonoBehaviour:
   - onTrainScrollBar
   - setRunMeterZero
   - isAttackedByBullet
+  - RPC_HiT_EnemyCam
   DisableAutoOpenWizard: 1
   ShowSettings: 1

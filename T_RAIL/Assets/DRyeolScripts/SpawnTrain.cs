@@ -20,6 +20,7 @@ public class SpawnTrain : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        trainNum = TrainGameManager.instance.trainindex;
         newtrain(trainNum);
     }
 }

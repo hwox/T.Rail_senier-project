@@ -204,6 +204,9 @@ public class Player_Actor : Move_Actor {
    {
        size = new Size(1, 1, 1);
    }
-
+    public void DownPos()
+    {
+        position.y = 1.74f;
+    }
 
 }

@@ -214,7 +214,13 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
             //train[i].Run_TrainHPMinus(Run_Meter);
         }
     }
-
+    public void Hide()
+    {
+        for (int i = 0; i < TrainGameManager.instance.trainindex; i++)
+        {
+            train[i].SetActive(false);
+        }
+    }
 
     // hp 체크 코루틴
     // 얘를 gamemanger로 해야되나?

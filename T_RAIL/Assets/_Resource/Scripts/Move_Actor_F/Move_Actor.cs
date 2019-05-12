@@ -71,7 +71,7 @@ public class Move_Actor
 
     public Pos position { get; set; } 
     public Rot rotate = new Rot(0, 180.0f, 0);
-    public Size size = new Size(2, 2, 2);
+    public Size size = new Size(1, 1, 1);
 
     public string Name { get; set; }
     public int HP { get; set; }

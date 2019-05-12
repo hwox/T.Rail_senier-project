@@ -4,12 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - StateController
-  - state
-  - SubCamera
-  - nTrain
-  - pTrain
   - Plane
+  - SubCamera
+  - state
   layers:
   - Default
   - TransparentFX
@@ -23,16 +20,16 @@ TagManager:
   - Mountain1
   - Mountain2
   - cloud
-  - ItemBox
-  - Passenger
-  - Choice
+  - itembox
+  - passenger
+  - choice
   - ladder
   - machinegun
   - sofa
   - NextTrain
   - PrevTrain
   - floor2
-  - Player
+  - player
   - bullet
   - enemy
   - train
@@ -40,8 +37,9 @@ TagManager:
   - 
   - 
   - 
-sign
-  - statiopassenger   - wall
+  - sign
+  - statiopassenger
+  - wall
   m_SortingLayers:
   - name: Default
     uniqueID: 0

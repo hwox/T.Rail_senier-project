@@ -38,7 +38,9 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
     public void setRunMeterZero()
     {
         Train_Ctrl.Run_Meter = 0;
-        Debug.LogError(PhotonNetwork.LocalPlayer.ActorNumber - 1);
+        Train_Ctrl.Hide();
+        playerListController.playerList[PhotonNetwork.LocalPlayer.ActorNumber - 1].player.UpSize();
+        playerListController.playerList[PhotonNetwork.LocalPlayer.ActorNumber - 1].player.DownPos();
         playerListController.playerList[PhotonNetwork.LocalPlayer.ActorNumber - 1].player.Where_Floor = 4;
       
     }
