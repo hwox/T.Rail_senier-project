@@ -25,9 +25,8 @@ static class GameValue {
     public const int bullet_layer = 22;
     public const int enemy_layer = 23;
     public const int train_layer = 24;
-    public const int sign_layer = 29;
-    public const int statiopassenger_layer = 30;
-    public const int wall_layer = 31;
+lic const int sign_layer = 29;
+    public const      public const int wall_layer = 31;
 
     // 기차 영역에 구성되어있는 오브젝트들의 값
     // local 좌표임

@@ -40,9 +40,8 @@ TagManager:
   - 
   - 
   - 
-  - sign
-  - statiopassenger
-  - wall
+sign
+  - statiopassenger   - wall
   m_SortingLayers:
   - name: Default
     uniqueID: 0

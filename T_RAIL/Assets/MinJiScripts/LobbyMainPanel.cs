@@ -8,6 +8,8 @@ namespace Photon.Pun.Demo.Asteroids
 {
     public class LobbyMainPanel : MonoBehaviourPunCallbacks
     {
+        public LobbySoundManager soundManager;
+
         [Header("Login Panel")]
         public GameObject LoginPanel;
 
@@ -152,6 +154,7 @@ namespace Photon.Pun.Demo.Asteroids
 
             playerListEntries.Add(newPlayer.ActorNumber, entry);
 
+
             StartGameButton.gameObject.SetActive(CheckPlayersReady());
         }
 
@@ -202,7 +205,6 @@ namespace Photon.Pun.Demo.Asteroids
                 PhotonNetwork.LeaveLobby();
             }
 
-            SoundManager.instance.onButtonClickSound();
             SetActivePanel(SelectionPanel.name);
         }
 
@@ -217,7 +219,7 @@ namespace Photon.Pun.Demo.Asteroids
 
             RoomOptions options = new RoomOptions {MaxPlayers = maxPlayers};
 
-            SoundManager.instance.onButtonClickSound();
+            soundManager.onButtonClick();
             PhotonNetwork.CreateRoom(roomName, options, null);
         }
 
@@ -225,13 +227,13 @@ namespace Photon.Pun.Demo.Asteroids
         {
             SetActivePanel(JoinRandomRoomPanel.name);
 
-            SoundManager.instance.onButtonClickSound();
+            soundManager.onButtonClick();
             PhotonNetwork.JoinRandomRoom();
         }
 
         public void OnLeaveGameButtonClicked()
         {
-            SoundManager.instance.onButtonClickSound();
+            soundManager.onButtonClick();
             PhotonNetwork.LeaveRoom();
         }
 
@@ -249,7 +251,7 @@ namespace Photon.Pun.Demo.Asteroids
                 Debug.LogError("Player Name is invalid.");
             }
 
-           SoundManager.instance.onButtonClickSound();
+            soundManager.onButtonClick();
         }
 
         public void OnRoomListButtonClicked()
@@ -259,7 +261,7 @@ namespace Photon.Pun.Demo.Asteroids
                 PhotonNetwork.JoinLobby();
             }
 
-            SoundManager.instance.onButtonClickSound();
+            soundManager.onButtonClick();
             SetActivePanel(RoomListPanel.name);
         }
 
@@ -268,7 +270,7 @@ namespace Photon.Pun.Demo.Asteroids
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
 
-            SoundManager.instance.onButtonClickSound();
+            soundManager.onButtonClick();
             PhotonNetwork.LoadLevel("Train_Stage1");
            
         }

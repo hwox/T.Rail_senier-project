@@ -4,18 +4,13 @@ using UnityEngine;
 
 public class Enemy_Actor : Move_Actor {
 
-	// Use this for initialization
+    // Use this for initialization
 
 
-    
-
-
-	void Start () {
+    public Enemy_Actor()
+    {
         base.Actor_Property = (int)Actor.Monster;
         HP = GameValue.enemy1_FullHp;
     }
-
-
-
 
 }

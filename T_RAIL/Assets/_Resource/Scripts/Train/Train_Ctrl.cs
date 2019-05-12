@@ -53,6 +53,14 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
         if (photonView.IsMine)
             RunMeterCalCulator();
 
+
+       // InvokeRepeating("trainSoundInvoke", 1.0f, 10.0f);
+
+    }
+
+    public void trainSoundInvoke()
+    {
+        TrainGameManager.instance.SoundManager.Train_Sound_Play();
     }
 
     public void RunMeterCalCulator()
@@ -64,6 +72,7 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
 
             //Run_Meter
         }
+        
     }
 
     // 기차 추가하기
@@ -203,14 +212,6 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
         for (int i = 0; i < train.Count; i++)
         {
             //train[i].Run_TrainHPMinus(Run_Meter);
-        }
-    }
-
-    public void Hide()
-    {
-        for (int i = 0; i < TrainGameManager.instance.trainindex; i++)
-        {
-            train[i].SetActive(false);
         }
     }
 

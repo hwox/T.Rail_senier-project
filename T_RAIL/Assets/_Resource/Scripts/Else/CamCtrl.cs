@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
-public class CamCtrl : MonoBehaviourPunCallbacks
+public class CamCtrl : MonoBehaviour
 {
 
     public GameObject Enemy_Appear_Cam;
@@ -39,7 +38,7 @@ public class CamCtrl : MonoBehaviourPunCallbacks
 
                 float targetX = tr.position.x;
 
-               // if (Mathf.Abs(tr.position.x - player_position_x) > 3)
+                // if (Mathf.Abs(tr.position.x - player_position_x) > 3)
                 {
                     targetX = Mathf.Lerp(tr.position.x, player_position_x, 15.0f * Time.deltaTime);
                 }
@@ -93,7 +92,7 @@ public class CamCtrl : MonoBehaviourPunCallbacks
         rot.eulerAngles = new Vector3(GameValue.Mcam_initrot_x, 0, 0);
         tr.rotation = rot;
 
-       // Cam_1FloorInitPosition();
+        // Cam_1FloorInitPosition();
     }
 
     public void GetPlayerX(float position_x)
@@ -112,7 +111,7 @@ public class CamCtrl : MonoBehaviourPunCallbacks
     {
         if (onoff)
         {
-            Enemy_Appear_Cam.transform.position = new Vector3((index - 1) * GameValue.Train_distance -2.5f, 10.0f, -8.0f);
+            Enemy_Appear_Cam.transform.position = new Vector3((index - 1) * GameValue.Train_distance - 2.5f, 10.0f, -8.0f);
             Enemy_Appear_Cam.GetComponent<Camera>().enabled = true;
             this.GetComponent<Camera>().enabled = false;
         }
@@ -128,16 +127,10 @@ public class CamCtrl : MonoBehaviourPunCallbacks
     public void Hit_EnemyAppearCam()
     {
         // iTween.ShakePosition(Enemy_Appear_Cam, iTween.Hash("time", 0.5f));
-       // iTween.ShakePosition(Enemy_Appear_Cam, iTween.Hash("time", 0.5f, "x", -2.0f));
+        // iTween.ShakePosition(Enemy_Appear_Cam, iTween.Hash("time", 0.5f, "x", -2.0f));
     }
 
     public void Hit_EnemyCam(bool onoff)
-    {
-        photonView.RPC("RPC_HiT_EnemyCam", RpcTarget.All, onoff);
-    }
-
-    [PunRPC]
-    public void RPC_HiT_EnemyCam(bool onoff)
     {
         // 기차 공격했을 때
 

@@ -29,7 +29,7 @@ namespace Photon.Pun.Demo.Asteroids
 
         [Tooltip("The prefab to use for representing the player")]
         [SerializeField]
-        private GameObject playerPrefab;
+        private GameObject ourplayerPrefab;
 
         #region UNITY
 
@@ -206,24 +206,16 @@ namespace Photon.Pun.Demo.Asteroids
             //Vector3 position = new Vector3(x, 0.0f, z);
             //Quaternion rotation = Quaternion.Euler(0.0f, angularStart, 0.0f);
 
-            if (playerPrefab == null)
+            if (ourplayerPrefab == null)
             { // #Tip Never assume public properties of Components are filled up properly, always check and inform the developer of it.
 
                 Debug.LogError("<Color=Red><b>Missing</b></Color> playerPrefab Reference. Please set it up in GameObject 'Game Manager'", this);
             }
             else
             {
-                //for (int i = 0; i < PhotonNetwork.CurrentRoom.PlayerCount; ++i)
-                {
-                    //if (PhotonNetwork.PlayerList[i].NickName == PhotonNetwork.LocalPlayer.NickName)
-                    {
-                        int id = photonView.ViewID/1000;
-                        PhotonNetwork.Instantiate(playerPrefab.name, new Vector3(-1 * id * 2, 3.8f, -2.5f), Quaternion.Euler(0, 180, 0), 0);
-                        Debug.LogError(PhotonNetwork.CurrentRoom.PlayerCount);
-                    }
-                }
-                //PhotonNetwork.Instantiate(playerPrefab.name, new Vector3(0, 3.3f, -2.5f), Quaternion.Euler(0, 180, 0), 0);
-                //PhotonNetwork.Instantiate("player", position, rotation, 0);
+                int id = photonView.ViewID/1000;
+                PhotonNetwork.Instantiate(ourplayerPrefab.name, new Vector3(-1 * id * 2, 3.8f, -2.5f), Quaternion.Euler(0, 180, 0), 0);
+                Debug.LogError(PhotonNetwork.CurrentRoom.PlayerCount);
                 Debug.Log("프리팹 생성!");
             }
 

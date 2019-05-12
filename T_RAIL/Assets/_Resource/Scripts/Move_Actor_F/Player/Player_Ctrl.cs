@@ -92,6 +92,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     {
         DontDestroyOnLoad(gameObject);
 
+        if (photonView.ViewID % 1000 == 2) Destroy(this.gameObject);
+
         player = new Player_Actor();
 
         Make_PushSpaceUI();
@@ -100,11 +102,16 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
 
     private void Start()
     {
+        //if (!photonView.IsMine) return;
+        if (photonView.ViewID % 1000 == 2) Destroy(this.gameObject);
+
         //생성되면 플레이어 리스트에 스스로를 넣어줌.
         playerListController = GameObject.Find("PlayerList_Ctrl").GetComponent<playerListController_minj>();
         playerListController.playerList.Add(this.gameObject.GetComponent<Player_Ctrl>());
         UIState_Ctrl = GameObject.Find("UIState_Ctrl").GetComponent<UIState_Ctrl>();
         whereIam = player.Where_Train;
+
+        
     }
 
     void Init_Set_Value()
@@ -181,7 +188,10 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         //    }
         //}
 
-
+        if (other.gameObject.layer.Equals(GameValue.StationPassenger_layer))
+        {
+            Debug.Log("dd");
+        }
     }
     private void OnTriggerStay(Collider other)
     {
@@ -272,7 +282,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        tr.localScale = new Vector3(player.size.x, player.size.y, player.size.z);
 
         if (!photonView.IsMine) return;
 
@@ -291,7 +300,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
 
         // 키입력
         GetKeyInput();
-        
+        WhereTrain_CalculPosition(player.position.x);
 
         if (stair_up)
         {
@@ -361,11 +370,9 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
             {
                 if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
                 {
-                    jump_now = true;
-
-
+                   
                     anim.SetBool("IsJump", false);
-
+                    jump_now = true;
                 }
 
             }
@@ -392,14 +399,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                 // 뚜껑에서
                 MCam_Ctrl.GetPlayerX(player.position.x);
                 break;
-            case 4:
-                MCam_Ctrl.GetPlayerX(player.position.x);
-                // SCam_Ctrl.GetPlayerX(player.position.x);
-                //Debug.Log(player.position.x); 
-                break;
-
-
-        }
+               }
 
 
 
@@ -425,9 +425,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     [PunRPC]
     public void changeMy_Where_Train(int playerID, int i)
     {
-        if (playerListController.playerList[playerID].player.Where_Floor == 4) return;
-
-        playerListController.playerList[playerID].player.Where_Train =  i + 1; ;
+        Debug.LogError("시발!!! : " + playerID);
+        playerListController.playerList[playerID].player.Where_Train = i;
         playerListController.eachPlayerIn[playerID] = playerListController.playerList[playerID].player.Where_Train;
 
         UIState_Ctrl.CallRPConTrainScrollBar();
@@ -455,9 +454,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                 // 2층에 있을 때 머신건 근처에서 스페이스를 누르면 where_floor가 3됨
                 Player_key_MachinGun();
                 break;
-            case 4:
-                Player_key_Station();
-                break;
             default:
                 break;
         }
@@ -473,7 +469,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     // 1층에 올라갔을 때의 키입력 함수
     void Player_key_floor1()
     {
-        WhereTrain_CalculPosition(player.position.x);
         // 사다리 올라가는 중 아닐때만 가능
         if (!stair_up && jump_now)
         {
@@ -510,9 +505,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                 runTime = 0;
             }
 
-
-
-
+            
             if (Input.GetKeyDown(KeyCode.V))
             {
                 // 사다리 가까이서 space누르면 올라가기 == 1
@@ -550,7 +543,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     // 2층에 올라갔을 때의 키입력 함수
     void Player_key_floor2()
     {
-        WhereTrain_CalculPosition(player.position.x);
         if (!stair_up && !stair_down)
         {
             // 그냥 2층으로 올라온 상태
@@ -602,7 +594,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
 
     void Player_key_MachinGun()
     {
-        WhereTrain_CalculPosition(player.position.x);
         // player.where_floor = 3일 때 호출되는 함수.
         //머신건에 앉아있음
 
@@ -653,44 +644,10 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         else if (Input.GetKeyUp(KeyCode.F) && !m_Fired)
         {
             Fire();
+            TrainGameManager.instance.SoundManager.Machine_Gun_Sound_Play();
         }
         // 카메라 조절은 마우스로
 
-    }
-    void Player_key_Station()
-    {
-        if (Input.GetKey(KeyCode.A))
-        {
-            Move('a');
-            anim.SetBool("IsWalk", true);
-            runTime += Time.deltaTime;
-        }
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            Move('d');
-            anim.SetBool("IsWalk", true);
-            runTime += Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            Move('s');
-            anim.SetBool("IsWalk", true);
-            runTime += Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.W))
-        {
-            Move('w');
-            anim.SetBool("IsWalk", true);
-            runTime += Time.deltaTime;
-        }
-
-        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) ||
-            Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.W))
-        {
-            anim.SetBool("IsWalk", false);
-            runTime = 0;
-        }
     }
 
     void Fire()
@@ -766,7 +723,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                 if (((i * traindistance) + dist2) < position && ((i * traindistance) - dist2) > position)
                 {
                     //Debug.Log("index 여기" + (i + 1));
-                    photonView.RPC("changeMy_Where_Train", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber - 1, i);
+                    photonView.RPC("changeMy_Where_Train", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber - 1, i+1);
                     //player.Where_Train = i + 1;
                 }
             }

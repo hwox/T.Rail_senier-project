@@ -5,8 +5,13 @@ using Photon.Pun;
 
 public class SoundManager : MonoBehaviourPunCallbacks {
 
-    public AudioSource Lobby_AudioSource;
-    public AudioSource Stage1_AudioSource;
+    public AudioSource BGM_Source;
+    public AudioSource Effect1_Source;
+    public AudioSource Effect2_Source;
+    public AudioSource Effect3_Source;
+    public AudioSource UI1_Source;
+    public AudioSource UI2_Source;
+
 
     //lobby
     public AudioClip buttonClickSound;
@@ -17,60 +22,53 @@ public class SoundManager : MonoBehaviourPunCallbacks {
     public AudioClip InGameButtonSound;
     public AudioClip enemy_Sound;
     public AudioClip Train_Sound;
-
-    //enum AudioClipList
-    //{
-    //    buttonClickSound = 0,
-    //    stage1BGM = 1,
-    //    Machine_Gun_Sound = 2,
-    //    InGameButtonSound = 3,
-    //    enemy_Sound = 4,
-    //    Train_Sound = 5
-    //}
-    //
-    //enum AudioSourceList
-    //{
-    //    lobbyScene = 0,
-    //    mainScene = 1
-    //}
-
-    public static SoundManager instance = null;
+    public AudioClip enemy_attack_Sound;
 
 
     private void Awake()
     {
-        instance = this;
-        //DontDestroyOnLoad(this);
+        DontDestroyOnLoad(this);
     }
 
 
     public void onButtonClickSound()
     {
-        Lobby_AudioSource.PlayOneShot(buttonClickSound);
-        //audioSources[(int)AudioSourceList.lobbyScene].PlayOneShot(sounds[(int)AudioClipList.buttonClickSound]);
+        UI1_Source.PlayOneShot(InGameButtonSound);
     }
-
 
     public void TrainStage1_BGMSoundPlay()
     {
-        Stage1_AudioSource.clip = stage1BGM;
-        Stage1_AudioSource.Play();
-        //audioSources[(int)AudioSourceList.mainScene].clip = (sounds[(int)AudioClipList.stage1BGM]);
-        //audioSources[(int)AudioSourceList.mainScene].Play();
-    }
-
-    public void onButtonClickSound_ingame()
-    {
-        Lobby_AudioSource.PlayOneShot(buttonClickSound);
+        //BGM_Source.PlayOneShot(stage1BGM);
+        BGM_Source.clip = stage1BGM;
+        BGM_Source.Play();
     }
 
     public void Machine_Gun_Sound_Play()
     {
-        Stage1_AudioSource.PlayOneShot( Machine_Gun_Sound);
+        Effect1_Source.clip = Machine_Gun_Sound;
+        Debug.Log("플레이는있는데 왜 소리가 안나세요?");
+        Effect1_Source.Play();
+        //Effect1_Source.PlayOneShot(Machine_Gun_Sound);
+    }
+
+    public void enemy_Sound_Play()
+    {
+        Effect2_Source.clip = enemy_Sound;
+        Effect2_Source.Play();
+        //Effect2_Source.PlayOneShot(enemy_Sound);
     }
 
     public void Train_Sound_Play()
     {
-        Stage1_AudioSource.PlayOneShot( Train_Sound);
+        Effect3_Source.clip = Train_Sound;
+        Effect3_Source.Play();
+        //Effect3_Source.PlayOneShot(Train_Sound);
+    }
+
+    public void enemy_attack_Sound_Play()
+    {
+        Effect2_Source.clip = enemy_attack_Sound;
+        Effect2_Source.Play();
+        //Effect3_Source.PlayOneShot(Train_Sound);
     }
 }

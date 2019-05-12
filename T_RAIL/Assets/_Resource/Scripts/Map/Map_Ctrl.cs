@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class Map_Ctrl : MonoBehaviour
+public class Map_Ctrl : MonoBehaviourPunCallbacks
 {
 
     public Transform[] Mountain1;
@@ -11,6 +12,8 @@ public class Map_Ctrl : MonoBehaviour
     public Transform[] Mountain2;
     public Transform[] plane;
     public Transform[] RailRoad;
+
+  
 
     // 초기 포지션
     Vector3 init_mountain1;
@@ -101,32 +104,33 @@ public class Map_Ctrl : MonoBehaviour
 
     void Update()
     {
+        
+            // 맵의 스피드는 항상 기차의 스피드를 받아오고 있다
+            map_speed = TrainGameManager.instance.Speed * TrainGameManager.instance.Speed_stat;
 
-        // 맵의 스피드는 항상 기차의 스피드를 받아오고 있다
-        map_speed = TrainGameManager.instance.Speed * TrainGameManager.instance.Speed_stat;
-
-        for (int i = 0; i < map_object.Count; i += 2)
-        {
-            // Mountain1이 제일 멀리 있으니까 제일 느리게 움직여야 해.
-
-            // 그리고 기차 멈출 때 속도 자연스럽게 감소하는것도 하고싶은데
-            // 그럴거면 mathf 써야 되는데
-            if (on_objectindex[i / 2].Equals(0)) // 첫번째꺼가 true
+            for (int i = 0; i < map_object.Count; i += 2)
             {
-                map_object[i].localPosition += new Vector3(0, 0, (map_speed / 20.0f) * ((i + 1) * Time.deltaTime * 2.0f));
+                // Mountain1이 제일 멀리 있으니까 제일 느리게 움직여야 해.
+
+                // 그리고 기차 멈출 때 속도 자연스럽게 감소하는것도 하고싶은데
+                // 그럴거면 mathf 써야 되는데
+                if (on_objectindex[i / 2].Equals(0)) // 첫번째꺼가 true
+                {
+                    map_object[i].localPosition += new Vector3(0, 0, (map_speed / 20.0f) * ((i + 1) * Time.deltaTime * 2.0f));
+                }
+                else if (on_objectindex[i / 2].Equals(1))  // 두번째꺼가 true
+                {
+                    map_object[i + 1].localPosition += new Vector3(0, 0, (map_speed / 20.0f) * ((i + 1) * Time.deltaTime * 2.0f));
+                }
             }
-            else if (on_objectindex[i / 2].Equals(1))  // 두번째꺼가 true
-            {
-                map_object[i + 1].localPosition += new Vector3(0, 0, (map_speed / 20.0f) * ((i + 1) * Time.deltaTime * 2.0f));
-            }
-        }
 
-        MapObject_PositionChange();
+            MapObject_PositionChange();
 
 
-        // 휠애니메이션의 속도 
-        // 이거 아예 trainctrl로 옮길거임
-       // TrainCtrl.Wheel_Animation_Speed();
+            // 휠애니메이션의 속도 
+            // 이거 아예 trainctrl로 옮길거임
+            // TrainCtrl.Wheel_Animation_Speed();
+        
     }
 }
 

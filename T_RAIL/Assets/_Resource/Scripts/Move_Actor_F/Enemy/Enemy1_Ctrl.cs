@@ -1,34 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class Enemy1_Ctrl : MonoBehaviour
+public class Enemy1_Ctrl : MonoBehaviourPunCallbacks
 {
-
-    // enemy1 은 ㄷ기차가 달릴 때 뒤에서 따라오는 애들 
-
-    Camera MCam;
-    CamCtrl MCam_Ctrl;
-
     Enemy_Actor enemy;
-    [SerializeField]
     Transform tr;
     Animator anim;
 
+
     public int E_damage;
+
 
     Vector3 Position_Set_Destination;
     Vector3 Position_Set_Move;
     bool Position_Set_Go = false;
 
+
+
     public Transform Rhino_child; // 아니 이거 fbx가 이렇게 안잡으면 제대로 안움직임
-
-    bool Retreat; // 후퇴
-
     Vector3 Init_Rhino_child;
     Vector3 Init_Rhino;
 
     int follow_index; // 따라갈 기차의 인덱스 
+    bool Retreat; // 후퇴
+
 
     private void Awake()
     {
@@ -36,6 +33,8 @@ public class Enemy1_Ctrl : MonoBehaviour
         anim = GetComponent<Animator>();
         StartCoroutine(Enemy_ActRoutine());
         enemy = new Enemy_Actor();
+
+
     }
     // Use this for initialization
     void Start()
@@ -48,15 +47,11 @@ public class Enemy1_Ctrl : MonoBehaviour
         anim.SetBool("IsRun", true);
 
 
-        MCam = Camera.main;
-        MCam_Ctrl = MCam.GetComponent<CamCtrl>();
-
-
         TrainGameManager.instance.ConditionCtrl.enemy1 = this.gameObject;
         TrainGameManager.instance.ConditionCtrl.enemy1_ctrl = this.GetComponent<Enemy1_Ctrl>();
         this.gameObject.SetActive(false);
 
-
+       // StartCoroutine(Enemy_ActRoutine());
 
     }
 
@@ -65,25 +60,26 @@ public class Enemy1_Ctrl : MonoBehaviour
     {
         if (other.gameObject.layer.Equals(GameValue.bullet_layer))
         {
-            // 총알맞으면
+            //총알맞으면
+            GameObject parti = TrainGameManager.instance.GetObject(3); // dust 
+            parti.transform.position = other.gameObject.transform.position;
+            parti.SetActive(true);
+            parti.transform.GetChild(0).gameObject.SetActive(true);
+            parti.transform.GetChild(0).GetComponent<ParticleSystem>().Play(true);
             other.gameObject.SetActive(false);
-            Debug.Log("맞");
 
-            MCam_Ctrl.Hit_EnemyAppearCam();
-            enemy.HP -= 5;
+            //enemy.HP -= 20;
+            photonView.RPC("isAttackedByBullet", RpcTarget.All);
+            TrainGameManager.instance.SoundManager.enemy_Sound_Play();
         }
 
-        if (other.gameObject.layer.Equals(GameValue.train_layer))
-        {
-            // 잠깐 뒤로 물러나기
-            //iTween.ShakePosition(other.gameObject, iTween.Hash("time", 0.5f, "x", -2.0f));
 
-            MCam_Ctrl.Hit_EnemyCam(true);
+    }
 
-            TrainGameManager.instance.TrainCtrl.trainscript[TrainGameManager.instance.trainindex - 1].HP -= E_damage;
-
-            Debug.Log("기차랑 충돌");
-        }
+    [PunRPC]
+    public void isAttackedByBullet()
+    {
+        enemy.HP -= 20;
     }
 
     void Update()
@@ -92,38 +88,57 @@ public class Enemy1_Ctrl : MonoBehaviour
         {
             Position_Set();
         }
-        //else
-        //{
-        //    tr.position = Vector3.Slerp(tr.position, Position_Set_Move, Time.deltaTime);
-        //}
+        else
+        {
+            if (anim.GetBool("IsAttack"))
+            {
+                if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f)
+                {
+                    anim.SetBool("IsAttack", false);
+                }
+            }
+        }
+
+
+        if (!Retreat) {
+            if (enemy.HP < 0)
+            {
+                Enemy1_Retreat();
+                Retreat = true;
+            }
+        }
+        else if (Retreat)
+        {
+            
+            tr.Translate(0, 0, -10.0f * Time.deltaTime);
+        }
 
     }
     public void Enemy1_On()
     {
-        anim.SetBool("IsRun", true);
         follow_index = TrainGameManager.instance.trainindex;
-        Position_Set_Destination = new Vector3((GameValue.Train_distance * follow_index -15), tr.position.y, tr.position.z);
+        Position_Set_Destination = new Vector3((GameValue.Train_distance * (follow_index - 1) - 20), tr.position.y, tr.position.z);
         Position_Set_Go = true;
-
+        Retreat = false;
         StartCoroutine(Enemy_ActRoutine());
         TrainGameManager.instance.Notice_EnemyAppear();
     }
 
+    public void Enemy1_Retreat()
+    {
+        // 후퇴할때
+        
+        anim.SetBool("IsAttack", false);
+        Position_Set_Go = false;
+        Invoke("EnemyActiveOff", 2.5f);
+        // 일단 애니메이션 다 끄고
+    }
+    
     void Position_Set()
     {
 
         tr.LookAt(TrainGameManager.instance.TrainCtrl.train[follow_index - 1].transform);
-        tr.position = Vector3.Slerp(tr.position, Position_Set_Destination, Time.deltaTime * 5.0f);
-
-        // 여기서 z값도 좀 왔다갔다 바꾸고
-        // Lookat
-
-        if (tr.position.x == Position_Set_Destination.x)
-        {
-            Position_Set_Go = false;
-        }
-        
-
+        tr.position = Vector3.Slerp(tr.position, Position_Set_Destination, Time.deltaTime * 0.5f /** 5.0f*/);
     }
 
 
@@ -134,37 +149,54 @@ public class Enemy1_Ctrl : MonoBehaviour
         // 그리고 monster 나와있는 와중에는 train add안되게 막아놔야 됨
 
 
-        while (true)
+        if (!Position_Set_Go)
         {
-
-            if (!Position_Set_Go)
+            if (!Retreat)
             {
-                if (!Retreat)
-                {
-
-                    // 공격
-
-
-                  //  if (enemy.HP < 0)
-                    {
-                        Retreat = true;
-                        // 피가 일정 아래로 내려가서 후퇴면
-                    }
-                }
-                //Rhino_child.position -= new Vector3(0, 0, 0.3f);
-                //Position_Set_Move = new Vector3(tr.position.x + 5 * Time.deltaTime, tr.position.y, tr.position.z);
+                anim.SetBool("IsAttack", true);
             }
-    
-            yield return new WaitForSeconds(4.0f);
+            else if (Retreat)
+            {
+                // 후퇴해 
+                anim.SetBool("IsRun", true);
+            }
         }
+        else
+        {
+            if (tr.position.x + 0.5f>= Position_Set_Destination.x)
+            {
+                Position_Set_Go = false;
+            }
+        }
+        yield return new WaitForSeconds(3.0f);
+
+        StartCoroutine(Enemy_ActRoutine());
+
     }
 
-    private void OnDisable()
+    void EnemyActiveOff()
     {
+        
+        StopCoroutine(Enemy_ActRoutine());
         tr.position = Init_Rhino;
         Rhino_child.position = Init_Rhino_child;
         enemy.HP = GameValue.enemy1_FullHp; // 피 다시 원래대로 돌려놓기
-        Retreat = true;
+        Retreat = false; // 이거 어차피 Hp= 0 에서 하는데 또해?
+        TrainGameManager.instance.EnemyAppear = false;
+        CancelInvoke("EnemuActiveOff");
+
+        this.gameObject.SetActive(false);
     }
+
+    //private void OnDisable()
+    //{
+    //    StopCoroutine(Enemy_ActRoutine());
+    //    tr.position = Init_Rhino;
+    //    Rhino_child.position = Init_Rhino_child;
+    //    enemy.HP = GameValue.enemy1_FullHp; // 피 다시 원래대로 돌려놓기
+    //    Retreat = true;
+    //    TrainGameManager.instance.EnemyAppear = false;
+
+    //}
 
 }
