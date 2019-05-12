@@ -583,7 +583,11 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                     // 천장에 올라가면 뚜껑도 setactive.true해줘야되네
                 }
 
-                else if (jump_now)
+                
+            }
+            else if(Input.GetKeyDown(KeyCode.F))
+            {
+                //else if (jump_now)
                 {
                     //jump_now = true;
                     anim.SetBool("IsWalk", false);
