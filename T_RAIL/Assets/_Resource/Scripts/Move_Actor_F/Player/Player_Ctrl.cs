@@ -164,7 +164,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
             // 머신건 근처
             if (!near_gun)
             {
-                space_state = (int)player_space_state.stationpassenger;
+                space_state = (int)player_space_state.Machine_gun;
                 Near_Object = other.transform;
                 gun_child = other.transform.GetChild(0);
                 gun_ctrl = gun_child.GetComponent<MachineGun_Ctrl>();
@@ -179,7 +179,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
             // 역 승객
             if (!near_stationpassenger)
             {
-                space_state = (int)player_space_state.Machine_gun;
+                space_state = (int)player_space_state.stationpassenger; 
                 Near_Object = other.transform;
                 highlighter = Near_Object.GetComponent<Highlighter>();
                 near_stationpassenger = true;
@@ -787,7 +787,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
 
         if (position > 7.0f)
         {
-            player.Where_Floor = 0;
+            player.Where_Train = 0;
+            photonView.RPC("changeMy_Where_Train", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber - 1, 0);
         }
         else
         {
@@ -799,6 +800,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                     photonView.RPC("changeMy_Where_Train", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber - 1, i+1);
                     //player.Where_Train = i + 1;
                 }
+                
             }
         }
 

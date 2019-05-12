@@ -118,7 +118,7 @@ public class Enemy1_Ctrl : MonoBehaviourPunCallbacks
     {
         follow_index = TrainGameManager.instance.trainindex;
         Debug.Log("follow_index" + follow_index);
-        Position_Set_Destination = new Vector3((GameValue.Train_distance * (follow_index - 1) - 20), tr.position.y, tr.position.z);
+        Position_Set_Destination = new Vector3((GameValue.Train_distance * (follow_index - 1) - 18), tr.position.y, tr.position.z);
         Position_Set_Go = true;
         Retreat = false;
         StartCoroutine(Enemy_ActRoutine());
