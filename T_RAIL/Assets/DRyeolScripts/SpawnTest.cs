@@ -10,7 +10,7 @@ public class SpawnTest : MonoBehaviour
     void Start()
     {
         
-        for (int i = 0; i <5 ; i++)
+        for (int i = 0; i <4; i++)
         {
             Debug.Log(TrainGameManager.instance.Station_PassengerManager[i] + "dddddddd");
                 TrainGameManager.instance.Station_PassengerManager[i].SetActive(true);

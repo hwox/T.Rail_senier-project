@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Name: PhotonServerSettings
   m_EditorClassIdentifier: 
   AppSettings:
-    AppIdRealtime: 8b948943-79b1-42ae-8eaa-2799660fc81d
+    AppIdRealtime: 
     AppIdChat: 
     AppIdVoice: 
     AppVersion: 
     UseNameServer: 1
-    FixedRegion: Asia
+    FixedRegion: 
     Server: 
     Port: 0
     Protocol: 0
@@ -28,28 +28,25 @@ MonoBehaviour:
   EnableSupportLogger: 0
   RunInBackground: 1
   RpcList:
+  - Box_Add
+  - changeMy_Where_Train
   - DestroySpaceship
   - Fire
-  - RespawnSpaceship
-  - Box_Add
   - getHitObjectRPC
-  - Sofa_Add
-  - Machine_Gun_OnOff_RPC
-  - Train_Add
-  - Train_Delete
   - Init_Make
+  - isAttackedByBullet
+  - Machine_Gun_OnOff_RPC
+  - onTrainScrollBar
+  - passengerTouch
+  - RespawnSpaceship
   - Rhino_Add
   - RunStartTrain
-  - Question_Where_I_am
-  - changeMy_Where_Train
-  - onTrainScrollBar
   - setRunMeterZero
-  - isAttackedByBullet
-  - RPC_HiT_EnemyCam
-  - StationSceneLoad
-  - setPlayerInStationState
   - SetTrainPlayer
+  - Sofa_Add
+  - StationSceneLoad
+  - Train_Add
+  - Train_Delete
   - TrainSceneLoad
-passengerTouch
   DisableAutoOpenWizard: 1
-  ShowSettings: 1
+  ShowSettings: 0
