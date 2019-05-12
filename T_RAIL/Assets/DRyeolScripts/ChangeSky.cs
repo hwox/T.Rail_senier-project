@@ -11,17 +11,9 @@ public class ChangeSky : MonoBehaviour
     Color Night = new Vector4(0.1037736f, 0.02006942f, 0.0935378f, 1f);
     Color Color_A, Color_B;
 
-    Color DayLight = new Vector4(1f, 1f, 1f, 1f);
-    Color TwilightLight = new Vector4(0.9f, 0.4303677f, 0, 1f);
-    Color NightLight = new Vector4(0, 0, 0, 1f);
 
-    Color Light_A, Light_B;
 
-    public Light li;
-    float light_SpinAngle = 0.002f;
-    float DaySpeed = 0.002f;
 
-   
     int SkychSign;
     float time_count = 0;
 
@@ -31,7 +23,7 @@ public class ChangeSky : MonoBehaviour
     {
         StartCoroutine("ChangeSkycolor");
         SkychSign = 0;
-        li = GetComponent<Light>();
+
     }
 
 
@@ -40,17 +32,17 @@ public class ChangeSky : MonoBehaviour
         while (true)
         {
             double i = 0.1 * time_count;
-            Debug.Log("ddddddddd"+ i);
-            GetComponent<MeshRenderer>().material.color = Color.Lerp(Color_A, Color_B, (float)i );
-            li.color = Color.Lerp(Light_A, Light_B, (float)i);
+            Debug.Log("ddddddddd" + i);
+            GetComponent<MeshRenderer>().material.color = Color.Lerp(Color_A, Color_B, (float)i);
+            // li.color = Color.Lerp(Light_A, Light_B, (float)i);
             time_count += 0.1f;
-           if(time_count>=16)
-           {
-               time_count = 0;
-               SkychSign += 1;
-               if (SkychSign > 2)
-                   SkychSign = 0;
-           }
+            if (time_count >= 16)
+            {
+                time_count = 0;
+                SkychSign += 1;
+                if (SkychSign > 2)
+                    SkychSign = 0;
+            }
 
             yield return new WaitForSeconds(0.5f);
         }
@@ -87,17 +79,18 @@ public class ChangeSky : MonoBehaviour
         if (SkychSign == 0)
         {
             Color_A = Day; Color_B = Twilight;
-            Light_A = DayLight; Light_B = TwilightLight;
+
         }
         else if (SkychSign == 1)
         {
             Color_A = Twilight; Color_B = Night;
-            Light_A = TwilightLight; Light_B = NightLight;
         }
         else if (SkychSign == 2)
         {
             Color_A = Night; Color_B = Day;
-            Light_A = NightLight; Light_B = DayLight;
+
         }
+
     }
 }
+

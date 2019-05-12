@@ -63,6 +63,16 @@ fbx폴더안에 heart 넣었어여
 [19.05.03]
 
 코뿔소 공격이 추가 되었습니다.
+------------------------------
+
+[19.05.03]
+낮밤 킬려면 
+
+map-background의 changesky
+Directional Light의 changelight 켜야함
+
+
+
 
 코뿔소 귀와 몸체를 따로 분리 했습니다.
 
