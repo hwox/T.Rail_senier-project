@@ -22,8 +22,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         prevjump = 5,
         nextjump = 6,
 
-        stationpassenger= 7
-        //nextjump = 6
+        stationpassenger= 7,
+        sign = 8
     }
 
     // 기본 플레이어에 달린 컴포넌트들
@@ -49,8 +49,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     int space_state = 0; // 기본은 0인데 space가 눌려지는 상황 (highlight되는 모든애들) 에서 state change
     bool near_stair; // 사다리근처
     bool near_gun; // 머신건 근처
-    bool near_stationpassenger;
-
+    bool near_stationpassenger;// 역승객 근처
+    bool near_sign; // 표지판
 
     Transform floor1;
     Transform floor2;
@@ -164,7 +164,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
             // 머신건 근처
             if (!near_gun)
             {
-                space_state = (int)player_space_state.Machine_gun;
+                space_state = (int)player_space_state.stationpassenger;
                 Near_Object = other.transform;
                 gun_child = other.transform.GetChild(0);
                 gun_ctrl = gun_child.GetComponent<MachineGun_Ctrl>();
@@ -174,19 +174,34 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                 Push_Space_UI.transform.position = MCam.WorldToScreenPoint(Near_Object.position) + new Vector3(-20, 130, 0);
             }
         }
-        //if(other.gameObject.layer.Equals(GameValue.statiopassenger_layer))
-        //{
-        //    // 역 승객
-        //    if (!near_stationpassenger)
-        //    {
-        //        space_state = (int)player_space_state.Machine_gun;
-        //        Near_Object = other.transform;
-        //        highlighter = Near_Object.GetComponent<Highlighter>();
-        //        near_stationpassenger = true;
-        //        Push_Space_UI.SetActive(true);
-        //        Push_Space_UI.transform.position = MCam.WorldToScreenPoint(Near_Object.position) + new Vector3(-20, 130, 0);
-        //    }
-        //}
+        if(other.gameObject.layer.Equals(GameValue.statiopassenger_layer))
+        {
+            // 역 승객
+            if (!near_stationpassenger)
+            {
+                space_state = (int)player_space_state.Machine_gun;
+                Near_Object = other.transform;
+                highlighter = Near_Object.GetComponent<Highlighter>();
+                near_stationpassenger = true;
+                Push_Space_UI.SetActive(true);
+                Push_Space_UI.transform.position = MCam.WorldToScreenPoint(Near_Object.position) + new Vector3(-20, 130, 0);
+            }
+        }
+        if(other.gameObject.layer.Equals(GameValue.sign_layer))
+        {
+         // 표지판
+         if (!near_sign)
+         {
+             space_state = (int)player_space_state.sign;
+             Near_Object = other.transform;
+             highlighter = Near_Object.GetComponent<Highlighter>();
+             near_sign = true;
+             Push_Space_UI.SetActive(true);
+             Push_Space_UI.transform.position = MCam.WorldToScreenPoint(Near_Object.position) + new Vector3(0, 130, 0);
+         }
+        }
+
+
 
         if (other.gameObject.layer.Equals(GameValue.statiopassenger_layer))
         {
@@ -243,15 +258,29 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                 Push_Space_UI.SetActive(false);
             }
         }
-        //if (other.gameObject.layer.Equals(GameValue.statiopassenger_layer))
-        //{
-        //    if (near_stationpassenger)
-        //    {
-        //        space_state = 0;
-        //        near_stationpassenger = false;
-        //        Push_Space_UI.SetActive(false);
-        //    }
-        //}
+        //역 승객
+        if (other.gameObject.layer.Equals(GameValue.statiopassenger_layer))
+        {
+            if (near_stationpassenger)
+            {
+                space_state = 0;
+                near_stationpassenger = false;
+                Push_Space_UI.SetActive(false);
+            }
+        }
+
+        // 표지판 
+        if (other.gameObject.layer.Equals(GameValue.sign_layer))
+        {
+            if (near_sign)
+            {
+                space_state = 0;
+                near_sign = false;
+                Push_Space_UI.SetActive(false);
+            }
+        }
+
+
 
 
         //if (other.gameObject.layer.Equals(GameValue.NextTrain_layer))
@@ -288,7 +317,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         whereIam = player.Where_Train;
 
         // 이 highlight는 나중에 따로 함수로 뺄고야 일단 정리ㅣ되면 빼겟음
-        if (near_stair)
+        if (near_stair || near_sign||near_stationpassenger)
         {
             // 근데 이것도 사다리 올라가는 중에는 X 
             highlighter.Hover(hoverColor);
