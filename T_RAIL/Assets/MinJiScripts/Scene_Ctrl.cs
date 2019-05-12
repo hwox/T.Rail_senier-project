@@ -22,10 +22,8 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
            
             if (GameValue.NextStationMeter < Train_Ctrl.Run_Meter)
             {
-              
                 photonView.RPC("setRunMeterZero", RpcTarget.All);
-                UnityEngine.SceneManagement.SceneManager.LoadScene("Station_Stage1");
-                TrainGameManager.instance.InStation = true;
+                photonView.RPC("StationSceneLoad", RpcTarget.All);
             }
         }
         
@@ -37,11 +35,34 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
     {
         Train_Ctrl.Run_Meter = 0;
         Train_Ctrl.Hide();
-        playerListController.playerList[PhotonNetwork.LocalPlayer.ActorNumber - 1].player.UpSize();
-        playerListController.playerList[PhotonNetwork.LocalPlayer.ActorNumber - 1].player.DownPos();
-        playerListController.playerList[PhotonNetwork.LocalPlayer.ActorNumber - 1].player.Where_Floor = 4;
-      
+        TrainGameManager.instance.InStation = true;
+        //Debug.LogError("id : " + (PhotonNetwork.LocalPlayer.ActorNumber - 1 )+ "  floor : " + playerListController.playerList[PhotonNetwork.LocalPlayer.ActorNumber - 1].player.Where_Floor);
+        Debug.LogError("몇명 들어와있는지: " + playerListController.playerList.Count);
+
+        for (int i = 0; i < playerListController.playerList.Count; ++i)
+        {
+            playerListController.playerList[i].player.UpSize();
+            playerListController.playerList[i].player.DownPos();
+            playerListController.playerList[i].player.Where_Floor = 4;
+            Debug.Log("id : " + (i) + "  floor : " + playerListController.playerList[i].player.Where_Floor);
+
+            //photonView.RPC("setPlayerInStationState", RpcTarget.All, i);
+        }
     }
 
+    [PunRPC]
+    public void setPlayerInStationState(int id)
+    {
+        playerListController.playerList[id].player.UpSize();
+        playerListController.playerList[id].player.DownPos();
+        playerListController.playerList[id].player.Where_Floor = 4;
+        Debug.Log("id : " + (id) + "  floor : " + playerListController.playerList[id].player.Where_Floor);
+    }
+
+    [PunRPC]
+    public void StationSceneLoad()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Station_Stage1");
+    }
    
 }

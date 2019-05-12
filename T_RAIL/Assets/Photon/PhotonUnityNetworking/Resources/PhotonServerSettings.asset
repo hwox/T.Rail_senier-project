@@ -46,5 +46,7 @@ MonoBehaviour:
   - setRunMeterZero
   - isAttackedByBullet
   - RPC_HiT_EnemyCam
+  - StationSceneLoad
+  - setPlayerInStationState
   DisableAutoOpenWizard: 1
   ShowSettings: 1

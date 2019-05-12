@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 
 
-public class Player_Ctrl : MonoBehaviourPunCallbacks
+public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 {
     enum player_space_state
     {
@@ -307,6 +307,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
 
     private Vector3 CurPos = new Vector3(-1, 3.3f, -2.5f);
     private Quaternion CurRot = Quaternion.identity;//네트워크에서는 선언과 동시에 초기화해야한다 
+    private Vector3 CurSize = new Vector3(1, 1, 1);//네트워크에서는 선언과 동시에 초기화해야한다 
 
     // Update is called once per frame
     void Update()
@@ -498,6 +499,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         // tr.position = new Vector3(player.position.x, player.position.y, player.position.z);
         tr.position = Vector3.Lerp(tr.position, new Vector3(player.position.x, player.position.y, player.position.z), Time.deltaTime * 10.0f);
         tr.rotation = Quaternion.Slerp(transform.rotation, rot, Time.deltaTime * 5.0f);
+        tr.localScale = Vector3.Lerp(tr.localScale, new Vector3(player.size.x, player.size.y, player.size.z), Time.deltaTime * 10.0f);
 
     }
 
@@ -763,18 +765,20 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         Push_Space_UI.transform.parent = TrainGameManager.instance.Info_Canvas.transform;
     }
 
-    void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {//원격 네트워크 플레이어가 만든 탱크의 위치와 회전 정보를 실시간으로 동기화하도록 하는 콜백 함수
      //(쉽게 말해서 다른 유저의 실시간 위치와 회전 값이 보이게 하는것)
         if (stream.IsWriting)
         {//신호를 보낸다. 송신 로컬플레이의 위치 정보 송신(패킷을 날린다고 표현)
             stream.SendNext(tr.position);
             stream.SendNext(tr.rotation);
+            stream.SendNext(tr.localScale);
         }
         else // 원격 플레이어의 위치 정보 수신
         {
             CurPos = (Vector3)stream.ReceiveNext();
             CurRot = (Quaternion)stream.ReceiveNext();
+            CurSize = (Vector3)stream.ReceiveNext();
         }
     }
 
@@ -797,6 +801,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                 if (((i * traindistance) + dist2) < position && ((i * traindistance) - dist2) > position)
                 {
                     //Debug.Log("index 여기" + (i + 1));
+                    //if (player.Where_Floor == 4) return;
+
                     photonView.RPC("changeMy_Where_Train", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber - 1, i+1);
                     //player.Where_Train = i + 1;
                 }
