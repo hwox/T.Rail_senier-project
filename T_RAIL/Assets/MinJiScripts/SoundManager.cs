@@ -46,7 +46,6 @@ public class SoundManager : MonoBehaviourPunCallbacks {
     public void Machine_Gun_Sound_Play()
     {
         Effect1_Source.clip = Machine_Gun_Sound;
-        Debug.Log("플레이는있는데 왜 소리가 안나세요?");
         Effect1_Source.Play();
         //Effect1_Source.PlayOneShot(Machine_Gun_Sound);
     }

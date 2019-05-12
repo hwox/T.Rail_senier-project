@@ -159,7 +159,6 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
             TrainGameManager.instance.trainindex = train.Count;
             trainscript.RemoveAt(i);
         }
-
         trainscript[_removeindex - 1].Machine_Gun_OnOff(true);
     }
 
