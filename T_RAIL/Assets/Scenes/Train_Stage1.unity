@@ -28712,7 +28712,7 @@ MonoBehaviour:
   stage1BGM: {fileID: 8300000, guid: 775df7a216485fa4c833dfc1c51c75c6, type: 3}
   Machine_Gun_Sound: {fileID: 8300000, guid: a44819b7e801cea40adc27634c0ef81c, type: 3}
   InGameButtonSound: {fileID: 8300000, guid: db09ac3ff7c53944297f646c276d4fdd, type: 3}
-  enemy_Sound: {fileID: 8300000, guid: 3828f76581d12854cbbc0e15cf76255f, type: 3}
+  enemy_Sound: {fileID: 8300000, guid: ee151172e0d9657468ab8a75f0ab9a88, type: 3}
   Train_Sound: {fileID: 8300000, guid: 02341fe39556af140976c0c2f03c927f, type: 3}
   enemy_attack_Sound: {fileID: 8300000, guid: 262653f519b002043aa6562c924e3750, type: 3}
 --- !u!1 &504451290
