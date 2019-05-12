@@ -80,7 +80,6 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks
     {
 
         TrainGameManager.instance.totalkickoutEnemy += 1;
-        Debug.Log("enemy kickout + 되는 함수 호출");
 
         int enemy_total = TrainGameManager.instance.totalkickoutEnemy;
 
@@ -104,12 +103,10 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks
                 TrainGameManager.instance.Noise_stat;
 
             int random = Random.Range(0, 200);
-            Debug.Log("random" + random);
             if (random < noiseSound)
             {
                 // enemy 호출 함수
                 onRhinoEnemyOnButton();
-                Debug.Log("inininin");
                 TrainGameManager.instance.EnemyAppear = true;
             }
         }
