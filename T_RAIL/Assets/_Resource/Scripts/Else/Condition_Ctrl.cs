@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class Condition_Ctrl : MonoBehaviourPunCallbacks {
+public class Condition_Ctrl : MonoBehaviourPunCallbacks
+{
 
     // 각종조건을 관리하는 스크립트
     // 이걸로 train add, monster 등장 조건 관리
@@ -14,11 +15,13 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks {
     public GameObject enemy1;
     public Enemy1_Ctrl enemy1_ctrl;
 
+
+
     private void Awake()
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            photonView.RPC("Init_Make", RpcTarget.All); 
+            photonView.RPC("Init_Make", RpcTarget.All);
         }
     }
 
@@ -36,7 +39,11 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks {
         //enemy1.SetActive(false);
     }
 
-
+    private void Start()
+    {
+        StartCoroutine(EnemyAppear_Condition());
+       
+    }
     public void onRhinoEnemyOnButton()
     {
         photonView.RPC("Rhino_Add", RpcTarget.All);
@@ -49,6 +56,67 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks {
         TrainGameManager.instance.EnemyAppear = true;
         enemy1.SetActive(true);
         enemy1_ctrl.Enemy1_On();
+    }
+
+    public void TrainAddCondition_Passenger(int _num)
+    {
+        // 여기서 전달받는 _num은 역에서 총 승객을 몇명이나 먹었는지의 값을
+        // 넣어주면 됨. 
+        // 표지판 sign하고 다음으로 넘어가는 부분? 그 쯤에서 호출하는거 추천
+        int prev_total = TrainGameManager.instance.totalPassenger / 3;
+
+        TrainGameManager.instance.totalPassenger += _num;
+
+        int after_total = TrainGameManager.instance.totalPassenger / 3;
+
+        for (int i = 0; i < after_total - prev_total; i++)
+        {
+            // 여기서 기차 add 함수 호출
+            TrainGameManager.instance.TrainCtrl.onTrainAddButtonClick();
+        }
+    }
+
+    public void TrainAddCondition_Enemy()
+    {
+
+        TrainGameManager.instance.totalkickoutEnemy += 1;
+        Debug.Log("enemy kickout + 되는 함수 호출");
+
+        int enemy_total = TrainGameManager.instance.totalkickoutEnemy;
+
+        if (enemy_total % 3 == 2)
+        {
+            // 기차 add함수 호출 
+            TrainGameManager.instance.TrainCtrl.onTrainAddButtonClick();
+        }
+    }
+
+
+
+    IEnumerator EnemyAppear_Condition()
+    {
+      //  yield return new WaitForSeconds(2.0f);
+
+        if (!TrainGameManager.instance.EnemyAppear && 
+            TrainGameManager.instance.TrainCtrl.Run_Meter > 30.0f)
+        {
+            int noiseSound = TrainGameManager.instance.Noise /
+                TrainGameManager.instance.Noise_stat;
+
+            int random = Random.Range(0, 200);
+            Debug.Log("random" + random);
+            if (random < noiseSound)
+            {
+                // enemy 호출 함수
+                onRhinoEnemyOnButton();
+                Debug.Log("inininin");
+                TrainGameManager.instance.EnemyAppear = true;
+            }
+        }
+        yield return new WaitForSeconds(5.0f);
+
+        StartCoroutine(EnemyAppear_Condition());
+
     }
 
 }

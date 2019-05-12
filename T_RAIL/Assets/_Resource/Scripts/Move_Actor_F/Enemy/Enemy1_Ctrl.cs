@@ -117,6 +117,7 @@ public class Enemy1_Ctrl : MonoBehaviourPunCallbacks
     public void Enemy1_On()
     {
         follow_index = TrainGameManager.instance.trainindex;
+        Debug.Log("follow_index" + follow_index);
         Position_Set_Destination = new Vector3((GameValue.Train_distance * (follow_index - 1) - 20), tr.position.y, tr.position.z);
         Position_Set_Go = true;
         Retreat = false;
@@ -184,6 +185,7 @@ public class Enemy1_Ctrl : MonoBehaviourPunCallbacks
         Retreat = false; // 이거 어차피 Hp= 0 에서 하는데 또해?
         TrainGameManager.instance.EnemyAppear = false;
         CancelInvoke("EnemuActiveOff");
+        TrainGameManager.instance.ConditionCtrl.TrainAddCondition_Enemy(); 
 
         this.gameObject.SetActive(false);
     }

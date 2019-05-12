@@ -16,9 +16,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
 	
 	// Update is called once per frame
 	void Update () {
-            
-        Debug.Log(GameValue.NextStationMeter);
-        Debug.Log(Train_Ctrl.Run_Meter);
+
         if (!TrainGameManager.instance.InStation)
         {
            

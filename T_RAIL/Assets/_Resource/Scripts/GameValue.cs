@@ -40,11 +40,12 @@ static class GameValue {
     // 기차 속성의 기본값 
     public const float Durability = 100.0f;
     public const float speed = 5.0f;
-    public const float noise = 100.0f;
+    public const int noise = 100;
 
 
     // 다음역 까지의 거리
-    public const float NextStationMeter = 100.0f; // 4km -> 기본속도 3기준 4분 // 4000인걸 1000으로 줄여놨음
+   // public const float NextStationMeter = 100.0f; // 4km -> 기본속도 3기준 4분 // 4000인걸 1000으로 줄여놨음
+    public const float NextStationMeter = 4000.0f; // 4km -> 기본속도 3기준 4분 // 4000인걸 1000으로 줄여놨음
 
     // 기차 간격
     public const float Train_distance = -13.0f;
@@ -62,7 +63,7 @@ static class GameValue {
 
 
     // enemy1 
-    public const int enemy1_FullHp = 100; // 한 텀
+    public const int enemy1_FullHp = 200; // 한 텀
 
 
     // bullet
