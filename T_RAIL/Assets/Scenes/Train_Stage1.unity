@@ -115044,6 +115044,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbf5fe82fb48d684b8b4bc3edbc61125, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  li: {fileID: 170076734}
+  light_SpinAngle: 1
+  DaySpeed: 1
 --- !u!1 &1927663527
 GameObject:
   m_ObjectHideFlags: 0
