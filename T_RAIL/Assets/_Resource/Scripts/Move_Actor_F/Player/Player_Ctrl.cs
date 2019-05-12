@@ -223,7 +223,13 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 //  near_stair = false;
                 //  Push_Space_UI.SetActive(false);
                 //  Destroy(other.gameObject);
-                other.gameObject.SetActive(false);
+                for(int i=0; i < TrainGameManager.instance.Station_PassengerManager.Count; ++i)
+                {
+                    if(other.gameObject == TrainGameManager.instance.Station_PassengerManager[i])
+                    {
+                        photonView.RPC("passengerTouch", RpcTarget.All, i); //, eachPlayerIn[i]);
+                    }
+                }
                 TrainGameManager.instance.GetPassengerCount++;
                 // Debug.Log(TrainGameManager.instance.GetPassengerCount);
             }
@@ -233,6 +239,13 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             //여기서 이제다시 씬으로
         }
     }
+
+    [PunRPC]
+    public void passengerTouch(int i)
+    {
+        TrainGameManager.instance.Station_PassengerManager[i].gameObject.SetActive(false);
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (!photonView.IsMine) return;
