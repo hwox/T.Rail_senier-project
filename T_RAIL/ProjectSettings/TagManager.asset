@@ -40,8 +40,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - sign
+  - statiopassenger
   - wall
   m_SortingLayers:
   - name: Default

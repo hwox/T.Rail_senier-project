@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 4031758681214576}
   - component: {fileID: 95875594807398304}
   - component: {fileID: 65766010313512610}
-  - component: {fileID: 114147376550888130}
+  - component: {fileID: 114516774162089772}
   m_Layer: 30
   m_Name: StationPassenger
   m_TagString: Untagged
@@ -427,7 +427,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1392928443951410}
   m_LocalRotation: {x: -0, y: 0.9934931, z: -0, w: -0.11389256}
-  m_LocalPosition: {x: -1.6990824, y: 2.35, z: -7.0719986}
+  m_LocalPosition: {x: -1.36, y: 2.35, z: -7.21}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4092359316240338}
@@ -807,7 +807,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.66706157, y: 1.5611062, z: 1}
+  m_Size: {x: 1.5, y: 2, z: 1.5}
   m_Center: {x: -0.022437587, y: 0.8525865, z: 0}
 --- !u!95 &95875594807398304
 Animator:
@@ -827,7 +827,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114147376550888130
+--- !u!114 &114516774162089772
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -838,6 +838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9a8a316e312a34cbc73a910624e581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _touch: 0
 --- !u!137 &137049933454510394
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

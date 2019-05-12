@@ -9,7 +9,6 @@ public class SpawnTrain : MonoBehaviour
     public int trainNum = 3; // 기차 생성 개수
     public float trainGap = 13f;// 기차 간격
 
-    public TrainGameManager train;
     void newtrain(int n)
     {
         for (int i = 0; i < n; i++)

@@ -270,6 +270,7 @@ namespace Photon.Pun.Demo.Asteroids
 
             SoundManager.instance.onButtonClickSound();
             PhotonNetwork.LoadLevel("Train_Stage1");
+           
         }
 
         #endregion

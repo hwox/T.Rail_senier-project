@@ -15,12 +15,21 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
 	
 	// Update is called once per frame
 	void Update () {
-		if(GameValue.NextStationMeter < Train_Ctrl.Run_Meter)
+            
+        Debug.Log(GameValue.NextStationMeter);
+        Debug.Log(Train_Ctrl.Run_Meter);
+        if (!TrainGameManager.instance.InStation)
         {
-            photonView.RPC("setRunMeterZero", RpcTarget.All);
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Station_Stage1");
+           
+            if (GameValue.NextStationMeter < Train_Ctrl.Run_Meter)
+            {
+              
+                photonView.RPC("setRunMeterZero", RpcTarget.All);
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Station_Stage1");
+                TrainGameManager.instance.InStation = true;
+            }
         }
-
+        
 	}
 
 
@@ -32,6 +41,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
         playerListController.playerList[PhotonNetwork.LocalPlayer.ActorNumber - 1].player.UpSize();
         playerListController.playerList[PhotonNetwork.LocalPlayer.ActorNumber - 1].player.DownPos();
         playerListController.playerList[PhotonNetwork.LocalPlayer.ActorNumber - 1].player.Where_Floor = 4;
+      
     }
 
     

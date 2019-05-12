@@ -35,9 +35,6 @@ public class CamCtrl : MonoBehaviourPunCallbacks
 
         switch (player_floor)
         {
-
-
-
             case 1:
 
                 float targetX = tr.position.x;
@@ -66,6 +63,13 @@ public class CamCtrl : MonoBehaviourPunCallbacks
                 temp_x = Mathf.Lerp(positionX, tr.position.x, Time.deltaTime);
                 tr.position = new Vector3(temp_x, tr.position.y, tr.position.z);
 
+                break;
+            case 4:
+
+                float poy = 8.1f;
+                float poz = -17.3f;
+                tr.position = new Vector3(player_position_x, poy, poz);
+                
                 break;
             default:
                 TrainGameManager.instance.Error_print();

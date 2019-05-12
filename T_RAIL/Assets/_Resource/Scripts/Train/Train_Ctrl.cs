@@ -57,10 +57,13 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
 
     public void RunMeterCalCulator()
     {
-        // 2분에 2km
-        Run_Meter += (TrainGameManager.instance.Speed * TrainGameManager.instance.Speed_stat) * Time.deltaTime;
+        if (!TrainGameManager.instance.InStation)
+        {
+            // 2분에 2km
+            Run_Meter += (TrainGameManager.instance.Speed * TrainGameManager.instance.Speed_stat) * Time.deltaTime;
 
-        //Run_Meter
+            //Run_Meter
+        }
     }
 
     // 기차 추가하기

@@ -20,11 +20,14 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         bullet = 4,
 
         prevjump = 5,
-        nextjump = 6
+        nextjump = 6,
+
+        stationpassenger= 7
+        //nextjump = 6
     }
 
     // 기본 플레이어에 달린 컴포넌트들
-   public  Player_Actor player;
+    public Player_Actor player;
     Transform tr;
     Animator anim;
 
@@ -46,6 +49,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     int space_state = 0; // 기본은 0인데 space가 눌려지는 상황 (highlight되는 모든애들) 에서 state change
     bool near_stair; // 사다리근처
     bool near_gun; // 머신건 근처
+    bool near_stationpassenger;
+
 
     Transform floor1;
     Transform floor2;
@@ -54,6 +59,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
     // render 
     Camera MCam; // maincamera
     CamCtrl MCam_Ctrl; // 카메라에 달린 camctrl
+    StationCam_Ctrl SCam_Ctrl;
 
     // ui
     public GameObject Push_Space_UI_pref; // space 누르라고 뜨는 ui. 얘는 프리팹 연결
@@ -107,6 +113,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         //  parti_player_move = this.transform.GetChild(0).gameObject;
         MCam = Camera.main; // 메인카메라 찾기
         MCam_Ctrl = MCam.GetComponent<CamCtrl>();
+       
         anim = GetComponent<Animator>();
         tr = GetComponent<Transform>();
         jump_now = true;
@@ -115,6 +122,9 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         ContinuousFire = true;
         m_ChargeSpeed = (m_MaxLaunchForce - m_MinLaunchForce) / m_MaxChargeTime;
     }
+        
+ 
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -157,6 +167,19 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                 Push_Space_UI.transform.position = MCam.WorldToScreenPoint(Near_Object.position) + new Vector3(-20, 130, 0);
             }
         }
+        //if(other.gameObject.layer.Equals(GameValue.statiopassenger_layer))
+        //{
+        //    // 역 승객
+        //    if (!near_stationpassenger)
+        //    {
+        //        space_state = (int)player_space_state.Machine_gun;
+        //        Near_Object = other.transform;
+        //        highlighter = Near_Object.GetComponent<Highlighter>();
+        //        near_stationpassenger = true;
+        //        Push_Space_UI.SetActive(true);
+        //        Push_Space_UI.transform.position = MCam.WorldToScreenPoint(Near_Object.position) + new Vector3(-20, 130, 0);
+        //    }
+        //}
 
 
     }
@@ -167,8 +190,24 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
         {
             player.WallConflictDirection();
         }
+        //역에서 승객 먹기
+        if (other.gameObject.layer.Equals(GameValue.statiopassenger_layer))
+        {
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                //  near_stair = false;
+                //  Push_Space_UI.SetActive(false);
+                //  Destroy(other.gameObject);
+                other.gameObject.SetActive(false);
+                TrainGameManager.instance.GetPassengerCount++;
+                // Debug.Log(TrainGameManager.instance.GetPassengerCount);
+            }
+        }
+        if (other.gameObject.layer.Equals(GameValue.sign_layer))
+        {
+            //여기서 이제다시 씬으로
+        }
     }
-
     private void OnTriggerExit(Collider other)
     {
         if (!photonView.IsMine) return;
@@ -194,6 +233,15 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                 Push_Space_UI.SetActive(false);
             }
         }
+        //if (other.gameObject.layer.Equals(GameValue.statiopassenger_layer))
+        //{
+        //    if (near_stationpassenger)
+        //    {
+        //        space_state = 0;
+        //        near_stationpassenger = false;
+        //        Push_Space_UI.SetActive(false);
+        //    }
+        //}
 
 
         //if (other.gameObject.layer.Equals(GameValue.NextTrain_layer))
@@ -346,7 +394,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks
                 break;
             case 4:
                 MCam_Ctrl.GetPlayerX(player.position.x);
-
+                // SCam_Ctrl.GetPlayerX(player.position.x);
+                //Debug.Log(player.position.x); 
                 break;
 
 

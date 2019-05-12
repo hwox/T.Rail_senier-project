@@ -73,6 +73,9 @@ public class TrainGameManager : MonoBehaviour
     public List<GameObject> Station_PassengerManager;
     const int MAKE_STATIONPASSENGER_COUNT = 10;
 
+    public int GetPassengerCount=0;
+
+    public bool InStation;
 
     private void Awake()
     {

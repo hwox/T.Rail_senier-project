@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657755, g: 0.4964127, b: 0.57481825, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657642, g: 0.49641156, b: 0.5748181, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -30930,6 +30930,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 541504039}
+  - component: {fileID: 541504040}
   m_Layer: 0
   m_Name: Cam
   m_TagString: Untagged
@@ -30953,6 +30954,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &541504040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 541504038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e9c48d655b451042856b451489e22f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &546088982
 GameObject:
   m_ObjectHideFlags: 0
@@ -56058,10 +56070,12 @@ MonoBehaviour:
   Origin:
   - {fileID: 1389966095280804, guid: 5038b754216e0bd4287ed4d8344ab4d7, type: 2}
   - {fileID: 1678285436382366, guid: be1791a8985844747ba2d86aec26ff02, type: 2}
-  - {fileID: 1678285436382366, guid: 192218f7df54cec4e821a65f77036f6c, type: 2}
+  - {fileID: 1392928443951410, guid: d72212603ece8ea44a4bd2c9121bc698, type: 2}
   BulletManager: []
   PassengerManager: []
   Station_PassengerManager: []
+  GetPassengerCount: 0
+  InStation: 0
 --- !u!4 &1113577655
 Transform:
   m_ObjectHideFlags: 0
