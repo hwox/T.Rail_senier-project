@@ -1046,7 +1046,6 @@ MonoBehaviour:
   playerListController: {fileID: 0}
   UIState_Ctrl: {fileID: 0}
   whereIam: 0
-  Offset: {x: 33, y: 0, z: 0}
 --- !u!114 &114537870420915034
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -53,7 +53,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
     [PunRPC]
     public void TrainSceneLoad()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Train_Stage1");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Train_Stage1-2");
     }
 
     [PunRPC]
