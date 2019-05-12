@@ -50,5 +50,6 @@ MonoBehaviour:
   - setPlayerInStationState
   - SetTrainPlayer
   - TrainSceneLoad
+passengerTouch
   DisableAutoOpenWizard: 1
   ShowSettings: 1

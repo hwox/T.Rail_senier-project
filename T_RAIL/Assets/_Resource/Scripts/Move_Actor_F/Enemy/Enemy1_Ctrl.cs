@@ -68,7 +68,6 @@ public class Enemy1_Ctrl : MonoBehaviourPunCallbacks
             parti.transform.GetChild(0).GetComponent<ParticleSystem>().Play(true);
             other.gameObject.SetActive(false);
 
-            //enemy.HP -= 20;
             photonView.RPC("isAttackedByBullet", RpcTarget.All);
             TrainGameManager.instance.SoundManager.enemy_Sound_Play();
         }
@@ -79,7 +78,7 @@ public class Enemy1_Ctrl : MonoBehaviourPunCallbacks
     [PunRPC]
     public void isAttackedByBullet()
     {
-        enemy.HP -= 20;
+        enemy.HP -= 30 / TrainGameManager.instance.Defence_stat;
     }
 
     void Update()

@@ -46,22 +46,22 @@ public class Player_Actor : Move_Actor {
             //walk일 때만 이동
             switch (key) {
                 case 'a':
-                    position.x -= 0.1f*speed*Time.deltaTime*Directions[0];
+                    position.x -= 0.15f*speed*Time.deltaTime*Directions[0];
                     rotate.y = -90.0f;
                     Direction = 1;
                     break;
                 case 's':
-                    position.z -= 0.1f * speed * Time.deltaTime * Directions[1];
+                    position.z -= 0.15f * speed * Time.deltaTime * Directions[1];
                     rotate.y = 180;
                     Direction = 2;
                     break;
                 case 'd':
-                    position.x += 0.1f * speed * Time.deltaTime * Directions[2];
+                    position.x += 0.15f * speed * Time.deltaTime * Directions[2];
                     rotate.y = 90.0f;
                     Direction = 3;
                     break;
                 case 'w':
-                    position.z += 0.1f * speed * Time.deltaTime * Directions[3];
+                    position.z += 0.15f * speed * Time.deltaTime * Directions[3];
                     rotate.y = 0;
                     Direction = 4;
                     break;

@@ -29,6 +29,9 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     // 기본 플레이어에 달린 컴포넌트들
     public Player_Actor player;
     Transform tr;
+
+    public Transform LeftShoulder;
+    public Transform RightShoulder;
     Animator anim;
 
     public Color hoverColor = Color.white;
@@ -110,7 +113,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         playerListController.playerList.Add(this.gameObject.GetComponent<Player_Ctrl>());
         UIState_Ctrl = GameObject.Find("UIState_Ctrl").GetComponent<UIState_Ctrl>();
         whereIam = player.Where_Train;
-
         
     }
 
@@ -170,8 +172,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 gun_ctrl = gun_child.GetComponent<MachineGun_Ctrl>();
                 highlighter = Near_Object.GetComponent<Highlighter>();
                 near_gun = true;
-                Push_Space_UI.SetActive(true);
-                Push_Space_UI.transform.position = MCam.WorldToScreenPoint(Near_Object.position) + new Vector3(-20, 130, 0);
+              //  Push_Space_UI.SetActive(true);
+              //  Push_Space_UI.transform.position = MCam.WorldToScreenPoint(Near_Object.position) + new Vector3(-20, 130, 0);
             }
         }
         if(other.gameObject.layer.Equals(GameValue.statiopassenger_layer))
@@ -223,7 +225,13 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 //  near_stair = false;
                 //  Push_Space_UI.SetActive(false);
                 //  Destroy(other.gameObject);
-                other.gameObject.SetActive(false);
+                for(int i=0; i < TrainGameManager.instance.Station_PassengerManager.Count; ++i)
+                {
+                    if(other.gameObject == TrainGameManager.instance.Station_PassengerManager[i])
+                    {
+                        photonView.RPC("passengerTouch", RpcTarget.All, i); //, eachPlayerIn[i]);
+                    }
+                }
                 TrainGameManager.instance.GetPassengerCount++;
                 // Debug.Log(TrainGameManager.instance.GetPassengerCount);
             }
@@ -237,6 +245,13 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
     }
+
+    [PunRPC]
+    public void passengerTouch(int i)
+    {
+        TrainGameManager.instance.Station_PassengerManager[i].gameObject.SetActive(false);
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (!photonView.IsMine) return;
@@ -428,11 +443,9 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
                 break;
             case 2:
-            case 3:
-                // 마우스 이동에 따른 카메라 변환
-                // 뚜껑에서
                 MCam_Ctrl.GetPlayerX(player.position.x);
                 break;
+            case 3:
             case 4:
                 MCam_Ctrl.GetPlayerX(player.position.x);
                 break;
@@ -462,7 +475,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     public void changeMy_Where_Train(int playerID, int i)
     {
-        Debug.LogError("시발!!! : " + playerID);
+        //Debug.LogError("시발!!! : " + playerID);
         playerListController.playerList[playerID].player.Where_Train = i;
         playerListController.eachPlayerIn[playerID] = playerListController.playerList[playerID].player.Where_Train;
 
@@ -618,9 +631,10 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                     // 주변에 머신건이 있으면?
                     player.Where_Floor = 3;
                     MCam_Ctrl.EnemyAppear_Cam(true, player.Where_Train);
+
                     space_state = 0;
                     near_gun = false;
-                    Push_Space_UI.SetActive(false);
+                    //Push_Space_UI.SetActive(false);
                 }
 
                 // 밑층으로 내려가기
@@ -680,6 +694,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             m_Fired = false;
             //  m_CurrentLaunchForce = m_MinLaunchForce;
             // shoot sound 
+
+       
         }
         else if (Input.GetKey(KeyCode.F) && !m_Fired)
         {
@@ -734,6 +750,9 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         m_Fired = false;
         // bullet에 .velocity = m_CurrentLauchForce 전달해주고 
         BulletInfoSetting(TrainGameManager.instance.GetObject(0), m_CurrentLaunchForce);
+        iTween.ShakePosition(gun_child.gameObject, iTween.Hash("time", 0.5f, "z", 0.2f));
+        iTween.ShakePosition(gameObject, iTween.Hash("time", 0.5f, "z", 0.2f));
+
         m_CurrentLaunchForce = m_MinLaunchForce;
     }
 
