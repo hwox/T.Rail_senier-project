@@ -471,7 +471,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     public void changeMy_Where_Train(int playerID, int i)
     {
-        Debug.LogError("시발!!! : " + playerID);
+        //Debug.LogError("시발!!! : " + playerID);
         playerListController.playerList[playerID].player.Where_Train = i;
         playerListController.eachPlayerIn[playerID] = playerListController.playerList[playerID].player.Where_Train;
 
