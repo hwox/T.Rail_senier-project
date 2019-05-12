@@ -71,10 +71,8 @@ public class Enemy1_Ctrl : MonoBehaviourPunCallbacks
             photonView.RPC("isAttackedByBullet", RpcTarget.All);
             TrainGameManager.instance.SoundManager.enemy_Sound_Play();
         }
-
-
     }
-
+    
     [PunRPC]
     public void isAttackedByBullet()
     {

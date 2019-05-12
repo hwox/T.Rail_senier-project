@@ -31,7 +31,8 @@ public class Train_Object : MonoBehaviourPunCallbacks
     public GameObject Machine_gun;
     public GameObject Ladder;
     public GameObject Ceiling; // 천장
-    public GameObject BackWall;// 이거 또 지워졌네
+    public GameObject BackWall;// 제일 끝에 wall. 플레이어가 못 빠져나가게
+    public GameObject TrainChain; // chain. 제일 마지막 칸만 off될 예정
     // 제일 마지막에 못나가게 제일 마지막칸에서만 wall on 됨
     // 기관총하고 비슷
 
@@ -107,11 +108,13 @@ public class Train_Object : MonoBehaviourPunCallbacks
         {
             Machine_gun.SetActive(true);
             BackWall.SetActive(true);
+            TrainChain.SetActive(false);  // 여기서 false 되는거 맞음! 제일 마지막 칸이라서 ㅊㅔ인꺼주는거
         }
         else
         {
             Machine_gun.SetActive(false);
             BackWall.SetActive(false);
+            TrainChain.SetActive(true);
         }
     }
     public void Ceiling_OnOff(bool onoff)
