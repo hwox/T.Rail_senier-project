@@ -93,17 +93,16 @@ public class ChangeSky : MonoBehaviour
         SkychSign += 1;
         if (SkychSign == 2)
         {
-            li.transform.rotation = Quaternion.Euler(35, -75, -70); // 아침에 해뜰때 각도;
+            //li.transform.rotation = Quaternion.Euler(35, -75, -70); // 아침에 해뜰때 각도;
         }
         if (SkychSign > 2)
             SkychSign = 0;
 
 
-        yield return new WaitForSeconds(0.5f);
+       // yield return new WaitForSeconds(0.5f);
 
         StartCoroutine("ChangeSkycolor");
     }
 
-    }
 }
 
