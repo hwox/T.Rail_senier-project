@@ -51,7 +51,7 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        if (photonView.IsMine)
+        //if (photonView.IsMine)
             RunMeterCalCulator();
 
 
