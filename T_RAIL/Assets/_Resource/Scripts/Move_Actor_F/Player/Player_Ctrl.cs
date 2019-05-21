@@ -194,10 +194,10 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             // 표지판
             if (!near_sign)
             {
-                space_state = (int)player_space_state.sign;
-                Near_Object = other.transform;
-                highlighter = Near_Object.GetComponent<Highlighter>();
-                near_sign = true;
+              //  space_state = (int)player_space_state.sign;
+              //  Near_Object = other.transform;
+              //  highlighter = Near_Object.GetComponent<Highlighter>();
+              //  near_sign = true;
                 //  Push_Space_UI.SetActive(true);
                 //   Push_Space_UI.transform.position = MCam.WorldToScreenPoint(Near_Object.position) + new Vector3(0, 130, 0);
             }
@@ -207,7 +207,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
         if (other.gameObject.layer.Equals(GameValue.statiopassenger_layer))
         {
-            Debug.Log("dd");
+            //Debug.Log("dd");
         }
     }
     private void OnTriggerStay(Collider other)
@@ -297,8 +297,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (near_sign)
             {
-                space_state = 0;
-                near_sign = false;
+              //  space_state = 0;
+              //  near_sign = false;
                 //  Push_Space_UI.SetActive(false);
             }
         }
@@ -515,6 +515,21 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 break;
             default:
                 break;
+        }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            // 기차 추가
+            TrainGameManager.instance.TrainCtrl.onTrainAddButtonClick();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            // 몬스터 추가
+
+            TrainGameManager.instance.ConditionCtrl.onRhinoEnemyOnButton();
+            TrainGameManager.instance.EnemyAppear = true;
+
         }
 
         Quaternion rot = Quaternion.identity;

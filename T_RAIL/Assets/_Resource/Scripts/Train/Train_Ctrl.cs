@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
-
+using UnityEngine.UI;
 public class Train_Ctrl : MonoBehaviourPunCallbacks
 {
     // 여기서 기차의 속성을 총 감독
@@ -26,6 +26,7 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
     public List<Train_Object> trainscript = new List<Train_Object>();
 
 
+    public Text RunMeterText;
 
     // 기차 처음 시작할 때 슬슬 빨라지는 애니메이션 추가하자
     // Mathf 로 계산해서
@@ -70,9 +71,17 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
             // 2분에 2km
             Run_Meter += (TrainGameManager.instance.Speed * TrainGameManager.instance.Speed_stat) * Time.deltaTime;
 
+           float temp = GameValue.NextStationMeter - Run_Meter;
+
+            if (temp >= 0)
+                RunMeterText.text = "남은 거리 :" + temp.ToString("N0") + "M";
+            else
+                RunMeterText.text = "남은 거리 : 0M";
+
+
             //Run_Meter
         }
-        
+
     }
 
     // 기차 추가하기
@@ -83,12 +92,12 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
             if (PhotonNetwork.IsMasterClient)
             {
                 photonView.RPC("Train_Add", RpcTarget.All);
-                Debug.Log("마스터 클라가 눌럿음 ");
+                //Debug.Log("마스터 클라가 눌럿음 ");
             }
             else
             {
                 photonView.RPC("Train_Add", RpcTarget.All);
-                Debug.Log("다른 클라가 눌렀음 ");
+                //Debug.Log("다른 클라가 눌렀음 ");
             }
         }
     }

@@ -38,11 +38,13 @@ public class CamCtrl : MonoBehaviour
 
                 float targetX = tr.position.x;
 
+                float poY = 7.5f;
+                float poZ = -9.5f;
                 // if (Mathf.Abs(tr.position.x - player_position_x) > 3)
                 {
                     targetX = Mathf.Lerp(tr.position.x, player_position_x, 15.0f * Time.deltaTime);
                 }
-                tr.position = new Vector3(targetX, tr.position.y, tr.position.z);
+                tr.position = new Vector3(targetX, poY, poZ);
 
                 position_once = true;
                 break;

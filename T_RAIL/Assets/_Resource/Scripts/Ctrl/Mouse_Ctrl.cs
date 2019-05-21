@@ -58,7 +58,7 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
                 //}
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, IgnoreRay))
                 {
-                    Debug.Log(hit.collider.name);
+                    //Debug.Log(hit.collider.name);
                     // 아... Equals("12") 라고 해서 계속 안됐던거임 흑흑 젠장
                     if (hit.collider.gameObject.layer.Equals(GameValue.itembox_layer))
                     {
@@ -79,7 +79,7 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
                         ChoiceButton.SetActive(true);
                         ChoiceButton.transform.position = Input.mousePosition;
                         //ChoiceButton.GetComponent<UI_ChoiceButton>().GetHitObject(hit.collider.gameObject);
-                        Debug.Log(hit.collider.gameObject.name + "  dkdkdkkdkdk   ");// + hit.collider.transform.root.gameObject.name);
+                        //Debug.Log(hit.collider.gameObject.name + "  dkdkdkkdkdk   ");// + hit.collider.transform.root.gameObject.name);
                         photonView.RPC("getHitObjectRPC", RpcTarget.AllBuffered, hit.collider.gameObject.GetPhotonView().ViewID);
                     }
 

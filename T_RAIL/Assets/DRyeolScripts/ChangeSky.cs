@@ -74,6 +74,10 @@ public class ChangeSky : MonoBehaviour
         }
         if (SkychSign > 2)
             SkychSign = 0;
+
+
+        yield return new WaitForSeconds(0.5f);
+
         StartCoroutine("ChangeSkycolor");
     }
 
