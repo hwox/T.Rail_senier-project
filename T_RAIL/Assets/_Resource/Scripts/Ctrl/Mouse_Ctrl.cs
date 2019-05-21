@@ -58,16 +58,16 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
                 //}
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, IgnoreRay))
                 {
-                    //Debug.Log(hit.collider.name);
-                    // 아... Equals("12") 라고 해서 계속 안됐던거임 흑흑 젠장
+
                     if (hit.collider.gameObject.layer.Equals(GameValue.itembox_layer))
                     {
                         // 상자일 경우!
-                        Inventory.SetActive(true);
+                        //Inventory.SetActive(true);
                         // Vector3 m_Position = Input.mousePosition;
 
-                        Inventory.transform.position = Input.mousePosition;
+                        //Inventory.transform.position = Input.mousePosition;
                         //new Vector3(m_Position.x, m_Position.y, m_Position.z);
+                        hit.collider.GetComponent<InBoxItem>().OpenBoxInven();
                     }
 
                     else if (hit.collider.gameObject.layer.Equals(GameValue.passenger_layer))
