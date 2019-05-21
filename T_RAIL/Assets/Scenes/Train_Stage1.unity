@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657755, g: 0.4964127, b: 0.57481825, a: 1}
+  m_IndirectSpecularColor: {r: 0.45083255, g: 0.50074613, b: 0.574677, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9126,6 +9126,7 @@ GameObject:
   m_Component:
   - component: {fileID: 170076735}
   - component: {fileID: 170076734}
+  - component: {fileID: 170076736}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -9176,13 +9177,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 170076733}
-  m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
+  m_LocalRotation: {x: 0.19668184, y: 0.24019086, z: -0.5685227, w: 0.7618442}
   m_LocalPosition: {x: 0, y: 17.34, z: -58.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 50.000004, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 34.945004, y: 10, z: -70.309006}
+--- !u!114 &170076736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 170076733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43b5e69a88aea7845bd41fa7b5058d63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  li: {fileID: 170076734}
 --- !u!1 &173039690
 GameObject:
   m_ObjectHideFlags: 0
@@ -67550,6 +67563,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1144826370241892, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
   m_IsPrefabAsset: 0
@@ -111395,9 +111412,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbf5fe82fb48d684b8b4bc3edbc61125, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  li: {fileID: 170076734}
-  light_SpinAngle: 1
-  DaySpeed: 1
 --- !u!1 &1927663527
 GameObject:
   m_ObjectHideFlags: 0

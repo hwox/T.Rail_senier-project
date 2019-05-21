@@ -1,4 +1,4 @@
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,15 +25,15 @@ public class ChangeDirectinalLight : MonoBehaviour
     int SkychSign = 0;
     IEnumerator ChangeLightColor()
     {
-        if (SkychSign == 0)// ì•„ì¹¨->ì €ë…
+        if (SkychSign == 0)// ¾ÆÄ§->Àú³á
         {
             Light_A = DayLight; Light_B = TwilightLight;
         }
-        else if (SkychSign == 1)// ì €ë…->ë°¤
+        else if (SkychSign == 1)// Àú³á->¹ã
         {
             Light_A = TwilightLight; Light_B = NightLight;
         }
-        else if (SkychSign == 2)// ë°¤->ì•„ì¹¨
+        else if (SkychSign == 2)// ¹ã->¾ÆÄ§
         {
            
         }
@@ -49,7 +49,7 @@ public class ChangeDirectinalLight : MonoBehaviour
 
         if (SkychSign == 2)
         {
-            li.transform.rotation = Quaternion.Euler(35, -75, -70); // ì•„ì¹¨ì— í•´ëœ°ë•Œ ê°ë„;
+            li.transform.rotation = Quaternion.Euler(35, -75, -70); // ¾ÆÄ§¿¡ ÇØ¶ã¶§ °¢µµ;
         }
         else if (SkychSign > 2)
         {
