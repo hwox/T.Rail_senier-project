@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45083255, g: 0.50074613, b: 0.574677, a: 1}
+  m_IndirectSpecularColor: {r: 0.45083314, g: 0.50074697, b: 0.57467777, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -50445,7 +50445,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &843102092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67517,12 +67517,12 @@ Prefab:
     - target: {fileID: 114926657734411050, guid: 5d9648c5713c24c4ead0d991e0595880,
         type: 2}
       propertyPath: viewIdField
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114926657734411050, guid: 5d9648c5713c24c4ead0d991e0595880,
         type: 2}
       propertyPath: InstantiationId
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114766929177505650, guid: 5d9648c5713c24c4ead0d991e0595880,
         type: 2}
@@ -111758,7 +111758,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1014540451394702, guid: 5a11f7d26cecab04a811e4777299ae83, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a11f7d26cecab04a811e4777299ae83, type: 2}
@@ -122517,6 +122517,7 @@ GameObject:
   - component: {fileID: 2140476039}
   - component: {fileID: 2140476040}
   - component: {fileID: 2140476041}
+  - component: {fileID: 2140476042}
   m_Layer: 0
   m_Name: StateController_Ctrl
   m_TagString: Untagged
@@ -122560,6 +122561,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e9c48d655b451042856b451489e22f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2140476042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2140476038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  viewIdField: 120
+  InstantiationId: 120
+  isRuntimeInstantiated: 0
 --- !u!1 &2142582114
 GameObject:
   m_ObjectHideFlags: 0
