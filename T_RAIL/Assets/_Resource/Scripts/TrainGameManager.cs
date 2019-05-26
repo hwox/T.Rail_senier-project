@@ -50,7 +50,9 @@ public class TrainGameManager : MonoBehaviour
     //# ConditionCtrl
     public Condition_Ctrl ConditionCtrl;
 
-   
+    //# ItemCtrl
+    public AllItem_Ctrl allitemCtrl;
+
 
     // # TrainCtrl
     public Train_Ctrl TrainCtrl;
