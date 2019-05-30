@@ -36,6 +36,9 @@ public class Train_Object : MonoBehaviourPunCallbacks
     // 제일 마지막에 못나가게 제일 마지막칸에서만 wall on 됨
     // 기관총하고 비슷
 
+    public bool[] InTrainObjectUsed;
+
+
     public GameObject[] choiceInTrainObject;
     [SerializeField]
     public Train_Ctrl ctrl;
@@ -55,7 +58,7 @@ public class Train_Object : MonoBehaviourPunCallbacks
         tr = gameObject.transform;
         Coroutine_calltime = 0.5f;
         StartCoroutine(Train_Position_Setting_Change());
-
+        InTrainObjectUsed = new bool[4];
         Init_AddTrain();
     }
 
@@ -209,6 +212,14 @@ public class Train_Object : MonoBehaviourPunCallbacks
                 ctrl.trainscript[i].Machine_Gun_OnOff(true);
             }
         }
+
+
+        for (int i = 0; i < 4; i++)
+        {
+            this.gameObject.transform.GetChild(1).GetChild(i).gameObject.GetComponent<InTrainObjectMake>().InitSetting(ctrl.train.Count, i+1);
+
+        }
+
     }
 
 
@@ -218,5 +229,34 @@ public class Train_Object : MonoBehaviourPunCallbacks
         {
             // 기차 hp감소 . enemy의 damage에 따라
         }
+    }
+
+
+    public void InTrainObject_Setting(GameObject _obj, int _whatnumber, int _kind)
+    {
+        // 여기서 이제 전달받은 오브젝트를 
+        // setactive해주고 위치를 알맞게 조정해주는 것
+ 
+        if (!InTrainObjectUsed[_whatnumber]) {
+            _obj.transform.parent = this.transform.GetChild(1);
+            switch (_kind)
+            {
+                case 1:
+                    //소파
+                    _obj.transform.localPosition = new Vector3(GameValue.T_ObjectX, GameValue.T_Sofa_ObjectY, GameValue.T_ObjectZ[_whatnumber]);
+                    _obj.transform.Rotate(0, 0, -90);
+                    break;
+                case 2:
+                    // 박스 
+                    _obj.transform.localPosition = new Vector3(GameValue.T_ObjectX, GameValue.T_Box_ObjectY, GameValue.T_ObjectZ[_whatnumber]);
+                    break;
+
+            }
+
+            _obj.SetActive(true);
+            // 부모로 이 밑으로 달아주고 로컬 포지션을 바꿨음
+            InTrainObjectUsed[_whatnumber] = true; // 사용중이니까 false시킴
+        }
+        // 없앨때는 parent true시키고 다시 저리로 가져다 줘야 함. 아니면 그냥 delete 시켜버리거나
     }
 }

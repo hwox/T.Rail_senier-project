@@ -76,10 +76,10 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
                     }
                     else if (hit.collider.gameObject.layer.Equals(GameValue.choice_layer))
                     {
-                        ChoiceButton.SetActive(true);
-                        ChoiceButton.transform.position = Input.mousePosition;
-                        //ChoiceButton.GetComponent<UI_ChoiceButton>().GetHitObject(hit.collider.gameObject);
+                        hit.collider.GetComponent<InTrainObjectMake>().ChoiceSetOn();
                         //Debug.Log(hit.collider.gameObject.name + "  dkdkdkkdkdk   ");// + hit.collider.transform.root.gameObject.name);
+
+                        // 이거 getHitObjectRPC 이 함수안에 내용 주석처리했음
                         photonView.RPC("getHitObjectRPC", RpcTarget.AllBuffered, hit.collider.gameObject.GetPhotonView().ViewID);
                     }
 
@@ -106,7 +106,7 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
     [PunRPC]
     public void getHitObjectRPC(int hit_object_viewID)
     {
-        ChoiceButton.transform.parent.GetComponent<UI_ChoiceButton>().GetHitObject(PhotonView.Find(hit_object_viewID).gameObject);
+       // ChoiceButton.transform.parent.GetComponent<UI_ChoiceButton>().GetHitObject(PhotonView.Find(hit_object_viewID).gameObject);
     }
 
     public void ThisCamSetOnOff(bool _onoff)
