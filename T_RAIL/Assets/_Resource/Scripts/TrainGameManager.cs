@@ -13,6 +13,8 @@ public class TrainGameManager : MonoBehaviour
         passenger = 1,
         stationpassenger = 2,
         dustparticle = 3,
+        sofa = 4,
+        box = 5
     }
 
 
@@ -86,7 +88,15 @@ public class TrainGameManager : MonoBehaviour
 
     // 먼지 파티클
     public List<GameObject> DustParticle;
-    const int MAKE_DUSTPARTICLE_COUNT = 5;  public int GetPassengerCount=0; 
+    const int MAKE_DUSTPARTICLE_COUNT = 5;  public int GetPassengerCount=0;
+
+    // 소파
+    public List<GameObject> SofaManager;
+    const int MAKE_SOFA_COUNT = 15;
+
+    // 박스 
+    public List<GameObject> BoxManager;
+    const int MAKE_BOX_COUNT = 15;
 
 
     public int Scene_state=1;
@@ -117,6 +127,8 @@ public class TrainGameManager : MonoBehaviour
         CreateObject(Origin[(int)prefab_list.passenger], MAKE_PASSENGER_COUNT, (int)prefab_list.passenger); //승객생성
         CreateObject(Origin[(int)prefab_list.stationpassenger], MAKE_STATIONPASSENGER_COUNT, (int)prefab_list.stationpassenger); //승객생성
         CreateObject(Origin[(int)prefab_list.dustparticle], MAKE_DUSTPARTICLE_COUNT, (int)prefab_list.dustparticle); //승객생성
+        CreateObject(Origin[(int)prefab_list.sofa], MAKE_SOFA_COUNT, (int)prefab_list.sofa); //소파생성
+        CreateObject(Origin[(int)prefab_list.box], MAKE_BOX_COUNT, (int)prefab_list.box); //박스생성
     }
     public void Notice_EnemyAppear()
     {
@@ -147,6 +159,12 @@ public class TrainGameManager : MonoBehaviour
                     break;
                 case (int)prefab_list.dustparticle:
                     DustParticle.Add(obj);
+                    break;
+                case (int)prefab_list.sofa:
+                    SofaManager.Add(obj);
+                    break;
+                case (int)prefab_list.box:
+                    BoxManager.Add(obj);
                     break;
             }
         }
@@ -261,6 +279,59 @@ public class TrainGameManager : MonoBehaviour
                     return DustParticle[i];
                 }
                 return null;
+
+            case (int)prefab_list.sofa:
+
+                if (SofaManager == null)
+                {
+                    return null;
+                }
+                int s_Count = SofaManager.Count;
+
+                for (int i = 0; i < s_Count; i++)
+                {
+                    GameObject obj = SofaManager[i];
+
+                    //활성화 돼있으면
+                    if (obj.active == true)
+                    {
+                        // 리스트의 마지막까지 돌았는데 다 사용중이다?
+                        if (i == s_Count - 1)
+                        {
+                            CreateObject(obj, 1, _objIndex);
+                            return SofaManager[i + 1];
+                        }
+                        continue;
+                    }
+                    return SofaManager[i];
+                }
+                return null;
+            case (int)prefab_list.box:
+
+                if (BoxManager == null)
+                {
+                    return null;
+                }
+                int b_Count = BoxManager.Count;
+
+                for (int i = 0; i < b_Count; i++)
+                {
+                    GameObject obj = BoxManager[i];
+
+                    //활성화 돼있으면
+                    if (obj.active == true)
+                    {
+                        // 리스트의 마지막까지 돌았는데 다 사용중이다?
+                        if (i == b_Count - 1)
+                        {
+                            CreateObject(obj, 1, _objIndex);
+                            return BoxManager[i + 1];
+                        }
+                        continue;
+                    }
+                    return BoxManager[i];
+                }
+                return null;
             default:
                 return null;
 
@@ -322,6 +393,40 @@ public class TrainGameManager : MonoBehaviour
                     GameObject.Destroy(obj);
                 }
                 Station_PassengerManager = null;
+                break;
+
+            case (int)prefab_list.sofa:
+
+                if (SofaManager == null)
+                {
+                    return;
+                }
+
+                int s_Count = SofaManager.Count;
+
+                for (int i = 0; i < s_Count; i++)
+                {
+                    GameObject obj = SofaManager[i];
+                    GameObject.Destroy(obj);
+                }
+                SofaManager = null;
+                break;
+
+            case (int)prefab_list.box:
+
+                if (BoxManager == null)
+                {
+                    return;
+                }
+
+                int b_Count = BoxManager.Count;
+
+                for (int i = 0; i < b_Count; i++)
+                {
+                    GameObject obj = BoxManager[i];
+                    GameObject.Destroy(obj);
+                }
+                BoxManager = null;
                 break;
         }
     }

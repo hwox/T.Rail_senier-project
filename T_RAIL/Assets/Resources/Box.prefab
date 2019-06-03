@@ -698,6 +698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyInvenCanvas: {fileID: 223931662786602888}
+  allitem: {fileID: 0}
   HaveItemInfo: 
 --- !u!222 &222318842558725298
 CanvasRenderer:
@@ -763,7 +764,7 @@ Canvas:
   m_GameObject: {fileID: 1037222737307476}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 2
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -889,17 +890,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1037222737307476}
-  m_LocalRotation: {x: 0.061628446, y: 0.70441604, z: -0.06162845, w: 0.704416}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
+  m_LocalPosition: {x: 0, y: 0, z: -1.3}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.05}
   m_Children:
   - {fileID: 224919664440582398}
   m_Father: {fileID: 4980608217729224}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 10, y: 90.00001, z: 0}
+  m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -1.52, y: 1.98}
+  m_AnchoredPosition: {x: 0.2, y: 1.7}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224919664440582398

@@ -32,7 +32,6 @@ public class ChangeSky : MonoBehaviour
         while (true)
         {
             double i = 0.1 * time_count;
-            Debug.Log("ddddddddd" + i);
             GetComponent<MeshRenderer>().material.color = Color.Lerp(Color_A, Color_B, (float)i);
             // li.color = Color.Lerp(Light_A, Light_B, (float)i);
             time_count += 0.1f;
