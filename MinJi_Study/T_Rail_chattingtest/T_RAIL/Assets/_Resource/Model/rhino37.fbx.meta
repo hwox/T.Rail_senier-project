@@ -1,0 +1,189 @@
+fileFormatVersion: 2
+guid: c88b54b2f3e372943aac3efcf69a5d5a
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Back
+    100002: Head
+    100004: Head_end
+    100006: Leftarm
+    100008: Leftarm2
+    100010: Leftarm2_end
+    100012: LeftbowIK
+    100014: LeftbowIK_end
+    100016: Leftfoot
+    100018: Leftfoot_end
+    100020: LeftfootIK
+    100022: Lefthand
+    100024: Lefthand_end
+    100026: LefthandIK
+    100028: LeftkneeIK
+    100030: LeftkneeIK_end
+    100032: Leftleg
+    100034: Leftleg2
+    100036: Leftleg2_end
+    100038: Neck
+    100040: rhino
+    100042: //RootNode
+    100044: rhinobody
+    100046: rhinoear
+    100048: Rightarm
+    100050: Rightarm2
+    100052: Rightarm2_end
+    100054: RightbowIK
+    100056: RightbowIK_end
+    100058: Rightfoot
+    100060: Rightfoot_end
+    100062: RightfootIK
+    100064: Righthand
+    100066: Righthand_end
+    100068: RighthandIK
+    100070: RightkneeIK
+    100072: RightkneeIK_end
+    100074: Rightleg
+    100076: Rightleg2
+    100078: Rightleg2_end
+    100080: Root
+    100082: Tail
+    100084: Tail_end
+    100086: TailIK
+    100088: TailIK_end
+    400000: Back
+    400002: Head
+    400004: Head_end
+    400006: Leftarm
+    400008: Leftarm2
+    400010: Leftarm2_end
+    400012: LeftbowIK
+    400014: LeftbowIK_end
+    400016: Leftfoot
+    400018: Leftfoot_end
+    400020: LeftfootIK
+    400022: Lefthand
+    400024: Lefthand_end
+    400026: LefthandIK
+    400028: LeftkneeIK
+    400030: LeftkneeIK_end
+    400032: Leftleg
+    400034: Leftleg2
+    400036: Leftleg2_end
+    400038: Neck
+    400040: rhino
+    400042: //RootNode
+    400044: rhinobody
+    400046: rhinoear
+    400048: Rightarm
+    400050: Rightarm2
+    400052: Rightarm2_end
+    400054: RightbowIK
+    400056: RightbowIK_end
+    400058: Rightfoot
+    400060: Rightfoot_end
+    400062: RightfootIK
+    400064: Righthand
+    400066: Righthand_end
+    400068: RighthandIK
+    400070: RightkneeIK
+    400072: RightkneeIK_end
+    400074: Rightleg
+    400076: Rightleg2
+    400078: Rightleg2_end
+    400080: Root
+    400082: Tail
+    400084: Tail_end
+    400086: TailIK
+    400088: TailIK_end
+    2100000: Material
+    2100002: Material.001
+    4300000: rhinobody
+    4300002: rhinoear
+    7400000: rhinowalk.001
+    7400002: rhino|rhinoattack*1.5
+    7400004: rhino|rhinoattack*2
+    7400006: rhino|rhinoattack.*1
+    7400008: rhino|rhinorun
+    9500000: //RootNode
+    13700000: rhinobody
+    13700002: rhinoear
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
