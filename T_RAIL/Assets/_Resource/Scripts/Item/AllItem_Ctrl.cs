@@ -28,10 +28,15 @@ public class AllItem_Ctrl : MonoBehaviour
     GameObject LeftUIImage;
     GameObject RightUIImage;
 
-    int InPocket_Left; // 왼쪽 주머니 -> 왼쪽 손
-    int InPocket_Right; // 오른쪽 주머니 -> 오른쪽 손
+    public Image DragCursorSprite; // 마우스 드래그할 때 이미지
+    public int NowDragItemInfo; // 현재 드래그중인 아이템 정보
 
-  
+    //public GameObject LeftHand_ItemPocket; // 왼쪽 손 오브젝트
+    //public GameObject RightHand_ItemPocket; // 오른쪽 손 오브젝트
+
+    public int LeftHand_Pocket;
+    public int RightHand_Pocket;
+
     void Start()
     {
         LeftUIImage = ItemInhand.transform.GetChild(0).GetChild(0).gameObject;
@@ -62,28 +67,35 @@ public class AllItem_Ctrl : MonoBehaviour
         }
     }
 
-    void MyPocket_ImageSet()
+
+    public void Change_DragMouse(int _number)
     {
-
-        for(int i=0;i<ItemImage.Length; i++)
+        if (_number.Equals(0))
         {
-            if( i == InPocket_Left)
-            {
-                LeftUIImage.GetComponent<Image>().sprite = ItemImage[i];
-            }
-            if(i == InPocket_Right)
-            {
-                RightUIImage.GetComponent<Image>().sprite = ItemImage[i];
-            }
+            DragCursorSprite.sprite = null;
         }
-
+        else
+        {
+            DragCursorSprite.sprite = ItemImage[_number];
+            NowDragItemInfo = _number;
+        }
+    }
+    public void OnOff_DragMouse(bool _onoff)
+    {
+        if (_onoff)
+        {
+            DragCursorSprite.gameObject.SetActive(true);
+        }
+        else if (!_onoff)
+        {
+            DragCursorSprite.gameObject.SetActive(false);
+            NowDragItemInfo = 0;
+        }
     }
 
-
-    // 추가해야 될 것
-    // 아이템 드래그
-    // 드래그 1. 아이템 창에서 손으로. 손에 만약에 1~7 하여튼이 값이 아니고 다른 값이면 드래그해올 수 있고
-    // 드래그 되면 그게 여기에 등록
-    // 드래그 2. 아이템을 다른 공구같은거에 옮겨주기  
-
+    public void Position_DragMouse()
+    {
+        DragCursorSprite.transform.position = Input.mousePosition;
+    }
+   
 }
