@@ -38,7 +38,6 @@ public class SoundManager : MonoBehaviourPunCallbacks {
 
     public void TrainStage1_BGMSoundPlay()
     {
-        //BGM_Source.PlayOneShot(stage1BGM);
         BGM_Source.clip = stage1BGM;
         BGM_Source.Play();
     }
@@ -47,27 +46,23 @@ public class SoundManager : MonoBehaviourPunCallbacks {
     {
         Effect1_Source.clip = Machine_Gun_Sound;
         Effect1_Source.Play();
-        //Effect1_Source.PlayOneShot(Machine_Gun_Sound);
     }
 
     public void enemy_Sound_Play()
     {
         Effect2_Source.clip = enemy_Sound;
         Effect2_Source.Play();
-        //Effect2_Source.PlayOneShot(enemy_Sound);
     }
 
     public void Train_Sound_Play()
     {
         Effect3_Source.clip = Train_Sound;
         Effect3_Source.Play();
-        //Effect3_Source.PlayOneShot(Train_Sound);
     }
 
     public void enemy_attack_Sound_Play()
     {
         Effect2_Source.clip = enemy_attack_Sound;
         Effect2_Source.Play();
-        //Effect3_Source.PlayOneShot(Train_Sound);
     }
 }
