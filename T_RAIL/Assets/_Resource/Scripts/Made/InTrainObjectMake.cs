@@ -23,7 +23,6 @@ public class InTrainObjectMake : MonoBehaviour {
         if (!Box && !Sofa)
         {
             SetButtons.SetActive(true);
-            Debug.Log("왜자꾸 켜지냐고");
             ChoiceOn = true;
         }
     }

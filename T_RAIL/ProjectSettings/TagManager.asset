@@ -8,6 +8,8 @@ TagManager:
   - SubCamera
   - state
   - DragItem
+  - hand
+  - itemboxinven
   layers:
   - Default
   - TransparentFX

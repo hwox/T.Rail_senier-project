@@ -186,7 +186,31 @@ public class InBoxItem : MonoBehaviour
         // 마우스 버튼을 뗐음
         // 현재 슬롯의 정보 업데이트
         // 빈 이미지 객체를 비활성화
-        ItemImages[clickUI].sprite = allitem.ItemImage[clickUI_image];
+      //  ItemImages[clickUI].sprite = allitem.ItemImage[clickUI_image];
+
+        // 이게 끝인거같음
+        // 얘가 마지막 그러면 여기서 
+        if (!allitem.ItemCrack)
+        {
+            ItemImages[clickUI].sprite = allitem.ItemImage[clickUI_image];
+
+            allitem.ItemCrack = false;
+        } 
+        else if(allitem.ItemCrack)
+        {
+            ItemImages[clickUI].sprite = allitem.NullImage;
+
+            if(allitem.LeftFlag == 1)
+            {
+                allitem.SetLeftHandItem();
+            }
+            else if(allitem.RightFlag == 1)
+            {
+                allitem.SetRightHandItem();
+            }
+
+            allitem.ItemCrack = false;
+        }
     }
     public void DragMouse_Down(int _number)
     {
@@ -198,10 +222,10 @@ public class InBoxItem : MonoBehaviour
             allitem.DragCursorSprite.transform.position = Input.mousePosition;
             allitem.OnOff_DragMouse(true);
             clickUI = _number;
-            clickUI_image = HaveItemInfo[_number] - 1;
+            clickUI_image = HaveItemInfo[_number];
             DragEnable = true;
             // 잠깐 이미지 없애기
-            ItemImages[_number].sprite = null;
+            ItemImages[_number].sprite = allitem.StandardImage;
             // 그리고 드래그 이미지
             allitem.Change_DragMouse(clickUI_image);
         }
@@ -231,7 +255,7 @@ public class InBoxItem : MonoBehaviour
             // 이건 테스트할거라서 원래 위치로 돌아온걸로
             allitem.OnOff_DragMouse(false);
             clickUI = 0;
-            clickUI_image = 0;
+            clickUI_image = 0; 
         }
     }
 }

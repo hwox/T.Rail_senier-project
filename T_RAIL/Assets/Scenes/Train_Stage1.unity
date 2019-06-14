@@ -47497,6 +47497,7 @@ GameObject:
   - component: {fileID: 730615238}
   - component: {fileID: 730615237}
   - component: {fileID: 730615236}
+  - component: {fileID: 730615239}
   m_Layer: 5
   m_Name: Right
   m_TagString: hand
@@ -47597,6 +47598,87 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &730615239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 730615232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 730615236}
+          m_MethodName: DragMouse_Down
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 730615236}
+          m_MethodName: DragMouse_Up
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 5
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 730615236}
+          m_MethodName: DragMouse
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 730615236}
+          m_MethodName: DragMouse_End
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &731221877
 GameObject:
   m_ObjectHideFlags: 0
@@ -61498,7 +61580,7 @@ GameObject:
   - component: {fileID: 1040487701}
   - component: {fileID: 1040487700}
   m_Layer: 5
-  m_Name: Item
+  m_Name: L_Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61541,7 +61623,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 4b8d6f5d720f0d444bea72daa9e62fda, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2d9f4e684d1b74b4cacf7d9aa4cbb641, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -70597,6 +70679,7 @@ MonoBehaviour:
   StageNumber: 0
   ConditionCtrl: {fileID: 124372805}
   allitemCtrl: {fileID: 1539630737}
+  playerctrl: {fileID: 0}
   TrainCtrl: {fileID: 1304048000}
   StateCtrl: {fileID: 823881547}
   InGame_Notice: {fileID: 623184125}
@@ -70618,6 +70701,8 @@ MonoBehaviour:
   SofaManager: []
   BoxManager: []
   Scene_state: 1
+  LeftHandItem: 0
+  RightHandItem: 0
 --- !u!4 &1113577655
 Transform:
   m_ObjectHideFlags: 0
@@ -76077,7 +76162,7 @@ GameObject:
   - component: {fileID: 1225696610}
   - component: {fileID: 1225696609}
   m_Layer: 5
-  m_Name: Image
+  m_Name: R_Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76120,7 +76205,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: aca6f94278bf6684e8c76cd62fe748a9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2d9f4e684d1b74b4cacf7d9aa4cbb641, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -79593,6 +79678,7 @@ GameObject:
   - component: {fileID: 1296121878}
   - component: {fileID: 1296121877}
   - component: {fileID: 1296121876}
+  - component: {fileID: 1296121879}
   m_Layer: 5
   m_Name: Left
   m_TagString: hand
@@ -79693,6 +79779,87 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 200, y: 175, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1296121879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1296121872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1296121876}
+          m_MethodName: DragMouse_Down
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1296121876}
+          m_MethodName: DragMouse_Up
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 5
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1296121876}
+          m_MethodName: DragMouse
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1296121876}
+          m_MethodName: DragMouse_End
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &1298359103
 GameObject:
   m_ObjectHideFlags: 0
@@ -87518,6 +87685,8 @@ GameObject:
   - component: {fileID: 1434286456}
   - component: {fileID: 1434286458}
   - component: {fileID: 1434286457}
+  - component: {fileID: 1434286460}
+  - component: {fileID: 1434286459}
   m_Layer: 5
   m_Name: DragDrop
   m_TagString: DragItem
@@ -87577,6 +87746,33 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1434286455}
   m_CullTransparentMesh: 0
+--- !u!65 &1434286459
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1434286455}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 100, y: 100, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1434286460
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1434286455}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1436566775
 GameObject:
   m_ObjectHideFlags: 0
@@ -93048,18 +93244,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemImage:
-  - {fileID: 21300000, guid: e196fc41c87cb6048af264e2f446cbe9, type: 3}
-  - {fileID: 21300000, guid: 8ef5be899b94df443b5314cc38143b3b, type: 3}
-  - {fileID: 21300000, guid: 5464e55df71115743a3e73e98db99f66, type: 3}
-  - {fileID: 21300000, guid: 7569fae6d36337843872e978ff2bbb37, type: 3}
-  - {fileID: 21300000, guid: f3bc71942ecbcd442961154ef4003a09, type: 3}
-  - {fileID: 21300000, guid: 63932cb55775bc547a370245e4012ee9, type: 3}
+  - {fileID: 21300000, guid: aca6f94278bf6684e8c76cd62fe748a9, type: 3}
+  - {fileID: 21300000, guid: dd42040227200f740967ffca891d1397, type: 3}
+  - {fileID: 21300000, guid: 18ef9fc04689c624da8ce0920a6f2a20, type: 3}
+  - {fileID: 21300000, guid: 944389e8bff266a498434c61b5717df7, type: 3}
+  - {fileID: 21300000, guid: 4b8d6f5d720f0d444bea72daa9e62fda, type: 3}
+  - {fileID: 21300000, guid: 086863ac86518334ca4f6598f9f14afe, type: 3}
+  NullImage: {fileID: 21300000, guid: 2d9f4e684d1b74b4cacf7d9aa4cbb641, type: 3}
+  StandardImage: {fileID: 21300000, guid: 19a463c4c7473544c98fc3cd83165a12, type: 3}
   boxItem: []
   ItemInhand: {fileID: 1104002336}
   DragCursorSprite: {fileID: 1434286457}
   NowDragItemInfo: 0
+  LeftHand_PocketObject: {fileID: 1040487698}
+  RightHand_PocketObject: {fileID: 1225696607}
   LeftHand_Pocket: 0
   RightHand_Pocket: 0
+  ItemCrack: 0
+  LeftFlag: 0
+  RightFlag: 0
 --- !u!4 &1539630738
 Transform:
   m_ObjectHideFlags: 0

@@ -18,6 +18,8 @@ public class AllItem_Ctrl : MonoBehaviour
     }
 
     public Sprite[] ItemImage;
+    public Sprite NullImage;
+    public Sprite StandardImage; //기본 아이템창 백이미지
 
     int boxNumber; // 박스 총 몇개인지
 
@@ -31,17 +33,21 @@ public class AllItem_Ctrl : MonoBehaviour
     public Image DragCursorSprite; // 마우스 드래그할 때 이미지
     public int NowDragItemInfo; // 현재 드래그중인 아이템 정보
 
-    //public GameObject LeftHand_ItemPocket; // 왼쪽 손 오브젝트
-    //public GameObject RightHand_ItemPocket; // 오른쪽 손 오브젝트
+    public GameObject LeftHand_PocketObject; // 왼쪽 손 오브젝트
+    public GameObject RightHand_PocketObject; // 오른쪽 손 오브젝트
 
     public int LeftHand_Pocket;
     public int RightHand_Pocket;
+
+    public bool ItemCrack; // 아이템 옮겨졌는가?ㅜ
+    public int LeftFlag = 0; // 왼손에 닿았는가ㅎ
+    public int RightFlag = 0; // 오른손에 닿았는가 ㅎ
+
 
     void Start()
     {
         LeftUIImage = ItemInhand.transform.GetChild(0).GetChild(0).gameObject;
         RightUIImage = ItemInhand.transform.GetChild(1).GetChild(0).gameObject;
-
     }
 
     public void AddedItemBox(InBoxItem inbox)
@@ -66,19 +72,18 @@ public class AllItem_Ctrl : MonoBehaviour
             ItemInhand.SetActive(false);
         }
     }
-
-
     public void Change_DragMouse(int _number)
     {
-        if (_number.Equals(0))
-        {
-            DragCursorSprite.sprite = null;
-        }
-        else
-        {
-            DragCursorSprite.sprite = ItemImage[_number];
-            NowDragItemInfo = _number;
-        }
+        //if (_number.Equals(0))
+        //{
+        //    Debug.Log("응?");
+        //    DragCursorSprite.sprite = null;
+        //}
+        //else
+        //{
+        DragCursorSprite.sprite = ItemImage[_number-1];
+        NowDragItemInfo = _number;
+        // }
     }
     public void OnOff_DragMouse(bool _onoff)
     {
@@ -89,6 +94,7 @@ public class AllItem_Ctrl : MonoBehaviour
         else if (!_onoff)
         {
             DragCursorSprite.gameObject.SetActive(false);
+            ItemCrack = false;
             NowDragItemInfo = 0;
         }
     }
@@ -97,5 +103,19 @@ public class AllItem_Ctrl : MonoBehaviour
     {
         DragCursorSprite.transform.position = Input.mousePosition;
     }
-   
+
+    public void SetLeftHandItem()
+    {
+        TrainGameManager.instance.LeftHandItem = NowDragItemInfo;
+        LeftHand_Pocket = NowDragItemInfo;
+        LeftHand_PocketObject.GetComponent<Image>().sprite = ItemImage[LeftHand_Pocket-1];
+    }
+
+    public void SetRightHandItem()
+    {
+        TrainGameManager.instance.RightHandItem = NowDragItemInfo;
+        RightHand_Pocket = NowDragItemInfo;
+        RightHand_PocketObject.GetComponent<Image>().sprite = ItemImage[RightHand_Pocket-1];
+
+    }
 }

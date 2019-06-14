@@ -84,6 +84,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     float m_ChargeSpeed;
     bool m_Fired;
 
+    // 현재 손에 갖고 있는 아이템
+
 
     /// ////////////////////////////////////////////////////////////////////////
 
@@ -877,6 +879,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         _Bullet.GetComponent<Bullet_Ctrl>().CallMoveCoroutin(_value);
     }
 
-
+    
 
 }

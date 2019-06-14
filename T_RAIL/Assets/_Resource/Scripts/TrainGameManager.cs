@@ -55,6 +55,8 @@ public class TrainGameManager : MonoBehaviour
     //# ItemCtrl
     public AllItem_Ctrl allitemCtrl;
 
+    //# PlayerCtrl
+    public Player_Ctrl playerctrl;
 
     // # TrainCtrl
     public Train_Ctrl TrainCtrl;
@@ -100,6 +102,11 @@ public class TrainGameManager : MonoBehaviour
 
 
     public int Scene_state=1;
+
+
+    public int LeftHandItem;
+    public int RightHandItem;
+
 
     private void Awake()
     {
