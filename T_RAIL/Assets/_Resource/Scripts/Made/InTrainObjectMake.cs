@@ -23,7 +23,6 @@ public class InTrainObjectMake : MonoBehaviour {
         if (!Box && !Sofa)
         {
             SetButtons.SetActive(true);
-            Debug.Log("왜자꾸 켜지냐고");
             ChoiceOn = true;
         }
     }
@@ -109,5 +108,7 @@ public class InTrainObjectMake : MonoBehaviour {
 
     // 근데 만약에 이거 없애고 다른거 만들고 싶으면 delete누르고
     // 여기서 다른 걸로 바꾸는 함수, 기능 호출
+
+
 
 }

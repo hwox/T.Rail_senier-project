@@ -25,30 +25,50 @@ public class InBoxItem : MonoBehaviour
     [SerializeField]
     AllItem_Ctrl allitem;
 
-    public List<int> HaveItemInfo = new List<int>();
+    public int[] HaveItemInfo;
     int thisBoxIndex;
 
     bool BoxFull; // 박스가 꽉찼는지 아닌지 
+
+    int clickUI;
+    int clickUI_image;
+    public Image[] ItemImages; // 아이템창의 아이템 슬롯이미지 창
+
+    bool DragEnable = false;
 
     void Start()
     {
 
         allitem = TrainGameManager.instance.allitemCtrl;
-
+        ItemImages = new Image[6];
+        HaveItemInfo = new int[6];
         ActiveThisBox();
-
+        GetImageComponent();
 
         // 이 밑 for문은 테스트 하려고 랜덤으로 아이템 집어넣은 거임 
         // additem 수정되면 지워질 부분
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < HaveItemInfo.Length; i++)
         {
             int temp = Random.Range(1, 7);
-            AddItem(temp);
+
+            // -> temp 다음에 들어가는 i는 초기화를 위한 i임 수정 끝나면
+            // 받는 파라미터도 같이 지워야 됨
+            AddItem(temp, i);
         }
+
+
+        ShowInInventory();
+
     }
 
-    // 여기에 있는거를 add하고 delete까지 여기서
 
+    void GetImageComponent()
+    {
+        for (int i = 0; i < HaveItemInfo.Length; i++)
+        {
+            ItemImages[i] = MyInvenCanvas.transform.GetChild(0).GetChild(i).GetComponent<Image>();
+        }
+    }
     public void ActiveThisBox()
     {
         // active라는 말이 이 상자가 사용될 때
@@ -77,7 +97,7 @@ public class InBoxItem : MonoBehaviour
     public void OffBoxInven()
     {
         //  allitem.ItemInhand.SetActive(false);위에 동일한 거 true는 되는데 false는 안됨. 왜?
-      
+
         MyInvenCanvas.gameObject.SetActive(false);
         allitem.ItemInhand.SetActive(false);
     }
@@ -90,15 +110,29 @@ public class InBoxItem : MonoBehaviour
         thisBoxIndex = -99; // 일단 어떻게 사용할지 몰라서 쓰레기값 넣어주기 
     }
 
-    public void AddItem(int _item)
+    public void AddItem(int _item, int i)
     {
+
         if (!BoxFull)
         {
-            HaveItemInfo.Add(_item);
-            ShowInInventory();
-            if (HaveItemInfo.Count == 6)
+            if (HaveItemInfo[i].Equals(0))
             {
-                BoxFull = true;
+                // 비교해봐서 0번이 아닌 슬롯(비어있지 않은 슬롯)에 앞에부터 채워나가기
+                HaveItemInfo[i] = _item;
+            }
+            int BoxCount = 0;
+
+            for (int j = 0; j < HaveItemInfo.Length; j++)
+            {
+                if (HaveItemInfo[j] != 0)
+                {
+                    BoxCount += 1;
+
+                    if (BoxCount == 6)
+                    {
+                        BoxFull = true;
+                    }
+                }
             }
         }
         else
@@ -109,39 +143,37 @@ public class InBoxItem : MonoBehaviour
 
     public void DeleteItem(int _item)
     {
-        if (HaveItemInfo.Count > 0)
+        if (HaveItemInfo.Length > 0)
         {
             // 삭제
 
             BoxFull = false;
-
         }
     }
-
     void ShowInInventory()
     {
         // 인벤토리에 보이는거 이미지 등록
-        for (int i = 0; i < HaveItemInfo.Count; i++)
+        for (int i = 0; i < HaveItemInfo.Length; i++)
         {
             switch (HaveItemInfo[i])
             {
                 case (int)itemCategory.nail:
-                    MyInvenCanvas.transform.GetChild(0).GetChild(i).GetComponent<Image>().sprite = allitem.ItemImage[0];
+                    ItemImages[i].sprite = allitem.ItemImage[0];
                     break;
                 case (int)itemCategory.ironpan:
-                    MyInvenCanvas.transform.GetChild(0).GetChild(i).GetComponent<Image>().sprite = allitem.ItemImage[1];
+                    ItemImages[i].sprite = allitem.ItemImage[1];
                     break;
                 case (int)itemCategory.food_tomato:
-                    MyInvenCanvas.transform.GetChild(0).GetChild(i).GetComponent<Image>().sprite = allitem.ItemImage[2];
+                    ItemImages[i].sprite = allitem.ItemImage[2];
                     break;
                 case (int)itemCategory.food_bean:
-                    MyInvenCanvas.transform.GetChild(0).GetChild(i).GetComponent<Image>().sprite = allitem.ItemImage[3];
+                    ItemImages[i].sprite = allitem.ItemImage[3];
                     break;
                 case (int)itemCategory.food_chicken:
-                    MyInvenCanvas.transform.GetChild(0).GetChild(i).GetComponent<Image>().sprite = allitem.ItemImage[4];
+                    ItemImages[i].sprite = allitem.ItemImage[4];
                     break;
                 case (int)itemCategory.hammer:
-                    MyInvenCanvas.transform.GetChild(0).GetChild(i).GetComponent<Image>().sprite = allitem.ItemImage[5];
+                    ItemImages[i].sprite = allitem.ItemImage[5];
                     break;
                     //  case (int)itemCategory.spanner:
                     //    MyInvenCanvas.transform.GetChild(0).GetChild(i).GetComponent<Image>().sprite = allitem.ItemImage[7];
@@ -149,5 +181,81 @@ public class InBoxItem : MonoBehaviour
             }
         }
     }
+    public void DragMouse_Up()
+    {
+        // 마우스 버튼을 뗐음
+        // 현재 슬롯의 정보 업데이트
+        // 빈 이미지 객체를 비활성화
+      //  ItemImages[clickUI].sprite = allitem.ItemImage[clickUI_image];
 
+        // 이게 끝인거같음
+        // 얘가 마지막 그러면 여기서 
+        if (!allitem.ItemCrack)
+        {
+            ItemImages[clickUI].sprite = allitem.ItemImage[clickUI_image];
+
+            allitem.ItemCrack = false;
+        } 
+        else if(allitem.ItemCrack)
+        {
+            ItemImages[clickUI].sprite = allitem.NullImage;
+
+            if(allitem.LeftFlag == 1)
+            {
+                allitem.SetLeftHandItem();
+            }
+            else if(allitem.RightFlag == 1)
+            {
+                allitem.SetRightHandItem();
+            }
+
+            allitem.ItemCrack = false;
+        }
+    }
+    public void DragMouse_Down(int _number)
+    {
+        // 만약 해당 슬롯에 아이템이 없다면 아무일도 안하고      
+        // 아이템이 있으면 드래그.
+        // 그리고 여기서 애초에 처음 위치값도 지정해줘야할듯
+        if (HaveItemInfo[_number] != 0)
+        {
+            allitem.DragCursorSprite.transform.position = Input.mousePosition;
+            allitem.OnOff_DragMouse(true);
+            clickUI = _number;
+            clickUI_image = HaveItemInfo[_number];
+            DragEnable = true;
+            // 잠깐 이미지 없애기
+            ItemImages[_number].sprite = allitem.StandardImage;
+            // 그리고 드래그 이미지
+            allitem.Change_DragMouse(clickUI_image);
+        }
+        else if (HaveItemInfo[_number].Equals(0))
+        {
+            // nothing
+            clickUI = 0;
+        }
+        // 슬롯에 아이템이 존재하지 않으면 함수 종료
+        //  빈 이미지의 객체를 마우스의 위치로 가져온다.
+        // 슬롯의 이미지를 없애준다
+    }
+    public void DragMouse()
+    {
+        // 이미지 이동
+        // 빈 이미지의 위치를 마우스의 위치로 가져온다. 
+        if (DragEnable)
+        {
+            allitem.Position_DragMouse();
+        }
+    }
+    public void DragMouse_End()
+    {
+        if (DragEnable)
+        {
+            // 옮길 애들 위치 보내기 
+            // 이건 테스트할거라서 원래 위치로 돌아온걸로
+            allitem.OnOff_DragMouse(false);
+            clickUI = 0;
+            clickUI_image = 0; 
+        }
+    }
 }
