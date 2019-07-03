@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class AllItem_Ctrl : MonoBehaviour
+public class AllItem_Ctrl : MonoBehaviourPunCallbacks
 {
 
     public enum itemCategory
@@ -119,8 +120,38 @@ public class AllItem_Ctrl : MonoBehaviour
 
     }
 
+    public void ItemGet_FoodTomato_Button()
+    {
+        photonView.RPC("ItemGet_FoodTomato", RpcTarget.All);
+    }
 
-    
+    public void ItemGet_FoodBean_Button()
+    {
+        photonView.RPC("ItemGet_FoodBean", RpcTarget.All);
+    }
+
+    public void ItemGet_FoodChicken_Button()
+    {
+        photonView.RPC("ItemGet_FoodChicken", RpcTarget.All);
+    }
+
+    public void ItemGet_Nail_Button()
+    {
+        photonView.RPC("ItemGet_Nail", RpcTarget.All);
+    }
+
+    public void ItemGet_Hammer_Button()
+    {
+        photonView.RPC("ItemGet_Hammer", RpcTarget.All);
+
+    }
+
+    public void ItemGet_Ironpan_Button()
+    {
+        photonView.RPC("ItemGet_Ironpan", RpcTarget.All);
+    }
+
+    [PunRPC]
     public void ItemGet_FoodTomato()
     {
         //3
@@ -137,6 +168,8 @@ public class AllItem_Ctrl : MonoBehaviour
             }
         }
     }
+
+    [PunRPC]
     public void ItemGet_FoodBean()
     {
         // 4
@@ -150,6 +183,8 @@ public class AllItem_Ctrl : MonoBehaviour
             }
         }
     }
+
+    [PunRPC]
     public void ItemGet_FoodChicken()
     {
         // 5
@@ -163,6 +198,8 @@ public class AllItem_Ctrl : MonoBehaviour
             }
         }
     }
+
+    [PunRPC]
     public void ItemGet_Nail()
     {
         // 1 
@@ -176,6 +213,8 @@ public class AllItem_Ctrl : MonoBehaviour
             }
         }
     }
+
+    [PunRPC]
     public void ItemGet_Hammer()
     {
         // 6
@@ -189,6 +228,8 @@ public class AllItem_Ctrl : MonoBehaviour
             }
         }
     }
+
+    [PunRPC]
     public void ItemGet_Ironpan()
     {
         // 2
@@ -202,5 +243,6 @@ public class AllItem_Ctrl : MonoBehaviour
             }
         }
     }
+
 
 }

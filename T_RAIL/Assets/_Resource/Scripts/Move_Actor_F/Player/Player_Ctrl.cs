@@ -87,6 +87,10 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     // 현재 손에 갖고 있는 아이템
 
 
+
+
+    //
+    bool attack_possible = true;
     /// ////////////////////////////////////////////////////////////////////////
 
     public playerListController_minj playerListController;
@@ -214,12 +218,9 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
 
+      
 
 
-        if (other.gameObject.layer.Equals(GameValue.statiopassenger_layer))
-        {
-            //Debug.Log("dd");
-        }
     }
     private void OnTriggerStay(Collider other)
     {
@@ -251,6 +252,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 // Debug.Log(TrainGameManager.instance.GetPassengerCount);
             }
         }
+        //표지판에서 기차출발시키기
         if (other.gameObject.layer.Equals(GameValue.sign_layer))
         {
             if (Input.GetKeyDown(KeyCode.V))
@@ -259,7 +261,30 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 TrainGameManager.instance.Scene_state = 3;
             }
         }
+        //닭 공격하기
+        if (other.gameObject.layer.Equals(GameValue.chicken_layer))
+        {
+
+            if (Input.GetKeyDown(KeyCode.Space)&& attack_possible==true)
+            {
+                //Debug.Log("공격");
+                //Debug.Log(other.gameObject.GetComponent<Chicken_Ctrl>().HP);
+                other.gameObject.GetComponent<Chicken_Ctrl>().DestPerson = this.gameObject;//닭이 따라가는 대상 선정
+                other.gameObject.GetComponent<Chicken_Ctrl>().BeatenTrue();// 닭 애니메이션 및 행동 변경 함수 호출
+                other.gameObject.GetComponent<Chicken_Ctrl>().gameObject.transform.Translate(0,0,-1.0f);// 뒤로 밀어내기
+                //other.gameObject.GetComponent<Chicken_Ctrl>().state = 1;
+                attack_possible = false;
+            }
+            else
+            {
+
+            }
+        }
+        
+
     }
+   
+
 
     [PunRPC]
     public void passengerTouch(int i)
@@ -337,7 +362,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             || other.gameObject.layer.Equals(GameValue.itembox_layer))
         {
             player.WallConflictDirections_Reset();
-        }
+        }   
+
     }
 
 
@@ -492,7 +518,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     public void changeMy_Where_Train(int playerID, int i)
     {
-        Debug.LogError("시발!!! : " + playerID + " i 는 :" + i);
+        //Debug.LogError("시발!!! : " + playerID + " i 는 :" + i);
         playerListController.playerList[playerID].player.Where_Train = i;
         playerListController.eachPlayerIn[playerID] = playerListController.playerList[playerID].player.Where_Train;
 
@@ -780,6 +806,16 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             anim.SetBool("IsWalk", false);
             runTime = 0;
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            anim.SetBool("IsAttack", true);
+        }
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            anim.SetBool("IsAttack", false);
+            attack_possible = true;
+        }
+
     }
 
     void Fire()

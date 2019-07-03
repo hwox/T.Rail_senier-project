@@ -6187,7 +6187,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1539630737}
-        m_MethodName: ItemGet_Ironpan
+        m_MethodName: ItemGet_Ironpan_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -20716,7 +20716,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1539630737}
-        m_MethodName: ItemGet_FoodTomato
+        m_MethodName: ItemGet_FoodTomato_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -59845,12 +59845,12 @@ Prefab:
     - target: {fileID: 114391987435625026, guid: 5d9648c5713c24c4ead0d991e0595880,
         type: 2}
       propertyPath: viewIdField
-      value: 1
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114391987435625026, guid: 5d9648c5713c24c4ead0d991e0595880,
         type: 2}
       propertyPath: InstantiationId
-      value: 1
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114505191909343002, guid: 5d9648c5713c24c4ead0d991e0595880,
         type: 2}
@@ -60766,7 +60766,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1539630737}
-        m_MethodName: ItemGet_FoodChicken
+        m_MethodName: ItemGet_FoodChicken_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -80399,7 +80399,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1539630737}
-        m_MethodName: ItemGet_Nail
+        m_MethodName: ItemGet_Nail_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -87164,7 +87164,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1539630737}
-        m_MethodName: ItemGet_FoodBean
+        m_MethodName: ItemGet_FoodBean_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -95249,7 +95249,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1539630737}
-        m_MethodName: ItemGet_Hammer
+        m_MethodName: ItemGet_Hammer_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -98559,6 +98559,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1539630738}
   - component: {fileID: 1539630737}
+  - component: {fileID: 1539630739}
   m_Layer: 0
   m_Name: Item_Ctrl
   m_TagString: Untagged
@@ -98610,6 +98611,27 @@ Transform:
   m_Father: {fileID: 823881548}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1539630739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1539630736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  viewIdField: 150
+  InstantiationId: 150
+  isRuntimeInstantiated: 0
 --- !u!1 &1540082186
 GameObject:
   m_ObjectHideFlags: 0

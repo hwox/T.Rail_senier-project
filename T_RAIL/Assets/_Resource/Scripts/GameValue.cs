@@ -25,6 +25,7 @@ static class GameValue {
     public const int bullet_layer = 22;
     public const int enemy_layer = 23;
     public const int train_layer = 24;
+    public const int chicken_layer = 25;
     public const int sign_layer = 29;
     public const int statiopassenger_layer = 30;
     public const int wall_layer = 31;
@@ -44,8 +45,8 @@ static class GameValue {
 
 
     // 다음역 까지의 거리
-    public const float NextStationMeter = 4000.0f; // 4km -> 기본속도 3기준 4분 // 4000인걸 1000으로 줄여놨음
-    //public const float NextStationMeter = 200.0f; // 4km -> 기본속도 3기준 4분 // 4000인걸 1000으로 줄여놨음
+    //public const float NextStationMeter = 4000.0f; // 4km -> 기본속도 3기준 4분 // 4000인걸 1000으로 줄여놨음
+    public const float NextStationMeter = 200.0f; // 4km -> 기본속도 3기준 4분 // 4000인걸 1000으로 줄여놨음
 
     // 기차 간격
     public const float Train_distance = -13.0f;
@@ -78,6 +79,9 @@ static class GameValue {
     public const float T_Sofa_ObjectY = 0.6f;
     public const float T_ObjectX = 1.3f;
     public static readonly float[] T_ObjectZ = new float[4] { 3.5f, 1.5f, -0.3f, -2.0f };
+
+    //playerMaxHp
+    public const int PlayerMaxHp = 10;
 
 
 
