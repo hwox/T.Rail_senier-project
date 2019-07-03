@@ -49,5 +49,13 @@ MonoBehaviour:
   - Train_Delete
   - TrainSceneLoad
   - stateChange
+  - ChoiceBox
+  - ChoiceSofa
+  - ItemGet_FoodBean
+  - ItemGet_FoodChicken
+  - ItemGet_FoodTomato
+  - ItemGet_Hammer
+  - ItemGet_Ironpan
+  - ItemGet_Nail
   DisableAutoOpenWizard: 1
   ShowSettings: 1
