@@ -28,7 +28,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: New State
-  m_Speed: 5
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -40,7 +40,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 95e318bbc321e7e4183a139c13eb2709, type: 3}
+  m_Motion: {fileID: 7400000, guid: 30d2e113252432643a8aa3bb405cdfde, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

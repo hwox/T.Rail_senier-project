@@ -85,6 +85,8 @@ public class InTrainObjectMake : MonoBehaviour {
         SetButtons.SetActive(false);
         this.gameObject.SetActive(false);
 
+       // GameValue.InTrainAllBoxCount += 1;
+
     }
 
     // 누르고 3초 후에 만들어주기 약간 뚝딱뚝딱 이런거 ㅎㅎ

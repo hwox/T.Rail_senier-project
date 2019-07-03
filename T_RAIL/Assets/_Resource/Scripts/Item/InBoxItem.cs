@@ -47,15 +47,14 @@ public class InBoxItem : MonoBehaviour
 
         // 이 밑 for문은 테스트 하려고 랜덤으로 아이템 집어넣은 거임 
         // additem 수정되면 지워질 부분
-        for (int i = 0; i < HaveItemInfo.Length; i++)
-        {
-            int temp = Random.Range(1, 7);
+        //   for (int i = 0; i < HaveItemInfo.Length; i++)
+        //  {
+        //    int temp = Random.Range(1, 7);
 
-            // -> temp 다음에 들어가는 i는 초기화를 위한 i임 수정 끝나면
-            // 받는 파라미터도 같이 지워야 됨
-            AddItem(temp, i);
-        }
-
+        // -> temp 다음에 들어가는 i는 초기화를 위한 i임 수정 끝나면
+        // 받는 파라미터도 같이 지워야 됨
+        //     AddItem(temp, i);
+        // }
 
         ShowInInventory();
 
@@ -110,15 +109,20 @@ public class InBoxItem : MonoBehaviour
         thisBoxIndex = -99; // 일단 어떻게 사용할지 몰라서 쓰레기값 넣어주기 
     }
 
-    public void AddItem(int _item, int i)
+    public void AddItem(int _item)
     {
 
         if (!BoxFull)
         {
-            if (HaveItemInfo[i].Equals(0))
+            for (int i = 0; i < HaveItemInfo.Length; i++)
             {
-                // 비교해봐서 0번이 아닌 슬롯(비어있지 않은 슬롯)에 앞에부터 채워나가기
-                HaveItemInfo[i] = _item;
+                if (HaveItemInfo[i].Equals(0))
+                {
+                    // 비교해봐서 0번이 아닌 슬롯(비어있지 않은 슬롯)에 앞에부터 채워나가기
+                    HaveItemInfo[i] = _item;
+
+                    break;
+                }
             }
             int BoxCount = 0;
 
@@ -134,6 +138,7 @@ public class InBoxItem : MonoBehaviour
                     }
                 }
             }
+            ShowInInventory();
         }
         else
         {
@@ -257,5 +262,10 @@ public class InBoxItem : MonoBehaviour
             clickUI = 0;
             clickUI_image = 0; 
         }
+    }
+
+    public bool IsBoxFull()
+    {
+        return BoxFull;
     }
 }
