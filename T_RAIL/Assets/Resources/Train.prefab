@@ -922,6 +922,7 @@ GameObject:
   - component: {fileID: 114077255038464478}
   - component: {fileID: 114766929177505650}
   - component: {fileID: 114246163877717286}
+  - component: {fileID: 114886308601131758}
   m_Layer: 0
   m_Name: Train
   m_TagString: Untagged
@@ -2359,7 +2360,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1595425419640846}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 3, z: -2.21}
+  m_LocalPosition: {x: 0, y: 2.82, z: -2.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4748090832404912}
@@ -5479,7 +5480,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 6
+  InstantiationId: 1
   isRuntimeInstantiated: 0
 --- !u!114 &114464645578090168
 MonoBehaviour:
@@ -5558,7 +5559,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 5
+  InstantiationId: 2
   isRuntimeInstantiated: 0
 --- !u!114 &114510260847638252
 MonoBehaviour:
@@ -5889,7 +5890,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114246163877717286}
   viewIdField: 0
-  InstantiationId: 2
+  InstantiationId: 5
   isRuntimeInstantiated: 0
 --- !u!114 &114796798767661726
 MonoBehaviour:
@@ -6049,6 +6050,20 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114886308601131758
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1595425419640846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5893f184c729b854cb086be874225266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakedelay: 5
+  shaketime: 0.8
+  shakeY: 0.05
 --- !u!114 &114915070480957044
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6147,7 +6162,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 1
+  InstantiationId: 6
   isRuntimeInstantiated: 0
 --- !u!114 &114935222264801052
 MonoBehaviour:
