@@ -27,6 +27,10 @@ public class Train_Object : MonoBehaviourPunCallbacks
     float Coroutine_calltime; // 코루틴 안끄곸ㅋㅋㅋㅋ 그 안에 호출할 상황이면 0.01
                               // 호출안할 상황이면 0.5
 
+
+    int[] ThisTrainNowObjects; // 4개의 영역에 각각 어떤 오브젝트가 들어가있는지 
+
+
    // 미리가지고 있어야 할 기차 내부의 메타
     public GameObject Machine_gun;
     public GameObject Ladder;
@@ -59,6 +63,7 @@ public class Train_Object : MonoBehaviourPunCallbacks
         tr = gameObject.transform;
         Coroutine_calltime = 0.5f;
         StartCoroutine(Train_Position_Setting_Change());
+        ThisTrainNowObjects = new int[4];
         InTrainObjectUsed = new bool[4];
         Init_AddTrain();
     }
@@ -237,9 +242,9 @@ public class Train_Object : MonoBehaviourPunCallbacks
         // 여기서 이제 전달받은 오브젝트를 
         // setactive해주고 위치를 알맞게 조정해주는 것
 
-            Debug.Log("위임 : " + InTrainObjectUsed[0]);
-
+        // 이 if문 왜 주석처리해야하냐면 어차피 수리도구로 바꿔야 돼서 주석처리해야함
         if (!InTrainObjectUsed[_whatnumber]) {
+            ThisTrainNowObjects[_whatnumber] = _kind;
             _obj.transform.parent = this.transform.GetChild(1);
             switch (_kind)
             {
@@ -247,17 +252,22 @@ public class Train_Object : MonoBehaviourPunCallbacks
                     //소파
                     _obj.transform.localPosition = new Vector3(GameValue.T_ObjectX, GameValue.T_Sofa_ObjectY, GameValue.T_ObjectZ[_whatnumber]);
                     _obj.transform.Rotate(0, 0, -90);
+                    _obj.GetComponent<InSofaPassenger>().ActiveThisSofa();
                     break;
                 case 2:
                     // 박스 
                     _obj.transform.localPosition = new Vector3(GameValue.T_ObjectX, GameValue.T_Box_ObjectY, GameValue.T_ObjectZ[_whatnumber]);
+
+
+                    _obj.GetComponent<InBoxItem>().ActiveThisBox();
+                    _obj.SetActive(true);
                     break;
 
             }
 
             _obj.SetActive(true);
+            
             // 부모로 이 밑으로 달아주고 로컬 포지션을 바꿨음
-            Debug.Log("아래임 : " + InTrainObjectUsed[0]);
             InTrainObjectUsed[_whatnumber] = true; // 사용중이니까 false시킴
         }
         // 없앨때는 parent true시키고 다시 저리로 가져다 줘야 함. 아니면 그냥 delete 시켜버리거나

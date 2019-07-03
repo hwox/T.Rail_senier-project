@@ -83,6 +83,7 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks {
 
         TrainGameManager.instance.TrainCtrl.trainscript[WhereTrain_Object - 1].InTrainObject_Setting(TrainGameManager.instance.GetObject(5), WhatNumber_Object-1, 2);
 
+        
 
         SetButtons.SetActive(false);
         this.gameObject.SetActive(false);

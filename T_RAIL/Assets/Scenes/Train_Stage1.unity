@@ -38104,7 +38104,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &531018144
 Transform:
   m_ObjectHideFlags: 0
@@ -38112,7 +38112,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 531018143}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.53, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -43459,7 +43459,7 @@ GameObject:
   - component: {fileID: 614513086}
   - component: {fileID: 614513087}
   m_Layer: 0
-  m_Name: SofaPassengr_Ctrl
+  m_Name: SofaSitPassenger_Ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43489,6 +43489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d55ce781d8ea8140ab1fe676c6a26a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passengers: []
 --- !u!1 &614815550
 GameObject:
   m_ObjectHideFlags: 0
@@ -56835,7 +56836,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &868470212
 Transform:
   m_ObjectHideFlags: 0
@@ -56843,7 +56844,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 868470211}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 4.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -74151,6 +74152,7 @@ MonoBehaviour:
   playerctrl: {fileID: 0}
   TrainCtrl: {fileID: 1304048000}
   StateCtrl: {fileID: 823881547}
+  SofaSitPassengerCtrl: {fileID: 614513085}
   InGame_Notice: {fileID: 623184125}
   InGame_Text: {fileID: 1145628807}
   Info_Canvas: {fileID: 540288765}

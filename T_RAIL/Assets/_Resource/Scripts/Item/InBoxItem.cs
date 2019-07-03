@@ -38,26 +38,11 @@ public class InBoxItem : MonoBehaviourPunCallbacks
 
     void Start()
     { 
-        allitem = TrainGameManager.instance.allitemCtrl;
         ItemImages = new Image[6];
         HaveItemInfo = new int[6];
-        ActiveThisBox();
+       // ActiveThisBox();
         GetImageComponent();
-
-        // 이 밑 for문은 테스트 하려고 랜덤으로 아이템 집어넣은 거임 
-        // additem 수정되면 지워질 부분
-        //   for (int i = 0; i < HaveItemInfo.Length; i++)
-        //  {
-        //    int temp = Random.Range(1, 7);
-
-        // -> temp 다음에 들어가는 i는 초기화를 위한 i임 수정 끝나면
-        // 받는 파라미터도 같이 지워야 됨
-        //     AddItem(temp, i);
-        // }
-
-        ShowInInventory();
     }
-
 
     void GetImageComponent()
     {
@@ -68,11 +53,12 @@ public class InBoxItem : MonoBehaviourPunCallbacks
     }
     public void ActiveThisBox()
     {
-        // active라는 말이 이 상자가 사용될 때
-        // 아직 이걸 오브젝트 풀링으로 할지 어떻게 할지 정하질 않아서
-        // 함수 이름 그냥 activethisbox라고 해놨음 (active될 때 쓸거니까.)
+        allitem = TrainGameManager.instance.allitemCtrl;
         allitem.AddedItemBox(this);
         thisBoxIndex = allitem.boxItem.Count - 1;
+
+
+        ShowInInventory();
     }
     public void InActiveThisBox()
     {
