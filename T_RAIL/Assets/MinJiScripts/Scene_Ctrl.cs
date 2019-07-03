@@ -67,7 +67,8 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
         
             Train_Ctrl.Run_Meter = 0;
             Train_Ctrl.Hide();
-         TrainGameManager.instance.Scene_state = 2;
+            TrainGameManager.instance.Scene_state = 2;
+            TrainGameManager.instance.GetPassengerCount = 0;
             //Debug.LogError("id : " + (PhotonNetwork.LocalPlayer.ActorNumber - 1 )+ "  floor : " + playerListController.playerList[PhotonNetwork.LocalPlayer.ActorNumber - 1].player.Where_Floor);
             Debug.LogError("몇명 들어와있는지: " + playerListController.playerList.Count);
 

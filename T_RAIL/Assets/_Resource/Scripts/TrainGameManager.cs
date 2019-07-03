@@ -42,8 +42,8 @@ public class TrainGameManager : MonoBehaviour
 
     public int totalPassenger; // 승객을 총 태운 횟수
     public int totalkickoutEnemy; // 적을 총 물리친 횟수
-    public int nowPassenger; // 현재 기차 내부에 남아있는 승객의 총 수
-
+    public int nowPassenger=0; // 현재 기차 내부에 남아있는 승객의 총 수
+    public int GetPassengerCount = 0;//역에서 구출한 승객수
 
     public int StageNumber;
 
@@ -90,7 +90,7 @@ public class TrainGameManager : MonoBehaviour
 
     // 먼지 파티클
     public List<GameObject> DustParticle;
-    const int MAKE_DUSTPARTICLE_COUNT = 5;  public int GetPassengerCount=0;
+    const int MAKE_DUSTPARTICLE_COUNT = 5;  
 
     // 소파
     public List<GameObject> SofaManager;
@@ -106,6 +106,8 @@ public class TrainGameManager : MonoBehaviour
 
     public int LeftHandItem;
     public int RightHandItem;
+
+  
 
 
     private void Awake()

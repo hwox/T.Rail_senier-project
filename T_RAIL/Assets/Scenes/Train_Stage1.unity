@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45083314, g: 0.50074697, b: 0.57467777, a: 1}
+  m_IndirectSpecularColor: {r: 0.45083255, g: 0.50074613, b: 0.574677, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -72091,6 +72091,7 @@ MonoBehaviour:
   totalPassenger: 0
   totalkickoutEnemy: 0
   nowPassenger: 0
+  GetPassengerCount: 0
   StageNumber: 0
   ConditionCtrl: {fileID: 124372805}
   allitemCtrl: {fileID: 1539630737}
@@ -72112,7 +72113,6 @@ MonoBehaviour:
   PassengerManager: []
   Station_PassengerManager: []
   DustParticle: []
-  GetPassengerCount: 0
   SofaManager: []
   BoxManager: []
   Scene_state: 1
@@ -123659,6 +123659,18 @@ Prefab:
     - target: {fileID: 1595425419640846, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4983519418243534, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.048
+      objectReference: {fileID: 0}
+    - target: {fileID: 4983519418243534, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.0331
+      objectReference: {fileID: 0}
+    - target: {fileID: 4983519418243534, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.0036
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
