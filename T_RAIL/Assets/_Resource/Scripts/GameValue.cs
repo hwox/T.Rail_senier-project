@@ -78,4 +78,8 @@ static class GameValue {
     public const float T_Sofa_ObjectY = 0.6f;
     public const float T_ObjectX = 1.3f;
     public static readonly float[] T_ObjectZ = new float[4] { 3.5f, 1.5f, -0.3f, -2.0f };
+
+
+
+
 }

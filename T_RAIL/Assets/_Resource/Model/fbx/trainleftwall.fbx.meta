@@ -1,0 +1,243 @@
+fileFormatVersion: 2
+guid: f1a4016adb7dbc742951aeb42f0285bc
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Cube.013
+    100002: Cube.018
+    100004: leftwall.001
+    100006: leftwall.1-1
+    100008: leftwall.1-2
+    100010: leftwall.2-1
+    100012: leftwall.2-2
+    100014: leftwall.3-1
+    100016: leftwall.3-2
+    100018: leftwall.4-1
+    100020: leftwall.4-2
+    100022: leftwall0
+    100024: Plane.002
+    100026: //RootNode
+    400000: Cube.013
+    400002: Cube.018
+    400004: leftwall.001
+    400006: leftwall.1-1
+    400008: leftwall.1-2
+    400010: leftwall.2-1
+    400012: leftwall.2-2
+    400014: leftwall.3-1
+    400016: leftwall.3-2
+    400018: leftwall.4-1
+    400020: leftwall.4-2
+    400022: leftwall0
+    400024: Plane.002
+    400026: //RootNode
+    2100000: wood1
+    2100002: Material.001
+    2100004: wood1.003
+    2100006: wood1.005
+    2100008: Material.003
+    2100010: No Name
+    2100012: BROWN
+    2100014: Material.004
+    2300000: Cube.013
+    2300002: Cube.018
+    2300004: leftwall.001
+    2300006: leftwall.1-1
+    2300008: leftwall.1-2
+    2300010: leftwall.2-1
+    2300012: leftwall.2-2
+    2300014: leftwall.3-1
+    2300016: leftwall.3-2
+    2300018: leftwall.4-1
+    2300020: leftwall.4-2
+    2300022: leftwall0
+    2300024: Plane.002
+    3300000: Cube.013
+    3300002: Cube.018
+    3300004: leftwall.001
+    3300006: leftwall.1-1
+    3300008: leftwall.1-2
+    3300010: leftwall.2-1
+    3300012: leftwall.2-2
+    3300014: leftwall.3-1
+    3300016: leftwall.3-2
+    3300018: leftwall.4-1
+    3300020: leftwall.4-2
+    3300022: leftwall0
+    3300024: Plane.002
+    4300000: leftwall.1-1
+    4300002: leftwall.2-1
+    4300004: leftwall.3-1
+    4300006: leftwall.4-1
+    4300008: leftwall.1-2
+    4300010: leftwall.2-2
+    4300012: leftwall.3-2
+    4300014: leftwall.4-2
+    4300016: leftwall0
+    4300018: leftwall.001
+    4300020: Cube.013
+    4300022: Cube.018
+    4300024: Plane.002
+    7400000: leftwall.1-1|Action
+    7400002: leftwall.1-1|Action.001
+    7400004: leftwall.1-1|Action.002
+    7400006: leftwall.2-1|Action
+    7400008: leftwall.2-1|Action.001
+    7400010: leftwall.2-1|Action.002
+    7400012: leftwall.3-1|Action
+    7400014: leftwall.3-1|Action.001
+    7400016: leftwall.3-1|Action.002
+    7400018: leftwall.4-1|Action
+    7400020: leftwall.4-1|Action.001
+    7400022: leftwall.4-1|Action.002
+    7400024: leftwall.1-2|Action
+    7400026: leftwall.1-2|Action.001
+    7400028: leftwall.1-2|Action.002
+    7400030: leftwall.2-2|Action
+    7400032: leftwall.2-2|Action.001
+    7400034: leftwall.2-2|Action.002
+    7400036: leftwall.3-2|Action
+    7400038: leftwall.3-2|Action.001
+    7400040: leftwall.3-2|Action.002
+    7400042: leftwall.4-2|Action
+    7400044: leftwall.4-2|Action.001
+    7400046: leftwall.4-2|Action.002
+    7400048: leftwall0|Action
+    7400050: leftwall0|Action.001
+    7400052: leftwall0|Action.002
+    7400054: leftwall.001|Action
+    7400056: leftwall.001|Action.001
+    7400058: leftwall.001|Action.002
+    7400060: Cube.013|Action
+    7400062: Cube.013|Action.001
+    7400064: Cube.013|Action.002
+    7400066: Cube.018|Action
+    7400068: Cube.018|Action.001
+    7400070: Cube.018|Action.002
+    7400072: Plane.002|Action
+    7400074: Plane.002|Action.001
+    7400076: Plane.002|Action.002
+    9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BROWN
+    second: {fileID: 2100000, guid: d040cc786aca1394d8667a34a8f9c8ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: 7fb1f26ea0a861c46a1d0f59ee8551c8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.003
+    second: {fileID: 2100000, guid: 34449a0396d807c4688da3e462c42f86, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.004
+    second: {fileID: 2100000, guid: 945a5e4e46075f34990df43b55adade8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: c5f28fa4649df8847b5076bdf440c154, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wood1
+    second: {fileID: 2100000, guid: 1e90e6cbe1cfa474cb9802894f5d13db, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wood1.003
+    second: {fileID: 2100000, guid: 52748f49a40df3543922b83f0ae94bdf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wood1.005
+    second: {fileID: 2100000, guid: 75c59d19ade64344f9f6596801b0e0ab, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

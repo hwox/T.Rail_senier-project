@@ -118,4 +118,89 @@ public class AllItem_Ctrl : MonoBehaviour
         RightHand_PocketObject.GetComponent<Image>().sprite = ItemImage[RightHand_Pocket-1];
 
     }
+
+
+    
+    public void ItemGet_FoodTomato()
+    {
+        //3
+
+        // 모든 박스를 검사 중 해당 박스가 full이 아닐 경우
+        // if(!boxitem[i].isboxfull())
+        for(int i=0;i< boxItem.Count; i++)
+        {
+            if (!boxItem[i].IsBoxFull())
+            {
+                // 앞의 순서대로 박스가 full이 아니면 여기에 들어가기
+                boxItem[i].AddItem(3);
+                break;
+            }
+        }
+    }
+    public void ItemGet_FoodBean()
+    {
+        // 4
+        for (int i = 0; i < boxItem.Count; i++)
+        {
+            if (!boxItem[i].IsBoxFull())
+            {
+                // 앞의 순서대로 박스가 full이 아니면 여기에 들어가기
+                boxItem[i].AddItem(4);
+                break;
+            }
+        }
+    }
+    public void ItemGet_FoodChicken()
+    {
+        // 5
+        for (int i = 0; i < boxItem.Count; i++)
+        {
+            if (!boxItem[i].IsBoxFull())
+            {
+                // 앞의 순서대로 박스가 full이 아니면 여기에 들어가기
+                boxItem[i].AddItem(5);
+                break;
+            }
+        }
+    }
+    public void ItemGet_Nail()
+    {
+        // 1 
+        for (int i = 0; i < boxItem.Count; i++)
+        {
+            if (!boxItem[i].IsBoxFull())
+            {
+                // 앞의 순서대로 박스가 full이 아니면 여기에 들어가기
+                boxItem[i].AddItem(1);
+                break;
+            }
+        }
+    }
+    public void ItemGet_Hammer()
+    {
+        // 6
+        for (int i = 0; i < boxItem.Count; i++)
+        {
+            if (!boxItem[i].IsBoxFull())
+            {
+                // 앞의 순서대로 박스가 full이 아니면 여기에 들어가기
+                boxItem[i].AddItem(6);
+                break;
+            }
+        }
+    }
+    public void ItemGet_Ironpan()
+    {
+        // 2
+        for (int i = 0; i < boxItem.Count; i++)
+        {
+            if (!boxItem[i].IsBoxFull())
+            {
+                // 앞의 순서대로 박스가 full이 아니면 여기에 들어가기
+                boxItem[i].AddItem(2);
+                break;
+            }
+        }
+    }
+
 }
