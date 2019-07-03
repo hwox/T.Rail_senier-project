@@ -95,7 +95,6 @@ public class PlayerHand_Item : MonoBehaviour
                 // 왼손
                 if (allitem.LeftHand_Pocket != 0)
                 {
-                    Debug.Log("ㅇㅇ");
                     allitem.DragCursorSprite.transform.position = Input.mousePosition;
                     allitem.OnOff_DragMouse(true);
                     clickUI = allitem.LeftHand_Pocket;
