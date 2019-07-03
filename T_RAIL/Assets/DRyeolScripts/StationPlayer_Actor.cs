@@ -29,7 +29,7 @@ public class StationPlayer_Actor : Move_Actor
                 Direction = 1;
                 break;
             case 's':
-                position.z -= 0.1f * speed * Time.deltaTime * Directions[1];
+
                 rotate.y = 180;
                 Direction = 2;
                 break;
