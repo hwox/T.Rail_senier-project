@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45083314, g: 0.50074697, b: 0.57467777, a: 1}
+  m_IndirectSpecularColor: {r: 0.45083255, g: 0.50074613, b: 0.574677, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -72091,6 +72091,7 @@ MonoBehaviour:
   totalPassenger: 0
   totalkickoutEnemy: 0
   nowPassenger: 0
+  GetPassengerCount: 0
   StageNumber: 0
   ConditionCtrl: {fileID: 124372805}
   allitemCtrl: {fileID: 1539630737}
@@ -72112,7 +72113,6 @@ MonoBehaviour:
   PassengerManager: []
   Station_PassengerManager: []
   DustParticle: []
-  GetPassengerCount: 0
   SofaManager: []
   BoxManager: []
   Scene_state: 1
@@ -115976,19 +115976,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TrainUI:
-  - {fileID: 1645204193}
-  - {fileID: 668433458}
-  - {fileID: 1755634428}
-  - {fileID: 1989974843}
-  - {fileID: 1806026526}
-  - {fileID: 2026307405}
-  - {fileID: 1915584893}
-  - {fileID: 2005751076}
-  - {fileID: 1380460300}
-  - {fileID: 2137960932}
-  - {fileID: 1536935895}
-  - {fileID: 526864633}
-  - {fileID: 731221877}
+  - {fileID: 1298359103}
+  - {fileID: 100161416}
+  - {fileID: 1145190841}
+  - {fileID: 1506753224}
+  - {fileID: 213334377}
+  - {fileID: 1445837709}
+  - {fileID: 1168343096}
+  - {fileID: 279647062}
+  - {fileID: 1815050661}
+  - {fileID: 844393045}
+  - {fileID: 660675378}
+  - {fileID: 295020713}
+  - {fileID: 1609333825}
   playerListController: {fileID: 342035268}
 --- !u!114 &1826282891
 MonoBehaviour:
@@ -123659,6 +123659,18 @@ Prefab:
     - target: {fileID: 1595425419640846, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4983519418243534, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.048
+      objectReference: {fileID: 0}
+    - target: {fileID: 4983519418243534, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.0331
+      objectReference: {fileID: 0}
+    - target: {fileID: 4983519418243534, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.0036
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
