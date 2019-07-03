@@ -262,6 +262,7 @@ GameObject:
   - component: {fileID: 4636019729379312}
   - component: {fileID: 95675676972102676}
   - component: {fileID: 65056596399525552}
+  - component: {fileID: 114659167903753528}
   m_Layer: 30
   m_Name: Passenger
   m_TagString: Untagged
@@ -826,6 +827,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114659167903753528
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1678285436382366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c923119cb77d6b6478b268f7f049f60c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &137159762747080668
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

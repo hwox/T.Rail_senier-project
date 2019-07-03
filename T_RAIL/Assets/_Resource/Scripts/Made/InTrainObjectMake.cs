@@ -44,12 +44,12 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks {
             if (rand == 0)
             {
                 // 소파만들기
-                //photonView.RPC("ChoiceSofa", RpcTarget.All, 1, WhatNumber_Object);
+               // photonView.RPC("ChoiceSofa", RpcTarget.All, 1, WhatNumber_Object);
             }
             else
             {
                 //박스만들기
-                //photonView.RPC("ChoiceBox", RpcTarget.All, 1, WhatNumber_Object);
+               // photonView.RPC("ChoiceBox", RpcTarget.All, 1, WhatNumber_Object);
             }
         }
     }

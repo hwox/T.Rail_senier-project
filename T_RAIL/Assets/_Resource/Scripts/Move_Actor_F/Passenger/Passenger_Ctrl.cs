@@ -7,23 +7,34 @@ public class Passenger_Ctrl : MonoBehaviour {
 
     Passenger_Actor pass;
 
+    public bool Passenger_Live; // 태우고 소파에 앉으면 sitpassenger에서 이거 호출
+
+
     private void Awake()
-    {
-        DontDestroyOnLoad(gameObject); // 근데 gamemanager밑에 child로 넣으면 얘도 dontdestroy를 따로 해줘야 될 필요가 있나?
+    { 
         pass = new Passenger_Actor();
     }
 
-  
-    public void Passenger_Add()
+    private void Update()
     {
-        // 승객 추가
+        if(Passenger_Live)
+        {
+            
+
+
+
+        }
+    }
+
+    public void Passenger_LiveOn()
+    {
+
+        pass.HP = 100; // HP
+        pass.Disease = 0; // 질병수치
+
+
+        Passenger_Live = true;
 
     }
 
-
-
-
-    // 승객 추가 
-    // 1. 역에서 승객이 보인다.(여기저기 서있음) -> 승객을 클릭하면 태울거냐고 Ui 뜸
-    // 2. 
 }
