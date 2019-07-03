@@ -42,6 +42,7 @@ public class Train_Object : MonoBehaviourPunCallbacks
     public GameObject[] choiceInTrainObject;
     [SerializeField]
     public Train_Ctrl ctrl;
+
     PhotonView photonView;
 
     // public GameObject Ladder_collider;

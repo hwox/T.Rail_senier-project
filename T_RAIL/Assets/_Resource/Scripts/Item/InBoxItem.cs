@@ -37,8 +37,7 @@ public class InBoxItem : MonoBehaviour
     bool DragEnable = false;
 
     void Start()
-    {
-
+    { 
         allitem = TrainGameManager.instance.allitemCtrl;
         ItemImages = new Image[6];
         HaveItemInfo = new int[6];
@@ -57,7 +56,6 @@ public class InBoxItem : MonoBehaviour
         // }
 
         ShowInInventory();
-
     }
 
 

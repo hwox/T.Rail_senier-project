@@ -82,6 +82,9 @@ public class InTrainObjectMake : MonoBehaviour {
 
         TrainGameManager.instance.TrainCtrl.trainscript[WhereTrain_Object - 1].InTrainObject_Setting(TrainGameManager.instance.GetObject(4), WhatNumber_Object-1, 1);
 
+
+        
+
         SetButtons.SetActive(false);
         this.gameObject.SetActive(false);
 
