@@ -22,6 +22,8 @@ public class Player_Actor : Move_Actor {
             }
         }
 
+        HP = GameValue.PlayerMaxHp;
+
         speed = 15.0f; // speed 는 km/h 로 따지나 
         Directions = new int[4];
 
