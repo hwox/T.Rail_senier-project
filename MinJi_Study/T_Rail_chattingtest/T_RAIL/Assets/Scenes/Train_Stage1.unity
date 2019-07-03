@@ -70612,7 +70612,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 568, y: 0}
+  m_SizeDelta: {x: 568, y: 19}
   m_Pivot: {x: 0, y: 0}
 --- !u!1 &1155276005
 GameObject:
@@ -97152,7 +97152,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chatNewComponent: {fileID: 1695896977}
-  idInput: {fileID: 0}
 --- !u!114 &1695896977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97168,17 +97167,12 @@ MonoBehaviour:
   ChannelsToJoinOnConnect:
   - Region
   - Guild
-  FriendsList:
-  - Joe
-  - Jane
-  - Bob
   HistoryLengthToFetch: 0
+  selectedChannelName: 
   ChatPanel: {fileID: 2094471995}
-  UserIdFormPanel: {fileID: 0}
   InputFieldChat: {fileID: 664027089}
   CurrentChannelText: {fileID: 1155048286}
   ChannelToggleToInstantiate: {fileID: 86587078}
-  FriendListUiItemtoInstantiate: {fileID: 993390845}
   ShowState: 1
   TestLength: 2048
 --- !u!1 &1699289062
@@ -123503,7 +123497,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2094471995
 RectTransform:
   m_ObjectHideFlags: 0

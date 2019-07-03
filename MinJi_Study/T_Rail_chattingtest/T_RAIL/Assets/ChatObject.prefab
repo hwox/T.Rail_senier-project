@@ -1217,7 +1217,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chatNewComponent: {fileID: 114574085719190844}
-  idInput: {fileID: 0}
 --- !u!114 &114298356481917828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1662,24 +1661,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChannelsToJoinOnConnect:
   - Region
-  - Guild
-  FriendsList:
-  - Joe
-  - Jane
-  - Bob
+  - 
   HistoryLengthToFetch: 0
-  missingAppIdErrorPanel: {fileID: 0}
-  ConnectingLabel: {fileID: 0}
+  selectedChannelName: 
   ChatPanel: {fileID: 224583844255861734}
-  UserIdFormPanel: {fileID: 0}
   InputFieldChat: {fileID: 114215358882503318}
   CurrentChannelText: {fileID: 114898432506486612}
   ChannelToggleToInstantiate: {fileID: 114414721571455158}
-  FriendListUiItemtoInstantiate: {fileID: 1933840683664352}
   ShowState: 1
-  Title: {fileID: 0}
-  StateText: {fileID: 0}
-  UserIdText: {fileID: 0}
   TestLength: 2048
 --- !u!114 &114580618961931888
 MonoBehaviour:
