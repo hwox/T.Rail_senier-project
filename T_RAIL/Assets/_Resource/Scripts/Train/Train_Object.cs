@@ -218,7 +218,6 @@ public class Train_Object : MonoBehaviourPunCallbacks
         for (int i = 0; i < 4; i++)
         {
             this.gameObject.transform.GetChild(1).GetChild(i).gameObject.GetComponent<InTrainObjectMake>().InitSetting(ctrl.train.Count, i+1);
-
         }
 
     }
@@ -237,7 +236,9 @@ public class Train_Object : MonoBehaviourPunCallbacks
     {
         // 여기서 이제 전달받은 오브젝트를 
         // setactive해주고 위치를 알맞게 조정해주는 것
- 
+
+            Debug.Log("위임 : " + InTrainObjectUsed[0]);
+
         if (!InTrainObjectUsed[_whatnumber]) {
             _obj.transform.parent = this.transform.GetChild(1);
             switch (_kind)
@@ -256,6 +257,7 @@ public class Train_Object : MonoBehaviourPunCallbacks
 
             _obj.SetActive(true);
             // 부모로 이 밑으로 달아주고 로컬 포지션을 바꿨음
+            Debug.Log("아래임 : " + InTrainObjectUsed[0]);
             InTrainObjectUsed[_whatnumber] = true; // 사용중이니까 false시킴
         }
         // 없앨때는 parent true시키고 다시 저리로 가져다 줘야 함. 아니면 그냥 delete 시켜버리거나

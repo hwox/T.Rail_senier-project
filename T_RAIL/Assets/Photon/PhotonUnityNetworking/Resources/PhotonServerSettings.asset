@@ -49,5 +49,7 @@ MonoBehaviour:
   - Train_Delete
   - TrainSceneLoad
   - stateChange
+  - ChoiceBox
+  - ChoiceSofa
   DisableAutoOpenWizard: 1
   ShowSettings: 1
