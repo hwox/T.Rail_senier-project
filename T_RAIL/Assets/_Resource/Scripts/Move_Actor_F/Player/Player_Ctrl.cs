@@ -33,7 +33,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     public Transform LeftShoulder;
     public Transform RightShoulder;
     Animator anim;
-
+    Rigidbody ri;
     public Color hoverColor = Color.white;
     Highlighter highlighter;
 
@@ -89,8 +89,10 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
 
 
-    //
-    bool attack_possible = true;
+    //역 공격
+    public GameObject attackleach;
+    public bool attack_possible = true;
+
     /// ////////////////////////////////////////////////////////////////////////
 
     public playerListController_minj playerListController;
@@ -141,6 +143,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         anim = GetComponent<Animator>();
         tr = GetComponent<Transform>();
         jump_now = true;
+        ri = GetComponent<Rigidbody>();
+
 
         Attack_Gap = 1.0f;
         ContinuousFire = true;
@@ -218,10 +222,18 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
 
-      
+        if (other.gameObject.layer.Equals(GameValue.chicken_layer))//닭에게 공격 받기
+        {
+            player.HP--;
+            Debug.Log(player.HP);
+            //gameObject.transform.Translate(0, 0, -1.0f);
+            
+        }
 
 
-    }
+
+
+        }
     private void OnTriggerStay(Collider other)
     {
 
@@ -261,26 +273,17 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 TrainGameManager.instance.Scene_state = 3;
             }
         }
-        //닭 공격하기
-        if (other.gameObject.layer.Equals(GameValue.chicken_layer))
+
+
+        //계란 줍기
+        if (other.gameObject.layer.Equals(GameValue.egg_layer))
         {
-
-            if (Input.GetKeyDown(KeyCode.Space)&& attack_possible==true)
+            if (Input.GetKeyDown(KeyCode.V))
             {
-                //Debug.Log("공격");
-                //Debug.Log(other.gameObject.GetComponent<Chicken_Ctrl>().HP);
-                other.gameObject.GetComponent<Chicken_Ctrl>().DestPerson = this.gameObject;//닭이 따라가는 대상 선정
-                other.gameObject.GetComponent<Chicken_Ctrl>().BeatenTrue();// 닭 애니메이션 및 행동 변경 함수 호출
-                other.gameObject.GetComponent<Chicken_Ctrl>().gameObject.transform.Translate(0,0,-1.0f);// 뒤로 밀어내기
-                //other.gameObject.GetComponent<Chicken_Ctrl>().state = 1;
-                attack_possible = false;
-            }
-            else
-            {
-
+                other.gameObject.SetActive(false);
             }
         }
-        
+
 
     }
    
@@ -809,11 +812,16 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         if (Input.GetKeyDown(KeyCode.Space))
         {
             anim.SetBool("IsAttack", true);
+            if (attack_possible)
+            {
+                attackleach.GetComponent<Attack>().attack = true;
+            }
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
             anim.SetBool("IsAttack", false);
             attack_possible = true;
+          
         }
 
     }

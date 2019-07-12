@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 07a4819926b98f0479e6ab4f2756b3af
+guid: bde08fb109c7d864bbe916f43b88102f
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -66,8 +66,9 @@ ModelImporter:
     7400000: chicken|attack
     7400002: chicken|attack2
     7400004: chicken|beaten
-    7400006: chicken|search
-    7400008: chicken|walk
+    7400006: chicken|death
+    7400008: chicken|search
+    7400010: chicken|walk
     9500000: //RootNode
     13700000: Cube
   externalObjects:
@@ -125,7 +126,7 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 1
+      loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -174,6 +175,34 @@ ModelImporter:
       takeName: chicken|beaten
       firstFrame: 0
       lastFrame: 19
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: chicken|death
+      takeName: chicken|death
+      firstFrame: 0
+      lastFrame: 39
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -266,7 +295,7 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 0
+    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0

@@ -10,8 +10,9 @@ public class Chicken_Ctrl : MonoBehaviour
     NavMeshAgent nav;
     public GameObject[] dest;
     public GameObject DestPerson;
+    public GameObject egg;
     Vector3 prePos;
-    public int state = 0;
+    public bool live = true;
     //state 0= 걷기 ,1= 공격 ,2= 공격당함
     int NextDestNum;
     public int HP=5;
@@ -27,22 +28,9 @@ public class Chicken_Ctrl : MonoBehaviour
         StartCoroutine("BeatenFalse");
         HP-=1;
         if(HP<=0)
-        {
-            StopCoroutine("GotoDestPreson");
-            StopCoroutine("BeatenFalse");
-            this.gameObject.SetActive(false);
-            
-        }
+          StartCoroutine("Death");               
     }
-    IEnumerator BeatenFalse()//공격받고 다시 맞는 애니메이션 false하기
-    {
-      
-            yield return new WaitForSeconds(0.2f);
-            anim.SetBool("Is Beaten", false);
-        
-    
 
-    }
 
     // Use this for initialization
     void Start()
@@ -58,9 +46,15 @@ public class Chicken_Ctrl : MonoBehaviour
     void Update()
     {
 
+    }
+ 
 
+    IEnumerator FindNextDest()// 무작위 위치 찾기
+    {
 
-
+        NextDestNum = Random.Range(0, dest.Length);
+        // Debug.Log(NextDestNum);
+        yield return 5;
     }
 
     IEnumerator GotoDest()//닭이 무작위로 정해진 위치로 향해 가기
@@ -86,20 +80,12 @@ public class Chicken_Ctrl : MonoBehaviour
 
     }
 
-    IEnumerator FindNextDest()// 무작위 위치 찾기
-    {
-
-        NextDestNum = Random.Range(0, dest.Length);
-        // Debug.Log(NextDestNum);
-        yield return 5;
-    }
-
 
     IEnumerator GotoDestPreson()// 목표 사람으로 따라가기
     {
         while (true)
         {
-            if (Vector3.Distance(transform.position, DestPerson.transform.position) > 3.0f)
+            if (Vector3.Distance(transform.position, DestPerson.transform.position) > 2.8f)
             {
                 nav.speed = 2.5f;
                 nav.SetDestination(DestPerson.transform.position);
@@ -113,4 +99,31 @@ public class Chicken_Ctrl : MonoBehaviour
         }
         
     }
+
+    IEnumerator BeatenFalse()//공격받고 다시 맞는 애니메이션 false하기
+    {
+
+        yield return new WaitForSeconds(0.2f);
+
+        anim.SetBool("Is Beaten", false);
+
+    }
+
+    IEnumerator Death()//죽기
+    {
+        live = false;
+        StopCoroutine("GotoDestPreson");
+        StopCoroutine("BeatenFalse");
+        anim.SetBool("Is Beaten", false);
+        Debug.Log("죽음");
+        anim.SetBool("Is Death", true);
+        yield return new WaitForSeconds(2.7f);
+
+        egg.SetActive(true);
+        egg.transform.position = this.gameObject.transform.position;
+        this.gameObject.SetActive(false);
+
+
+    }
+
 }
