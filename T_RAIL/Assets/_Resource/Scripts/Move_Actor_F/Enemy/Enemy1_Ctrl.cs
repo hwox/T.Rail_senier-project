@@ -52,7 +52,6 @@ public class Enemy1_Ctrl : MonoBehaviourPunCallbacks
         this.gameObject.SetActive(false);
 
        // StartCoroutine(Enemy_ActRoutine());
-
     }
 
 
