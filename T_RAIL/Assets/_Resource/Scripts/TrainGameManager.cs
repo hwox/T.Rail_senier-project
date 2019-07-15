@@ -238,7 +238,6 @@ public class TrainGameManager : MonoBehaviour
                     return PassengerManager[i];
                 }
                 return null;
-
             case (int)prefab_list.stationpassenger:
 
                 if (Station_PassengerManager == null)
@@ -325,7 +324,7 @@ public class TrainGameManager : MonoBehaviour
                     return null;
                 }
                 int b_Count = BoxManager.Count;
-
+          
                 for (int i = 0; i < b_Count; i++)
                 {
                     GameObject obj = BoxManager[i];
@@ -344,6 +343,7 @@ public class TrainGameManager : MonoBehaviour
                     return BoxManager[i];
                 }
                 return null;
+
             default:
                 return null;
 

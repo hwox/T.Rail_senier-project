@@ -85,6 +85,7 @@ static class GameValue {
     public const int PlayerMaxHp = 10;
 
 
-
-
+    // 아이템 사용
+    public const int HungryDecrease = 30; // 음식먹으면
+    public const int DiseaseDncrease = 30; // 약먹으면 
 }

@@ -32,9 +32,8 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
             photonView.RPC("TrainSceneLoad", RpcTarget.All);
             TrainGameManager.instance.Scene_state = 1;
         }
-
-        
 	}
+
 
     [PunRPC]
     public void SetTrainPlayer()// 기차로 갈때
