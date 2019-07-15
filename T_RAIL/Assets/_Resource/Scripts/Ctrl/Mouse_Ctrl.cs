@@ -39,7 +39,6 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-
         if (ThisCamOn)
         {
             // UI이 위가 아니면
@@ -48,25 +47,19 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, IgnoreRay))
             {
-              
                 if (Input.GetMouseButtonDown(0) && EventSystem.current.IsPointerOverGameObject() == false)
                 {
-
-
-
                     // 만약에 마우스 클릭이 안된다?
                     // max distance 200.0f을 mathf.infinity로 바꿔볼것
                     //if (Physics.Raycast(ray, out hit))
                     //{
                     //   // Debug.Log(hit.collider.gameObject.layer);
                     //}
-
                     if (hit.collider.gameObject.layer.Equals(GameValue.itembox_layer))
                     {
                         // 상자일 경우!
                         //Inventory.SetActive(true);
                         // Vector3 m_Position = Input.mousePosition;
-
                         //Inventory.transform.position = Input.mousePosition;
                         //new Vector3(m_Position.x, m_Position.y, m_Position.z);
                         hit.collider.GetComponent<InBoxItem>().OpenBoxInven();
@@ -75,8 +68,7 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
                     else if (hit.collider.gameObject.layer.Equals(GameValue.passenger_layer))
                     {
                         // 승객일 경우 
-                        //  hit.collider.GetComponent<Passenger_Ctrl>().
-                        Debug.Log("씅객");
+                        hit.collider.GetComponent<Passenger_Ctrl>().ClickForPassengerCare();
                     }
                     else if (hit.collider.gameObject.layer.Equals(GameValue.choice_layer))
                     {

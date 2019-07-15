@@ -904,11 +904,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             {
                 if (((i * traindistance) + dist2) < position && ((i * traindistance) - dist2) > position)
                 {
-                    //Debug.Log("index 여기" + (i + 1));
-                    //if (player.Where_Floor == 4) return;
-
                     photonView.RPC("changeMy_Where_Train", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber - 1, i + 1);
-                    //player.Where_Train = i + 1;
                 }
 
             }
