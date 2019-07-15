@@ -260,8 +260,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                         photonView.RPC("passengerTouch", RpcTarget.All, i); //, eachPlayerIn[i]);
                     }
                 }
-                TrainGameManager.instance.GetPassengerCount++;
-                // Debug.Log(TrainGameManager.instance.GetPassengerCount);
             }
         }
         //표지판에서 기차출발시키기
@@ -293,6 +291,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     public void passengerTouch(int i)
     {
         TrainGameManager.instance.Station_PassengerManager[i].gameObject.SetActive(false);
+        TrainGameManager.instance.GetPassengerCount++;
+        Debug.Log("GetPassengerCount " + TrainGameManager.instance.GetPassengerCount);
     }
 
     private void OnTriggerExit(Collider other)
