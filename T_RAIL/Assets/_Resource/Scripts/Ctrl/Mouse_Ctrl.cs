@@ -43,21 +43,23 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
         if (ThisCamOn)
         {
             // UI이 위가 아니면
-            if (Input.GetMouseButtonDown(0) && EventSystem.current.IsPointerOverGameObject() == false)
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, IgnoreRay))
             {
-
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-
-               
-                // 만약에 마우스 클릭이 안된다?
-                // max distance 200.0f을 mathf.infinity로 바꿔볼것
-                //if (Physics.Raycast(ray, out hit))
-                //{
-                //   // Debug.Log(hit.collider.gameObject.layer);
-                //}
-                if (Physics.Raycast(ray, out hit, Mathf.Infinity, IgnoreRay))
+              
+                if (Input.GetMouseButtonDown(0) && EventSystem.current.IsPointerOverGameObject() == false)
                 {
+
+
+
+                    // 만약에 마우스 클릭이 안된다?
+                    // max distance 200.0f을 mathf.infinity로 바꿔볼것
+                    //if (Physics.Raycast(ray, out hit))
+                    //{
+                    //   // Debug.Log(hit.collider.gameObject.layer);
+                    //}
 
                     if (hit.collider.gameObject.layer.Equals(GameValue.itembox_layer))
                     {
@@ -73,6 +75,8 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
                     else if (hit.collider.gameObject.layer.Equals(GameValue.passenger_layer))
                     {
                         // 승객일 경우 
+                        //  hit.collider.GetComponent<Passenger_Ctrl>().
+                        Debug.Log("씅객");
                     }
                     else if (hit.collider.gameObject.layer.Equals(GameValue.choice_layer))
                     {
@@ -99,6 +103,11 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
                     }
 
                 }
+
+                else if (hit.collider.gameObject.layer.Equals(GameValue.passenger_layer))
+                {
+                    hit.collider.GetComponent<Passenger_Ctrl>().PointerEnter();
+                }
             }
         }
     }
@@ -106,7 +115,7 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
     [PunRPC]
     public void getHitObjectRPC(int hit_object_viewID)
     {
-       // ChoiceButton.transform.parent.GetComponent<UI_ChoiceButton>().GetHitObject(PhotonView.Find(hit_object_viewID).gameObject);
+        // ChoiceButton.transform.parent.GetComponent<UI_ChoiceButton>().GetHitObject(PhotonView.Find(hit_object_viewID).gameObject);
     }
 
     public void ThisCamSetOnOff(bool _onoff)

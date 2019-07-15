@@ -5,7 +5,9 @@ using UnityEngine;
 public class SofaSitPassenger_Ctrl : MonoBehaviour
 {
 
-
+    // 이 스크립트는 현재 소파에 앉아있는 승객을 '총'관리하는 스크립트임
+    // 각각 개별의 승객 관리는 Passenger_Ctrl에서 따로 함
+   
 
     // 현재 소파에 앉아있는 승객을 총관리
     public List<InSofaPassenger> passengers = new List<InSofaPassenger>();
@@ -19,11 +21,7 @@ public class SofaSitPassenger_Ctrl : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
 
     public void AddedSofa(InSofaPassenger insofa)
     {
@@ -44,9 +42,6 @@ public class SofaSitPassenger_Ctrl : MonoBehaviour
         {
             for (int i = 0; i < temp; i++)
             {
-                // 다음 해야될일?
-                // 승객 클릭하면 승객 속성 고나리같은거?
-                // 그리고 승객 hp 줄어들고 질병ㅇ수치 관리하는거
 
                 for (int j = 0; j < passengers.Count; j++)
                 {

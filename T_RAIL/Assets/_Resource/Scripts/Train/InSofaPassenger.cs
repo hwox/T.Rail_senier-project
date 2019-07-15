@@ -5,6 +5,12 @@ using UnityEngine;
 public class InSofaPassenger : MonoBehaviour {
 
 
+    //Sofa에 달려있는 스크립트인데 
+    // 사실상 소파는 승객이 앉아있는지 아닌지만 관리하면 돼서
+    // 이렇게 지었다.
+    // 가 아니고 Box랑 맞추다보니까 이렇게 만들어졌는데
+    // 죄송함ㅠ
+
     public bool NowSit; // 현재 승객이 앉아있는지?
 
     [SerializeField]
@@ -13,15 +19,6 @@ public class InSofaPassenger : MonoBehaviour {
     GameObject NowSitPassengerObject;
     int thisSofaIndex;
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public void ActiveThisSofa()
     {
@@ -43,8 +40,7 @@ public class InSofaPassenger : MonoBehaviour {
 
         NowSitPassengerObject.transform.parent = this.transform;
         NowSitPassengerObject.SetActive(true);
-        NowSitPassengerObject.GetComponent<Animator>().SetBool("IsSit", true);
-        NowSitPassengerObject.transform.localPosition = Vector3.zero;
+        NowSitPassengerObject.GetComponent<Passenger_Ctrl>().Passenger_LiveOn();
 
         Quaternion rot = Quaternion.identity;
         rot.eulerAngles = new Vector3(0, 90, 0);
@@ -58,7 +54,7 @@ public class InSofaPassenger : MonoBehaviour {
 
     }
 
-    public void StandUpPassenger()
+    public void SofaHaveNotPassenger()
     {
         NowSit = false;
     }
