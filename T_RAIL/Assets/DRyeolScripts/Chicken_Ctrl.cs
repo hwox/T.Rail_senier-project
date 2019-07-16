@@ -8,9 +8,9 @@ public class Chicken_Ctrl : MonoBehaviour
 
     Animator anim;
     NavMeshAgent nav;
-    public GameObject[] dest;
+   
     public GameObject DestPerson;
-    public GameObject egg;
+    GameObject SpwanManager;
     Vector3 prePos;
     public bool live = true;
     //state 0= 걷기 ,1= 공격 ,2= 공격당함
@@ -35,9 +35,11 @@ public class Chicken_Ctrl : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
         nav = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-
+        SpwanManager = GameObject.Find("ChickenManager");
+        Debug.Log(SpwanManager.gameObject.transform.position.z);
         StartCoroutine("GotoDest");
         StartCoroutine("FindNextDest");
     }
@@ -52,16 +54,17 @@ public class Chicken_Ctrl : MonoBehaviour
     IEnumerator FindNextDest()// 무작위 위치 찾기
     {
 
-        NextDestNum = Random.Range(0, dest.Length);
+        NextDestNum = Random.Range(0, 10);
         // Debug.Log(NextDestNum);
         yield return 5;
     }
 
     IEnumerator GotoDest()//닭이 무작위로 정해진 위치로 향해 가기
     {
+        GameObject[] Cdest = (GameObject[])SpwanManager.gameObject.GetComponent<ChickenManager>().dest.Clone();
         while (true)
         {
-            nav.SetDestination(dest[NextDestNum].transform.position);
+            nav.SetDestination(Cdest[NextDestNum].transform.position);
             if (Vector3.Distance(transform.position, prePos) > 0.01f)
             {
                 // anim.SetBool("Is Beaten", false);
@@ -119,6 +122,7 @@ public class Chicken_Ctrl : MonoBehaviour
         anim.SetBool("Is Death", true);
         yield return new WaitForSeconds(2.7f);
 
+        GameObject egg = TrainGameManager.instance.GetObject(7);
         egg.SetActive(true);
         egg.transform.position = this.gameObject.transform.position;
         this.gameObject.SetActive(false);

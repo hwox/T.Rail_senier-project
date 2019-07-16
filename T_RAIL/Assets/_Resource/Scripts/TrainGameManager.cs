@@ -194,7 +194,7 @@ public class TrainGameManager : MonoBehaviour
                     ChickenManager.Add(obj);
                     break;
                 case (int)prefab_list.egg:
-                    ChickenManager.Add(obj);
+                    EggManager.Add(obj);
                     break;
             }
         }
