@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Train_Stage1-2.unity
     guid: cf964890cbb00af409e93ea365e3a7be
+  - enabled: 1
+    path: Assets/Scenes/Train_Stage2.unity
+    guid: 37c7db5851d11774fa80f227f32d5082
   m_configObjects: {}

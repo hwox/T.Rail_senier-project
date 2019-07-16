@@ -9,6 +9,8 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
     public Train_Ctrl Train_Ctrl;
 
 
+    bool TestMeterMode; // test용 모드위해 추가하는 거
+
 	// Use this for initialization
 	void Start () {
         DontDestroyOnLoad(this);
@@ -19,11 +21,21 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
 
         if (TrainGameManager.instance.Scene_state==1)
         {
-           
-            if (GameValue.NextStationMeter < Train_Ctrl.Run_Meter)
+            if (!TestMeterMode)
             {
-                photonView.RPC("setRunMeterZero", RpcTarget.All);
-                photonView.RPC("StationSceneLoad", RpcTarget.All);
+                if (GameValue.NextStationMeter < Train_Ctrl.Run_Meter)
+                {
+                    photonView.RPC("setRunMeterZero", RpcTarget.All);
+                    photonView.RPC("StationSceneLoad", RpcTarget.All);
+                }
+            }
+            else
+            {
+                if (GameValue.TestMeter < Train_Ctrl.Run_Meter)
+                {
+                    photonView.RPC("setRunMeterZero", RpcTarget.All);
+                    photonView.RPC("StationSceneLoad", RpcTarget.All);
+                }
             }
         }
         else if(TrainGameManager.instance.Scene_state == 3)
@@ -31,6 +43,21 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
             photonView.RPC("SetTrainPlayer", RpcTarget.All);
             photonView.RPC("TrainSceneLoad", RpcTarget.All);
             TrainGameManager.instance.Scene_state = 1;
+        }
+
+
+        if (Input.GetKey(KeyCode.N))
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Train_Stage2");
+        }
+
+        if (Input.GetKey(KeyCode.O))
+        {
+            TestMeterMode = true;
+        }
+        if (Input.GetKey(KeyCode.P))
+        {
+            TestMeterMode = false;
         }
 	}
 

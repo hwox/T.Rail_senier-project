@@ -33,7 +33,7 @@ public class InBoxItem : MonoBehaviourPunCallbacks
     int clickUI;
     int clickUI_image;
     public Image[] ItemImages; // 아이템창의 아이템 슬롯이미지 창
-
+    
     bool DragEnable = false;
 
     void Start()
@@ -135,7 +135,8 @@ public class InBoxItem : MonoBehaviourPunCallbacks
         if (HaveItemInfo.Length > 0)
         {
             // 삭제
-
+            HaveItemInfo[_item] = 0;
+            ShowInInventory();
             BoxFull = false;
         }
     }
@@ -163,6 +164,9 @@ public class InBoxItem : MonoBehaviourPunCallbacks
                     break;
                 case (int)itemCategory.hammer:
                     ItemImages[i].sprite = allitem.ItemImage[5];
+                    break;
+                default:
+                    ItemImages[i].sprite = allitem.NullImage;
                     break;
                     //  case (int)itemCategory.spanner:
                     //    MyInvenCanvas.transform.GetChild(0).GetChild(i).GetComponent<Image>().sprite = allitem.ItemImage[7];

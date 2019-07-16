@@ -17,6 +17,8 @@ public class Passenger_Ctrl : MonoBehaviour
 
     public Canvas PassengerStateRender;
     public Canvas PassengerCareButtons;
+    public Button Food;
+    public Button Medical;
     public Image HungryGauge;
     public Image DiseaseGauge;
 
@@ -24,7 +26,7 @@ public class Passenger_Ctrl : MonoBehaviour
 
     Animator anim;
 
-
+    AllItem_Ctrl item;
 
     private void Awake()
     {
@@ -35,13 +37,17 @@ public class Passenger_Ctrl : MonoBehaviour
         hoverColor = myColor;
     }
 
+    private void Start()
+    {
+
+        item = TrainGameManager.instance.allitemCtrl;
+    }
+
 
     private void Update()
     {
         if (Live)
         {
-            Debug.Log("질병" + DiseaseGauge.fillAmount);
-            Debug.Log("배고픔" + HungryGauge.fillAmount);
             DiseaseGauge.fillAmount = (float)pass.Disease / 100.0f;
             HungryGauge.fillAmount = (float)pass.Hungry / 100.0f;
 
@@ -52,6 +58,31 @@ public class Passenger_Ctrl : MonoBehaviour
                 // 질병수치랑 배고픔 수치가 99보다 크면 사망
                 Passenger_Die();
             }
+
+            IsButtonEnable();
+
+
+        }
+    }
+
+    public void IsButtonEnable()
+    {
+        if (item.Usable_MediPack())
+        {
+            Medical.interactable = true;
+        }
+        else
+        {
+            Medical.interactable = false;
+        }
+
+        if (item.Usable_Food())
+        {
+            Food.interactable = true;
+        }
+        else
+        {
+            Food.interactable = false;
         }
     }
 
@@ -109,7 +140,7 @@ public class Passenger_Ctrl : MonoBehaviour
         // 조건으로 아이템 체크해서 하기 추가
 
         pass.Hungry -= GameValue.HungryDecrease;
-
+        item.Use_Food();
         // 이걸 false를 시킬까? 아니면 x를 추가할까
         PassengerCareButtons.gameObject.SetActive(false);
         PassengerStateRender.gameObject.SetActive(false);
@@ -120,6 +151,7 @@ public class Passenger_Ctrl : MonoBehaviour
     {
         // 구급상자 먹는 버튼
         pass.Disease -= GameValue.DiseaseDncrease;
+        item.Use_MediPack();
 
         PassengerCareButtons.gameObject.SetActive(false);
         PassengerStateRender.gameObject.SetActive(false);
@@ -138,39 +170,37 @@ public class Passenger_Ctrl : MonoBehaviour
             // 3의 배수면
             pass.Hungry += 1;
             pass.Disease += 1;
-
-            Debug.Log("1");
         }
         else if (random % 7 == 0)
         {
             // 5의 배수이면
             pass.Disease += 1;
-            Debug.Log("2");
         }
 
         else if (random % 9 == 0)
         {
             // 7의 배수이면
-
             pass.Hungry += 1;
-            Debug.Log("3");
         }
         else if (random % 13 == 0)
         {
             // 만약에 13 배수면
             pass.Hungry += 2;
-            Debug.Log("4");
         }
         else if (random % 17 == 0)
         {
             pass.Disease += 2;
-            Debug.Log("5");
         }
         // 최소공배수 이딴건 고려 안함
-
 
         yield return new WaitForSeconds(2.5f);
 
         StartCoroutine(PassengerIsEffectedByEnvironment());
+    }
+
+    public void ExitButtonCanvas()
+    {
+        PassengerCareButtons.gameObject.SetActive(false);
+        PassengerStateRender.gameObject.SetActive(false);
     }
 }

@@ -239,7 +239,6 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
             train[i].SetActive(true);
         }
     }
-
     // hp 체크 코루틴
     // 얘를 gamemanger로 해야되나?
 }

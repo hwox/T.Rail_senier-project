@@ -82,7 +82,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         //}
         //else
         //{
-        DragCursorSprite.sprite = ItemImage[_number-1];
+        DragCursorSprite.sprite = ItemImage[_number - 1];
         NowDragItemInfo = _number;
         // }
     }
@@ -109,15 +109,59 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
     {
         TrainGameManager.instance.LeftHandItem = NowDragItemInfo;
         LeftHand_Pocket = NowDragItemInfo;
-        LeftHand_PocketObject.GetComponent<Image>().sprite = ItemImage[LeftHand_Pocket-1];
+        LeftHand_PocketObject.GetComponent<Image>().sprite = ItemImage[LeftHand_Pocket - 1];
     }
 
     public void SetRightHandItem()
     {
         TrainGameManager.instance.RightHandItem = NowDragItemInfo;
         RightHand_Pocket = NowDragItemInfo;
-        RightHand_PocketObject.GetComponent<Image>().sprite = ItemImage[RightHand_Pocket-1];
+        RightHand_PocketObject.GetComponent<Image>().sprite = ItemImage[RightHand_Pocket - 1];
 
+    }
+
+    public bool Usable_MediPack()
+    {
+        // 구급상자를 사용할 수 있는지
+        return true;
+    }
+
+    public void Use_MediPack()
+    {
+        // 구급상자를 사용
+    }
+
+    public bool Usable_Food()
+    {
+        // 음식을 사용할 수 있는지
+        for (int i = 0; i < boxItem.Count; i++)
+        {
+            for (int j = 0; j < 6; j++)
+            {
+                if (boxItem[i].HaveItemInfo[j] >= 3 && boxItem[i].HaveItemInfo[j] <= 5)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void Use_Food()
+    {
+        // 음식을 사용
+
+        // 음식은 3,4,5 니까 박스에 있으며녀 사용
+        for (int i = 0; i < boxItem.Count; i++)
+        {
+            for (int j = 0; j < 6; j++)
+            {
+                if (boxItem[i].HaveItemInfo[j] >= 3 && boxItem[i].HaveItemInfo[j] <= 5)
+                {
+                    boxItem[i].DeleteItem(j); // 아이템 지우기
+                }
+            }
+        }
     }
 
     public void ItemGet_FoodTomato_Button()
@@ -158,7 +202,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
 
         // 모든 박스를 검사 중 해당 박스가 full이 아닐 경우
         // if(!boxitem[i].isboxfull())
-        for(int i=0;i< boxItem.Count; i++)
+        for (int i = 0; i < boxItem.Count; i++)
         {
             if (!boxItem[i].IsBoxFull())
             {
