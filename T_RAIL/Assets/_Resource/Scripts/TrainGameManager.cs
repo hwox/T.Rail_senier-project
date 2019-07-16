@@ -14,7 +14,9 @@ public class TrainGameManager : MonoBehaviour
         stationpassenger = 2,
         dustparticle = 3,
         sofa = 4,
-        box = 5
+        box = 5,
+        chicken = 6,
+        egg = 7
     }
 
 
@@ -103,6 +105,14 @@ public class TrainGameManager : MonoBehaviour
     public List<GameObject> BoxManager;
     const int MAKE_BOX_COUNT = 15;
 
+    // 닭
+    public List<GameObject> ChickenManager;
+    const int MAKE_CHICKEN_COUNT = 10;
+
+    //달걀
+    public List<GameObject> EggManager;
+    const int MAKE_EGG_COUNT = 10;
+
 
     public int Scene_state=1;
 
@@ -141,6 +151,8 @@ public class TrainGameManager : MonoBehaviour
         CreateObject(Origin[(int)prefab_list.dustparticle], MAKE_DUSTPARTICLE_COUNT, (int)prefab_list.dustparticle); //승객생성
         CreateObject(Origin[(int)prefab_list.sofa], MAKE_SOFA_COUNT, (int)prefab_list.sofa); //소파생성
         CreateObject(Origin[(int)prefab_list.box], MAKE_BOX_COUNT, (int)prefab_list.box); //박스생성
+        CreateObject(Origin[(int)prefab_list.chicken], MAKE_CHICKEN_COUNT, (int)prefab_list.chicken); // 치킨생성
+        CreateObject(Origin[(int)prefab_list.egg], MAKE_EGG_COUNT, (int)prefab_list.egg); // 치킨생성
     }
     public void Notice_EnemyAppear()
     {
@@ -177,6 +189,12 @@ public class TrainGameManager : MonoBehaviour
                     break;
                 case (int)prefab_list.box:
                     BoxManager.Add(obj);
+                    break;
+                case (int)prefab_list.chicken:
+                    ChickenManager.Add(obj);
+                    break;
+                case (int)prefab_list.egg:
+                    EggManager.Add(obj);
                     break;
             }
         }
@@ -343,7 +361,59 @@ public class TrainGameManager : MonoBehaviour
                     return BoxManager[i];
                 }
                 return null;
+            case (int)prefab_list.chicken:
 
+                if (ChickenManager == null)
+                {
+                    return null;
+                }
+                int c_Count = ChickenManager.Count;
+
+                for (int i = 0; i < c_Count; i++)
+                {
+                    GameObject obj = ChickenManager[i];
+
+                    //활성화 돼있으면
+                    if (obj.active == true)
+                    {
+                        // 리스트의 마지막까지 돌았는데 다 사용중이다?
+                        if (i == c_Count - 1)
+                        {
+                            CreateObject(obj, 1, _objIndex);
+                            return ChickenManager[i + 1];
+                        }
+                        continue;
+                    }
+                    return ChickenManager[i];
+                }
+                return null;
+
+            case (int)prefab_list.egg:
+
+                if (EggManager == null)
+                {
+                    return null;
+                }
+                int e_Count = EggManager.Count;
+
+                for (int i = 0; i < e_Count; i++)
+                {
+                    GameObject obj = EggManager[i];
+
+                    //활성화 돼있으면
+                    if (obj.active == true)
+                    {
+                        // 리스트의 마지막까지 돌았는데 다 사용중이다?
+                        if (i == e_Count - 1)
+                        {
+                            CreateObject(obj, 1, _objIndex);
+                            return EggManager[i + 1];
+                        }
+                        continue;
+                    }
+                    return EggManager[i];
+                }
+                return null;
             default:
                 return null;
 
@@ -439,6 +509,39 @@ public class TrainGameManager : MonoBehaviour
                     GameObject.Destroy(obj);
                 }
                 BoxManager = null;
+                break;
+            case (int)prefab_list.chicken:
+
+                if (ChickenManager == null)
+                {
+                    return;
+                }
+
+                int c_Count = ChickenManager.Count;
+
+                for (int i = 0; i < c_Count; i++)
+                {
+                    GameObject obj = ChickenManager[i];
+                    GameObject.Destroy(obj);
+                }
+                ChickenManager = null;
+                break;
+
+            case (int)prefab_list.egg:
+
+                if (EggManager == null)
+                {
+                    return;
+                }
+
+                int e_Count = EggManager.Count;
+
+                for (int i = 0; i < e_Count; i++)
+                {
+                    GameObject obj = EggManager[i];
+                    GameObject.Destroy(obj);
+                }
+                EggManager = null;
                 break;
         }
     }

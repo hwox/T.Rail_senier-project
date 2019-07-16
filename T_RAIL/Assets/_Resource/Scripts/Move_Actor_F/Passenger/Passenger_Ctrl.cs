@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using HighlightingSystem;
 using UnityEngine.EventSystems;
+using Photon.Pun;
 
-public class Passenger_Ctrl : MonoBehaviour
+public class Passenger_Ctrl : MonoBehaviourPunCallbacks//, IPunObservable
 {
 
 
@@ -22,6 +23,8 @@ public class Passenger_Ctrl : MonoBehaviour
     public Image HungryGauge;
     public Image DiseaseGauge;
 
+    PhotonView photonView;
+
     bool Clicking; // 클릭해서 관리창 띄워놓은 상태
 
     Animator anim;
@@ -31,6 +34,8 @@ public class Passenger_Ctrl : MonoBehaviour
     private void Awake()
     {
         pass = new Passenger_Actor();
+        photonView = new PhotonView();
+
         anim = gameObject.GetComponent<Animator>();
         // highlighter = gameObject.GetComponent<Highlighter>();
         myColor = new Color(1.0f, 1.0f, 0.57f);
@@ -97,7 +102,15 @@ public class Passenger_Ctrl : MonoBehaviour
         this.transform.localPosition = Vector3.zero;
         anim.SetBool("IsSit", true);
 
-        StartCoroutine(PassengerIsEffectedByEnvironment());
+        //마스터클라이언트만 코루틴 실행하고 다른애들한텐 그 결과만 알려주기 
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
+        else
+        {
+            StartCoroutine(PassengerIsEffectedByEnvironment());
+        }
 
     }
 
@@ -160,6 +173,18 @@ public class Passenger_Ctrl : MonoBehaviour
     }
 
 
+    [PunRPC]
+    public void setHungry(int hungry )
+    {
+        pass.Hungry = hungry;
+    }
+    
+    [PunRPC]
+    public void setDisease(int disease)
+    {
+        pass.Disease = disease;
+    }
+
     IEnumerator PassengerIsEffectedByEnvironment()
     {
 
@@ -168,30 +193,32 @@ public class Passenger_Ctrl : MonoBehaviour
         if (random % 5 == 0)
         {
             // 3의 배수면
-            pass.Hungry += 1;
-            pass.Disease += 1;
+            pass.Hungry += 10;
+            pass.Disease += 10;
         }
         else if (random % 7 == 0)
         {
             // 5의 배수이면
-            pass.Disease += 1;
+            pass.Disease += 10;
         }
-
         else if (random % 9 == 0)
         {
             // 7의 배수이면
-            pass.Hungry += 1;
+            pass.Hungry += 10;
         }
         else if (random % 13 == 0)
         {
             // 만약에 13 배수면
-            pass.Hungry += 2;
+            pass.Hungry += 20;
         }
         else if (random % 17 == 0)
         {
-            pass.Disease += 2;
+            pass.Disease += 20;
         }
-        // 최소공배수 이딴건 고려 안함
+
+        //photonView.RPC("setHungryDisease", RpcTarget.All , pass.Hungry, pass.Disease);
+        //photonView.RPC("setHungry", RpcTarget.All, pass.Hungry);
+        //photonView.RPC("setDisease", RpcTarget.All, pass.Disease);
 
         yield return new WaitForSeconds(2.5f);
 

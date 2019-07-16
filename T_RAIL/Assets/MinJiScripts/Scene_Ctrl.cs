@@ -45,7 +45,6 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
             TrainGameManager.instance.Scene_state = 1;
         }
 
-
         if (Input.GetKey(KeyCode.N))
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("Train_Stage2");
@@ -59,7 +58,14 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
         {
             TestMeterMode = false;
         }
-	}
+
+
+        if(Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            photonView.RPC("setRunMeterZero", RpcTarget.All);
+            photonView.RPC("StationSceneLoad", RpcTarget.All);
+        }
+    }
 
 
     [PunRPC]
@@ -115,8 +121,8 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
     [PunRPC]
     public void StationSceneLoad()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Station_Stage1");
-        //UnityEngine.SceneManagement.SceneManager.LoadScene("Station_Stage2");
+        //UnityEngine.SceneManagement.SceneManager.LoadScene("Station_Stage1");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Station_Stage2");
     }
 
 }

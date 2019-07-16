@@ -57,5 +57,8 @@ MonoBehaviour:
   - ItemGet_Hammer
   - ItemGet_Ironpan
   - ItemGet_Nail
+  - setHungryDisease
+  - setDisease
+  - setHungry
   DisableAutoOpenWizard: 1
   ShowSettings: 1

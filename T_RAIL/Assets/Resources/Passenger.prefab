@@ -507,6 +507,9 @@ GameObject:
   - component: {fileID: 65056596399525552}
   - component: {fileID: 114659167903753528}
   - component: {fileID: 114899951179345204}
+  - component: {fileID: 114360277043552432}
+  - component: {fileID: 114343369046768150}
+  - component: {fileID: 114836487225585804}
   m_Layer: 13
   m_Name: Passenger
   m_TagString: Untagged
@@ -1328,6 +1331,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114343369046768150
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1678285436382366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
 --- !u!114 &114349566649859276
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1355,6 +1372,29 @@ MonoBehaviour:
   m_FillAmount: 0.66
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114360277043552432
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1678285436382366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 114343369046768150}
+  - {fileID: 114836487225585804}
+  - {fileID: 114659167903753528}
+  viewIdField: 0
+  InstantiationId: 627
+  isRuntimeInstantiated: 0
 --- !u!114 &114363648248477538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1895,6 +1935,35 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114836487225585804
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1678285436382366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 1
+    Name: IsSit
+  - Type: 4
+    SynchronizeType: 1
+    Name: IsWalk
+  - Type: 4
+    SynchronizeType: 1
+    Name: IsDrink
+  - Type: 3
+    SynchronizeType: 1
+    Name: IsHungry
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
 --- !u!114 &114899951179345204
 MonoBehaviour:
   m_ObjectHideFlags: 1
