@@ -5480,7 +5480,7 @@ GameObject:
   - component: {fileID: 470739196}
   - component: {fileID: 470739194}
   - component: {fileID: 470739193}
-  m_Layer: 30
+  m_Layer: 0
   m_Name: StationPassengerSpawn4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18330,7 +18330,7 @@ GameObject:
   - component: {fileID: 1692864634}
   - component: {fileID: 1692864633}
   - component: {fileID: 1692864632}
-  m_Layer: 30
+  m_Layer: 0
   m_Name: StationPassengerSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
