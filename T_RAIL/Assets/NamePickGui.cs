@@ -13,6 +13,8 @@ public class NamePickGui : MonoBehaviourPunCallbacks
 
     public void Start()
     {
+        DontDestroyOnLoad(this);
+
         this.chatNewComponent = FindObjectOfType<ChatGui>();
 
         string prefsName = PhotonNetwork.LocalPlayer.NickName;

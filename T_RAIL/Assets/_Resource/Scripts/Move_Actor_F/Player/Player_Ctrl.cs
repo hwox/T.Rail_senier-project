@@ -103,21 +103,23 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     {
         DontDestroyOnLoad(gameObject);
 
-        if (photonView.ViewID % 1000 == 2) Destroy(this.gameObject);
+        if (photonView.ViewID % 1000 == 2)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            player = new Player_Actor();
 
-        player = new Player_Actor();
+            Make_PushSpaceUI();
+            Init_Set_Value();
 
-        Make_PushSpaceUI();
-        Init_Set_Value();
-
-        //if (!photonView.IsMine) return;
-        if (photonView.ViewID % 1000 == 2) Destroy(this.gameObject);
-
-        //생성되면 플레이어 리스트에 스스로를 넣어줌.
-        playerListController = GameObject.Find("PlayerList_Ctrl").GetComponent<playerListController_minj>();
-        playerListController.playerList.Add(this.gameObject.GetComponent<Player_Ctrl>());
-        UIState_Ctrl = GameObject.Find("UIState_Ctrl").GetComponent<UIState_Ctrl>();
-        whereIam = player.Where_Train;
+            //생성되면 플레이어 리스트에 스스로를 넣어줌.
+            playerListController = GameObject.Find("PlayerList_Ctrl").GetComponent<playerListController_minj>();
+            playerListController.playerList.Add(this.gameObject.GetComponent<Player_Ctrl>());
+            UIState_Ctrl = GameObject.Find("UIState_Ctrl").GetComponent<UIState_Ctrl>();
+            whereIam = player.Where_Train;
+        }
     }
 
     private void Start()

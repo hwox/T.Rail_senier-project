@@ -32,7 +32,14 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
             photonView.RPC("TrainSceneLoad", RpcTarget.All);
             TrainGameManager.instance.Scene_state = 1;
         }
-	}
+
+
+        if(Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            photonView.RPC("setRunMeterZero", RpcTarget.All);
+            photonView.RPC("StationSceneLoad", RpcTarget.All);
+        }
+    }
 
 
     [PunRPC]

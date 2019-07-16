@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class PooledObject  {
+public class PooledObject : MonoBehaviourPunCallbacks  {
 
     // 필요한 객체를 요청하고, 사용한 객체를 반환할 때 객체의 이름으로검색
     // 여러 객체들을 저장할 때 리스트 사용 
@@ -58,7 +59,8 @@ public class PooledObject  {
         // poolItemName 으로 저장해둔 이름을 새로 만들어준 애 이름으로
         // 만든거 비활성화 시킨다음에 나중에 쓸수있도록함
 
-        GameObject item = Object.Instantiate(prefab);
+        //GameObject item = Object.Instantiate(prefab);
+        GameObject item = PhotonNetwork.InstantiateSceneObject(prefab.name, new Vector3(0,0,0), Quaternion.Euler(0, 0, 0));
         item.name = poolItemName;
         item.transform.SetParent(parent);
         item.SetActive(false);
