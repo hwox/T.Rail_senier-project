@@ -281,6 +281,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             if (Input.GetKeyDown(KeyCode.V))
             {
                 other.gameObject.SetActive(false);
+                GameObject.Find("Item_Ctrl").GetComponent<AllItem_Ctrl>().ItemGet_Random();
             }
         }
 

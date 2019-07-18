@@ -303,4 +303,17 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         }
     }
 
+
+    public void ItemGet_Random()
+    {
+        int ItemNumber = Random.Range(0, 8);
+        for (int i = 0; i < boxItem.Count; i++)
+        {
+            if (!boxItem[i].IsBoxFull())
+            {
+                boxItem[i].AddItem(ItemNumber);
+                break;
+            }
+        }
+    }
 }
