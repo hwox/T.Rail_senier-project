@@ -19,6 +19,9 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks {
     public GameObject BoxButton;
     public GameObject SofaButton;
 
+    public GameObject BoxNeedItemExplain;
+    public GameObject SofaNeedItemExplain;
+
     public void ChoiceSetOn()
     {
         if (!Box && !Sofa)
@@ -83,8 +86,6 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks {
 
         TrainGameManager.instance.TrainCtrl.trainscript[WhereTrain_Object - 1].InTrainObject_Setting(TrainGameManager.instance.GetObject(5), WhatNumber_Object-1, 2);
 
-        
-
         SetButtons.SetActive(false);
         this.gameObject.SetActive(false);
 
@@ -117,23 +118,28 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks {
     public void OnBoxButtonMouseOn()
     {
         BoxButton.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+        BoxNeedItemExplain.SetActive(true);
     }
     public void OnBoxButtonMouseExit()
     {
         BoxButton.transform.localScale = new Vector3(1f, 1f, 1f);
+        BoxNeedItemExplain.SetActive(false);
     }
     public void OnSofaButtonMouseOn()
     {
+        SofaNeedItemExplain.SetActive(true);
         SofaButton.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
     }
     public void OnSofaButtonMouseExit()
     {
+        SofaNeedItemExplain.SetActive(false);
         SofaButton.transform.localScale = new Vector3(1f, 1f, 1f);
     }
 
     // 근데 만약에 이거 없애고 다른거 만들고 싶으면 delete누르고
     // 여기서 다른 걸로 바꾸는 함수, 기능 호출
 
-
+   
 
 }
+

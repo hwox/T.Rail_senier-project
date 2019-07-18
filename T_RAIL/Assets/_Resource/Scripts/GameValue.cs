@@ -70,7 +70,7 @@ static class GameValue {
 
 
     // bullet
-    public const float bullet_speed = 1000.0f; // 미친 처음에 총알 속력 50? 막 이렇게 했는데 ㅋㅋㅋㅋ600m/s말도안돼
+    public const float bullet_speed = 1000.0f; 
 
     // status
     public const int StatusMAX = 5;
@@ -89,4 +89,24 @@ static class GameValue {
     // 아이템 사용
     public const int HungryDecrease = 30; // 음식먹으면
     public const int DiseaseDncrease = 30; // 약먹으면 
+
+
+    static public void BoxNeedItem()
+    {
+        
+    }
+
+    static public void SofaNeedItem()
+    {
+
+    }
 }
+
+
+// 박스 제작에 필요한 물품
+
+
+
+  
+ 
+// 소파 제작에 필요한 물품
