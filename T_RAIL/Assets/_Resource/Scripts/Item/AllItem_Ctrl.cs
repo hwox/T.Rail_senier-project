@@ -15,6 +15,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         food_bean = 4,
         food_chicken = 5,
         hammer = 6, // 도끼
+        medipack = 7,
         //spanner = 7, // 스패너
     }
 
@@ -288,5 +289,18 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         }
     }
 
+    public void ItemGet_MediPack()
+    {
+        //7
+        for (int i = 0; i < boxItem.Count; i++)
+        {
+            if (!boxItem[i].IsBoxFull())
+            {
+                // 앞의 순서대로 박스가 full이 아니면 여기에 들어가기
+                boxItem[i].AddItem(7);
+                break;
+            }
+        }
+    }
 
 }

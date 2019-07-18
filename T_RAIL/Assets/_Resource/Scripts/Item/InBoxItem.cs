@@ -17,7 +17,8 @@ public class InBoxItem : MonoBehaviourPunCallbacks
         food_bean = 4,
         food_chicken = 5,
         hammer = 6, // 도끼
-                    //  spanner = 7, // 스패너
+        medipack = 7,
+        //  spanner = 7, // 스패너
     }
 
     public Canvas MyInvenCanvas;
@@ -38,7 +39,7 @@ public class InBoxItem : MonoBehaviourPunCallbacks
 
     void Start()
     { 
-        ItemImages = new Image[6];
+        ItemImages = new Image[7];
         HaveItemInfo = new int[6];
        // ActiveThisBox();
         GetImageComponent();
@@ -48,7 +49,7 @@ public class InBoxItem : MonoBehaviourPunCallbacks
     {
         for (int i = 0; i < HaveItemInfo.Length; i++)
         {
-            ItemImages[i] = MyInvenCanvas.transform.GetChild(0).GetChild(i).GetComponent<Image>();
+            ItemImages[i] = MyInvenCanvas.transform.GetChild(0).GetChild(i).GetChild(0).GetComponent<Image>();
         }
     }
     public void ActiveThisBox()
@@ -164,6 +165,9 @@ public class InBoxItem : MonoBehaviourPunCallbacks
                     break;
                 case (int)itemCategory.hammer:
                     ItemImages[i].sprite = allitem.ItemImage[5];
+                    break;
+                case (int)itemCategory.medipack:
+                    ItemImages[i].sprite = allitem.ItemImage[6];
                     break;
                 default:
                     ItemImages[i].sprite = allitem.NullImage;

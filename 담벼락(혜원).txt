@@ -91,3 +91,7 @@ layerMask 무시하는 방식으로 wall 일단 다 무시하게 했음
 기차 달리는거 테스트 모드
 O -> 300m
 P -> (원래) 2000m
+
+-
+
+구급상자 추가로 allitem_ctrl에 itemget함수 하나 더 추가
