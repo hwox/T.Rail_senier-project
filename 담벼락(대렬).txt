@@ -97,3 +97,5 @@ Directional Light의 changelight 켜야함
 나무판자 resource->FBX->woodboard
 나무판자 누끼 아이템 사진
 
+갱얼쥐 치료 완료 
+resource -> 동물 fbx -> dog24
