@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class InSofaPassenger : MonoBehaviour {
+public class InSofaPassenger : MonoBehaviourPunCallbacks  {
 
 
     //Sofa에 달려있는 스크립트인데 
