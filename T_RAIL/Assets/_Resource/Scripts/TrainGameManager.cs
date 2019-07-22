@@ -17,6 +17,8 @@ public class TrainGameManager : MonoBehaviour
         box = 5,
         chicken = 6,
         egg = 7
+        //sparkparticle = 8
+
     }
 
 
@@ -113,6 +115,9 @@ public class TrainGameManager : MonoBehaviour
     public List<GameObject> EggManager;
     const int MAKE_EGG_COUNT = 10;
 
+    // 스파크 파티클
+    //public List<GameObject> SparkParticleManager;
+    //const int MAKE_SPARKPARTICLE_COUNT = 5;
 
     public int Scene_state=1;
 
@@ -152,7 +157,8 @@ public class TrainGameManager : MonoBehaviour
         CreateObject(Origin[(int)prefab_list.sofa], MAKE_SOFA_COUNT, (int)prefab_list.sofa); //소파생성
         CreateObject(Origin[(int)prefab_list.box], MAKE_BOX_COUNT, (int)prefab_list.box); //박스생성
         CreateObject(Origin[(int)prefab_list.chicken], MAKE_CHICKEN_COUNT, (int)prefab_list.chicken); // 치킨생성
-        CreateObject(Origin[(int)prefab_list.egg], MAKE_EGG_COUNT, (int)prefab_list.egg); // 치킨생성
+        CreateObject(Origin[(int)prefab_list.egg], MAKE_EGG_COUNT, (int)prefab_list.egg); // 달걀생성
+        //CreateObject(Origin[(int)prefab_list.sparkparticle], MAKE_SPARKPARTICLE_COUNT, (int)prefab_list.egg); // 달걀생성
     }
     public void Notice_EnemyAppear()
     {
@@ -196,6 +202,9 @@ public class TrainGameManager : MonoBehaviour
                 case (int)prefab_list.egg:
                     EggManager.Add(obj);
                     break;
+                //case (int)prefab_list.sparkparticle:
+                //    SparkParticleManager.Add(obj);
+                //    break;
             }
         }
     }
@@ -414,6 +423,32 @@ public class TrainGameManager : MonoBehaviour
                     return EggManager[i];
                 }
                 return null;
+            //case (int)prefab_list.sparkparticle:
+
+            //    if (SparkParticleManager == null)
+            //    {
+            //        return null;
+            //    }
+            //    int spp_Count = SparkParticleManager.Count;
+
+            //    for (int i = 0; i < spp_Count; i++)
+            //    {
+            //        GameObject obj = SparkParticleManager[i];
+
+            //        //활성화 돼있으면
+            //        if (obj.active == true)
+            //        {
+            //            // 리스트의 마지막까지 돌았는데 다 사용중이다?
+            //            if (i == spp_Count - 1)
+            //            {
+            //                CreateObject(obj, 1, _objIndex);
+            //                return SparkParticleManager[i + 1];
+            //            }
+            //            continue;
+            //        }
+            //        return SparkParticleManager[i];
+            //    }
+            //    return null;
             default:
                 return null;
 
@@ -527,22 +562,22 @@ public class TrainGameManager : MonoBehaviour
                 ChickenManager = null;
                 break;
 
-            case (int)prefab_list.egg:
+            //case (int)prefab_list.sparkparticle:
 
-                if (EggManager == null)
-                {
-                    return;
-                }
+            //    if (SparkParticleManager == null)
+            //    {
+            //        return;
+            //    }
 
-                int e_Count = EggManager.Count;
+            //    int spp_Count = SparkParticleManager.Count;
 
-                for (int i = 0; i < e_Count; i++)
-                {
-                    GameObject obj = EggManager[i];
-                    GameObject.Destroy(obj);
-                }
-                EggManager = null;
-                break;
+            //    for (int i = 0; i < spp_Count; i++)
+            //    {
+            //        GameObject obj = SparkParticleManager[i];
+            //        GameObject.Destroy(obj);
+            //    }
+            //    SparkParticleManager = null;
+            //    break;
         }
     }
     ///////////////////////////////////////////////////////////////////////////////////////
