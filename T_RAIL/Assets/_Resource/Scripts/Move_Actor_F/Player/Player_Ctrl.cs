@@ -92,7 +92,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     //역 공격
     public GameObject attackleach;
     public bool attack_possible = true;
-    public GameObject axe;
 
     /// ////////////////////////////////////////////////////////////////////////
 
@@ -121,8 +120,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             UIState_Ctrl = GameObject.Find("UIState_Ctrl").GetComponent<UIState_Ctrl>();
             whereIam = player.Where_Train;
         }
-
-        player.axe = axe;
     }
 
     private void Start()
@@ -935,5 +932,5 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     }
 
     
- 
+
 }

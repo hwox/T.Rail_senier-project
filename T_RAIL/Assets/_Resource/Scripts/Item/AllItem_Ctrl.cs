@@ -7,7 +7,6 @@ using Photon.Pun;
 public class AllItem_Ctrl : MonoBehaviourPunCallbacks
 {
 
-    
     //public enum itemCategory
     //{
     //    nail = 1, // 못
@@ -322,7 +321,6 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
     public void ItemGet_Random()
     {
         int ItemNumber = Random.Range(0, (int)GameValue.itemCategory.woodboard+1);
-        Debug.Log("달걀 먹음");
         for (int i = 0; i < boxItem.Count; i++)
         {
             if (!boxItem[i].IsBoxFull())
