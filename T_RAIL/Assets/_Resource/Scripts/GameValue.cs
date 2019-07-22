@@ -2,7 +2,18 @@
 
 static class GameValue {
 
-
+    public enum itemCategory
+    {
+        nail = 1, // 못
+        ironpan = 2, // 판(철판)
+        food_tomato = 3, // 음식
+        food_bean = 4,
+        food_chicken = 5,
+        hammer = 6, // 도끼
+        medipack = 7,
+        woodboard = 8,
+        //  spanner = 7, // 스패너
+    }
     // 카메라 셋팅
     public const float Mcam_initrot_x = 20.0f;
     public const int Mcam_initFOV = 60;
@@ -90,6 +101,7 @@ static class GameValue {
     public const int HungryDecrease = 30; // 음식먹으면
     public const int DiseaseDncrease = 30; // 약먹으면 
 
+    public const int ITEMLIMIT = 6; // 한칸당 아이템 제한. 이름을 뭘로 해야될지 몰라서 LImit로
 
     static public void BoxNeedItem()
     {

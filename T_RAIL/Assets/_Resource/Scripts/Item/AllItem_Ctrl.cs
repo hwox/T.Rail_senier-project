@@ -7,17 +7,18 @@ using Photon.Pun;
 public class AllItem_Ctrl : MonoBehaviourPunCallbacks
 {
 
-    public enum itemCategory
-    {
-        nail = 1, // 못
-        ironpan = 2, // 판(철판)
-        food_tomato = 3, // 음식
-        food_bean = 4,
-        food_chicken = 5,
-        hammer = 6, // 도끼
-        medipack = 7,
-        //spanner = 7, // 스패너
-    }
+    //public enum itemCategory
+    //{
+    //    nail = 1, // 못
+    //    ironpan = 2, // 판(철판)
+    //    food_tomato = 3, // 음식
+    //    food_bean = 4,
+    //    food_chicken = 5,
+    //    hammer = 6, // 도끼
+    //    medipack = 7,
+    //    woodboard = 8,
+    //    //spanner = 7, // 스패너
+    //}
 
     public Sprite[] ItemImage;
     public Sprite NullImage;
@@ -137,7 +138,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         // 음식을 사용할 수 있는지
         for (int i = 0; i < boxItem.Count; i++)
         {
-            for (int j = 0; j < 6; j++)
+            for (int j = 0; j < GameValue.ITEMLIMIT; j++)
             {
                 if (boxItem[i].HaveItemInfo[j] >= 3 && boxItem[i].HaveItemInfo[j] <= 5)
                 {
@@ -155,7 +156,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         // 음식은 3,4,5 니까 박스에 있으며녀 사용
         for (int i = 0; i < boxItem.Count; i++)
         {
-            for (int j = 0; j < 6; j++)
+            for (int j = 0; j < GameValue.ITEMLIMIT; j++)
             {
                 if (boxItem[i].HaveItemInfo[j] >= 3 && boxItem[i].HaveItemInfo[j] <= 5)
                 {
@@ -208,7 +209,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
             if (!boxItem[i].IsBoxFull())
             {
                 // 앞의 순서대로 박스가 full이 아니면 여기에 들어가기
-                boxItem[i].AddItem(3);
+                boxItem[i].AddItem((int)GameValue.itemCategory.food_tomato);
                 break;
             }
         }
@@ -223,7 +224,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
             if (!boxItem[i].IsBoxFull())
             {
                 // 앞의 순서대로 박스가 full이 아니면 여기에 들어가기
-                boxItem[i].AddItem(4);
+                boxItem[i].AddItem((int)GameValue.itemCategory.food_bean);
                 break;
             }
         }
@@ -238,7 +239,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
             if (!boxItem[i].IsBoxFull())
             {
                 // 앞의 순서대로 박스가 full이 아니면 여기에 들어가기
-                boxItem[i].AddItem(5);
+                boxItem[i].AddItem((int)GameValue.itemCategory.food_chicken);
                 break;
             }
         }
@@ -253,7 +254,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
             if (!boxItem[i].IsBoxFull())
             {
                 // 앞의 순서대로 박스가 full이 아니면 여기에 들어가기
-                boxItem[i].AddItem(1);
+                boxItem[i].AddItem((int)GameValue.itemCategory.nail);
                 break;
             }
         }
@@ -268,7 +269,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
             if (!boxItem[i].IsBoxFull())
             {
                 // 앞의 순서대로 박스가 full이 아니면 여기에 들어가기
-                boxItem[i].AddItem(6);
+                boxItem[i].AddItem((int)GameValue.itemCategory.hammer);
                 break;
             }
         }
@@ -283,7 +284,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
             if (!boxItem[i].IsBoxFull())
             {
                 // 앞의 순서대로 박스가 full이 아니면 여기에 들어가기
-                boxItem[i].AddItem(2);
+                boxItem[i].AddItem((int)GameValue.itemCategory.ironpan);
                 break;
             }
         }
@@ -297,16 +298,29 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
             if (!boxItem[i].IsBoxFull())
             {
                 // 앞의 순서대로 박스가 full이 아니면 여기에 들어가기
-                boxItem[i].AddItem(7);
+                boxItem[i].AddItem((int)GameValue.itemCategory.medipack);
                 break;
             }
         }
     }
 
+    public void ItemGet_WoodBoard()
+    {
+        //8
+        for (int i = 0; i < boxItem.Count; i++)
+        {
+            if (!boxItem[i].IsBoxFull())
+            {
+                // 앞의 순서대로 박스가 full이 아니면 여기에 들어가기
+                boxItem[i].AddItem((int)GameValue.itemCategory.woodboard);
+                break;
+            }
+        }
+    }
 
     public void ItemGet_Random()
     {
-        int ItemNumber = Random.Range(0, 8);
+        int ItemNumber = Random.Range(0, (int)GameValue.itemCategory.woodboard+1);
         for (int i = 0; i < boxItem.Count; i++)
         {
             if (!boxItem[i].IsBoxFull())
