@@ -12,8 +12,8 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks {
 
     // 왼쪽부터 1,2,3,4
 
-    bool Sofa;
-    bool Box;
+    bool SofaMakeMode;
+    bool BoxMakeMode;
 
     public GameObject SetButtons;
     public GameObject BoxButton;
@@ -22,9 +22,13 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks {
     public GameObject BoxNeedItemExplain;
     public GameObject SofaNeedItemExplain;
 
+
+    List<int> ForMakeItem = new List<int>();  // 옮겨놓은 아이템
+
+
     public void ChoiceSetOn()
     {
-        if (!Box && !Sofa)
+        if (!BoxMakeMode && !SofaMakeMode)
         {
             SetButtons.SetActive(true);
             ChoiceOn = true;
@@ -70,8 +74,8 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks {
     [PunRPC]
     public void ChoiceBox(int WhereTrain_Object, int WhatNumber_Object)
     {
-        Box = true;
-        Sofa = false;
+        BoxMakeMode = true;
+        SofaMakeMode = false;
         ChoiceOn = false;
 
 
@@ -95,8 +99,8 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks {
     public void ChoiceSofa(int WhereTrain_Object, int WhatNumber_Object)
     {
 
-        Sofa = true;
-        Box = false;
+        SofaMakeMode = true;
+        BoxMakeMode = false;
         ChoiceOn = false;
 
         // sofa on sofa-> 4
@@ -113,7 +117,23 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks {
 
     }
 
-    // 누르고 3초 후에 만들어주기 약간 뚝딱뚝딱 이런거 ㅎㅎ
+   public void ExitSettings()
+    {
+        SofaMakeMode = false;
+        BoxMakeMode = false;
+        ChoiceOn = false;
+
+        SofaNeedItemExplain.SetActive(false);
+        BoxNeedItemExplain.SetActive(false);
+
+        SetButtons.SetActive(false);
+        this.gameObject.SetActive(false);
+    }
+
+
+
+    ////////////////////////////////////   UI Hover 함수들   ////////////////////////////////////
+
 
     public void OnBoxButtonMouseOn()
     {
@@ -136,10 +156,13 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks {
         SofaButton.transform.localScale = new Vector3(1f, 1f, 1f);
     }
 
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+
     // 근데 만약에 이거 없애고 다른거 만들고 싶으면 delete누르고
     // 여기서 다른 걸로 바꾸는 함수, 기능 호출
 
-   
+
 
 }
 

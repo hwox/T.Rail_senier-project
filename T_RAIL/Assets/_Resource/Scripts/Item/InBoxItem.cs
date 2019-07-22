@@ -9,17 +9,18 @@ public class InBoxItem : MonoBehaviourPunCallbacks
 
 
     // 이거 누르면 얘가 가지고 있는거 inventory로 켜기 
-    public enum itemCategory
-    {
-        nail = 1, // 못
-        ironpan = 2, // 판(철판)
-        food_tomato = 3, // 음식
-        food_bean = 4,
-        food_chicken = 5,
-        hammer = 6, // 도끼
-        medipack = 7,
-        //  spanner = 7, // 스패너
-    }
+    //public enum itemCategory
+    //{
+    //    nail = 1, // 못
+    //    ironpan = 2, // 판(철판)
+    //    food_tomato = 3, // 음식
+    //    food_bean = 4,
+    //    food_chicken = 5,
+    //    hammer = 6, // 도끼
+    //    medipack = 7,
+    //    woodboard = 8,
+    //    //  spanner = 7, // 스패너
+    //}
 
     public Canvas MyInvenCanvas;
 
@@ -39,14 +40,15 @@ public class InBoxItem : MonoBehaviourPunCallbacks
 
     void Start()
     { 
-        ItemImages = new Image[7];
-        HaveItemInfo = new int[6];
+        ItemImages = new Image[8];
+        HaveItemInfo = new int[GameValue.ITEMLIMIT];
        // ActiveThisBox();
         GetImageComponent();
     }
 
     void GetImageComponent()
     {
+      
         for (int i = 0; i < HaveItemInfo.Length; i++)
         {
             ItemImages[i] = MyInvenCanvas.transform.GetChild(0).GetChild(i).GetChild(0).GetComponent<Image>();
@@ -117,7 +119,7 @@ public class InBoxItem : MonoBehaviourPunCallbacks
                 {
                     BoxCount += 1;
 
-                    if (BoxCount == 6)
+                    if (BoxCount == GameValue.ITEMLIMIT)
                     {
                         BoxFull = true;
                     }
@@ -148,33 +150,34 @@ public class InBoxItem : MonoBehaviourPunCallbacks
         {
             switch (HaveItemInfo[i])
             {
-                case (int)itemCategory.nail:
+                case (int)GameValue.itemCategory.nail:
                     ItemImages[i].sprite = allitem.ItemImage[0];
                     break;
-                case (int)itemCategory.ironpan:
+                case (int)GameValue.itemCategory.ironpan:
                     ItemImages[i].sprite = allitem.ItemImage[1];
                     break;
-                case (int)itemCategory.food_tomato:
+                case (int)GameValue.itemCategory.food_tomato:
                     ItemImages[i].sprite = allitem.ItemImage[2];
                     break;
-                case (int)itemCategory.food_bean:
+                case (int)GameValue.itemCategory.food_bean:
                     ItemImages[i].sprite = allitem.ItemImage[3];
                     break;
-                case (int)itemCategory.food_chicken:
+                case (int)GameValue.itemCategory.food_chicken:
                     ItemImages[i].sprite = allitem.ItemImage[4];
                     break;
-                case (int)itemCategory.hammer:
+                case (int)GameValue.itemCategory.hammer:
                     ItemImages[i].sprite = allitem.ItemImage[5];
                     break;
-                case (int)itemCategory.medipack:
+                case (int)GameValue.itemCategory.medipack:
                     ItemImages[i].sprite = allitem.ItemImage[6];
+                    break;
+                case (int)GameValue.itemCategory.woodboard:
+                    ItemImages[i].sprite = allitem.ItemImage[7];
                     break;
                 default:
                     ItemImages[i].sprite = allitem.NullImage;
                     break;
-                    //  case (int)itemCategory.spanner:
-                    //    MyInvenCanvas.transform.GetChild(0).GetChild(i).GetComponent<Image>().sprite = allitem.ItemImage[7];
-                    //     break;
+              
             }
         }
     }
