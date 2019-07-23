@@ -131,3 +131,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a27e2eeb35ab084fb2d33b79eb96eb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NowSit: 0
+  sitpassenger: {fileID: 0}
