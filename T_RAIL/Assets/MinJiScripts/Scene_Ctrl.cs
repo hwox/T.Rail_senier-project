@@ -121,8 +121,8 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
     [PunRPC]
     public void StationSceneLoad()
     {
-        //UnityEngine.SceneManagement.SceneManager.LoadScene("Station_Stage1");
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Station_Stage2");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Station_Stage1");
+        //UnityEngine.SceneManagement.SceneManager.LoadScene("Station_Stage2");
     }
 
 }

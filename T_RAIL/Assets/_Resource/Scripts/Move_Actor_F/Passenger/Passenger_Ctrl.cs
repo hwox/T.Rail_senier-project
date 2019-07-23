@@ -6,10 +6,8 @@ using HighlightingSystem;
 using UnityEngine.EventSystems;
 using Photon.Pun;
 
-public class Passenger_Ctrl : MonoBehaviourPunCallbacks//, IPunObservable
+public class Passenger_Ctrl : MonoBehaviourPunCallbacks
 {
-
-
     Passenger_Actor pass;
     public Highlighter highlighter;
     Color myColor;
@@ -23,7 +21,7 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks//, IPunObservable
     public Image HungryGauge;
     public Image DiseaseGauge;
 
-    PhotonView photonView;
+    //PhotonView photonView;
 
     bool Clicking; // 클릭해서 관리창 띄워놓은 상태
 
@@ -34,7 +32,6 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks//, IPunObservable
     private void Awake()
     {
         pass = new Passenger_Actor();
-        photonView = new PhotonView();
 
         anim = gameObject.GetComponent<Animator>();
         // highlighter = gameObject.GetComponent<Highlighter>();
@@ -44,8 +41,20 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks//, IPunObservable
 
     private void Start()
     {
-
         item = TrainGameManager.instance.allitemCtrl;
+
+        if (Live)
+        {
+            //마스터클라이언트만 코루틴 실행하고 다른애들한텐 그 결과만 알려주기 
+            if (!PhotonNetwork.IsMasterClient)
+            {
+                return;
+            }
+            else
+            {
+                StartCoroutine(PassengerIsEffectedByEnvironment());
+            }
+        }
     }
 
 
@@ -102,15 +111,15 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks//, IPunObservable
         this.transform.localPosition = Vector3.zero;
         anim.SetBool("IsSit", true);
 
-        //마스터클라이언트만 코루틴 실행하고 다른애들한텐 그 결과만 알려주기 
-        if (!PhotonNetwork.IsMasterClient)
-        {
-            return;
-        }
-        else
-        {
-            StartCoroutine(PassengerIsEffectedByEnvironment());
-        }
+        ////마스터클라이언트만 코루틴 실행하고 다른애들한텐 그 결과만 알려주기 
+        //if (!PhotonNetwork.IsMasterClient)
+        //{
+        //    return;
+        //}
+        //else
+        //{
+        //    StartCoroutine(PassengerIsEffectedByEnvironment());
+        //}
 
     }
 
@@ -173,21 +182,8 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks//, IPunObservable
     }
 
 
-    [PunRPC]
-    public void setHungry(int hungry )
-    {
-        pass.Hungry = hungry;
-    }
-    
-    [PunRPC]
-    public void setDisease(int disease)
-    {
-        pass.Disease = disease;
-    }
-
     IEnumerator PassengerIsEffectedByEnvironment()
     {
-
         int random = Random.Range(0, 35); // 별도의 랜덤 클래스 만들어보기
 
         if (random % 5 == 0)
@@ -216,13 +212,18 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks//, IPunObservable
             pass.Disease += 20;
         }
 
-        //photonView.RPC("setHungryDisease", RpcTarget.All , pass.Hungry, pass.Disease);
-        //photonView.RPC("setHungry", RpcTarget.All, pass.Hungry);
-        //photonView.RPC("setDisease", RpcTarget.All, pass.Disease);
+        photonView.RPC("setHungryDisease", RpcTarget.All , pass.Hungry, pass.Disease);
 
         yield return new WaitForSeconds(2.5f);
 
         StartCoroutine(PassengerIsEffectedByEnvironment());
+    }
+
+    [PunRPC]
+    public void setHungryDisease(int _hungry, int _disease)
+    {
+        pass.Hungry = _hungry;
+        pass.Disease = _disease;
     }
 
     public void ExitButtonCanvas()
