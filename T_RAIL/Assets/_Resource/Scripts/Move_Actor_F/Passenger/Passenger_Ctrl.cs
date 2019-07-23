@@ -43,18 +43,24 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
     {
         item = TrainGameManager.instance.allitemCtrl;
 
-        if (Live)
-        {
-            //마스터클라이언트만 코루틴 실행하고 다른애들한텐 그 결과만 알려주기 
-            if (!PhotonNetwork.IsMasterClient)
-            {
-                return;
-            }
-            else
-            {
-                StartCoroutine(PassengerIsEffectedByEnvironment());
-            }
-        }
+        this.transform.localPosition = Vector3.zero;
+        this.gameObject.SetActive(false);
+        this.transform.parent = TrainGameManager.instance.gameObject.transform.GetChild(1);// (int)prefab_list.passenger);
+        TrainGameManager.instance.PassengerManager.Add(this.gameObject);
+
+        //if (Live)
+        //{
+        //    //마스터클라이언트만 코루틴 실행하고 다른애들한텐 그 결과만 알려주기 
+        //    if (!PhotonNetwork.IsMasterClient)
+        //    {
+        //        return;
+        //    }
+        //    else
+        //    {
+
+        //        StartCoroutine(PassengerIsEffectedByEnvironment());
+        //    }
+        //}
     }
 
 
@@ -111,15 +117,15 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
         this.transform.localPosition = Vector3.zero;
         anim.SetBool("IsSit", true);
 
-        ////마스터클라이언트만 코루틴 실행하고 다른애들한텐 그 결과만 알려주기 
-        //if (!PhotonNetwork.IsMasterClient)
-        //{
-        //    return;
-        //}
-        //else
-        //{
-        //    StartCoroutine(PassengerIsEffectedByEnvironment());
-        //}
+        //마스터클라이언트만 코루틴 실행하고 다른애들한텐 그 결과만 알려주기 
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
+        else
+        {
+            StartCoroutine(PassengerIsEffectedByEnvironment());
+        }
 
     }
 
@@ -212,7 +218,9 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
             pass.Disease += 20;
         }
 
+        Debug.Log("1질병 : " + pass.Disease + "    배고픔 : " + pass.Hungry);
         photonView.RPC("setHungryDisease", RpcTarget.All , pass.Hungry, pass.Disease);
+
 
         yield return new WaitForSeconds(2.5f);
 
@@ -222,7 +230,7 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
     [PunRPC]
     public void setHungryDisease(int _hungry, int _disease)
     {
-        Debug.Log("질병 : " + _disease + "    배고픔 : " + _hungry);
+        Debug.Log("2질병 : " + _disease + "    배고픔 : " + _hungry);
         pass.Hungry = _hungry;
         pass.Disease = _disease;
     }

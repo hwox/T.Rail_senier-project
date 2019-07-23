@@ -19,6 +19,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
 	// Update is called once per frame
 	void Update () {
 
+        //state==1 기차 안 / state == 3 역
         if (TrainGameManager.instance.Scene_state==1)
         {
             if (!TestMeterMode)
@@ -41,7 +42,10 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
         else if(TrainGameManager.instance.Scene_state == 3)
         {
             photonView.RPC("SetTrainPlayer", RpcTarget.All);
+            Debug.Log("1111111111111111111111111111");
             photonView.RPC("TrainSceneLoad", RpcTarget.All);
+            Debug.Log("eeeeeeeeeeeeeeeeeeeeeeeeeeee");
+
             TrainGameManager.instance.Scene_state = 1;
         }
 
@@ -78,7 +82,6 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
             playerListController.playerList[i].player.SetTrainPlayer(i);
             playerListController.playerList[i].player.Where_Floor = 1;
             //Debug.Log("id : " + (i) + "  floor : " + playerListController.playerList[i].player.Where_Floor);
-
 
             // 승객을 태우기 위해서 호출하는 함수
             TrainGameManager.instance.SofaSitPassengerCtrl.PassengerRideInTrain();

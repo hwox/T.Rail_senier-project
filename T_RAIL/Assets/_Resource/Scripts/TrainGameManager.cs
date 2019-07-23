@@ -165,6 +165,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
     ///
     public void CreateObject(GameObject _obj, int _count, int prefab_index)
     {
+
         for (int i = 0; i < _count; i++)
         {
             switch (prefab_index)
@@ -177,11 +178,13 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                     BulletManager.Add(obj); 
                     break;
                 case (int)prefab_list.passenger:
+                    if (!PhotonNetwork.IsMasterClient) return;
                     obj = PhotonNetwork.Instantiate(_obj.name, new Vector3(0,0,0), _obj.transform.rotation,0);
-                    obj.transform.localPosition = Vector3.zero;
-                    obj.SetActive(false);
-                    obj.transform.parent = transform.GetChild(prefab_index);
-                    PassengerManager.Add(obj);
+                    //이 밑에부분은 passenger_ctrl start 부분으로 뺌. 왜냐면 마스터 클라가 아니면 여기까지 도달을 안함
+                    //obj.transform.localPosition = Vector3.zero;
+                    //obj.SetActive(false);
+                    //obj.transform.parent = transform.GetChild(prefab_index);
+                    //PassengerManager.Add(obj);
                     break;
                 case (int)prefab_list.stationpassenger:
                     obj = Instantiate(_obj);
