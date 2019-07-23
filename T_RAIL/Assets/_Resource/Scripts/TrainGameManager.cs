@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Text;
+using Photon.Pun;
 
-public class TrainGameManager : MonoBehaviour
+public class TrainGameManager : MonoBehaviourPunCallbacks
 {
 
     public enum prefab_list
@@ -166,34 +167,62 @@ public class TrainGameManager : MonoBehaviour
     {
         for (int i = 0; i < _count; i++)
         {
-            GameObject obj = Instantiate(_obj);
-            obj.transform.localPosition = Vector3.zero; 
-            obj.SetActive(false);
-            obj.transform.parent = transform.GetChild(prefab_index);
             switch (prefab_index)
             {
                 case (int)prefab_list.bullet:
-                    BulletManager.Add(obj); // 
+                    GameObject obj = Instantiate(_obj);
+                    obj.transform.localPosition = Vector3.zero;
+                    obj.SetActive(false);
+                    obj.transform.parent = transform.GetChild(prefab_index);
+                    BulletManager.Add(obj); 
                     break;
                 case (int)prefab_list.passenger:
+                    obj = PhotonNetwork.Instantiate(_obj.name, new Vector3(0,0,0), _obj.transform.rotation,0);
+                    obj.transform.localPosition = Vector3.zero;
+                    obj.SetActive(false);
+                    obj.transform.parent = transform.GetChild(prefab_index);
                     PassengerManager.Add(obj);
                     break;
                 case (int)prefab_list.stationpassenger:
+                    obj = Instantiate(_obj);
+                    obj.transform.localPosition = Vector3.zero;
+                    obj.SetActive(false);
+                    obj.transform.parent = transform.GetChild(prefab_index);
                     Station_PassengerManager.Add(obj);
                     break;
                 case (int)prefab_list.dustparticle:
+                    obj = Instantiate(_obj);
+                    obj.transform.localPosition = Vector3.zero;
+                    obj.SetActive(false);
+                    obj.transform.parent = transform.GetChild(prefab_index);
                     DustParticle.Add(obj);
                     break;
                 case (int)prefab_list.sofa:
+                    obj = Instantiate(_obj);
+                    obj.transform.localPosition = Vector3.zero;
+                    obj.SetActive(false);
+                    obj.transform.parent = transform.GetChild(prefab_index);
                     SofaManager.Add(obj);
                     break;
                 case (int)prefab_list.box:
+                    obj = Instantiate(_obj);
+                    obj.transform.localPosition = Vector3.zero;
+                    obj.SetActive(false);
+                    obj.transform.parent = transform.GetChild(prefab_index);
                     BoxManager.Add(obj);
                     break;
                 case (int)prefab_list.chicken:
+                    obj = Instantiate(_obj);
+                    obj.transform.localPosition = Vector3.zero;
+                    obj.SetActive(false);
+                    obj.transform.parent = transform.GetChild(prefab_index);
                     ChickenManager.Add(obj);
                     break;
                 case (int)prefab_list.egg:
+                    obj = Instantiate(_obj);
+                    obj.transform.localPosition = Vector3.zero;
+                    obj.SetActive(false);
+                    obj.transform.parent = transform.GetChild(prefab_index);
                     EggManager.Add(obj);
                     break;
             }

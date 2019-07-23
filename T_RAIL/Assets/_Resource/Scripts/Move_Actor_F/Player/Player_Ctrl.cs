@@ -103,7 +103,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     {
         DontDestroyOnLoad(gameObject);
 
-        if (photonView.ViewID % 1000 == 2)
+        if (photonView.ViewID % 2 == 0)
         {
             Destroy(this.gameObject);
         }

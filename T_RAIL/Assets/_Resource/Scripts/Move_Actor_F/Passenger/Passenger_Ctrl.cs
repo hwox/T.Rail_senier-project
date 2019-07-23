@@ -222,6 +222,7 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
     [PunRPC]
     public void setHungryDisease(int _hungry, int _disease)
     {
+        Debug.Log("질병 : " + _disease + "    배고픔 : " + _hungry);
         pass.Hungry = _hungry;
         pass.Disease = _disease;
     }

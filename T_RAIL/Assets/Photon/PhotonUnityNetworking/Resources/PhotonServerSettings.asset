@@ -30,35 +30,33 @@ MonoBehaviour:
   RpcList:
   - Box_Add
   - changeMy_Where_Train
+  - ChoiceBox
+  - ChoiceSofa
   - DestroySpaceship
   - Fire
   - getHitObjectRPC
   - Init_Make
   - isAttackedByBullet
-  - Machine_Gun_OnOff_RPC
-  - onTrainScrollBar
-  - passengerTouch
-  - RespawnSpaceship
-  - Rhino_Add
-  - RunStartTrain
-  - setRunMeterZero
-  - SetTrainPlayer
-  - Sofa_Add
-  - StationSceneLoad
-  - Train_Add
-  - Train_Delete
-  - TrainSceneLoad
-  - stateChange
-  - ChoiceBox
-  - ChoiceSofa
   - ItemGet_FoodBean
   - ItemGet_FoodChicken
   - ItemGet_FoodTomato
   - ItemGet_Hammer
   - ItemGet_Ironpan
   - ItemGet_Nail
+  - Machine_Gun_OnOff_RPC
+  - onTrainScrollBar
+  - passengerTouch
+  - RespawnSpaceship
+  - Rhino_Add
+  - RunStartTrain
   - setHungryDisease
-  - setDisease
-  - setHungry
+  - setRunMeterZero
+  - SetTrainPlayer
+  - Sofa_Add
+  - stateChange
+  - StationSceneLoad
+  - Train_Add
+  - Train_Delete
+  - TrainSceneLoad
   DisableAutoOpenWizard: 1
   ShowSettings: 1
