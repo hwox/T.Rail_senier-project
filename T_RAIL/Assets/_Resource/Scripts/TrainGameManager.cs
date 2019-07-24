@@ -108,7 +108,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
 
     // 닭
     public List<GameObject> ChickenManager;
-    const int MAKE_CHICKEN_COUNT = 10;
+    public const int MAKE_CHICKEN_COUNT = 10;
 
     //달걀
     public List<GameObject> EggManager;

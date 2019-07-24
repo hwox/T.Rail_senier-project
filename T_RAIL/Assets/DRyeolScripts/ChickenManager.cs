@@ -19,5 +19,8 @@ public class ChickenManager : MonoBehaviour {
             temp.transform.position = Spawn[i].transform.position;
         }
 
+
     }
+
+
 }
