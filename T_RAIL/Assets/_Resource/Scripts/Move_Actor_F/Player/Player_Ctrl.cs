@@ -107,9 +107,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     {
         DontDestroyOnLoad(gameObject);
 
-        for(int i = 0; i< PhotonNetwork.PlayerList.Length; ++i)
-             Debug.Log(PhotonNetwork.PlayerList[i]);
-
         if (photonView.ViewID % 2 == 0)
         {
             Destroy(this.gameObject);
@@ -975,7 +972,10 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
     void BeatenPath()
     {
-
+        itp.SetNode(0, new Vector3(10.0f, 0.0f, 0.0f));
+        itp.SetNode(0, new Vector3(10.0f, 0.0f, 0.0f));
+        itp.SetNode(0, new Vector3(10.0f, 0.0f, 0.0f));
+        iTween.MoveTo(gameObject, iTween.Hash("path", iTweenPath.GetPath("New Path 1"), "time", 7));
     }
 
 }
