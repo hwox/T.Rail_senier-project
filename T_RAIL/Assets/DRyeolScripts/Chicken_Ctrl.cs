@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Photon.Pun;
 
-public class Chicken_Ctrl : MonoBehaviour
+public class Chicken_Ctrl : MonoBehaviourPunCallbacks
 {
 
     Animator anim;
@@ -27,33 +28,47 @@ public class Chicken_Ctrl : MonoBehaviour
         StartCoroutine("GotoDestPreson");
         StartCoroutine("BeatenFalse");
         HP-=1;
-        if(HP<=0)
-          StartCoroutine("Death");               
+        if (HP <= 0)
+            StartCoroutine("Death");
+
+
+
+        //photonView.RPC("chickenDeath_RPC", RpcTarget.All);      
     }
 
+
+    [PunRPC]
+    void chickenDeath_RPC()
+    {
+        StartCoroutine("Death");
+    }
+
+    private void Awake()
+    {
+        this.transform.localPosition = Vector3.zero;
+        this.gameObject.SetActive(false);
+        this.transform.parent = TrainGameManager.instance.gameObject.transform.GetChild(6);// (int)prefab_list.passenger);
+        TrainGameManager.instance.ChickenManager.Add(this.gameObject);
+    }
 
     // Use this for initialization
     void Start()
     {
-
         nav = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         SpwanManager = GameObject.Find("ChickenManager");
-        Debug.Log(SpwanManager.gameObject.transform.position.z);
-        StartCoroutine("GotoDest");
-        StartCoroutine("FindNextDest");
-    }
+        // Debug.Log(SpwanManager.gameObject.transform.position.z);
 
-    // Update is called once per frame
-    void Update()
-    {
-
+        if (PhotonNetwork.IsMasterClient)
+        {
+            Debug.Log("마스터클라이언트입니다");
+            StartCoroutine("GotoDest");
+            StartCoroutine("FindNextDest");
+        }
     }
- 
 
     IEnumerator FindNextDest()// 무작위 위치 찾기
     {
-
         NextDestNum = Random.Range(0, 10);
         // Debug.Log(NextDestNum);
         yield return 5;

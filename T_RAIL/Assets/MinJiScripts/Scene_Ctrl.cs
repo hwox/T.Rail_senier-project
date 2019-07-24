@@ -42,9 +42,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
         else if(TrainGameManager.instance.Scene_state == 3)
         {
             photonView.RPC("SetTrainPlayer", RpcTarget.All);
-            Debug.Log("1111111111111111111111111111");
             photonView.RPC("TrainSceneLoad", RpcTarget.All);
-            Debug.Log("eeeeeeeeeeeeeeeeeeeeeeeeeeee");
 
             TrainGameManager.instance.Scene_state = 1;
         }
@@ -126,8 +124,8 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
     [PunRPC]
     public void StationSceneLoad()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Station_Stage1");
-        //UnityEngine.SceneManagement.SceneManager.LoadScene("Station_Stage2");
+        //UnityEngine.SceneManagement.SceneManager.LoadScene("Station_Stage1");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Station_Stage2");
     }
 
 }

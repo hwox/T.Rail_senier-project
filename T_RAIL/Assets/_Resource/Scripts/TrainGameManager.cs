@@ -215,11 +215,13 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                     BoxManager.Add(obj);
                     break;
                 case (int)prefab_list.chicken:
-                    obj = Instantiate(_obj);
-                    obj.transform.localPosition = Vector3.zero;
-                    obj.SetActive(false);
-                    obj.transform.parent = transform.GetChild(prefab_index);
-                    ChickenManager.Add(obj);
+                    if (!PhotonNetwork.IsMasterClient) return;
+                    obj = PhotonNetwork.Instantiate(_obj.name, new Vector3(0, 0, 0), _obj.transform.rotation, 0);
+                    //이 밑에부분은 Chicken_ctrl start 부분으로 뺌. 왜냐면 마스터 클라가 아니면 여기까지 도달을 안함
+                    //obj.transform.localPosition = Vector3.zero;
+                    //obj.SetActive(false);
+                    //obj.transform.parent = transform.GetChild(prefab_index);
+                    //ChickenManager.Add(obj);
                     break;
                 case (int)prefab_list.egg:
                     obj = Instantiate(_obj);
