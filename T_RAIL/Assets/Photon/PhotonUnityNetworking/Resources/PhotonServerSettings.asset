@@ -58,5 +58,6 @@ MonoBehaviour:
   - Train_Add
   - Train_Delete
   - TrainSceneLoad
+  - chickenDeath_RPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1

@@ -257,8 +257,6 @@ public class Train_Object : MonoBehaviourPunCallbacks
                 case 2:
                     // 박스 
                     _obj.transform.localPosition = new Vector3(GameValue.T_ObjectX, GameValue.T_Box_ObjectY, GameValue.T_ObjectZ[_whatnumber]);
-
-
                     _obj.GetComponent<InBoxItem>().ActiveThisBox();
                     _obj.SetActive(true);
                     break;
