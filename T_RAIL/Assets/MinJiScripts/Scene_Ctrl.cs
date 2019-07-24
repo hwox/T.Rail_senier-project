@@ -115,7 +115,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
                 playerListController.playerList[i].player.SetStationPlayer(i);
                 playerListController.playerList[i].player.Where_Floor = 4;
                 playerListController.playerList[i].player.AxeActive();
-            Debug.Log("id : " + (i) + "  floor : " + playerListController.playerList[i].player.Where_Floor);
+                 Debug.Log("id : " + (i) + "  floor : " + playerListController.playerList[i].player.Where_Floor);
 
                 //photonView.RPC("setPlayerInStationState", RpcTarget.All, i);
             }
