@@ -58,6 +58,11 @@ MonoBehaviour:
   - Train_Add
   - Train_Delete
   - TrainSceneLoad
+  - chickenDeath_RPC
+  - eggEat_RPC
+  - ItemGet_MediPack
+  - ItemGet_WoodBoard
+  - attack_RPC
   - MakeBox
   - MakeSofa
   DisableAutoOpenWizard: 1

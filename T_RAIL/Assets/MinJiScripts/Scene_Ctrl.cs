@@ -42,9 +42,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
         else if(TrainGameManager.instance.Scene_state == 3)
         {
             photonView.RPC("SetTrainPlayer", RpcTarget.All);
-            Debug.Log("1111111111111111111111111111");
             photonView.RPC("TrainSceneLoad", RpcTarget.All);
-            Debug.Log("eeeeeeeeeeeeeeeeeeeeeeeeeeee");
 
             TrainGameManager.instance.Scene_state = 1;
         }
@@ -81,6 +79,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
             playerListController.playerList[i].player.DownSize();
             playerListController.playerList[i].player.SetTrainPlayer(i);
             playerListController.playerList[i].player.Where_Floor = 1;
+            playerListController.playerList[i].player.AxeActive();
             //Debug.Log("id : " + (i) + "  floor : " + playerListController.playerList[i].player.Where_Floor);
 
             // 승객을 태우기 위해서 호출하는 함수
@@ -115,7 +114,8 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
                 playerListController.playerList[i].player.UpSize();
                 playerListController.playerList[i].player.SetStationPlayer(i);
                 playerListController.playerList[i].player.Where_Floor = 4;
-                Debug.Log("id : " + (i) + "  floor : " + playerListController.playerList[i].player.Where_Floor);
+                playerListController.playerList[i].player.AxeActive();
+                 Debug.Log("id : " + (i) + "  floor : " + playerListController.playerList[i].player.Where_Floor);
 
                 //photonView.RPC("setPlayerInStationState", RpcTarget.All, i);
             }
@@ -124,8 +124,8 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
     [PunRPC]
     public void StationSceneLoad()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Station_Stage1");
-        //UnityEngine.SceneManagement.SceneManager.LoadScene("Station_Stage2");
+        //UnityEngine.SceneManagement.SceneManager.LoadScene("Station_Stage1");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Station_Stage2");
     }
 
 }

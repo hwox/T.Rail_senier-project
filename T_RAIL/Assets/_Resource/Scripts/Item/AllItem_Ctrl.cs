@@ -208,6 +208,36 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
+    public void ItemGet_Nail()
+    {
+        // 1 
+        for (int i = 0; i < boxItem.Count; i++)
+        {
+            if (!boxItem[i].IsBoxFull())
+            {
+                // 앞의 순서대로 박스가 full이 아니면 여기에 들어가기
+                boxItem[i].AddItem((int)GameValue.itemCategory.nail);
+                break;
+            }
+        }
+    }
+
+    [PunRPC]
+    public void ItemGet_Ironpan()
+    {
+        // 2
+        for (int i = 0; i < boxItem.Count; i++)
+        {
+            if (!boxItem[i].IsBoxFull())
+            {
+                // 앞의 순서대로 박스가 full이 아니면 여기에 들어가기
+                boxItem[i].AddItem((int)GameValue.itemCategory.ironpan);
+                break;
+            }
+        }
+    }
+
+    [PunRPC]
     public void ItemGet_FoodTomato()
     {
         //3
@@ -255,20 +285,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         }
     }
 
-    [PunRPC]
-    public void ItemGet_Nail()
-    {
-        // 1 
-        for (int i = 0; i < boxItem.Count; i++)
-        {
-            if (!boxItem[i].IsBoxFull())
-            {
-                // 앞의 순서대로 박스가 full이 아니면 여기에 들어가기
-                boxItem[i].AddItem((int)GameValue.itemCategory.nail);
-                break;
-            }
-        }
-    }
+
 
     [PunRPC]
     public void ItemGet_Hammer()
@@ -285,21 +302,9 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         }
     }
 
-    [PunRPC]
-    public void ItemGet_Ironpan()
-    {
-        // 2
-        for (int i = 0; i < boxItem.Count; i++)
-        {
-            if (!boxItem[i].IsBoxFull())
-            {
-                // 앞의 순서대로 박스가 full이 아니면 여기에 들어가기
-                boxItem[i].AddItem((int)GameValue.itemCategory.ironpan);
-                break;
-            }
-        }
-    }
 
+
+    [PunRPC]
     public void ItemGet_MediPack()
     {
         //7
@@ -314,6 +319,8 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         }
     }
 
+
+    [PunRPC]
     public void ItemGet_WoodBoard()
     {
         //8
@@ -331,13 +338,26 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
     public void ItemGet_Random()
     {
         int ItemNumber = Random.Range(0, (int)GameValue.itemCategory.woodboard+1);
-        for (int i = 0; i < boxItem.Count; i++)
+
+        switch (ItemNumber)
         {
-            if (!boxItem[i].IsBoxFull())
-            {
-                boxItem[i].AddItem(ItemNumber);
-                break;
-            }
+            case 1:
+                photonView.RPC("ItemGet_Nail", RpcTarget.All); break;
+            case 2:
+                photonView.RPC("ItemGet_Ironpan", RpcTarget.All); break;
+            case 3:
+                photonView.RPC("ItemGet_FoodTomato", RpcTarget.All); break;
+            case 4:
+                photonView.RPC("ItemGet_FoodBean", RpcTarget.All); break;
+            case 5:
+                photonView.RPC("ItemGet_FoodChicken", RpcTarget.All); break;
+            case 6:
+                photonView.RPC("ItemGet_Hammer", RpcTarget.All); break;
+            case 7:
+                photonView.RPC("ItemGet_MediPack", RpcTarget.All); break;
+            case 8:
+                photonView.RPC("ItemGet_WoodBoard", RpcTarget.All); break;
         }
+
     }
 }

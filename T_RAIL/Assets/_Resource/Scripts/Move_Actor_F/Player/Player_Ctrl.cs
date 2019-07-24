@@ -92,7 +92,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     //역 공격
     public GameObject attackleach;
     public bool attack_possible = true;
-
+    public GameObject axe;
     /// ////////////////////////////////////////////////////////////////////////
 
     public playerListController_minj playerListController;
@@ -124,6 +124,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Start()
     {
+        player.axe = axe;
         ////if (!photonView.IsMine) return;
         //if (photonView.ViewID % 1000 == 2) Destroy(this.gameObject);
 
@@ -271,6 +272,15 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             {
                 //여기서 이제다시 기차로
                 TrainGameManager.instance.Scene_state = 3;
+
+
+                for (int i = 0; i < TrainGameManager.MAKE_CHICKEN_COUNT; i++)
+                {
+                    if (gameObject.activeSelf == true)
+                    { 
+                        TrainGameManager.instance.ChickenManager[i].GetComponent<Chicken_Ctrl>().die();
+                    }
+                }
             }
         }
 
@@ -280,22 +290,29 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (Input.GetKeyDown(KeyCode.V))
             {
-                other.gameObject.SetActive(false);
-                GameObject.Find("Item_Ctrl").GetComponent<AllItem_Ctrl>().ItemGet_Random();
+                photonView.RPC("eggEat_RPC", RpcTarget.All, other.gameObject.GetPhotonView().ViewID);
             }
         }
-
-
     }
    
-
-
     [PunRPC]
     public void passengerTouch(int i)
     {
         TrainGameManager.instance.Station_PassengerManager[i].gameObject.SetActive(false);
         TrainGameManager.instance.GetPassengerCount++;
         Debug.Log("GetPassengerCount " + TrainGameManager.instance.GetPassengerCount);
+    }
+
+    [PunRPC]
+    public void eggEat_RPC(int otherViewID)
+    {
+        GameObject _other = PhotonView.Find(otherViewID).gameObject;
+        _other.gameObject.SetActive(false);
+
+        if (!PhotonNetwork.IsMasterClient) return;
+
+        GameObject.Find("Item_Ctrl").GetComponent<AllItem_Ctrl>().ItemGet_Random();
+
     }
 
     private void OnTriggerExit(Collider other)
