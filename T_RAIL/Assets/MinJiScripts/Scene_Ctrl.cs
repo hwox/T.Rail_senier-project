@@ -81,6 +81,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
             playerListController.playerList[i].player.DownSize();
             playerListController.playerList[i].player.SetTrainPlayer(i);
             playerListController.playerList[i].player.Where_Floor = 1;
+            playerListController.playerList[i].player.AxeActive();
             //Debug.Log("id : " + (i) + "  floor : " + playerListController.playerList[i].player.Where_Floor);
 
             // 승객을 태우기 위해서 호출하는 함수
@@ -115,7 +116,8 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
                 playerListController.playerList[i].player.UpSize();
                 playerListController.playerList[i].player.SetStationPlayer(i);
                 playerListController.playerList[i].player.Where_Floor = 4;
-                Debug.Log("id : " + (i) + "  floor : " + playerListController.playerList[i].player.Where_Floor);
+                playerListController.playerList[i].player.AxeActive();
+            Debug.Log("id : " + (i) + "  floor : " + playerListController.playerList[i].player.Where_Floor);
 
                 //photonView.RPC("setPlayerInStationState", RpcTarget.All, i);
             }

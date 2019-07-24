@@ -7,7 +7,7 @@ public class Player_Actor : Move_Actor {
 
     public bool WallConflict;
     public int[] Directions;
-
+    public GameObject axe;
     public Player_Actor()
     {
         base.Actor_Property = (int)Actor.Player; // property에 player 라고 정의
@@ -214,4 +214,15 @@ public class Player_Actor : Move_Actor {
         position = new Pos(-1 * n* 2, 3.8f, -2.5f);
     }
 
+    public void AxeActive()
+    {
+        if (Where_Floor == 4)
+        {
+            axe.SetActive(true);
+        }
+        else
+        {
+            axe.SetActive(false);
+        }
+    }
 }

@@ -92,7 +92,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     //역 공격
     public GameObject attackleach;
     public bool attack_possible = true;
-
+    public GameObject axe;
     /// ////////////////////////////////////////////////////////////////////////
 
     public playerListController_minj playerListController;
@@ -124,6 +124,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Start()
     {
+        player.axe = axe;
         ////if (!photonView.IsMine) return;
         //if (photonView.ViewID % 1000 == 2) Destroy(this.gameObject);
 
