@@ -528,11 +528,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 break;
         }
 
-
-
-
-
-
         //////플레이어들이 어디에 있는지 확인
         //for (int i = 0; i < PhotonNetwork.CountOfPlayers; ++i)
         //{

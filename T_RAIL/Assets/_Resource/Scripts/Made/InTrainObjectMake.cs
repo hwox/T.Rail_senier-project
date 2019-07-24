@@ -56,24 +56,41 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
 
         if (!PhotonNetwork.IsMasterClient) return;
 
-        if (WhereTrain_Object == 1)
+        //if (WhatNumber_Object == 0)
+        //{
+        //    photonView.RPC("MakeBox", RpcTarget.All, 1, WhatNumber_Object);
+        //}
+        //else if (WhatNumber_Object == 1)
+        //{
+        //    photonView.RPC("MakeSofa", RpcTarget.All, 1, WhatNumber_Object);
+        //}
+         if (WhatNumber_Object == 2)
         {
-            // 첫번째 칸이면
-            int rand = Random.Range(0, 2);
-
-            if (rand == 0)
-            {
-                // 소파만들기
-                // photonView.RPC("ChoiceSofa", RpcTarget.All, 1, WhatNumber_Object);
-            }
-            else
-            {
-                //박스만들기
-                // photonView.RPC("ChoiceBox", RpcTarget.All, 1, WhatNumber_Object);
-            }
+            photonView.RPC("MakeBox", RpcTarget.All, 1, WhatNumber_Object);
         }
+        else if(WhatNumber_Object == 3)
+        {
+            photonView.RPC("MakeSofa", RpcTarget.All, 1, WhatNumber_Object);
+        }
+        
+        //if (WhereTrain_Object == 1)
+        //{
+        //    // 첫번째 칸이면
+        //    int rand = Random.Range(0, 2);
+        //
+        //    if (rand == 0)
+        //    {
+        //        // 소파만들기
+        //        photonView.RPC("MakeSofa", RpcTarget.All, 1, WhatNumber_Object);
+        //    }
+        //    else
+        //    {
+        //        //박스만들기
+        //        photonView.RPC("MakeBox", RpcTarget.All, 1, WhatNumber_Object);
+        //    }
+        //}
 
-        MaterialStorage_ctrl = MaterialStorage.GetComponent<MaterialForCreate>();
+            MaterialStorage_ctrl = MaterialStorage.GetComponent<MaterialForCreate>();
     }
 
     public void MakeBox_Button()
@@ -95,14 +112,14 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
         // 그래서 얘를 누르면 sofa, box 둘중에 선택하라는 버튼이 뜨고 이 함수는 choicebox니까 박스를 선택한것
         // 그래서 보면? trainscript에 지금 어느칸에 있는지를 이용해서 InTrainSetting 함수에 접근해서 오브젝트풀링 된 오브젝트를 하나 넘겨줌.
         // 그걸 넘겨 받아서 저 함수로 가보면 
-        TrainGameManager.instance.TrainCtrl.trainscript[WhereTrain_Object - 1].InTrainObject_Setting(TrainGameManager.instance.GetObject(5), WhatNumber_Object - 1, 2);
+        TrainGameManager.instance.TrainCtrl.trainscript[WhereTrain_Object - 1].InTrainObject_Setting(TrainGameManager.instance.GetObject(5), WhatNumber_Object , 2);
         this.gameObject.SetActive(false);
     }
 
     [PunRPC]
     public void MakeSofa(int WhereTrain_Object, int WhatNumber_Object)
     {
-        TrainGameManager.instance.TrainCtrl.trainscript[WhereTrain_Object - 1].InTrainObject_Setting(TrainGameManager.instance.GetObject(4), WhatNumber_Object - 1, 1);
+        TrainGameManager.instance.TrainCtrl.trainscript[WhereTrain_Object - 1].InTrainObject_Setting(TrainGameManager.instance.GetObject(4), WhatNumber_Object, 1);
         this.gameObject.SetActive(false);
     }
 
@@ -266,9 +283,9 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
             }
             else
             {
-                MakeEnable = true;
-                MakeButton.interactable = true;
-               // MakeButton.interactable = false;
+               // MakeEnable = true;
+               // MakeButton.interactable = true;
+                MakeButton.interactable = false;
             }
         }
         else

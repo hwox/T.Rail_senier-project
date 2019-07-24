@@ -220,11 +220,22 @@ public class Train_Object : MonoBehaviourPunCallbacks
         }
 
 
+
+        Invoke("callFirstTrainInit", 0.5f);
+
+        //for (int i = 0; i < 4; i++)
+        //{
+        //    this.gameObject.transform.GetChild(1).GetChild(i).gameObject.GetComponent<InTrainObjectMake>().InitSetting(ctrl.train.Count, i);
+        //}
+
+    }
+
+    public void callFirstTrainInit()
+    {
         for (int i = 0; i < 4; i++)
         {
-            this.gameObject.transform.GetChild(1).GetChild(i).gameObject.GetComponent<InTrainObjectMake>().InitSetting(ctrl.train.Count, i+1);
+            this.gameObject.transform.GetChild(1).GetChild(i).gameObject.GetComponent<InTrainObjectMake>().InitSetting(ctrl.train.Count, i);
         }
-
     }
 
 
@@ -243,8 +254,12 @@ public class Train_Object : MonoBehaviourPunCallbacks
         // setactive해주고 위치를 알맞게 조정해주는 것
 
         // 이 if문 왜 주석처리해야하냐면 어차피 수리도구로 바꿔야 돼서 주석처리해야함
+
+        Debug.Log("여기까지는 가냐????");
         if (!InTrainObjectUsed[_whatnumber]) {
+            Debug.Log("22222여기까지는 가냐????");
             ThisTrainNowObjects[_whatnumber] = _kind;
+            Debug.Log("3333여기까지는 가냐????");
             _obj.transform.parent = this.transform.GetChild(1);
             switch (_kind)
             {

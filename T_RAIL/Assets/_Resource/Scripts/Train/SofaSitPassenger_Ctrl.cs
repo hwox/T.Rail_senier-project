@@ -73,8 +73,6 @@ public class SofaSitPassenger_Ctrl : MonoBehaviour
                         break;
                     }
                 }
-
-
             }
             TrainGameManager.instance.GetPassengerCount = 0; // 다시 0으로 
         }
