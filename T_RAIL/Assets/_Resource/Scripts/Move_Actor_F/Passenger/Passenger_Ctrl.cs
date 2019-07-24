@@ -164,6 +164,12 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
 
     public void EatFood()
     {
+        photonView.RPC("EatFood_RPC", RpcTarget.All);
+    }
+
+    [PunRPC]
+    void EatFood_RPC()
+    {
         // 음식먹는 버튼
         // 조건으로 아이템 체크해서 하기 추가
 
@@ -175,7 +181,15 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
 
         Clicking = false;
     }
+
+
     public void EatHeal()
+    {
+        photonView.RPC("EatHeal_RPC", RpcTarget.All);
+    }
+
+    [PunRPC]
+    void EatHeal_RPC()
     {
         // 구급상자 먹는 버튼
         pass.Disease -= GameValue.DiseaseDncrease;

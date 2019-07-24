@@ -35,20 +35,20 @@ public class InBoxItem : MonoBehaviourPunCallbacks
     int clickUI;
     int clickUI_image;
     public Image[] ItemImages; // 아이템창의 아이템 슬롯이미지 창
-    
+
     bool DragEnable = false;
 
     void Start()
-    { 
+    {
         ItemImages = new Image[8];
         HaveItemInfo = new int[GameValue.ITEMLIMIT];
-       // ActiveThisBox();
+        // ActiveThisBox();
         GetImageComponent();
     }
 
     void GetImageComponent()
     {
-      
+
         for (int i = 0; i < HaveItemInfo.Length; i++)
         {
             ItemImages[i] = MyInvenCanvas.transform.GetChild(0).GetChild(i).GetChild(0).GetComponent<Image>();
@@ -76,7 +76,7 @@ public class InBoxItem : MonoBehaviourPunCallbacks
         MyInvenCanvas.gameObject.SetActive(true);
         //  allitem.HandItemUiOnOff(true);
         allitem.ItemInhand.SetActive(true);
-
+        TrainGameManager.instance.NowItemUIUsable = false;
         // 
         //// ShowInInventory();
     }
@@ -86,6 +86,8 @@ public class InBoxItem : MonoBehaviourPunCallbacks
 
         MyInvenCanvas.gameObject.SetActive(false);
         allitem.ItemInhand.SetActive(false);
+
+        TrainGameManager.instance.NowItemUIUsable = true;
     }
 
 
@@ -177,7 +179,7 @@ public class InBoxItem : MonoBehaviourPunCallbacks
                 default:
                     ItemImages[i].sprite = allitem.NullImage;
                     break;
-              
+
             }
         }
     }
@@ -186,7 +188,7 @@ public class InBoxItem : MonoBehaviourPunCallbacks
         // 마우스 버튼을 뗐음
         // 현재 슬롯의 정보 업데이트
         // 빈 이미지 객체를 비활성화
-      //  ItemImages[clickUI].sprite = allitem.ItemImage[clickUI_image];
+        //  ItemImages[clickUI].sprite = allitem.ItemImage[clickUI_image];
 
         // 이게 끝인거같음
         // 얘가 마지막 그러면 여기서 
@@ -195,16 +197,16 @@ public class InBoxItem : MonoBehaviourPunCallbacks
             ItemImages[clickUI].sprite = allitem.ItemImage[clickUI_image];
 
             allitem.ItemCrack = false;
-        } 
-        else if(allitem.ItemCrack)
+        }
+        else if (allitem.ItemCrack)
         {
             ItemImages[clickUI].sprite = allitem.NullImage;
 
-            if(allitem.LeftFlag == 1)
+            if (allitem.LeftFlag == 1)
             {
                 allitem.SetLeftHandItem();
             }
-            else if(allitem.RightFlag == 1)
+            else if (allitem.RightFlag == 1)
             {
                 allitem.SetRightHandItem();
             }
@@ -223,6 +225,7 @@ public class InBoxItem : MonoBehaviourPunCallbacks
             allitem.OnOff_DragMouse(true);
             clickUI = _number;
             clickUI_image = HaveItemInfo[_number];
+            DeleteItem(_number);
             DragEnable = true;
             // 잠깐 이미지 없애기
             ItemImages[_number].sprite = allitem.StandardImage;
@@ -255,7 +258,7 @@ public class InBoxItem : MonoBehaviourPunCallbacks
             // 이건 테스트할거라서 원래 위치로 돌아온걸로
             allitem.OnOff_DragMouse(false);
             clickUI = 0;
-            clickUI_image = 0; 
+            clickUI_image = 0;
         }
     }
 

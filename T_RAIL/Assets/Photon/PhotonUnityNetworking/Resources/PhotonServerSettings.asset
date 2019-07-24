@@ -66,5 +66,7 @@ MonoBehaviour:
   - setEggActiveFalse
   - MakeBox
   - MakeSofa
+  - EatFood_RPC
+  - EatHeal_RPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1

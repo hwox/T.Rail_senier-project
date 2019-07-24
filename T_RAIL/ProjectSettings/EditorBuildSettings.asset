@@ -15,12 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Station_Stage1.unity
     guid: 68f616838d7bb404f9f2627981188bad
   - enabled: 1
-    path: Assets/Scenes/Station_Stage2.unity
-    guid: 4626d6d02b9da7d41a34179706ba9568
-  - enabled: 1
-    path: Assets/Scenes/Train_Stage1-2.unity
-    guid: cf964890cbb00af409e93ea365e3a7be
-  - enabled: 1
     path: Assets/Scenes/Train_Stage2.unity
     guid: 37c7db5851d11774fa80f227f32d5082
+  - enabled: 1
+    path: Assets/Scenes/Station_Stage2.unity
+    guid: 4626d6d02b9da7d41a34179706ba9568
+  - enabled: 0
+    path: Assets/Scenes/Train_Stage1-2.unity
+    guid: cf964890cbb00af409e93ea365e3a7be
   m_configObjects: {}
