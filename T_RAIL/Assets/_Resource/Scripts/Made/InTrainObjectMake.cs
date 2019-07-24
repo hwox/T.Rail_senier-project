@@ -56,24 +56,41 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
 
         if (!PhotonNetwork.IsMasterClient) return;
 
-        if (WhereTrain_Object == 1)
+        if (WhatNumber_Object == 0)
         {
-            // 첫번째 칸이면
-            int rand = Random.Range(0, 2);
-
-            if (rand == 0)
-            {
-                // 소파만들기
-                photonView.RPC("MakeSofa", RpcTarget.All, 1, WhatNumber_Object);
-            }
-            else
-            {
-                //박스만들기
-                photonView.RPC("MakeBox", RpcTarget.All, 1, WhatNumber_Object);
-            }
+            photonView.RPC("MakeBox", RpcTarget.All, 1, WhatNumber_Object);
         }
+        else if (WhatNumber_Object == 1)
+        {
+            photonView.RPC("MakeSofa", RpcTarget.All, 1, WhatNumber_Object);
+        }
+        else if (WhatNumber_Object == 2)
+        {
+            photonView.RPC("MakeBox", RpcTarget.All, 1, WhatNumber_Object);
+        }
+        else if(WhatNumber_Object == 3)
+        {
+            photonView.RPC("MakeSofa", RpcTarget.All, 1, WhatNumber_Object);
+        }
+        
+        //if (WhereTrain_Object == 1)
+        //{
+        //    // 첫번째 칸이면
+        //    int rand = Random.Range(0, 2);
+        //
+        //    if (rand == 0)
+        //    {
+        //        // 소파만들기
+        //        photonView.RPC("MakeSofa", RpcTarget.All, 1, WhatNumber_Object);
+        //    }
+        //    else
+        //    {
+        //        //박스만들기
+        //        photonView.RPC("MakeBox", RpcTarget.All, 1, WhatNumber_Object);
+        //    }
+        //}
 
-        MaterialStorage_ctrl = MaterialStorage.GetComponent<MaterialForCreate>();
+            MaterialStorage_ctrl = MaterialStorage.GetComponent<MaterialForCreate>();
     }
 
     public void MakeBox_Button()
