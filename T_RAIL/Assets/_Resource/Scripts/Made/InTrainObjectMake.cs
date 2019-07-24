@@ -30,6 +30,8 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
     public GameObject SofaNeedItemExplain;
 
     public GameObject MaterialStorage;
+    MaterialForCreate MaterialStorage_ctrl;
+
     //public Image DragCursorSprite; // 마우스 드래그할 때 이미지
     //public int NowDragItemInfo; // 현재 드래그중인 아이템 정보
 
@@ -70,6 +72,8 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
                 photonView.RPC("MakeBox", RpcTarget.All, 1, WhatNumber_Object);
             }
         }
+
+        MaterialStorage_ctrl = MaterialStorage.GetComponent<MaterialForCreate>();
     }
 
     public void MakeBox_Button()
@@ -234,15 +238,38 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
         if (SofaMakeMode)
         {
             // 소파 만들 수 있는 조건 되면 makeenable = true; & 제작 버튼 활성화 \
-            MakeEnable = true;
-            MakeButton.interactable = true;  // 테스트용
+            // MakeEnable = true;
+            // MakeButton.interactable = true;  // 테스트용
+            if (MaterialStorage_ctrl.IsBoxMakeEnable())
+            {
+                // 만들수있음
+                MakeEnable = true;
+                MakeButton.interactable = true;
+            }
+            else
+            {
+                MakeButton.interactable = false;
+            }
         }
 
         else if (BoxMakeMode)
         {
             // 박스 만들 수 있는 조건 되면 makeenable = true;  & 제작 버튼 활성화 
-            MakeEnable = true;
-            MakeButton.interactable = true;  // 테스트용
+           // MakeEnable = true;
+          //  MakeButton.interactable = true;  // 테스트용
+
+            if (MaterialStorage_ctrl.IsSofaMakeEnable())
+            {
+                // 만들수있음
+                MakeEnable = true;
+                MakeButton.interactable = true;
+            }
+            else
+            {
+                MakeEnable = true;
+                MakeButton.interactable = true;
+               // MakeButton.interactable = false;
+            }
         }
         else
         {
