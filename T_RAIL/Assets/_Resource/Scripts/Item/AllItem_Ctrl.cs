@@ -30,8 +30,6 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
 
     // #hand UI
     public GameObject ItemInhand; // 손 item 
-    GameObject LeftUIImage;/* public Image DragCursorSprite;*/
-    GameObject RightUIImage;
 
     public Image DragCursorSprite; // 마우스 드래그할 때 이미지
     public int NowDragItemInfo; // 현재 드래그중인 아이템 정보
@@ -46,11 +44,13 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
     public int LeftFlag = 0; // 왼손에 닿았는가ㅎ
     public int RightFlag = 0; // 오른손에 닿았는가 ㅎ
 
+    public int UseInLeftHand = 0; // 재료상자용 
+    public int UseInRightHand = 0;// 재료상자용
 
     void Start()
-    {
-        LeftUIImage = ItemInhand.transform.GetChild(0).GetChild(0).gameObject;
-        RightUIImage = ItemInhand.transform.GetChild(1).GetChild(0).gameObject;
+    {//
+     //   LeftUIImage = ItemInhand.transform.GetChild(0).GetChild(0).gameObject;
+      //  RightUIImage = ItemInhand.transform.GetChild(1).GetChild(0).gameObject;
     }
 
     public void AddedItemBox(InBoxItem inbox)
@@ -77,16 +77,9 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
     }
     public void Change_DragMouse(int _number)
     {
-        //if (_number.Equals(0))
-        //{
-        //    Debug.Log("응?");
-        //    DragCursorSprite.sprite = null;
-        //}
-        //else
-        //{
+
         DragCursorSprite.sprite = ItemImage[_number - 1];
         NowDragItemInfo = _number;
-        // }
     }
     public void OnOff_DragMouse(bool _onoff)
     {
@@ -112,12 +105,15 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         TrainGameManager.instance.LeftHandItem = NowDragItemInfo;
         LeftHand_Pocket = NowDragItemInfo;
         LeftHand_PocketObject.GetComponent<Image>().sprite = ItemImage[LeftHand_Pocket - 1];
+      
     }
     public void UseLeftHandItem()
     {
-        TrainGameManager.instance.LeftHandItem = 99;
-        LeftHand_Pocket = 99;
+        TrainGameManager.instance.LeftHandItem = 0;
+        LeftHand_Pocket = 0;
         LeftHand_PocketObject.GetComponent<Image>().sprite = NullImage;
+        UseInLeftHand = 0;
+        UseInRightHand = 0;
     }
     public void SetRightHandItem()
     {
@@ -127,9 +123,11 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
     }
     public void UseRightHandItem()
     {
-        TrainGameManager.instance.RightHandItem = 99;
-        RightHand_Pocket = 99;
+        TrainGameManager.instance.RightHandItem = 0;
+        RightHand_Pocket = 0;
         RightHand_PocketObject.GetComponent<Image>().sprite = NullImage;
+        UseInLeftHand = 0;
+        UseInRightHand = 0;
     }
 
     public bool Usable_MediPack()
