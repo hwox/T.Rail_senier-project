@@ -15,7 +15,9 @@ public class playerListController_minj : MonoBehaviourPunCallbacks {
         {
             for (int j = i+1; j < playerList.Count; ++j)
             {
-                if (playerList[i].gameObject.GetPhotonView().ViewID == playerList[j].gameObject.GetPhotonView().ViewID)
+                Debug.Log("playerList[i].gameObject.GetPhotonView().Owner.NickName " + playerList[i].gameObject.GetPhotonView().Owner.NickName);
+                Debug.Log("playerList[j].gameObject.GetPhotonView().Owner.NickName " + playerList[j].gameObject.GetPhotonView().Owner.NickName);
+                if (playerList[i].gameObject.GetPhotonView().Owner.NickName == playerList[j].gameObject.GetPhotonView().Owner.NickName)
                 {
                     GameObject temp = playerList[j].gameObject;
                     playerList.Remove(playerList[j]);
