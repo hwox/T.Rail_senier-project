@@ -225,6 +225,7 @@ public class InBoxItem : MonoBehaviourPunCallbacks
             allitem.OnOff_DragMouse(true);
             clickUI = _number;
             clickUI_image = HaveItemInfo[_number];
+            DeleteItem(_number);
             DragEnable = true;
             // 잠깐 이미지 없애기
             ItemImages[_number].sprite = allitem.StandardImage;

@@ -91,4 +91,10 @@ public class iTweenPath : MonoBehaviour
 			return null;
 		}
 	}
+
+    public void SetNode(int i,Vector3 a)
+    {
+        nodes[i] = a;
+    }
+    
 }
