@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Photon.Pun;
 
-public class Scene_Ctrl : MonoBehaviourPunCallbacks {
+public class Scene_Ctrl : MonoBehaviourPunCallbacks
+{
 
     public playerListController_minj playerListController;
     public Train_Ctrl Train_Ctrl;
@@ -11,16 +13,18 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
 
     bool TestMeterMode; // test용 모드위해 추가하는 거
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         DontDestroyOnLoad(this);
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
 
         //state==1 기차 안 / state == 3 역
-        if (TrainGameManager.instance.Scene_state==1)
+        if (TrainGameManager.instance.Scene_state == 1)
         {
             if (!TestMeterMode)
             {
@@ -39,7 +43,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
                 }
             }
         }
-        else if(TrainGameManager.instance.Scene_state == 3)
+        else if (TrainGameManager.instance.Scene_state == 3)
         {
             photonView.RPC("SetTrainPlayer", RpcTarget.All);
             photonView.RPC("TrainSceneLoad", RpcTarget.All);
@@ -62,7 +66,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
         }
 
 
-        if(Input.GetKeyDown(KeyCode.Alpha0))
+        if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             photonView.RPC("setRunMeterZero", RpcTarget.All);
             photonView.RPC("StationSceneLoad", RpcTarget.All);
@@ -95,37 +99,38 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks {
     [PunRPC]
     public void TrainSceneLoad()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Train_Stage1-2");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     [PunRPC]
     public void setRunMeterZero()// 역으로 갈때
     {
-        
-            Train_Ctrl.Run_Meter = 0;
-            Train_Ctrl.Hide();
-            TrainGameManager.instance.Scene_state = 2;
-            TrainGameManager.instance.GetPassengerCount = 0;
-            //Debug.LogError("id : " + (PhotonNetwork.LocalPlayer.ActorNumber - 1 )+ "  floor : " + playerListController.playerList[PhotonNetwork.LocalPlayer.ActorNumber - 1].player.Where_Floor);
-            Debug.LogError("몇명 들어와있는지: " + playerListController.playerList.Count);
 
-            for (int i = 0; i < playerListController.playerList.Count; ++i)
-            {
-                playerListController.playerList[i].player.UpSize();
-                playerListController.playerList[i].player.SetStationPlayer(i);
-                playerListController.playerList[i].player.Where_Floor = 4;
-                playerListController.playerList[i].player.AxeActive();
-                 Debug.Log("id : " + (i) + "  floor : " + playerListController.playerList[i].player.Where_Floor);
+        Train_Ctrl.Run_Meter = 0;
+        Train_Ctrl.Hide();
+        TrainGameManager.instance.Scene_state = 2;
+        TrainGameManager.instance.GetPassengerCount = 0;
+        //Debug.LogError("id : " + (PhotonNetwork.LocalPlayer.ActorNumber - 1 )+ "  floor : " + playerListController.playerList[PhotonNetwork.LocalPlayer.ActorNumber - 1].player.Where_Floor);
+        Debug.LogError("몇명 들어와있는지: " + playerListController.playerList.Count);
 
-                //photonView.RPC("setPlayerInStationState", RpcTarget.All, i);
-            }
-        
+        for (int i = 0; i < playerListController.playerList.Count; ++i)
+        {
+            playerListController.playerList[i].player.UpSize();
+            playerListController.playerList[i].player.SetStationPlayer(i);
+            playerListController.playerList[i].player.Where_Floor = 4;
+            playerListController.playerList[i].player.AxeActive();
+            Debug.Log("id : " + (i) + "  floor : " + playerListController.playerList[i].player.Where_Floor);
+
+            //photonView.RPC("setPlayerInStationState", RpcTarget.All, i);
+        }
+
     }
     [PunRPC]
     public void StationSceneLoad()
     {
         //UnityEngine.SceneManagement.SceneManager.LoadScene("Station_Stage1");
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Station_Stage2");
+        //UnityEngine.SceneManagement.SceneManager.LoadScene("Station_Stage2");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
 }

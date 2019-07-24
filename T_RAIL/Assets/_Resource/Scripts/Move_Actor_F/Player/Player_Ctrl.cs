@@ -104,6 +104,9 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     {
         DontDestroyOnLoad(gameObject);
 
+        for(int i = 0; i< PhotonNetwork.PlayerList.Length; ++i)
+             Debug.Log(PhotonNetwork.PlayerList[i]);
+
         if (photonView.ViewID % 2 == 0)
         {
             Destroy(this.gameObject);
