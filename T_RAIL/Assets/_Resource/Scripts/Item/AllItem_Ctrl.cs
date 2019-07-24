@@ -335,29 +335,51 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         }
     }
 
-    public void ItemGet_Random()
+    public void ItemGet_Random(int viewID)
     {
-        int ItemNumber = Random.Range(0, (int)GameValue.itemCategory.woodboard+1);
+        int ItemNumber = Random.Range(0, (int)GameValue.itemCategory.woodboard + 1);
 
         switch (ItemNumber)
         {
             case 1:
-                photonView.RPC("ItemGet_Nail", RpcTarget.All); break;
+                photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID);
+                photonView.RPC("ItemGet_Nail", RpcTarget.All);  
+                break;
             case 2:
-                photonView.RPC("ItemGet_Ironpan", RpcTarget.All); break;
+                photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID);
+                photonView.RPC("ItemGet_Ironpan", RpcTarget.All);
+                break;
             case 3:
-                photonView.RPC("ItemGet_FoodTomato", RpcTarget.All); break;
+                photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID);
+                photonView.RPC("ItemGet_FoodTomato", RpcTarget.All);
+                break;
             case 4:
-                photonView.RPC("ItemGet_FoodBean", RpcTarget.All); break;
+                photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID);
+                photonView.RPC("ItemGet_FoodBean", RpcTarget.All);
+                break;
             case 5:
-                photonView.RPC("ItemGet_FoodChicken", RpcTarget.All); break;
+                photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID);
+                photonView.RPC("ItemGet_FoodChicken", RpcTarget.All);
+                break;
             case 6:
-                photonView.RPC("ItemGet_Hammer", RpcTarget.All); break;
+                photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID);
+                photonView.RPC("ItemGet_Hammer", RpcTarget.All);
+                break;
             case 7:
-                photonView.RPC("ItemGet_MediPack", RpcTarget.All); break;
+                photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID);
+                photonView.RPC("ItemGet_MediPack", RpcTarget.All);
+                break;
             case 8:
-                photonView.RPC("ItemGet_WoodBoard", RpcTarget.All); break;
+                photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID);
+                photonView.RPC("ItemGet_WoodBoard", RpcTarget.All);
+                break;
         }
+    }
 
+    [PunRPC]
+    public void setEggActiveFalse(int viewID)
+    {
+        GameObject _other = PhotonView.Find(viewID).gameObject;
+        _other.gameObject.SetActive(false);
     }
 }

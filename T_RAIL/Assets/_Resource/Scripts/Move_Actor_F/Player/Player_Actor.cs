@@ -225,4 +225,6 @@ public class Player_Actor : Move_Actor {
             axe.SetActive(false);
         }
     }
+
+
 }

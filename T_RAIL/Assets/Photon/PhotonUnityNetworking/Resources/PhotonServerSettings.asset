@@ -63,6 +63,7 @@ MonoBehaviour:
   - ItemGet_MediPack
   - ItemGet_WoodBoard
   - attack_RPC
+  - setEggActiveFalse
   - MakeBox
   - MakeSofa
   DisableAutoOpenWizard: 1
