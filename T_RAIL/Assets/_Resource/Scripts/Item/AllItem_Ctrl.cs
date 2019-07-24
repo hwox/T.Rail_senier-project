@@ -47,6 +47,8 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
     public int UseInLeftHand = 0; // 재료상자용 
     public int UseInRightHand = 0;// 재료상자용
 
+    public ChatGui chatGui;
+
     void Start()
     {//
      //   LeftUIImage = ItemInhand.transform.GetChild(0).GetChild(0).gameObject;
@@ -330,15 +332,21 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
     public void ItemGet_WoodBoard()
     {
         //8
-        for (int i = 0; i < boxItem.Count; i++)
-        {
-            if (!boxItem[i].IsBoxFull())
-            {
-                // 앞의 순서대로 박스가 full이 아니면 여기에 들어가기
-                boxItem[i].AddItem((int)GameValue.itemCategory.woodboard);
-                break;
-            }
+
+         for (int i = 0; i < boxItem.Count; i++)
+         {
+             if (!boxItem[i].IsBoxFull())
+             {
+                 // 앞의 순서대로 박스가 full이 아니면 여기에 들어가기
+                 boxItem[i].AddItem((int)GameValue.itemCategory.woodboard);
+                 break;
+             }
+             else //박스 꽉참
+             {
+                chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+             }
         }
+        
     }
 
     public void ItemGet_Random(int viewID)
@@ -348,44 +356,80 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         switch (ItemNumber)
         {
             case 1:
-                photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID);
+                photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID, ItemNumber);
                 photonView.RPC("ItemGet_Nail", RpcTarget.All);  
                 break;
             case 2:
-                photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID);
+                photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID, ItemNumber);
                 photonView.RPC("ItemGet_Ironpan", RpcTarget.All);
                 break;
             case 3:
-                photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID);
+                photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID, ItemNumber);
                 photonView.RPC("ItemGet_FoodTomato", RpcTarget.All);
                 break;
             case 4:
-                photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID);
+                photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID, ItemNumber);
                 photonView.RPC("ItemGet_FoodBean", RpcTarget.All);
                 break;
             case 5:
-                photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID);
+                photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID, ItemNumber);
                 photonView.RPC("ItemGet_FoodChicken", RpcTarget.All);
                 break;
             case 6:
-                photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID);
+                photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID, ItemNumber);
                 photonView.RPC("ItemGet_Hammer", RpcTarget.All);
                 break;
             case 7:
-                photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID);
+                photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID, ItemNumber);
                 photonView.RPC("ItemGet_MediPack", RpcTarget.All);
                 break;
             case 8:
-                photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID);
+                photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID, ItemNumber);
                 photonView.RPC("ItemGet_WoodBoard", RpcTarget.All);
                 break;
         }
     }
 
     [PunRPC]
-    public void setEggActiveFalse(int viewID)
+    public void setEggActiveFalse(int viewID, int itemCase)
     {
         GameObject _other = PhotonView.Find(viewID).gameObject;
         _other.gameObject.SetActive(false);
+
+
+        if (boxItem.Count == 0)
+        {
+            chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "기차 내부에 박스가 없어서 아이템을 획득하지 못했습니다.");
+        }
+        else
+        {
+            switch (itemCase)
+            {
+                case 1:
+                    chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "아이템 [못]을 획득했습니다.");
+                    break;
+                case 2:
+                    chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "아이템 [철판]을 획득했습니다.");
+                    break;
+                case 3:
+                    chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "아이템 [토마토 스프]를 획득했습니다.");
+                    break;
+                case 4:
+                    chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "아이템 [콩 스프]을 획득했습니다.");
+                    break;
+                case 5:
+                    chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "아이템 [치킨 스프]를 획득했습니다.");
+                    break;
+                case 6:
+                    chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "아이템 [망치]를 획득했습니다.");
+                    break;
+                case 7:
+                    chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "아이템 [구급상자]를 획득했습니다.");
+                    break;
+                case 8:
+                    chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "아이템 [나무판자]를 획득했습니다.");
+                    break;
+            }
+        }
     }
 }
