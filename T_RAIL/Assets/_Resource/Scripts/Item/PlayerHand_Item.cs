@@ -47,25 +47,25 @@ public class PlayerHand_Item : MonoBehaviour
             allitem.ItemCrack = true;
         }
 
-        if (other.CompareTag("itemboxinven"))
-        {
-            // 부모 세번찾아서 박스에 invoxitem 스크립트 찾고
-            // 얘 other collider 이름으로 haveitem 배열에 넣기
-            // other.collider.
-            int number = int.Parse(other.name);
+        //if (other.CompareTag("itemboxinven"))
+        //{
+        //    // 부모 세번찾아서 박스에 invoxitem 스크립트 찾고
+        //    // 얘 other collider 이름으로 haveitem 배열에 넣기
+        //    // other.collider.
+        //    int number = int.Parse(other.name);
 
-            switch (WhatHand)
-            {
-                case 1:
-                    // other.transform.parent.parent.parent.GetComponent<InBoxItem>().HaveItemInfo[number - 1] = TrainGameManager.instance.LeftHandItem;
-                    break;
-                case 2:
-                    // other.transform.parent.parent.parent.GetComponent<InBoxItem>().HaveItemInfo[number - 1] = TrainGameManager.instance.RightHandItem;
+        //    switch (WhatHand)
+        //    {
+        //        case 1:
+        //            // other.transform.parent.parent.parent.GetComponent<InBoxItem>().HaveItemInfo[number - 1] = TrainGameManager.instance.LeftHandItem;
+        //            break;
+        //        case 2:
+        //            // other.transform.parent.parent.parent.GetComponent<InBoxItem>().HaveItemInfo[number - 1] = TrainGameManager.instance.RightHandItem;
 
-                    break;
-            }
+        //            break;
+        //    }
 
-        }
+        //}
     }
 
     private void OnTriggerExit(Collider other)
@@ -108,16 +108,21 @@ public class PlayerHand_Item : MonoBehaviour
                     allitem.DragCursorSprite.transform.position = Input.mousePosition;
                     allitem.OnOff_DragMouse(true);
                     clickUI = allitem.LeftHand_Pocket;
+
                     DragEnable = true;
                     // 잠깐 이미지 없애기
                     NowHave_Image.sprite = allitem.NullImage;
                     // 그리고 드래그 이미지
                     allitem.Change_DragMouse(clickUI);
+
+                    allitem.UseInLeftHand = 1;
+                    allitem.UseInRightHand = 0;
                 }
                 else if (allitem.LeftHand_Pocket == 0)
                 {
 
                     clickUI = 0;
+                    DragEnable = false;
                 }
                 // 슬롯에 아이템이 존재하지 않으면 함수 종료
                 //  빈 이미지의 객체를 마우스의 위치로 가져온다.
@@ -135,11 +140,15 @@ public class PlayerHand_Item : MonoBehaviour
                     NowHave_Image.sprite = allitem.NullImage;
                     // 그리고 드래그 이미지
                     allitem.Change_DragMouse(clickUI);
+
+                    allitem.UseInLeftHand = 0;
+                    allitem.UseInRightHand = 1;
                 }
                 else if (allitem.RightHand_Pocket == 0)
                 {
                     // nothing
                     clickUI = 0;
+                    DragEnable = false;
                 }
                 break;
         }
@@ -177,14 +186,14 @@ public class PlayerHand_Item : MonoBehaviour
             case 1:
                 if (!allitem.ItemCrack)
                 {
-
+                    allitem.UseLeftHandItem();
                     NowHave_Image.sprite = allitem.ItemImage[clickUI];
                     allitem.ItemCrack = false;
                 }
                 else if (allitem.ItemCrack)
                 {
                     NowHave_Image.sprite = allitem.NullImage;
-                    allitem.UseLeftHandItem();
+
                     allitem.ItemCrack = false;
                 }
 
@@ -192,29 +201,32 @@ public class PlayerHand_Item : MonoBehaviour
                 // 재료창을 위한 손 아이템 사용
                 if (hand_ItemCrack)
                 {
+                    allitem.UseLeftHandItem();
                     NowHave_Image.sprite = allitem.ItemImage[clickUI];
                     hand_ItemCrack = false;
                 }
                 else if (!hand_ItemCrack)
                 {
                     NowHave_Image.sprite = allitem.NullImage;
-                    allitem.UseLeftHandItem();
+
                     hand_ItemCrack = false;
                 }
+
+
                 break;
             case 2:
                 //오른손
                 if (!allitem.ItemCrack)
                 {
-
-                    NowHave_Image.sprite = allitem.NullImage;
                     allitem.UseRightHandItem();
+                    NowHave_Image.sprite = allitem.NullImage;
+
                     allitem.ItemCrack = false;
                 }
                 else if (allitem.ItemCrack)
                 {
-                   NowHave_Image.sprite = allitem.ItemImage[clickUI];
-                   
+                    NowHave_Image.sprite = allitem.ItemImage[clickUI];
+
                     allitem.ItemCrack = false;
                 }
 
@@ -222,19 +234,24 @@ public class PlayerHand_Item : MonoBehaviour
                 // 재료창을 위한 손 아이템 사용
                 if (hand_ItemCrack)
                 {
-                    NowHave_Image.sprite = allitem.NullImage;
                     allitem.UseRightHandItem();
+                    NowHave_Image.sprite = allitem.ItemImage[clickUI];
+
                     hand_ItemCrack = false;
                 }
                 else if (!hand_ItemCrack)
                 {
-                    
-                    NowHave_Image.sprite = allitem.ItemImage[clickUI];
+
+                    NowHave_Image.sprite = allitem.NullImage;
                     hand_ItemCrack = false;
                 }
+
+
+
                 break;
         }
-     
+        allitem.UseInLeftHand = 0;
+        allitem.UseInRightHand = 0;
     }
 }
 
