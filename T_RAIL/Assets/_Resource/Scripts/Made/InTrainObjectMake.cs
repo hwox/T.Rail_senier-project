@@ -33,7 +33,7 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
     //public Image DragCursorSprite; // 마우스 드래그할 때 이미지
     //public int NowDragItemInfo; // 현재 드래그중인 아이템 정보
 
-    public GameObject ItemInhand; // 손 item 
+    GameObject ItemInhand; // 손 item 
 
 
     public void ChoiceSetOn()
@@ -41,6 +41,8 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
         if (!BoxMakeMode && !SofaMakeMode)
         {
             ChoiceCanvas.SetActive(true);
+            ItemInhand = TrainGameManager.instance.ItemHand;
+            TrainGameManager.instance.NowItemUIUsable = false;
         }
     }
 
@@ -112,6 +114,8 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
         SetButtons.SetActive(true);
         MakeButton.interactable = false;
         ItemInhand.SetActive(false);
+
+        TrainGameManager.instance.NowItemUIUsable = true;
     }
 
     public void ChoiceBoxButton()
@@ -134,6 +138,7 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
         ItemInhand.SetActive(true);
         BoxNeedItemExplain.SetActive(false);
         SofaNeedItemExplain.SetActive(false);
+
     }
 
     public void MakeObject()

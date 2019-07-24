@@ -62,7 +62,10 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
                         // Vector3 m_Position = Input.mousePosition;
                         //Inventory.transform.position = Input.mousePosition;
                         //new Vector3(m_Position.x, m_Position.y, m_Position.z);
-                        hit.collider.GetComponent<InBoxItem>().OpenBoxInven();
+                        if (TrainGameManager.instance.NowItemUIUsable)
+                        {
+                            hit.collider.GetComponent<InBoxItem>().OpenBoxInven();
+                        }
                     }
 
                     else if (hit.collider.gameObject.layer.Equals(GameValue.passenger_layer))
@@ -72,9 +75,11 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
                     }
                     else if (hit.collider.gameObject.layer.Equals(GameValue.choice_layer))
                     {
-                        hit.collider.GetComponent<InTrainObjectMake>().ChoiceSetOn();
-                        //Debug.Log(hit.collider.gameObject.name + "  dkdkdkkdkdk   ");// + hit.collider.transform.root.gameObject.name);
-
+                        if (TrainGameManager.instance.NowItemUIUsable)
+                        {
+                            hit.collider.GetComponent<InTrainObjectMake>().ChoiceSetOn();
+                        }
+          
                         // 이거 getHitObjectRPC 이 함수안에 내용 주석처리했음
                         photonView.RPC("getHitObjectRPC", RpcTarget.AllBuffered, hit.collider.gameObject.GetPhotonView().ViewID);
                     }

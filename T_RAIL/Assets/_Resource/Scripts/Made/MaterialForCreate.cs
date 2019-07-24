@@ -50,13 +50,9 @@ public class MaterialForCreate : MonoBehaviour
         if (other.CompareTag("DragItem"))
         {
 
-            other.GetComponent<PlayerHand_Item>().hand_ItemCrack = true;
-
             ForMakeItem.Add(other.GetComponent<PlayerHand_Item>().NowHave);
-            other.GetComponent<PlayerHand_Item>().ItemUse();
 
             Debug.Log("아이템" + ForMakeItem[1]);
-            // 이미지 한번 리셋. 다시 이미지 띄우기 (재료창)
         }
     }
 }

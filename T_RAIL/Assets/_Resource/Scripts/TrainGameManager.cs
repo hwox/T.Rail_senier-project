@@ -74,6 +74,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
 
     // # UI
     public GameObject Info_Canvas;
+    public GameObject ItemHand;
 
     // #Pool
     public GameObject[] Origin; // 프리팹들 원본
@@ -121,7 +122,8 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
     public int LeftHandItem;
     public int RightHandItem;
 
-  
+
+    public bool NowItemUIUsable { get; set; }
 
 
     private void Awake()
@@ -137,7 +139,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
     private void Start()
     {
         SetObject_List(); // setobject 해야할 것들
-
+        NowItemUIUsable = true;
     }
     public void Error_print()
     {
@@ -582,7 +584,6 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
     }
     ///////////////////////////////////////////////////////////////////////////////////////
     ///
-
 
 
 }

@@ -57225,7 +57225,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &885544845
 RectTransform:
@@ -73679,6 +73679,7 @@ MonoBehaviour:
   InGame_Notice: {fileID: 623184125}
   InGame_Text: {fileID: 1145628807}
   Info_Canvas: {fileID: 540288765}
+  ItemHand: {fileID: 1104002336}
   Origin:
   - {fileID: 1389966095280804, guid: 5038b754216e0bd4287ed4d8344ab4d7, type: 2}
   - {fileID: 1678285436382366, guid: be1791a8985844747ba2d86aec26ff02, type: 2}
@@ -98228,37 +98229,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
-    - target: {fileID: 114072293856473712, guid: 5d9648c5713c24c4ead0d991e0595880,
-        type: 2}
-      propertyPath: ItemInhand
-      value: 
-      objectReference: {fileID: 1104002336}
-    - target: {fileID: 114124761542766294, guid: 5d9648c5713c24c4ead0d991e0595880,
-        type: 2}
-      propertyPath: ItemInhand
-      value: 
-      objectReference: {fileID: 1104002336}
-    - target: {fileID: 114006682035931888, guid: 5d9648c5713c24c4ead0d991e0595880,
-        type: 2}
-      propertyPath: ItemInhand
-      value: 
-      objectReference: {fileID: 1104002336}
-    - target: {fileID: 114232836706019430, guid: 5d9648c5713c24c4ead0d991e0595880,
-        type: 2}
-      propertyPath: ItemInhand
-      value: 
-      objectReference: {fileID: 1104002336}
-    - target: {fileID: 223064224467528156, guid: 5d9648c5713c24c4ead0d991e0595880,
-        type: 2}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 534669904}
-    - target: {fileID: 223688616844114384, guid: 5d9648c5713c24c4ead0d991e0595880,
-        type: 2}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 534669904}
-    - target: {fileID: 223383265128060656, guid: 5d9648c5713c24c4ead0d991e0595880,
+    - target: {fileID: 223494649351165324, guid: 5d9648c5713c24c4ead0d991e0595880,
         type: 2}
       propertyPath: m_Camera
       value: 
@@ -98268,17 +98239,27 @@ Prefab:
       propertyPath: ctrl
       value: 
       objectReference: {fileID: 1304048000}
-    - target: {fileID: 223494649351165324, guid: 5d9648c5713c24c4ead0d991e0595880,
+    - target: {fileID: 223383265128060656, guid: 5d9648c5713c24c4ead0d991e0595880,
         type: 2}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 534669904}
-    - target: {fileID: 114391987435625026, guid: 5d9648c5713c24c4ead0d991e0595880,
+    - target: {fileID: 223688616844114384, guid: 5d9648c5713c24c4ead0d991e0595880,
+        type: 2}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 534669904}
+    - target: {fileID: 223064224467528156, guid: 5d9648c5713c24c4ead0d991e0595880,
+        type: 2}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 534669904}
+    - target: {fileID: 114926657734411050, guid: 5d9648c5713c24c4ead0d991e0595880,
         type: 2}
       propertyPath: viewIdField
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114505191909343002, guid: 5d9648c5713c24c4ead0d991e0595880,
+    - target: {fileID: 114766929177505650, guid: 5d9648c5713c24c4ead0d991e0595880,
         type: 2}
       propertyPath: viewIdField
       value: 2
@@ -98288,12 +98269,12 @@ Prefab:
       propertyPath: viewIdField
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114766929177505650, guid: 5d9648c5713c24c4ead0d991e0595880,
+    - target: {fileID: 114505191909343002, guid: 5d9648c5713c24c4ead0d991e0595880,
         type: 2}
       propertyPath: viewIdField
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114926657734411050, guid: 5d9648c5713c24c4ead0d991e0595880,
+    - target: {fileID: 114391987435625026, guid: 5d9648c5713c24c4ead0d991e0595880,
         type: 2}
       propertyPath: viewIdField
       value: 6
@@ -125681,6 +125662,16 @@ Prefab:
     - target: {fileID: 1014540451394702, guid: 5a11f7d26cecab04a811e4777299ae83, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114700780553631044, guid: 5a11f7d26cecab04a811e4777299ae83,
+        type: 2}
+      propertyPath: viewIdField
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114700780553631044, guid: 5a11f7d26cecab04a811e4777299ae83,
+        type: 2}
+      propertyPath: InstantiationId
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a11f7d26cecab04a811e4777299ae83, type: 2}

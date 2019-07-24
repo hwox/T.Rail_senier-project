@@ -97830,9 +97830,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbf5fe82fb48d684b8b4bc3edbc61125, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  li: {fileID: 170076734}
-  light_SpinAngle: 1
-  DaySpeed: 1
 --- !u!1 &1927663527
 GameObject:
   m_ObjectHideFlags: 0
@@ -98111,6 +98108,16 @@ Prefab:
     - target: {fileID: 1014540451394702, guid: 5a11f7d26cecab04a811e4777299ae83, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114700780553631044, guid: 5a11f7d26cecab04a811e4777299ae83,
+        type: 2}
+      propertyPath: viewIdField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114700780553631044, guid: 5a11f7d26cecab04a811e4777299ae83,
+        type: 2}
+      propertyPath: InstantiationId
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a11f7d26cecab04a811e4777299ae83, type: 2}
