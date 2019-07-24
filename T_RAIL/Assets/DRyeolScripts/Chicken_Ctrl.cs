@@ -36,6 +36,8 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
         //photonView.RPC("chickenDeath_RPC", RpcTarget.All);      
     }
 
+  
+
 
     [PunRPC]
     void chickenDeath_RPC()
@@ -127,6 +129,17 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
 
     }
 
+
+
+    public void die()
+    {
+        StopCoroutine("GotoDestPreson");
+        StopCoroutine("BeatenFalse");
+        this.gameObject.SetActive(false);
+    }
+
+
+
     IEnumerator Death()//죽기
     {
         live = false;
@@ -144,5 +157,6 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
 
 
     }
+
 
 }
