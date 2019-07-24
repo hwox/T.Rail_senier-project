@@ -292,22 +292,29 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (Input.GetKeyDown(KeyCode.V))
             {
-                other.gameObject.SetActive(false);
-                GameObject.Find("Item_Ctrl").GetComponent<AllItem_Ctrl>().ItemGet_Random();
+                GameObject.Find("Item_Ctrl").GetComponent<AllItem_Ctrl>().ItemGet_Random(other.gameObject.GetPhotonView().ViewID);
             }
         }
-
-
     }
    
-
-
     [PunRPC]
     public void passengerTouch(int i)
     {
         TrainGameManager.instance.Station_PassengerManager[i].gameObject.SetActive(false);
         TrainGameManager.instance.GetPassengerCount++;
         Debug.Log("GetPassengerCount " + TrainGameManager.instance.GetPassengerCount);
+    }
+
+    [PunRPC]
+    public void eggEat_RPC(int otherViewID)
+    {
+        GameObject _other = PhotonView.Find(otherViewID).gameObject;
+        _other.gameObject.SetActive(false);
+
+        //if (PhotonNetwork.IsMasterClient)
+        //{
+        //    GameObject.Find("Item_Ctrl").GetComponent<AllItem_Ctrl>().ItemGet_Random();
+        //}
     }
 
     private void OnTriggerExit(Collider other)
