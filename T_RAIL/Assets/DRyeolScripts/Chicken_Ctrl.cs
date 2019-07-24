@@ -29,13 +29,8 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
         StartCoroutine("BeatenFalse");
         HP-=1;
         if (HP <= 0)
-            StartCoroutine("Death");
-
-
-
-        //photonView.RPC("chickenDeath_RPC", RpcTarget.All);      
+           photonView.RPC("chickenDeath_RPC", RpcTarget.All);      
     }
-
 
     [PunRPC]
     void chickenDeath_RPC()
@@ -61,7 +56,6 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.IsMasterClient)
         {
-            Debug.Log("마스터클라이언트입니다");
             StartCoroutine("GotoDest");
             StartCoroutine("FindNextDest");
         }

@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 65557499136285204}
   - component: {fileID: 114305680330118004}
   - component: {fileID: 54818759989017614}
+  - component: {fileID: 114700780553631044}
   m_Layer: 0
   m_Name: 'attackreach '
   m_TagString: Untagged
@@ -1144,7 +1145,7 @@ MonoBehaviour:
     SynchronizeType: 1
     Name: IsRun
   - Type: 1
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: RunTime
   - Type: 4
     SynchronizeType: 0
@@ -1153,7 +1154,7 @@ MonoBehaviour:
     SynchronizeType: 0
     Name: RunTime
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: IsAttack
   m_SynchronizeLayers:
   - SynchronizeType: 0
@@ -1211,6 +1212,27 @@ MonoBehaviour:
   - {fileID: 114537870420915034}
   viewIdField: 0
   InstantiationId: 11
+  isRuntimeInstantiated: 0
+--- !u!114 &114700780553631044
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1165684470861304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  viewIdField: 0
+  InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &114749372244307306
 MonoBehaviour:
