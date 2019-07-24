@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f15c93ba7ca068f4eb8eb12a9c46a0f4
+guid: 033b9d89ef9689743b7f618ab405bab7
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -146,7 +146,7 @@ ModelImporter:
       name: dog|attack
       takeName: dog|attack
       firstFrame: 0
-      lastFrame: 25
+      lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
