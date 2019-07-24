@@ -283,9 +283,9 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
             }
             else
             {
-                MakeEnable = true;
-                MakeButton.interactable = true;
-               // MakeButton.interactable = false;
+               // MakeEnable = true;
+               // MakeButton.interactable = true;
+                MakeButton.interactable = false;
             }
         }
         else
