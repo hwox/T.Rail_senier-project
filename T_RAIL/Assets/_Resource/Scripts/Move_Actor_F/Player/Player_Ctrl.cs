@@ -263,8 +263,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 //  Push_Space_UI.SetActive(false);
                 //  Destroy(other.gameObject);
                 //GameObject.Find("SofaSitPassenger_Ctrl").GetComponent<SofaSitPassenger_Ctrl>().sofaNubmer
-                int extrasopa = TrainGameManager.instance.SopaNum - TrainGameManager.instance.SofaSitPassengerCtrl.passengers.Count;
-                if (extrasopa > TrainGameManager.instance.GetPassengerCount)
+                //int extrasopa = TrainGameManager.instance.SopaNum - TrainGameManager.instance.SofaSitPassengerCtrl.passengers.Count;
+                //if (extrasopa > TrainGameManager.instance.GetPassengerCount)
                 {
                     for (int i = 0; i < TrainGameManager.instance.Station_PassengerManager.Count; ++i)
                     {
