@@ -204,6 +204,14 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
     {
         photonView.RPC("ItemGet_Ironpan", RpcTarget.All);
     }
+    public void ItemGet_WoodBoard_Button()
+    {
+        photonView.RPC("ItemGet_WoodBoard", RpcTarget.All);
+    }
+    public void ItemGet_MediPack_Button()
+    {
+        photonView.RPC("ItemGet_MediPack", RpcTarget.All);
+    }
 
     [PunRPC]
     public void ItemGet_Nail()

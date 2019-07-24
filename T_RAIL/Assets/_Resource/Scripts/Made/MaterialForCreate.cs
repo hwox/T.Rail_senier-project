@@ -103,10 +103,6 @@ public class MaterialForCreate : MonoBehaviour
         bool Enable = false;
         int index = 0;
 
-        // 
-        // ItemCount에는 몇개 있는지.
-
-
         for (int i = 0; i < 6; i++)
         {
 
@@ -146,55 +142,110 @@ public class MaterialForCreate : MonoBehaviour
             Storage[StorageIndex].GetComponent<Image>().sprite = allitem.NullImage;
 
         }
-        //for (int i = 0; i < ForMakeItem.Count; i++)
-        //{
-        //    // 정렬을 사용하려고 했으나 그러면 맨 먼저 들어왔던 이미지가 걔보다 enum값이 클 경우
-        //    // 부자연스럽게 뒤로 밀릴 수 있어서 그렇게 안하기로함
 
-        //    if (i != 0 && ItemCount[ForMakeItem[i] - 1].Equals(0))
-        //    {
+    }
 
-        //        //0 이면 이전에 등록이 안됐다는 소리
-        //        Storage[StorageIndex].GetComponent<Image>().sprite = allitem.ItemImage[ForMakeItem[i] - 1];
-        //        StorageIndex += 1;
-        //        ItemCount[ForMakeItem[i] - 1] += 1;
-        //        Debug.Log("1"+ItemCount[ForMakeItem[i] - 1]);
-        //        StorageCount[StorageIndex].text = ItemCount[ForMakeItem[i] - 1].ToString();
-        //    }
-        //    else if (i == 0 && ForMakeItem[0] != 0)
-        //    {
-        //        Storage[StorageIndex].GetComponent<Image>().sprite = allitem.ItemImage[ForMakeItem[0] - 1];
-        //        ItemCount[ForMakeItem[0] - 1] += 1;
-        //        StorageCount[0].text = ItemCount[ForMakeItem[0] - 1].ToString();
-        //        Debug.Log("2" + ItemCount[ForMakeItem[i] - 1]);
-        //        StorageIndex += 1;
+    public bool IsBoxMakeEnable()
+    {
+        // 나무 두개 8 못 하나 1  망치 하나 6
+        bool wood1 = false;
+        bool wood2 = false;
+        bool nail = false;
+        bool hammer = false;
 
-        //    }
-        //    else
-        //    {
-        //        // 증가가 됐었음
-        //        // 인덱스 증가할 필요없고
-        //        // Count 증가해야함
-        //        //text 다시
-        //        ItemCount[ForMakeItem[i] - 1] += 1;
-        //        StorageCount[StorageIndex].text = ItemCount[ForMakeItem[i] - 1].ToString();
-        //        Debug.Log("3" + ItemCount[ForMakeItem[i] - 1]);
-        //    }
+        for (int i = 0; i < ForMakeItem.Count; i++)
+        {
+            if (ForMakeItem[i] == 8)
+            {
+                if (!wood1)
+                {
 
-        //}
+                    wood1 = true;
+                }
+                else if (!wood2)
+                {
+
+                    wood2 = true;
+
+                }
+            }
+
+            if (ForMakeItem[i] == 1)
+            {
+                if (!nail)
+                {
+
+                    nail = true;
+                }
+            }
+            if (ForMakeItem[i] == 6)
+            {
+                if (!hammer)
+                {
+
+                    hammer = true;
+                }
+            }
 
 
-        //for (int j = StorageIndex; j < 6; j++)
-        //{
-        //    Storage[StorageIndex].GetComponent<Image>().sprite = allitem.NullImage;
+            if(hammer && wood1 && wood2 && nail)
+            {
+                return true;
+            }
+        }
 
-        //}
-        //for(int a = 0; a < 8; a++)
-        //{
-        //    // 미친듯한 for문ㅅ ㅏ용...
-        //    ItemCount[a] = 0;
-        //}
+        return false;
+    }
+            // 다 찾았으면 그것도 다 지워야 되네
+            // 뺄거잖아
+            // 어차피 뺄 필요없나?
+    public bool IsSofaMakeEnable()
+    {
+        bool wood = false;
+        bool nail1 = false;
+        bool nail2 = false;
+        bool hammer = false;
+        // 나무 하나 못 두개 망치 하나
+        for (int i = 0; i < ForMakeItem.Count; i++)
+        {
+            if (ForMakeItem[i] == 8)
+            {
+                if (!wood)
+                {
 
+                    wood = true;
+                }
+            }
+
+            if (ForMakeItem[i] == 1)
+            {
+                if (!nail1)
+                {
+
+                    nail1 = true;
+                }
+                else if (!nail2)
+                {
+
+                    nail2 = true;
+                }
+            }
+            if (ForMakeItem[i] == 6)
+            {
+                if (!hammer)
+                {
+
+                    hammer = true;
+                }
+            }
+
+
+            if (hammer && wood && nail1 && nail2)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
