@@ -219,6 +219,10 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
                 boxItem[i].AddItem((int)GameValue.itemCategory.nail);
                 break;
             }
+            else //박스 꽉참
+            {
+                chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+            }
         }
     }
 
@@ -233,6 +237,10 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
                 // 앞의 순서대로 박스가 full이 아니면 여기에 들어가기
                 boxItem[i].AddItem((int)GameValue.itemCategory.ironpan);
                 break;
+            }
+            else //박스 꽉참
+            {
+                chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
             }
         }
     }
@@ -252,6 +260,10 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
                 boxItem[i].AddItem((int)GameValue.itemCategory.food_tomato);
                 break;
             }
+            else //박스 꽉참
+            {
+                chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+            }
         }
     }
 
@@ -267,6 +279,10 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
                 boxItem[i].AddItem((int)GameValue.itemCategory.food_bean);
                 break;
             }
+            else //박스 꽉참
+            {
+                chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+            }
         }
     }
 
@@ -281,6 +297,10 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
                 // 앞의 순서대로 박스가 full이 아니면 여기에 들어가기
                 boxItem[i].AddItem((int)GameValue.itemCategory.food_chicken);
                 break;
+            }
+            else //박스 꽉참
+            {
+                chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
             }
         }
     }
@@ -299,6 +319,10 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
                 boxItem[i].AddItem((int)GameValue.itemCategory.hammer);
                 break;
             }
+            else //박스 꽉참
+            {
+                chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+            }
         }
     }
 
@@ -315,6 +339,10 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
                 // 앞의 순서대로 박스가 full이 아니면 여기에 들어가기
                 boxItem[i].AddItem((int)GameValue.itemCategory.medipack);
                 break;
+            }
+            else //박스 꽉참
+            {
+                chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
             }
         }
     }
