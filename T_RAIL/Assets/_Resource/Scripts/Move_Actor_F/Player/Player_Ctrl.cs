@@ -858,7 +858,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         BulletInfoSetting(TrainGameManager.instance.GetObject(0), m_CurrentLaunchForce);
         iTween.ShakePosition(gun_child.gameObject, iTween.Hash("time", 0.5f, "z", 0.2f));
         iTween.ShakePosition(gameObject, iTween.Hash("time", 0.5f, "z", 0.2f));
-        iTween.pa
+      
 
       m_CurrentLaunchForce = m_MinLaunchForce;
     }
