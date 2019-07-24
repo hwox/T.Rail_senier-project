@@ -94,6 +94,9 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     public bool attack_possible = true;
     public GameObject axe;
     bool invincibility = false;
+    iTweenPath itp;
+
+
     /// ////////////////////////////////////////////////////////////////////////
 
     public playerListController_minj playerListController;
@@ -148,6 +151,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         tr = GetComponent<Transform>();
         jump_now = true;
         ri = GetComponent<Rigidbody>();
+        itp = GetComponent<iTweenPath>();
 
 
         Attack_Gap = 1.0f;
@@ -966,5 +970,9 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         invincibility = false;
     }
 
+    void BeatenPath()
+    {
+
+    }
 
 }

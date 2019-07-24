@@ -14507,6 +14507,32 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a11f7d26cecab04a811e4777299ae83, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1271361891 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1014540451394702, guid: 5a11f7d26cecab04a811e4777299ae83,
+    type: 2}
+  m_PrefabInternal: {fileID: 1271361890}
+--- !u!114 &1271361892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1271361891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01bffa8aa898b437183cd5617f7b5303, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathName: push
+  pathColor: {r: 0, g: 1, b: 1, a: 1}
+  nodes:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  nodeCount: 3
+  initialized: 1
+  initialName: New Path 1
+  pathVisible: 0
 --- !u!1 &1281349939
 GameObject:
   m_ObjectHideFlags: 0
