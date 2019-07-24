@@ -30,7 +30,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
 
     // #hand UI
     public GameObject ItemInhand; // 손 item 
-    GameObject LeftUIImage;
+    GameObject LeftUIImage;/* public Image DragCursorSprite;*/
     GameObject RightUIImage;
 
     public Image DragCursorSprite; // 마우스 드래그할 때 이미지
@@ -113,13 +113,23 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         LeftHand_Pocket = NowDragItemInfo;
         LeftHand_PocketObject.GetComponent<Image>().sprite = ItemImage[LeftHand_Pocket - 1];
     }
-
+    public void UseLeftHandItem()
+    {
+        TrainGameManager.instance.LeftHandItem = 99;
+        LeftHand_Pocket = 99;
+        LeftHand_PocketObject.GetComponent<Image>().sprite = NullImage;
+    }
     public void SetRightHandItem()
     {
         TrainGameManager.instance.RightHandItem = NowDragItemInfo;
         RightHand_Pocket = NowDragItemInfo;
         RightHand_PocketObject.GetComponent<Image>().sprite = ItemImage[RightHand_Pocket - 1];
-
+    }
+    public void UseRightHandItem()
+    {
+        TrainGameManager.instance.RightHandItem = 99;
+        RightHand_Pocket = 99;
+        RightHand_PocketObject.GetComponent<Image>().sprite = NullImage;
     }
 
     public bool Usable_MediPack()

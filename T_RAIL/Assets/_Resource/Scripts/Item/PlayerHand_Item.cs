@@ -8,7 +8,7 @@ public class PlayerHand_Item : MonoBehaviour
 
     AllItem_Ctrl allitem;
 
-    int NowHave; // 현재 가지고 있는 아이템
+    public int NowHave; // 현재 가지고 있는 아이템
     public Image NowHave_Image; // 현재 손ㄴ바닥에 있는 Image
 
 
@@ -17,6 +17,8 @@ public class PlayerHand_Item : MonoBehaviour
     int clickUI;
 
     bool DragEnable = false;
+
+    public bool hand_ItemCrack; // 손아이템용 크랙
 
     private void Start()
     {
@@ -55,14 +57,14 @@ public class PlayerHand_Item : MonoBehaviour
             switch (WhatHand)
             {
                 case 1:
-                   // other.transform.parent.parent.parent.GetComponent<InBoxItem>().HaveItemInfo[number - 1] = TrainGameManager.instance.LeftHandItem;
+                    // other.transform.parent.parent.parent.GetComponent<InBoxItem>().HaveItemInfo[number - 1] = TrainGameManager.instance.LeftHandItem;
                     break;
                 case 2:
-                   // other.transform.parent.parent.parent.GetComponent<InBoxItem>().HaveItemInfo[number - 1] = TrainGameManager.instance.RightHandItem;
+                    // other.transform.parent.parent.parent.GetComponent<InBoxItem>().HaveItemInfo[number - 1] = TrainGameManager.instance.RightHandItem;
 
                     break;
             }
-          
+
         }
     }
 
@@ -77,12 +79,20 @@ public class PlayerHand_Item : MonoBehaviour
 
         }
     }
-    public void ItemNull()
+
+
+    public void ItemUse()
     {
-        NowHave_Image.sprite = allitem.NullImage;
+        switch (WhatHand)
+        {
+            case 1:
+                allitem.UseLeftHandItem();
+                break;
+            case 2:
+                allitem.UseRightHandItem();
+                break;
+        }
     }
-
-
     public void DragMouse_Down()
     {
         // 만약 해당 슬롯에 아이템이 없다면 아무일도 안하고      
@@ -161,19 +171,70 @@ public class PlayerHand_Item : MonoBehaviour
         // 아이템창에 닿으면 그 아이템창에 이거 현재 아이템 정보 저장하고
         // 지금 내 아이템들은 다 초기화 시켜야 함
         // 얘가 마지막 그러면 여기서 
-        if (!allitem.ItemCrack)
-        {
-            
-            NowHave_Image.sprite = allitem.ItemImage[clickUI];
 
-            allitem.ItemCrack = false;
-        }
-        else if (allitem.ItemCrack)
+        switch (WhatHand)
         {
-            NowHave_Image.sprite = allitem.NullImage;
+            case 1:
+                if (!allitem.ItemCrack)
+                {
 
-            allitem.ItemCrack = false;
+                    NowHave_Image.sprite = allitem.ItemImage[clickUI];
+                    allitem.ItemCrack = false;
+                }
+                else if (allitem.ItemCrack)
+                {
+                    NowHave_Image.sprite = allitem.NullImage;
+                    allitem.UseLeftHandItem();
+                    allitem.ItemCrack = false;
+                }
+
+
+                // 재료창을 위한 손 아이템 사용
+                if (hand_ItemCrack)
+                {
+                    NowHave_Image.sprite = allitem.ItemImage[clickUI];
+                    hand_ItemCrack = false;
+                }
+                else if (!hand_ItemCrack)
+                {
+                    NowHave_Image.sprite = allitem.NullImage;
+                    allitem.UseLeftHandItem();
+                    hand_ItemCrack = false;
+                }
+                break;
+            case 2:
+                //오른손
+                if (!allitem.ItemCrack)
+                {
+
+                    NowHave_Image.sprite = allitem.NullImage;
+                    allitem.UseRightHandItem();
+                    allitem.ItemCrack = false;
+                }
+                else if (allitem.ItemCrack)
+                {
+                   NowHave_Image.sprite = allitem.ItemImage[clickUI];
+                   
+                    allitem.ItemCrack = false;
+                }
+
+
+                // 재료창을 위한 손 아이템 사용
+                if (hand_ItemCrack)
+                {
+                    NowHave_Image.sprite = allitem.NullImage;
+                    allitem.UseRightHandItem();
+                    hand_ItemCrack = false;
+                }
+                else if (!hand_ItemCrack)
+                {
+                    
+                    NowHave_Image.sprite = allitem.ItemImage[clickUI];
+                    hand_ItemCrack = false;
+                }
+                break;
         }
+     
     }
 }
 
