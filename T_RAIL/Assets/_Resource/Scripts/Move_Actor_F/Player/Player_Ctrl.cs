@@ -93,6 +93,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject attackleach;
     public bool attack_possible = true;
     public GameObject axe;
+    bool invincibility = false;
     /// ////////////////////////////////////////////////////////////////////////
 
     public playerListController_minj playerListController;
@@ -227,9 +228,10 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
         if (other.gameObject.layer.Equals(GameValue.chicken_layer))//닭에게 공격 받기
         {
-            player.HP--;
-            Debug.Log(player.HP);
-            //gameObject.transform.Translate(0, 0, -1.0f);
+            if (!invincibility)
+            {
+                StartCoroutine("Beaten");
+            }
             
         }
 
@@ -790,51 +792,54 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     }
     void Player_key_Station()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (!invincibility)
         {
-            Move('a');
-            anim.SetBool("IsWalk", true);
-            runTime += Time.deltaTime;
-        }
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            Move('d');
-            anim.SetBool("IsWalk", true);
-            runTime += Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            Move('s');
-            anim.SetBool("IsWalk", true);
-            runTime += Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.W))
-        {
-            Move('w');
-            anim.SetBool("IsWalk", true);
-            runTime += Time.deltaTime;
-        }
-
-        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) ||
-            Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.W))
-        {
-            anim.SetBool("IsWalk", false);
-            runTime = 0;
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            anim.SetBool("IsAttack", true);
-            if (attack_possible)
+            if (Input.GetKey(KeyCode.A))
             {
-                attackleach.GetComponent<Attack>().attack = true;
+                Move('a');
+                anim.SetBool("IsWalk", true);
+                runTime += Time.deltaTime;
             }
-        }
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            anim.SetBool("IsAttack", false);
-            attack_possible = true;
-          
+
+            if (Input.GetKey(KeyCode.D))
+            {
+                Move('d');
+                anim.SetBool("IsWalk", true);
+                runTime += Time.deltaTime;
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                Move('s');
+                anim.SetBool("IsWalk", true);
+                runTime += Time.deltaTime;
+            }
+            if (Input.GetKey(KeyCode.W))
+            {
+                Move('w');
+                anim.SetBool("IsWalk", true);
+                runTime += Time.deltaTime;
+            }
+
+            if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) ||
+                Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.W))
+            {
+                anim.SetBool("IsWalk", false);
+                runTime = 0;
+            }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                anim.SetBool("IsAttack", true);
+                if (attack_possible)
+                {
+                    attackleach.GetComponent<Attack>().attack = true;
+                }
+            }
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                anim.SetBool("IsAttack", false);
+                attack_possible = true;
+
+            }
         }
 
     }
@@ -846,8 +851,9 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         BulletInfoSetting(TrainGameManager.instance.GetObject(0), m_CurrentLaunchForce);
         iTween.ShakePosition(gun_child.gameObject, iTween.Hash("time", 0.5f, "z", 0.2f));
         iTween.ShakePosition(gameObject, iTween.Hash("time", 0.5f, "z", 0.2f));
+        iTween.pa
 
-        m_CurrentLaunchForce = m_MinLaunchForce;
+      m_CurrentLaunchForce = m_MinLaunchForce;
     }
 
     public void Move(char key)
@@ -941,6 +947,17 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         _Bullet.GetComponent<Bullet_Ctrl>().CallMoveCoroutin(_value);
     }
 
-    
+    ///////////////////////////
+    IEnumerator Beaten()
+    {
+        player.HP--;
+        invincibility = true;
+        //player.position.z--;
+        anim.SetBool("IsWalk", false);
+        runTime = 0;
+        yield return new WaitForSeconds(0.5f);
+        invincibility = false;
+    }
+
 
 }
