@@ -63,5 +63,6 @@ MonoBehaviour:
   - ItemGet_MediPack
   - ItemGet_WoodBoard
   - attack_RPC
+  - setEggActiveFalse
   DisableAutoOpenWizard: 1
   ShowSettings: 1

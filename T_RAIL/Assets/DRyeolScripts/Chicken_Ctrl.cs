@@ -149,7 +149,6 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
         egg.transform.position = this.gameObject.transform.position;
         this.gameObject.SetActive(false);
 
-
     }
 
 

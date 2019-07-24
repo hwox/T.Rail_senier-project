@@ -290,7 +290,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (Input.GetKeyDown(KeyCode.V))
             {
-                photonView.RPC("eggEat_RPC", RpcTarget.All, other.gameObject.GetPhotonView().ViewID);
+                GameObject.Find("Item_Ctrl").GetComponent<AllItem_Ctrl>().ItemGet_Random(other.gameObject.GetPhotonView().ViewID);
             }
         }
     }
@@ -309,10 +309,10 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         GameObject _other = PhotonView.Find(otherViewID).gameObject;
         _other.gameObject.SetActive(false);
 
-        if (!PhotonNetwork.IsMasterClient) return;
-
-        GameObject.Find("Item_Ctrl").GetComponent<AllItem_Ctrl>().ItemGet_Random();
-
+        //if (PhotonNetwork.IsMasterClient)
+        //{
+        //    GameObject.Find("Item_Ctrl").GetComponent<AllItem_Ctrl>().ItemGet_Random();
+        //}
     }
 
     private void OnTriggerExit(Collider other)
