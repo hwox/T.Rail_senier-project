@@ -37,12 +37,12 @@ public class Train_Object : MonoBehaviourPunCallbacks
     public GameObject Ceiling; // 천장
     public GameObject BackWall;// 제일 끝에 wall. 플레이어가 못 빠져나가게
     public GameObject TrainChain; // chain. 제일 마지막 칸만 off될 예정
-    // 제일 마지막에 못나가게 제일 마지막칸에서만 wall on 됨
-    // 기관총하고 비슷
+
+    public GameObject[] BrokenWall; // HP 떨어질 때마다 기차의 내구도 변화를 표현하는 기차의 벽면 0부터 3까지 왼쪽 순서대로
+
+
 
     public bool[] InTrainObjectUsed;
-
-
     public GameObject[] choiceInTrainObject;
     [SerializeField]
     public Train_Ctrl ctrl;
@@ -219,15 +219,7 @@ public class Train_Object : MonoBehaviourPunCallbacks
             }
         }
 
-
-
         Invoke("callFirstTrainInit", 0.5f);
-
-        //for (int i = 0; i < 4; i++)
-        //{
-        //    this.gameObject.transform.GetChild(1).GetChild(i).gameObject.GetComponent<InTrainObjectMake>().InitSetting(ctrl.train.Count, i);
-        //}
-
     }
 
     public void callFirstTrainInit()
@@ -284,5 +276,14 @@ public class Train_Object : MonoBehaviourPunCallbacks
             InTrainObjectUsed[_whatnumber] = true; // 사용중이니까 false시킴
         }
         // 없앨때는 parent true시키고 다시 저리로 가져다 줘야 함. 아니면 그냥 delete 시켜버리거나
+    }
+
+
+    public void BrokenTrain()
+    {
+        for(int i = 0; i < 4; i++)
+        {
+            // 이거ㅓ 함수가 한번 호출될 때마다 
+        }
     }
 }

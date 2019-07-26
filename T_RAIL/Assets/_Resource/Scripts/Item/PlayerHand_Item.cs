@@ -187,6 +187,8 @@ public class PlayerHand_Item : MonoBehaviour
                 if (!allitem.ItemCrack)
                 {
                     allitem.UseLeftHandItem();
+
+                    // 오류지점 ***************
                     NowHave_Image.sprite = allitem.ItemImage[clickUI];
                     allitem.ItemCrack = false;
                 }

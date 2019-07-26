@@ -142,7 +142,8 @@ public class MaterialForCreate : MonoBehaviour
             Storage[StorageIndex].GetComponent<Image>().sprite = allitem.NullImage;
 
         }
-
+        Debug.Log("증가한거"+ItemCount[ForMakeItem[ForMakeItem.Count - 1] - 1]);
+        Debug.Log("마짐막꺼"+ItemCount[ForMakeItem[ForMakeItem.Count - 1] - 1]);
     }
 
     public bool IsBoxMakeEnable()
