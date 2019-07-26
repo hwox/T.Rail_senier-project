@@ -12,7 +12,7 @@ public class SofaSitPassenger_Ctrl : MonoBehaviour
     // 현재 소파에 앉아있는 승객을 총관리
     public List<InSofaPassenger> passengers = new List<InSofaPassenger>();
 
-    int sofaNubmer; // 소파 총 몇개인지
+    public int sofaNubmer; // 소파 총 몇개인지
 
 
     // Use this for initialization
@@ -27,11 +27,13 @@ public class SofaSitPassenger_Ctrl : MonoBehaviour
     {
         passengers.Add(insofa);
         sofaNubmer += 1;
+        sofaNubmer = TrainGameManager.instance.SopaNum;
     }
     public void DeletedSofa(int index)
     {
         passengers.RemoveAt(index);
         sofaNubmer -= 1;
+        sofaNubmer = TrainGameManager.instance.SopaNum;
     }
 
     public void PassengerRideInTrain()
