@@ -64,14 +64,14 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
         //{
         //    photonView.RPC("MakeSofa", RpcTarget.All, 1, WhatNumber_Object);
         //}
-         if (WhatNumber_Object == 2)
-        {
-            photonView.RPC("MakeBox", RpcTarget.All, 1, WhatNumber_Object);
-        }
-        else if(WhatNumber_Object == 3)
-        {
-            photonView.RPC("MakeSofa", RpcTarget.All, 1, WhatNumber_Object);
-        }
+            if (WhatNumber_Object == 2)
+           {
+               photonView.RPC("MakeBox", RpcTarget.All, 1, WhatNumber_Object);
+           }
+           else if(WhatNumber_Object == 3)
+           {
+               photonView.RPC("MakeSofa", RpcTarget.All, 1, WhatNumber_Object);
+           }
         
         //if (WhereTrain_Object == 1)
         //{
@@ -90,7 +90,7 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
         //    }
         //}
 
-            MaterialStorage_ctrl = MaterialStorage.GetComponent<MaterialForCreate>();
+        MaterialStorage_ctrl = MaterialStorage.GetComponent<MaterialForCreate>();
     }
 
     public void MakeBox_Button()
