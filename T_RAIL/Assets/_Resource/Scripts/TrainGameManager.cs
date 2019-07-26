@@ -43,7 +43,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                            // 몇개 붙어있는지 가지고 제일 마지막 위치 -> 기관총
                            // 제일 마지막 위치 -> enemy1 
 
-    public int totalPassenger; // 승객을 총 태운 횟수
+    public int totalPassenger=0; // 승객을 총 태운 횟수
     public int totalkickoutEnemy; // 적을 총 물리친 횟수
     public int nowPassenger=0; // 현재 기차 내부에 남아있는 승객의 총 수
     public int GetPassengerCount = 0;//역에서 구출한 승객수 -> 역 다음으로 넘어가서 기차에 앉으면 다시 0으로 바꿔놔야 함 

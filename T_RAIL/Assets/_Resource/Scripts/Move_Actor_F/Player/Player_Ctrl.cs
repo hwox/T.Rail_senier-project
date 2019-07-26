@@ -263,8 +263,14 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 //  Push_Space_UI.SetActive(false);
                 //  Destroy(other.gameObject);
                 //GameObject.Find("SofaSitPassenger_Ctrl").GetComponent<SofaSitPassenger_Ctrl>().sofaNubmer
-                //int extrasopa = TrainGameManager.instance.SopaNum - TrainGameManager.instance.SofaSitPassengerCtrl.passengers.Count;
-                //if (extrasopa > TrainGameManager.instance.GetPassengerCount)
+             
+             
+                int extrasopa = TrainGameManager.instance.SopaNum - TrainGameManager.instance.totalPassenger;
+                Debug.Log("총 승객 수" + TrainGameManager.instance.totalPassenger);
+                Debug.Log("총 소파" + TrainGameManager.instance.SopaNum);
+                Debug.Log("남은 소파"+extrasopa);
+                Debug.Log("구출 승객" + TrainGameManager.instance.GetPassengerCount);
+                if (extrasopa > TrainGameManager.instance.GetPassengerCount)
                 {
                     for (int i = 0; i < TrainGameManager.instance.Station_PassengerManager.Count; ++i)
                     {
@@ -311,6 +317,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     {
         TrainGameManager.instance.Station_PassengerManager[i].gameObject.SetActive(false);
         TrainGameManager.instance.GetPassengerCount++;
+        TrainGameManager.instance.totalPassenger++;
         Debug.Log("GetPassengerCount " + TrainGameManager.instance.GetPassengerCount);
     }
 
