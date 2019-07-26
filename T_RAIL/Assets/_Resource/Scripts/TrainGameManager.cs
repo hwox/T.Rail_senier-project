@@ -122,6 +122,8 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
     public int LeftHandItem;
     public int RightHandItem;
 
+    public int SopaNum=0;
+
 
     public bool NowItemUIUsable { get; set; }
 

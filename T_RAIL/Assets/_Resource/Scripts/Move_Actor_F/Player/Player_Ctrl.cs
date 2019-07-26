@@ -262,11 +262,16 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 //  near_stair = false;
                 //  Push_Space_UI.SetActive(false);
                 //  Destroy(other.gameObject);
-                for (int i = 0; i < TrainGameManager.instance.Station_PassengerManager.Count; ++i)
+                //GameObject.Find("SofaSitPassenger_Ctrl").GetComponent<SofaSitPassenger_Ctrl>().sofaNubmer
+                //int extrasopa = TrainGameManager.instance.SopaNum - TrainGameManager.instance.SofaSitPassengerCtrl.passengers.Count;
+                //if (extrasopa > TrainGameManager.instance.GetPassengerCount)
                 {
-                    if (other.gameObject == TrainGameManager.instance.Station_PassengerManager[i])
+                    for (int i = 0; i < TrainGameManager.instance.Station_PassengerManager.Count; ++i)
                     {
-                        photonView.RPC("passengerTouch", RpcTarget.All, i); //, eachPlayerIn[i]);
+                        if (other.gameObject == TrainGameManager.instance.Station_PassengerManager[i])
+                        {
+                            photonView.RPC("passengerTouch", RpcTarget.All, i); //, eachPlayerIn[i]);
+                        }
                     }
                 }
             }

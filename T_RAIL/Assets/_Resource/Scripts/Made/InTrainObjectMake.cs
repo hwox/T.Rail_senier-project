@@ -257,7 +257,7 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
             // 소파 만들 수 있는 조건 되면 makeenable = true; & 제작 버튼 활성화 \
             // MakeEnable = true;
             // MakeButton.interactable = true;  // 테스트용
-            if (MaterialStorage_ctrl.IsBoxMakeEnable())
+            if (MaterialStorage_ctrl.IsSofaMakeEnable())
             {
                 // 만들수있음
                 MakeEnable = true;
@@ -275,7 +275,7 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
            // MakeEnable = true;
           //  MakeButton.interactable = true;  // 테스트용
 
-            if (MaterialStorage_ctrl.IsSofaMakeEnable())
+            if (MaterialStorage_ctrl.IsBoxMakeEnable())
             {
                 // 만들수있음
                 MakeEnable = true;
