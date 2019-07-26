@@ -43742,6 +43742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   passengers: []
+  sofaNubmer: 0
 --- !u!1 &614815550
 GameObject:
   m_ObjectHideFlags: 0
@@ -74840,6 +74841,7 @@ MonoBehaviour:
   Scene_state: 1
   LeftHandItem: 0
   RightHandItem: 0
+  SopaNum: 0
 --- !u!4 &1113577655
 Transform:
   m_ObjectHideFlags: 0
