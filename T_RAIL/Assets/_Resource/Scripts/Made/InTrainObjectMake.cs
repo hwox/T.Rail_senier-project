@@ -250,6 +250,9 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
 
     private void Update()
     {
+
+        if (!photonView.IsMine == true) return;
+
         // 여기서 제작버튼 활성화 해도 되는지 안되는지 검사
 
         if (SofaMakeMode)
