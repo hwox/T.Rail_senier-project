@@ -27,13 +27,13 @@ public class SofaSitPassenger_Ctrl : MonoBehaviour
     {
         passengers.Add(insofa);
         sofaNubmer += 1;
-        sofaNubmer = TrainGameManager.instance.SopaNum;
+        TrainGameManager.instance.SopaNum = sofaNubmer;
     }
     public void DeletedSofa(int index)
     {
         passengers.RemoveAt(index);
         sofaNubmer -= 1;
-        sofaNubmer = TrainGameManager.instance.SopaNum;
+        TrainGameManager.instance.SopaNum  = sofaNubmer;
     }
 
     public void PassengerRideInTrain()
