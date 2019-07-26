@@ -64,14 +64,14 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
         //{
         //    photonView.RPC("MakeSofa", RpcTarget.All, 1, WhatNumber_Object);
         //}
-         if (WhatNumber_Object == 2)
-        {
-            photonView.RPC("MakeBox", RpcTarget.All, 1, WhatNumber_Object);
-        }
-        else if(WhatNumber_Object == 3)
-        {
-            photonView.RPC("MakeSofa", RpcTarget.All, 1, WhatNumber_Object);
-        }
+            if (WhatNumber_Object == 2)
+           {
+               photonView.RPC("MakeBox", RpcTarget.All, 1, WhatNumber_Object);
+           }
+           else if(WhatNumber_Object == 3)
+           {
+               photonView.RPC("MakeSofa", RpcTarget.All, 1, WhatNumber_Object);
+           }
         
         //if (WhereTrain_Object == 1)
         //{
@@ -90,7 +90,7 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
         //    }
         //}
 
-            MaterialStorage_ctrl = MaterialStorage.GetComponent<MaterialForCreate>();
+        MaterialStorage_ctrl = MaterialStorage.GetComponent<MaterialForCreate>();
     }
 
     public void MakeBox_Button()
@@ -257,7 +257,7 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
             // 소파 만들 수 있는 조건 되면 makeenable = true; & 제작 버튼 활성화 \
             // MakeEnable = true;
             // MakeButton.interactable = true;  // 테스트용
-            if (MaterialStorage_ctrl.IsBoxMakeEnable())
+            if (MaterialStorage_ctrl.IsSofaMakeEnable())
             {
                 // 만들수있음
                 MakeEnable = true;
@@ -275,7 +275,7 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
            // MakeEnable = true;
           //  MakeButton.interactable = true;  // 테스트용
 
-            if (MaterialStorage_ctrl.IsSofaMakeEnable())
+            if (MaterialStorage_ctrl.IsBoxMakeEnable())
             {
                 // 만들수있음
                 MakeEnable = true;

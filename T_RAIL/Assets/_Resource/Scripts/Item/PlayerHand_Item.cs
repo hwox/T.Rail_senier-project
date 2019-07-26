@@ -246,8 +246,6 @@ public class PlayerHand_Item : MonoBehaviour
                     hand_ItemCrack = false;
                 }
 
-
-
                 break;
         }
         allitem.UseInLeftHand = 0;
