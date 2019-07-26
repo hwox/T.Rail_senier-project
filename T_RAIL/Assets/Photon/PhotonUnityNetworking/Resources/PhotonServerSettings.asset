@@ -68,5 +68,6 @@ MonoBehaviour:
   - MakeSofa
   - EatFood_RPC
   - EatHeal_RPC
+  - deleteItem_RPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1

@@ -212,11 +212,13 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                     SofaManager.Add(obj);
                     break;
                 case (int)prefab_list.box:
-                    obj = Instantiate(_obj);
-                    obj.transform.localPosition = Vector3.zero;
-                    obj.SetActive(false);
-                    obj.transform.parent = transform.GetChild(prefab_index);
-                    BoxManager.Add(obj);
+                    if (!PhotonNetwork.IsMasterClient) return;
+                    obj = PhotonNetwork.Instantiate(_obj.name, new Vector3(0, 0, 0), _obj.transform.rotation, 0);
+
+                    //obj.transform.localPosition = Vector3.zero;
+                    //obj.SetActive(false);
+                    //obj.transform.parent = transform.GetChild(prefab_index);
+                    //BoxManager.Add(obj);
                     break;
                 case (int)prefab_list.chicken:
                     if (!PhotonNetwork.IsMasterClient) return;

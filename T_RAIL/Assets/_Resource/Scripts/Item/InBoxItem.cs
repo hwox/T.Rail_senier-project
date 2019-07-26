@@ -44,6 +44,11 @@ public class InBoxItem : MonoBehaviourPunCallbacks
         HaveItemInfo = new int[GameValue.ITEMLIMIT];
         // ActiveThisBox();
         GetImageComponent();
+
+        this.transform.localPosition = Vector3.zero;
+        this.gameObject.SetActive(false);
+        this.transform.parent = TrainGameManager.instance.gameObject.transform.GetChild(5);// (int)prefab_list.passenger);
+        TrainGameManager.instance.BoxManager.Add(this.gameObject);
     }
 
     void GetImageComponent()
@@ -210,10 +215,17 @@ public class InBoxItem : MonoBehaviourPunCallbacks
             {
                 allitem.SetRightHandItem();
             }
-            DeleteItem(clickUI);
+            photonView.RPC("deleteItem_RPC", RpcTarget.All, clickUI);
             allitem.ItemCrack = false;
         }
     }
+
+    [PunRPC]
+    void deleteItem_RPC(int _clickUI)
+    {
+        DeleteItem(_clickUI);
+    }
+
     public void DragMouse_Down(int _number)
     {
         // 만약 해당 슬롯에 아이템이 없다면 아무일도 안하고      
