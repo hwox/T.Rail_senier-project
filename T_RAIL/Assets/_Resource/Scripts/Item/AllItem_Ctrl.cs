@@ -107,7 +107,6 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         TrainGameManager.instance.LeftHandItem = NowDragItemInfo;
         LeftHand_Pocket = NowDragItemInfo;
         LeftHand_PocketObject.GetComponent<Image>().sprite = ItemImage[LeftHand_Pocket - 1];
-      
     }
     public void UseLeftHandItem()
     {
