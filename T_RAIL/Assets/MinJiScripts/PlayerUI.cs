@@ -42,10 +42,11 @@ namespace Photon.Pun.Demo.PunBasics
 
 		Transform targetTransform;
 
-		Renderer targetRenderer;
+		public Renderer targetRenderer;
 
 		Vector3 targetPosition;
 
+        Mouse_Ctrl cameraObject;
 		#endregion
 
 		#region MonoBehaviour Messages
@@ -59,56 +60,82 @@ namespace Photon.Pun.Demo.PunBasics
 			this.transform.SetParent(GameObject.Find("UI_Canvas").GetComponent<Transform>(), false);
 		}
 
-		/// <summary>
-		/// MonoBehaviour method called on GameObject by Unity on every frame.
-		/// update the health slider to reflect the Player's health
-		/// </summary>
-		void Update()
-		{
-			// Destroy itself if the target is null, It's a fail safe when Photon is destroying Instances of a Player over the network
-			if (target == null) {
-				Destroy(this.gameObject);
-				return;
-			}
+        private void Start()
+        {
+            cameraObject = Camera.main.GetComponent<Mouse_Ctrl>();
+        }
+        /// <summary>
+        /// MonoBehaviour method called on GameObject by Unity on every frame.
+        /// update the health slider to reflect the Player's health
+        /// </summary>
+        void Update()
+        {
+            // Destroy itself if the target is null, It's a fail safe when Photon is destroying Instances of a Player over the network
+            //if (target == null) {
+            //	Destroy(this.gameObject);
+            //	return;
+            //}
 
-
-			// Reflect the Player Health
-			//if (playerHealthSlider != null) {
-			//	playerHealthSlider.value = target.Health;
-			//}
-		}
-
-		/// <summary>
-		/// MonoBehaviour method called after all Update functions have been called. This is useful to order script execution.
-		/// In our case since we are following a moving GameObject, we need to proceed after the player was moved during a particular frame.
-		/// </summary>
-		void LateUpdate () {
-
-			// Do not show the UI if we are not visible to the camera, thus avoid potential bugs with seeing the UI, but not the player itself.
-			//if (targetRenderer!=null) {
-			//	this.gameObject.SetActive(targetRenderer.isVisible);
-			//}
-			
-			// #Critical
-			// Follow the Target GameObject on screen.
-			//if (targetTransform!=null)
-			{
-                if (Camera.allCameras[0] == Camera.main)
+            if (cameraObject.ThisCamOn)
+            {
+                if (TrainGameManager.instance.NowItemUIUsable)
                 {
                     this.gameObject.SetActive(true);
+                    this.transform.GetChild(3).gameObject.SetActive(true);
                     targetPosition = targetTransform.position;
-				    targetPosition.y += characterControllerHeight;
+                    targetPosition.y += characterControllerHeight;
                     this.transform.position = Camera.main.WorldToScreenPoint(targetPosition) + screenOffset;
                 }
                 else
                 {
-                    this.gameObject.SetActive(false);
+                    this.transform.GetChild(3).gameObject.SetActive(false);
                 }
-			}
-            //else
-            //{
-            //    this.gameObject.SetActive(false);
+            }
+            else
+            {
+                this.transform.GetChild(3).gameObject.SetActive(false);
+            }
+
+            // Reflect the Player Health
+            //if (playerHealthSlider != null) {
+            //	playerHealthSlider.value = target.Health;
             //}
+        }
+
+
+        /// <summary>
+        /// MonoBehaviour method called after all Update functions have been called. This is useful to order script execution.
+        /// In our case since we are following a moving GameObject, we need to proceed after the player was moved during a particular frame.
+        /// </summary>
+        void LateUpdate () {
+
+            // Do not show the UI if we are not visible to the camera, thus avoid potential bugs with seeing the UI, but not the player itself.
+            //if (targetRenderer!=null) {
+            //	this.gameObject.SetActive(targetRenderer.isVisible);
+            //}
+
+            // #Critical
+            // Follow the Target GameObject on screen.
+            //if (targetTransform!=null)
+   //         Debug.LogError(Camera.main.GetComponent<Mouse_Ctrl>().ThisCamOn);
+   //         if(Camera.main.GetComponent<Mouse_Ctrl>().ThisCamOn == true)
+   //         {
+   //          //   if (Camera.allCameras[0] == Camera.main)
+   //             {
+   //                 this.gameObject.SetActive(true);
+   //                 targetPosition = targetTransform.position;
+			//	    targetPosition.y += characterControllerHeight;
+   //                 this.transform.position = Camera.main.WorldToScreenPoint(targetPosition) + screenOffset;
+   //             }
+   //          // else
+   //          // {
+   //          //     this.gameObject.SetActive(false);
+   //          // }
+			//}
+   //         else
+   //         {
+   //             this.gameObject.SetActive(false);
+   //         }
 
 		}
 
