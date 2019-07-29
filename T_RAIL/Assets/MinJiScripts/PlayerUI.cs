@@ -85,13 +85,13 @@ namespace Photon.Pun.Demo.PunBasics
 		void LateUpdate () {
 
 			// Do not show the UI if we are not visible to the camera, thus avoid potential bugs with seeing the UI, but not the player itself.
-			if (targetRenderer!=null) {
-				this.gameObject.SetActive(targetRenderer.isVisible);
-			}
+			//if (targetRenderer!=null) {
+			//	this.gameObject.SetActive(targetRenderer.isVisible);
+			//}
 			
 			// #Critical
 			// Follow the Target GameObject on screen.
-			if (targetTransform!=null)
+			//if (targetTransform!=null)
 			{
                 if (Camera.allCameras[0] == Camera.main)
                 {
@@ -105,10 +105,10 @@ namespace Photon.Pun.Demo.PunBasics
                     this.gameObject.SetActive(false);
                 }
 			}
-            else
-            {
-                this.gameObject.SetActive(false);
-            }
+            //else
+            //{
+            //    this.gameObject.SetActive(false);
+            //}
 
 		}
 
