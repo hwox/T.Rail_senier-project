@@ -75,7 +75,6 @@ public class CamCtrl : MonoBehaviour
             default:
                 TrainGameManager.instance.Error_print();
                 break;
-
         }
     }
 
@@ -115,12 +114,15 @@ public class CamCtrl : MonoBehaviour
         {
             Enemy_Appear_Cam.transform.position = new Vector3((index - 1) * GameValue.Train_distance - 2.5f, 10.0f, -8.0f);
             Enemy_Appear_Cam.GetComponent<Camera>().enabled = true;
+            this.GetComponent<Camera>().GetComponent<Mouse_Ctrl>().ThisCamSetOnOff(false);
             this.GetComponent<Camera>().enabled = false;
         }
         else if (!onoff)
         {
+            this.GetComponent<Camera>().GetComponent<Mouse_Ctrl>().ThisCamSetOnOff(true);
             this.GetComponent<Camera>().enabled = true;
             Enemy_Appear_Cam.GetComponent<Camera>().enabled = false;
+
 
         }
     }

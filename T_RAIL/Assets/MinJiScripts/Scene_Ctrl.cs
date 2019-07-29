@@ -53,7 +53,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
 
         if (Input.GetKey(KeyCode.N))
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Train_Stage2");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Train_Stage3");
         }
 
         if (Input.GetKey(KeyCode.O))
