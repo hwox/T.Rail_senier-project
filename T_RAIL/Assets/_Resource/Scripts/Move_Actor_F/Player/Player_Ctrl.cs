@@ -265,12 +265,9 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 //GameObject.Find("SofaSitPassenger_Ctrl").GetComponent<SofaSitPassenger_Ctrl>().sofaNubmer
              
              
-                int extrasopa = TrainGameManager.instance.SopaNum - TrainGameManager.instance.totalPassenger;
-                Debug.Log("총 승객 수" + TrainGameManager.instance.totalPassenger);
-                Debug.Log("총 소파" + TrainGameManager.instance.SopaNum);
-                Debug.Log("남은 소파"+extrasopa);
-                Debug.Log("구출 승객" + TrainGameManager.instance.GetPassengerCount);
-                if (extrasopa > TrainGameManager.instance.GetPassengerCount)
+            
+               
+                if (TrainGameManager.instance.SopaNum > TrainGameManager.instance.totalPassenger)
                 {
                     for (int i = 0; i < TrainGameManager.instance.Station_PassengerManager.Count; ++i)
                     {
