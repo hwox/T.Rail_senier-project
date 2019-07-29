@@ -71,10 +71,10 @@ namespace Photon.Pun.Demo.PunBasics
         void Update()
         {
             // Destroy itself if the target is null, It's a fail safe when Photon is destroying Instances of a Player over the network
-            //if (target == null) {
-            //	Destroy(this.gameObject);
-            //	return;
-            //}
+            if (target == null) {
+            	Destroy(this.gameObject);
+            	return;
+            }
 
             if (cameraObject.ThisCamOn)
             {

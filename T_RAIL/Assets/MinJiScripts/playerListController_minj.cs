@@ -35,7 +35,7 @@ public class playerListController_minj : MonoBehaviourPunCallbacks {
                 {
                     GameObject temp = playerList[j].gameObject;
                     playerList.Remove(playerList[j]);
-                    Destroy(temp);
+                    Destroy(temp.gameObject);
                 }
             }
         }
