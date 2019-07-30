@@ -142,13 +142,11 @@ public class MaterialForCreate : MonoBehaviour
             Storage[StorageIndex].GetComponent<Image>().sprite = allitem.NullImage;
 
         }
-        Debug.Log("증가한거"+ItemCount[ForMakeItem[ForMakeItem.Count - 1] - 1]);
-        Debug.Log("마짐막꺼"+ItemCount[ForMakeItem[ForMakeItem.Count - 1] - 1]);
     }
 
     public bool IsBoxMakeEnable()
     {
-        // 나무 두개 8 못 하나 1  망치 하나 6
+       
         bool wood1 = false;
         bool wood2 = false;
         bool nail = false;
@@ -156,7 +154,7 @@ public class MaterialForCreate : MonoBehaviour
 
         for (int i = 0; i < ForMakeItem.Count; i++)
         {
-            if (ForMakeItem[i] == 8)
+            if (ForMakeItem[i] == (int)GameValue.itemCategory.woodboard)
             {
                 if (!wood1)
                 {
@@ -171,7 +169,7 @@ public class MaterialForCreate : MonoBehaviour
                 }
             }
 
-            if (ForMakeItem[i] == 1)
+            if (ForMakeItem[i] == (int)GameValue.itemCategory.nail)
             {
                 if (!nail)
                 {
@@ -179,7 +177,7 @@ public class MaterialForCreate : MonoBehaviour
                     nail = true;
                 }
             }
-            if (ForMakeItem[i] == 6)
+            if (ForMakeItem[i] == (int)GameValue.itemCategory.hammer)
             {
                 if (!hammer)
                 {
@@ -209,7 +207,7 @@ public class MaterialForCreate : MonoBehaviour
         // 나무 하나 못 두개 망치 하나
         for (int i = 0; i < ForMakeItem.Count; i++)
         {
-            if (ForMakeItem[i] == 8)
+            if (ForMakeItem[i] == (int)GameValue.itemCategory.woodboard)
             {
                 if (!wood)
                 {
@@ -218,7 +216,7 @@ public class MaterialForCreate : MonoBehaviour
                 }
             }
 
-            if (ForMakeItem[i] == 1)
+            if (ForMakeItem[i] == (int)GameValue.itemCategory.nail)
             {
                 if (!nail1)
                 {
@@ -231,7 +229,7 @@ public class MaterialForCreate : MonoBehaviour
                     nail2 = true;
                 }
             }
-            if (ForMakeItem[i] == 6)
+            if (ForMakeItem[i] == (int)GameValue.itemCategory.hammer)
             {
                 if (!hammer)
                 {
@@ -249,4 +247,60 @@ public class MaterialForCreate : MonoBehaviour
         return false;
     }
 
+    public bool IsTrainRepairEnable()
+    {
+        //  철판 두개 8 못 하나 1  망치 하나 6
+        bool iron1 = false;
+        bool iron2 = false;
+        bool nail = false;
+        bool hammer = false;
+
+        for (int i = 0; i < ForMakeItem.Count; i++)
+        {
+            if (ForMakeItem[i] == (int)GameValue.itemCategory.ironpan)
+            {
+                if (!iron1)
+                {
+
+                    iron1 = true;
+                }
+                else if (!iron2)
+                {
+
+                    iron2 = true;
+
+                }
+            }
+
+            if (ForMakeItem[i] == (int)GameValue.itemCategory.nail)
+            {
+                if (!nail)
+                {
+
+                    nail = true;
+                }
+            }
+            if (ForMakeItem[i] == 6)
+            {
+                if (!hammer)
+                {
+
+                    hammer = true;
+                }
+            }
+
+
+            if (hammer && iron1 && iron2 && nail)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void ItemListReset()
+    {
+        ForMakeItem.Clear();
+    }
 }

@@ -22,7 +22,7 @@ public class ColliderTrain : MonoBehaviour
         {
             MCam_Ctrl.Hit_EnemyCam(true);
 
-            TrainGameManager.instance.TrainCtrl.trainscript[TrainGameManager.instance.trainindex - 1].HP -=20/*other.GetComponent<Enemy1_Ctrl>().E_damage*/;
+            TrainGameManager.instance.TrainCtrl.trainscript[TrainGameManager.instance.trainindex - 1].HP -=2/*other.GetComponent<Enemy1_Ctrl>().E_damage*/;
             Debug.Log(TrainGameManager.instance.TrainCtrl.trainscript[TrainGameManager.instance.trainindex - 1].HP);
             TrainGameManager.instance.SoundManager.enemy_attack_Sound_Play();
         }
