@@ -194,9 +194,22 @@ public class Train_Object : MonoBehaviourPunCallbacks
             // 조건 필요
             if (HP < PrevHP && HP >= 10)
             {
-                Debug.Log("코루틴ㄴ실행");
                 FracturedTrain();
                 PrevHP -= 20;
+            }
+
+            if(HP <= 0)
+            {
+                if (index != 1)
+                {
+                    Debug.Log("끝");
+                    ctrl.Train_Delete(index - 1);
+                }
+                else if(index == 1)
+                {
+                    // 1번기차면 게임이 끝나야돼!
+                    // 우선은 break;
+                }
             }
             yield return new WaitForSeconds(0.3f);
         }
