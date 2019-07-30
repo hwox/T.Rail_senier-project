@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
+using UnityEngine.UI;
+
 
 public class Train_Object : MonoBehaviourPunCallbacks
 {
@@ -10,9 +12,9 @@ public class Train_Object : MonoBehaviourPunCallbacks
 
     public float HP { get; set; } //  (기차의 체력) 
     float PrevHP = 80; // 얘는 %이다. 80으로 시작하는 이유는 100, 80, 60, 40, 20, 0 이렇게 체크할건데 
-    // (일단 테스트하려고 올려놨음.)
-    // 80으로 체크해야ㅑ 깎이는지 확인가능
-    
+                       // (일단 테스트하려고 올려놨음.)
+                       // 80으로 체크해야ㅑ 깎이는지 확인가능
+
     [SerializeField]
     int index; // 몇번째 기차인지 
 
@@ -25,7 +27,7 @@ public class Train_Object : MonoBehaviourPunCallbacks
     int passenger; // 이 기차에 승객이 몇명있는지
     int box;  // 이 기차에 박스 몇개있는지
 
-   // bool on2Floor; // 2층에 누가 있는지없는지
+    // bool on2Floor; // 2층에 누가 있는지없는지
 
     float Coroutine_calltime; // 코루틴 안끄곸ㅋㅋㅋㅋ 그 안에 호출할 상황이면 0.01
                               // 호출안할 상황이면 0.5
@@ -34,7 +36,12 @@ public class Train_Object : MonoBehaviourPunCallbacks
     public int[] ThisTrainNowObjects; // 4개의 영역에 각각 어떤 오브젝트가 들어가있는지 
 
 
-   // 미리가지고 있어야 할 기차 내부의 메타
+    GameObject ItemInhand; // 손 item
+    Button RepairButton; // 수리 버튼
+    MaterialForCreate MaterialStorage_ctrl;
+    int NowClickIndex;
+
+    // 미리가지고 있어야 할 기차 내부의 메타
     public GameObject Machine_gun;
     public GameObject Ladder;
     public GameObject Ceiling; // 천장
@@ -69,6 +76,7 @@ public class Train_Object : MonoBehaviourPunCallbacks
         InTrainObjectUsed = new bool[4];
         BrokenWall = new bool[4];
         Init_AddTrain();
+        ItemInhand = TrainGameManager.instance.ItemHand;
     }
 
     public Train_Object()
@@ -198,14 +206,14 @@ public class Train_Object : MonoBehaviourPunCallbacks
                 PrevHP -= 20;
             }
 
-            if(HP <= 0)
+            if (HP <= 0)
             {
                 if (index != 1)
                 {
                     Debug.Log("끝");
                     ctrl.Train_Delete(index - 1);
                 }
-                else if(index == 1)
+                else if (index == 1)
                 {
                     // 1번기차면 게임이 끝나야돼!
                     // 우선은 break;
@@ -215,7 +223,7 @@ public class Train_Object : MonoBehaviourPunCallbacks
         }
 
     }
-   void Init_AddTrain()
+    void Init_AddTrain()
     {
 
         //train Add부분 한번 호출했으니 여기로 옮김
@@ -252,7 +260,7 @@ public class Train_Object : MonoBehaviourPunCallbacks
 
 
         //if (ctrl.train.Count == 1) 
-            Invoke("callFirstTrainInit", 3.0f);
+        Invoke("callFirstTrainInit", 3.0f);
     }
 
     public void callFirstTrainInit()
@@ -271,7 +279,8 @@ public class Train_Object : MonoBehaviourPunCallbacks
 
         // 이 if문 왜 주석처리해야하냐면 어차피 수리도구로 바꿔야 돼서 주석처리해야함
 
-        if (!InTrainObjectUsed[_whatnumber]) {
+        if (!InTrainObjectUsed[_whatnumber])
+        {
             ThisTrainNowObjects[_whatnumber] = _kind;
             _obj.transform.parent = this.transform.GetChild(1);
             switch (_kind)
@@ -292,7 +301,7 @@ public class Train_Object : MonoBehaviourPunCallbacks
             }
 
             _obj.SetActive(true);
-            
+
             // 부모로 이 밑으로 달아주고 로컬 포지션을 바꿨음
             InTrainObjectUsed[_whatnumber] = true; // 사용중이니까 false시킴
         }
@@ -307,13 +316,87 @@ public class Train_Object : MonoBehaviourPunCallbacks
         if (FracturedWall[randomWall].active && !BrokenWall[randomWall])
         {
             // 켜져있으면 끄고 끝
-            FracturedWall[randomWall].SetActive(false);
+            FracturedWall[randomWall].transform.GetChild(0).gameObject.SetActive(false);
+            FracturedWall[randomWall].transform.GetChild(1).gameObject.SetActive(true);
             BrokenWall[randomWall] = true;
-        
         }
         else
         {
             FracturedTrain();
         }
+    }
+
+    public void ClickFracturedTrain(string _name)
+    {
+        // 클릭된 번호를 _name으로 받는거임
+        switch (_name)
+        {
+            case "1":
+                OpenRepairUI(0);
+                break;
+            case "2":
+                OpenRepairUI(1);
+                break;
+            case "3":
+                OpenRepairUI(2);
+                break;
+            case "4":
+                OpenRepairUI(3);
+                break;
+            default:
+                Debug.Log("default");
+                break;
+        }
+    }
+
+    public void RepairUIExit()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            FracturedWall[i].transform.GetChild(2).gameObject.SetActive(false);
+        }
+
+        ItemInhand.SetActive(false);
+        TrainGameManager.instance.NowItemUIUsable = true;
+        StopCoroutine(TrainRepairCheck());
+    }
+
+    void OpenRepairUI(int index)
+    {
+        NowClickIndex = index;
+        FracturedWall[index].transform.GetChild(2).gameObject.SetActive(true);
+        TrainGameManager.instance.NowItemUIUsable = false;
+        ItemInhand.SetActive(true);
+        RepairButton = FracturedWall[index].transform.GetChild(2).GetChild(2).GetComponent<Button>();
+        MaterialStorage_ctrl = FracturedWall[index].transform.GetChild(2).GetChild(0).GetComponent<MaterialForCreate>();
+        StartCoroutine(TrainRepairCheck());
+    }
+
+    IEnumerator TrainRepairCheck()
+    {
+        while (true)
+        {
+            if (MaterialStorage_ctrl.IsTrainRepairEnable())
+            {
+                RepairButton.interactable = true;
+            }
+            else
+            {
+                RepairButton.interactable = false;
+            }
+
+            yield return new WaitForSeconds(0.5f);
+        }
+
+    }
+
+    public void RepairTrain()
+    {
+        FracturedWall[NowClickIndex].transform.GetChild(0).gameObject.SetActive(true);
+        HP += 20;
+        PrevHP += 20;
+        MaterialStorage_ctrl.ItemListReset();
+
+        RepairUIExit();
     }
 }

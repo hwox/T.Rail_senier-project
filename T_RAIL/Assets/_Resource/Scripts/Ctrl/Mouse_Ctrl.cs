@@ -99,6 +99,11 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
                         StateControllerCam.GetComponent<ControllerCamera_Ctrl>().On_StateController();
                     }
 
+                    else if (hit.collider.gameObject.layer.Equals(GameValue.trainrepair_layer))
+                    {
+                        hit.collider.GetComponentInParent<Train_Object>().ClickFracturedTrain(hit.collider.name);
+                    }
+
                 }
 
                 else if (hit.collider.gameObject.layer.Equals(GameValue.passenger_layer))
