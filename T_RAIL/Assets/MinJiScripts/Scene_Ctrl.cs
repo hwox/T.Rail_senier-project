@@ -23,6 +23,31 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
     void Update()
     {
 
+
+        if (Input.GetKey(KeyCode.N))
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Train_Stage3");
+        }
+
+        if (Input.GetKey(KeyCode.O))
+        {
+            TestMeterMode = true;
+        }
+        if (Input.GetKey(KeyCode.P))
+        {
+            TestMeterMode = false;
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            photonView.RPC("setRunMeterZero", RpcTarget.All);
+            photonView.RPC("StationSceneLoad", RpcTarget.All);
+        }
+
+
+        if (!PhotonNetwork.IsMasterClient) return;
+
         //state==1 기차 안 / state == 3 역
         if (TrainGameManager.instance.Scene_state == 1)
         {
@@ -47,29 +72,8 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         {
             photonView.RPC("SetTrainPlayer", RpcTarget.All);
             photonView.RPC("TrainSceneLoad", RpcTarget.All);
-
-            TrainGameManager.instance.Scene_state = 1;
-        }
-
-        if (Input.GetKey(KeyCode.N))
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Train_Stage3");
-        }
-
-        if (Input.GetKey(KeyCode.O))
-        {
-            TestMeterMode = true;
-        }
-        if (Input.GetKey(KeyCode.P))
-        {
-            TestMeterMode = false;
-        }
-
-
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            photonView.RPC("setRunMeterZero", RpcTarget.All);
-            photonView.RPC("StationSceneLoad", RpcTarget.All);
+            TrainGameManager.instance.photonView.RPC("setSceneState_RPC", RpcTarget.All, 1);
+            //TrainGameManager.instance.Scene_state = 1;
         }
     }
 
@@ -110,7 +114,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         Train_Ctrl.Hide();
         TrainGameManager.instance.Scene_state = 2;
         //Debug.LogError("id : " + (PhotonNetwork.LocalPlayer.ActorNumber - 1 )+ "  floor : " + playerListController.playerList[PhotonNetwork.LocalPlayer.ActorNumber - 1].player.Where_Floor);
-        Debug.LogError("몇명 들어와있는지: " + playerListController.playerList.Count);
+        //Debug.LogError("몇명 들어와있는지: " + playerListController.playerList.Count);
 
         for (int i = 0; i < playerListController.playerList.Count; ++i)
         {
@@ -118,7 +122,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
             playerListController.playerList[i].player.SetStationPlayer(i);
             playerListController.playerList[i].player.Where_Floor = 4;
             playerListController.playerList[i].player.AxeActive();
-            Debug.Log("id : " + (i) + "  floor : " + playerListController.playerList[i].player.Where_Floor);
+            //Debug.Log("id : " + (i) + "  floor : " + playerListController.playerList[i].player.Where_Floor);
 
             //photonView.RPC("setPlayerInStationState", RpcTarget.All, i);
         }

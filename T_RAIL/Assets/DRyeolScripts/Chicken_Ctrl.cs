@@ -21,6 +21,7 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
 
     public void BeatenTrue()
     {
+        
         anim.SetBool("Is Beaten", true);
         nav.speed = 2.5f;
         StopCoroutine("GotoDest");
@@ -29,6 +30,7 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
         StartCoroutine("BeatenFalse");
         HP-=1;
         if (HP <= 0)
+
            photonView.RPC("chickenDeath_RPC", RpcTarget.All);      
            
     }
@@ -137,13 +139,14 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
     IEnumerator Death()//죽기
     {
         live = false;
+        
         StopCoroutine("GotoDestPreson");
         StopCoroutine("BeatenFalse");
         anim.SetBool("Is Beaten", false);
         Debug.Log("죽음");
         anim.SetBool("Is Death", true);
         yield return new WaitForSeconds(2.7f);
-
+        StartCoroutine("CoinParticle");
         GameObject egg = TrainGameManager.instance.GetObject(7);
         egg.SetActive(true);
         egg.transform.position = this.gameObject.transform.position;
@@ -151,5 +154,14 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
 
     }
 
-
+    IEnumerator CoinParticle()
+    {
+        Debug.Log("들어옴");
+        GameObject Cp = TrainGameManager.instance.GetObject(8);
+        Cp.SetActive(true);
+        Cp.transform.position = this.gameObject.transform.position;
+        TrainGameManager.instance.CoinNum += 10;
+        yield return new WaitForSeconds(2.5f);
+        Cp.SetActive(false);
+    }
 }

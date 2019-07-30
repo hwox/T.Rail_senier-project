@@ -11,7 +11,7 @@ public class playerListController_minj : MonoBehaviourPunCallbacks {
 
     private void Start()
     {
-        Invoke("start2SecondLater", 2.0f);
+        Invoke("start2SecondLater", 2.5f);
 
         Debug.Log("eachPlayerIn : " + PhotonNetwork.CurrentRoom.PlayerCount);
         eachPlayerIn = new int[PhotonNetwork.CurrentRoom.PlayerCount]; //new int[playerList.Count];
@@ -25,12 +25,18 @@ public class playerListController_minj : MonoBehaviourPunCallbacks {
 
     void start2SecondLater()
     {
+        photonView.RPC("start2SecondLater_RPC", RpcTarget.All);
+    }
+
+    [PunRPC]
+    void start2SecondLater_RPC()
+    {
         for (int i = 0; i < playerList.Count; ++i)
         {
             for (int j = i + 1; j < playerList.Count; ++j)
             {
-                Debug.Log("playerList[i].gameObject.GetPhotonView().Owner.NickName " + playerList[i].gameObject.GetPhotonView().Owner.NickName);
-                Debug.Log("playerList[j].gameObject.GetPhotonView().Owner.NickName " + playerList[j].gameObject.GetPhotonView().Owner.NickName);
+                //Debug.Log("playerList[i].gameObject.GetPhotonView().Owner.NickName " + playerList[i].gameObject.GetPhotonView().Owner.NickName);
+                //Debug.Log("playerList[j].gameObject.GetPhotonView().Owner.NickName " + playerList[j].gameObject.GetPhotonView().Owner.NickName);
                 if (playerList[i].gameObject.GetPhotonView().Owner.NickName == playerList[j].gameObject.GetPhotonView().Owner.NickName)
                 {
                     GameObject temp = playerList[j].gameObject;
@@ -39,10 +45,7 @@ public class playerListController_minj : MonoBehaviourPunCallbacks {
                 }
             }
         }
-
-
     }
-
 
     // Update is called once per frame
     void Update () {

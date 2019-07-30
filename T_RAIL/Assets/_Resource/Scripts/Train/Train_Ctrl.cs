@@ -81,6 +81,10 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
 
             //Run_Meter
         }
+        else
+        {
+            RunMeterText.text = " ";
+        }
 
     }
 

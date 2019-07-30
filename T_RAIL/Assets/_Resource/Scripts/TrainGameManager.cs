@@ -17,7 +17,10 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
         sofa = 4,
         box = 5,
         chicken = 6,
-        egg = 7
+        egg = 7,  
+        coinparticle=8
+
+            
     }
 
 
@@ -116,6 +119,10 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
     public List<GameObject> EggManager;
     const int MAKE_EGG_COUNT = 10;
 
+    //코인 파티클
+    public List<GameObject> CoinParticle;
+    const int MAKE_COINPARTICLE_COUNT = 10;
+
 
     public int Scene_state=1;
 
@@ -125,6 +132,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
 
     public int SopaNum=0;
 
+    public int CoinNum = 0;
 
     public bool NowItemUIUsable { get; set; }
 
@@ -158,7 +166,8 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
         CreateObject(Origin[(int)prefab_list.sofa], MAKE_SOFA_COUNT, (int)prefab_list.sofa); //소파생성
         CreateObject(Origin[(int)prefab_list.box], MAKE_BOX_COUNT, (int)prefab_list.box); //박스생성
         CreateObject(Origin[(int)prefab_list.chicken], MAKE_CHICKEN_COUNT, (int)prefab_list.chicken); // 치킨생성
-        CreateObject(Origin[(int)prefab_list.egg], MAKE_EGG_COUNT, (int)prefab_list.egg); // 치킨생성
+        CreateObject(Origin[(int)prefab_list.egg], MAKE_EGG_COUNT, (int)prefab_list.egg); // 달걀생성
+        CreateObject(Origin[(int)prefab_list.coinparticle], MAKE_COINPARTICLE_COUNT, (int)prefab_list.coinparticle); // 코인파티클생성
     }
     public void Notice_EnemyAppear()
     {
@@ -237,6 +246,13 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                     //obj.SetActive(false);
                     //obj.transform.parent = transform.GetChild(prefab_index);
                     //EggManager.Add(obj);
+                    break;
+                case (int)prefab_list.coinparticle:
+                    obj = Instantiate(_obj);
+                    obj.transform.localPosition = Vector3.zero;
+                    obj.SetActive(false);
+                    obj.transform.parent = transform.GetChild(prefab_index);
+                    CoinParticle.Add(obj);
                     break;
             }
         }
@@ -456,6 +472,32 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                     return EggManager[i];
                 }
                 return null;
+            case (int)prefab_list.coinparticle:
+
+                if (EggManager == null)
+                {
+                    return null;
+                }
+                int co_Count = CoinParticle.Count;
+
+                for (int i = 0; i < co_Count; i++)
+                {
+                    GameObject obj = CoinParticle[i];
+
+                    //활성화 돼있으면
+                    if (obj.active == true)
+                    {
+                        // 리스트의 마지막까지 돌았는데 다 사용중이다?
+                        if (i == co_Count - 1)
+                        {
+                            CreateObject(obj, 1, _objIndex);
+                            return CoinParticle[i + 1];
+                        }
+                        continue;
+                    }
+                    return CoinParticle[i];
+                }
+                return null;
             default:
                 return null;
 
@@ -585,10 +627,32 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                 }
                 EggManager = null;
                 break;
+
+
+            case (int)prefab_list.coinparticle:
+
+                if (CoinParticle == null)
+                {
+                    return;
+                }
+
+                int co_Count = CoinParticle.Count;
+
+                for (int i = 0; i < co_Count; i++)
+                {
+                    GameObject obj = CoinParticle[i];
+                    GameObject.Destroy(obj);
+                }
+                CoinParticle = null;
+                break;
         }
     }
     ///////////////////////////////////////////////////////////////////////////////////////
     ///
 
-
+    [PunRPC]
+    public void setSceneState_RPC(int _state)
+    {
+        TrainGameManager.instance.Scene_state = _state;
+    }
 }
