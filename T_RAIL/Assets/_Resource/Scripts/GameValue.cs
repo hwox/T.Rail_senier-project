@@ -49,7 +49,7 @@ static class GameValue {
 
 
     // 기차의 기본 체력
-    public const int Train_Standard_HP = 300;
+    public const int Train_Standard_HP =100;
     // 기차 속성의 기본값 
     public const float Durability = 100.0f;
     public const float speed = 9.0f;
