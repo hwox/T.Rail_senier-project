@@ -275,7 +275,12 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                         {
                             photonView.RPC("passengerTouch", RpcTarget.All, i); //, eachPlayerIn[i]);
                             StartCoroutine(CoinParticle(other.transform));
-                            
+                            if (near_stationpassenger)
+                            {
+                                space_state = 0;
+                                near_stationpassenger = false;
+                                
+                            }
                         }
                     }
                 }
@@ -308,6 +313,28 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             if (Input.GetKeyDown(KeyCode.V))
             {
                 GameObject.Find("Item_Ctrl").GetComponent<AllItem_Ctrl>().ItemGet_Random(other.gameObject.GetPhotonView().ViewID);
+            }
+        }
+
+        // 자판기 사용
+        if (other.gameObject.layer.Equals(GameValue.vandingmachine_layer))
+        {
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+
+                if (other.GetComponent<VendingMachine>().VendingMachine_on)
+                {
+                    MCam_Ctrl.Vending_Machine_Cam(false, 0);
+                    other.GetComponent<VendingMachine>().VendingMachine_on = false;
+                    player.Where_Floor = 4;
+                }
+                else
+                {
+                    MCam_Ctrl.Vending_Machine_Cam(true, 0);
+                    other.GetComponent<VendingMachine>().VendingMachine_on = true;
+                    player.Where_Floor = 5;
+                }
+              
             }
         }
     }
@@ -847,12 +874,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 anim.SetBool("IsWalk", true);
                 runTime += Time.deltaTime;
             }
-            if (Input.GetKey(KeyCode.Q))
-            {
-                // 기관총에서 벗어나자!
-                MCam_Ctrl.Vending_Machine_Cam(true, 0);
-               
-            }
+          
 
             if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) ||
                 Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.W))
