@@ -9,7 +9,7 @@ public class Train_Object : MonoBehaviourPunCallbacks
 
 
     public float HP { get; set; } //  (기차의 체력) 
-
+    float PrevHP = 100; // 얘는 %이다.
     [SerializeField]
     int index; // 몇번째 기차인지 
 
@@ -39,7 +39,7 @@ public class Train_Object : MonoBehaviourPunCallbacks
     public GameObject TrainChain; // chain. 제일 마지막 칸만 off될 예정
 
     public GameObject[] FracturedWall; // HP 떨어질 때마다 기차의 내구도 변화를 표현하는 기차의 벽면 0부터 3까지 왼쪽 순서대로
-
+    public bool[] BrokenWall; // 벽 부셔졌으면 true
 
 
     public bool[] InTrainObjectUsed;
@@ -184,6 +184,17 @@ public class Train_Object : MonoBehaviourPunCallbacks
         }
     }
 
+    IEnumerator TrainHPCheck()
+    {
+        while (true)
+        {
+            // 조건 필요
+         
+            FracturedTrain();
+            yield return new WaitForSeconds(0.3f);
+        }
+
+    }
    void Init_AddTrain()
     {
 
@@ -231,15 +242,6 @@ public class Train_Object : MonoBehaviourPunCallbacks
     }
 
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer.Equals(GameValue.enemy_layer))
-        {
-            // 기차 hp감소 . enemy의 damage에 따라
-        }
-    }
-
-
     public void InTrainObject_Setting(GameObject _obj, int _whatnumber, int _kind)
     {
         // 여기서 이제 전달받은 오브젝트를 
@@ -278,11 +280,18 @@ public class Train_Object : MonoBehaviourPunCallbacks
 
     public void FracturedTrain()
     {
-        for(int i = 0; i < 4; i++)
+        int randomWall = Random.Range(0, 4);
+
+        if (FracturedWall[randomWall].active && !BrokenWall[randomWall])
         {
-            // 이거ㅓ 함수가 한번 호출될 때마다 
-
-
+            // 켜져있으면 끄고 끝
+            FracturedWall[randomWall].SetActive(false);
+            BrokenWall[randomWall] = true;
+        
+        }
+        else
+        {
+            FracturedTrain();
         }
     }
 }

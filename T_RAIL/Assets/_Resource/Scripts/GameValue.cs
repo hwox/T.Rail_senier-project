@@ -103,15 +103,8 @@ static class GameValue {
 
     public const int ITEMLIMIT = 6; // 한칸당 아이템 제한. 이름을 뭘로 해야될지 몰라서 LImit로
 
-    static public void BoxNeedItem()
-    {
-        
-    }
-
-    static public void SofaNeedItem()
-    {
-
-    }
+ 
+    //
 }
 
 
