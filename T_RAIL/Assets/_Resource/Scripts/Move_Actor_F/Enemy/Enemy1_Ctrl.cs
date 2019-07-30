@@ -10,9 +10,6 @@ public class Enemy1_Ctrl : MonoBehaviourPunCallbacks
     Animator anim;
 
 
-    public int E_damage;
-
-
     Vector3 Position_Set_Destination;
     Vector3 Position_Set_Move;
     bool Position_Set_Go = false;
@@ -43,7 +40,6 @@ public class Enemy1_Ctrl : MonoBehaviourPunCallbacks
         Init_Rhino_child = Rhino_child.position;
 
         enemy.speed = 10.0f;  // enemy1은 스피드 기본고정
-        enemy.Damage = E_damage;
         anim.SetBool("IsRun", true);
 
 

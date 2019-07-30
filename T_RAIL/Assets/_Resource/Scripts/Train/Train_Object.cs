@@ -9,7 +9,9 @@ public class Train_Object : MonoBehaviourPunCallbacks
 
 
     public float HP { get; set; } //  (기차의 체력) 
-    float PrevHP = 100; // 얘는 %이다.
+    float PrevHP = 80; // 얘는 %이다. 80으로 시작하는 이유는 100, 80, 60, 40, 20, 0 이렇게 체크할건데
+    // 80으로 체크해야ㅑ 깎이는지 확인가능
+    
     [SerializeField]
     int index; // 몇번째 기차인지 
 
@@ -189,8 +191,11 @@ public class Train_Object : MonoBehaviourPunCallbacks
         while (true)
         {
             // 조건 필요
-         
-            FracturedTrain();
+            if (HP < PrevHP && HP >= 10)
+            {
+                FracturedTrain();
+                PrevHP -= 20;
+            }
             yield return new WaitForSeconds(0.3f);
         }
 
