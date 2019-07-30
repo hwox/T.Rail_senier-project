@@ -254,4 +254,13 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
         PassengerCareButtons.gameObject.SetActive(false);
         PassengerStateRender.gameObject.SetActive(false);
     }
+
+    public int GetHungry()
+    {
+        return pass.Hungry;
+    }
+    public int GetDisease()
+    {
+        return pass.Disease;
+    }
 }

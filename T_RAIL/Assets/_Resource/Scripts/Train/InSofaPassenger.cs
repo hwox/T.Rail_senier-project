@@ -34,6 +34,14 @@ public class InSofaPassenger : MonoBehaviourPunCallbacks  {
         thisSofaIndex = -99; // 일단 어떻게 사용할지 몰라서 쓰레기값 넣어주기 
     }
 
+    public int GetThisPassengerHungry()
+    {
+        return NowSitPassengerObject.GetComponent<Passenger_Ctrl>().GetHungry();
+    }
+    public int GetThisPassengerDisease()
+    {
+        return NowSitPassengerObject.GetComponent<Passenger_Ctrl>().GetDisease();
+    }
     public void SitPassenger(GameObject _passenger)
     {
 
