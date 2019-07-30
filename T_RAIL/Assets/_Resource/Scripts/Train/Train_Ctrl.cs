@@ -175,11 +175,11 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
     [PunRPC]
     public void Train_Delete(int _removeindex)
     {
-        //일단 제일 마지막 칸이면 지워지지 않게
-        if (TrainGameManager.instance.trainindex == 1)
-        {
-            return;
-        }
+        ////일단 제일 마지막 칸이면 지워지지 않게
+        //if (TrainGameManager.instance.trainindex == 1)
+        //{
+        //    return;
+        //}
 
         // 세상에나..! 기차의 hp가 다 떨어져서 끝났어
         for (int i = TrainGameManager.instance.trainindex - 1; i >= _removeindex; i--)
