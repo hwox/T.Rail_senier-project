@@ -230,7 +230,9 @@ public class Train_Object : MonoBehaviourPunCallbacks
             }
         }
 
-        Invoke("callFirstTrainInit", 0.5f);
+
+        //if (ctrl.train.Count == 1) 
+            Invoke("callFirstTrainInit", 3.0f);
     }
 
     public void callFirstTrainInit()

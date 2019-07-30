@@ -218,6 +218,8 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
     public void ItemGet_Nail()
     {
         // 1 
+        int boxCount = 0;
+
         for (int i = 0; i < boxItem.Count; i++)
         {
             if (!boxItem[i].IsBoxFull())
@@ -228,15 +230,19 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
             }
             else //박스 꽉참
             {
-                chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+                boxCount++;
             }
         }
+
+        if (boxCount == boxItem.Count)
+            chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
     }
 
     [PunRPC]
     public void ItemGet_Ironpan()
     {
         // 2
+        int boxCount = 0;
         for (int i = 0; i < boxItem.Count; i++)
         {
             if (!boxItem[i].IsBoxFull())
@@ -247,15 +253,19 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
             }
             else //박스 꽉참
             {
-                chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+                boxCount++;
             }
         }
+
+        if (boxCount == boxItem.Count)
+            chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
     }
 
     [PunRPC]
     public void ItemGet_FoodTomato()
     {
         //3
+        int boxCount = 0;
 
         // 모든 박스를 검사 중 해당 박스가 full이 아닐 경우
         // if(!boxitem[i].isboxfull())
@@ -269,15 +279,20 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
             }
             else //박스 꽉참
             {
-                chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+                boxCount++;
             }
         }
+
+        if (boxCount == boxItem.Count)
+            chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
     }
 
     [PunRPC]
     public void ItemGet_FoodBean()
     {
         // 4
+        int boxCount = 0;
+
         for (int i = 0; i < boxItem.Count; i++)
         {
             if (!boxItem[i].IsBoxFull())
@@ -288,15 +303,19 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
             }
             else //박스 꽉참
             {
-                chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+                boxCount++;
             }
         }
+
+        if (boxCount == boxItem.Count)
+            chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
     }
 
     [PunRPC]
     public void ItemGet_FoodChicken()
     {
         // 5
+        int boxCount = 0;
         for (int i = 0; i < boxItem.Count; i++)
         {
             if (!boxItem[i].IsBoxFull())
@@ -307,9 +326,12 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
             }
             else //박스 꽉참
             {
-                chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+                boxCount++;
             }
         }
+
+        if (boxCount == boxItem.Count)
+            chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
     }
 
 
@@ -318,6 +340,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
     public void ItemGet_Hammer()
     {
         // 6
+        int boxCount = 0;
         for (int i = 0; i < boxItem.Count; i++)
         {
             if (!boxItem[i].IsBoxFull())
@@ -328,9 +351,12 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
             }
             else //박스 꽉참
             {
-                chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+                boxCount++;
             }
         }
+
+        if (boxCount == boxItem.Count)
+            chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
     }
 
 
@@ -339,6 +365,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
     public void ItemGet_MediPack()
     {
         //7
+        int boxCount = 0;
         for (int i = 0; i < boxItem.Count; i++)
         {
             if (!boxItem[i].IsBoxFull())
@@ -349,9 +376,12 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
             }
             else //박스 꽉참
             {
-                chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+                boxCount++;
             }
         }
+
+        if (boxCount == boxItem.Count)
+            chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
     }
 
 
@@ -359,8 +389,9 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
     public void ItemGet_WoodBoard()
     {
         //8
+        int boxCount = 0;
 
-         for (int i = 0; i < boxItem.Count; i++)
+        for (int i = 0; i < boxItem.Count; i++)
          {
              if (!boxItem[i].IsBoxFull())
              {
@@ -368,12 +399,14 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
                  boxItem[i].AddItem((int)GameValue.itemCategory.woodboard);
                  break;
              }
-             else //박스 꽉참
-             {
-                chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
-             }
+            else //박스 꽉참
+            {
+                boxCount++;
+            }
         }
-        
+
+        if (boxCount == boxItem.Count)
+            chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
     }
 
     public void ItemGet_Random(int viewID)

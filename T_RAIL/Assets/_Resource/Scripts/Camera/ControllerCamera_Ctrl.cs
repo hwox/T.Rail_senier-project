@@ -23,6 +23,7 @@ public class ControllerCamera_Ctrl : MonoBehaviour {
         // MCam.GetComponent<Mouse_Ctrl>().ThisCamOn = false;
         MCam.GetComponent<Mouse_Ctrl>().ThisCamSetOnOff(false);
 
+
     }
 
     public void Exit_StateController()
