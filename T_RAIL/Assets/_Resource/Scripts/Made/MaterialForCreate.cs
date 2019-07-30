@@ -31,7 +31,7 @@ public class MaterialForCreate : MonoBehaviour
         Storage = new GameObject[6];
         StorageCount = new Text[6];
         WhatInStorage = new int[6];
-        ItemCount = new int[(int)GameValue.itemCategory.woodboard];
+        ItemCount = new int[(int)GameValue.itemCategory.ironpan];
 
         for (int i = 0; i < 6; i++)
         {
@@ -105,24 +105,18 @@ public class MaterialForCreate : MonoBehaviour
 
         for (int i = 0; i < 6; i++)
         {
-
             if (WhatInStorage[i].Equals(ForMakeItem[ForMakeItem.Count - 1]))
             {
-
                 // count-1값이 제일 마지막에 들어온 값일거니끼ㅏ
                 Enable = true;
                 index = i;
                 break;
             }
-
         }
         ItemCount[ForMakeItem[ForMakeItem.Count - 1] - 1] += 1;
 
         if (Enable)
         {
-            // 이거는 겹치는게 있다는거 
-            // 그러니까 count 값 하나 증가시키고 
-            // text
             StorageCount[index].text = ItemCount[ForMakeItem[ForMakeItem.Count - 1] - 1].ToString();
         }
 
