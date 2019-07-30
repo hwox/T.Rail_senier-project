@@ -18,21 +18,28 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
     int NextDestNum;
     public int HP=5;
 
+    public GameObject particle;
 
     public void BeatenTrue()
     {
-        
+        Invoke("beatenTrueInvoke", 0.3f); 
+           
+    }
+
+    void beatenTrueInvoke()
+    {
+        GameObject temp = Instantiate(particle, transform.position + new Vector3(0, 1.5f, 0), transform.rotation);
+        temp.transform.parent = this.transform;
+
         anim.SetBool("Is Beaten", true);
         nav.speed = 2.5f;
         StopCoroutine("GotoDest");
         StopCoroutine("FindNextDest");
         StartCoroutine("GotoDestPreson");
         StartCoroutine("BeatenFalse");
-        HP-=1;
+        HP -= 1;
         if (HP <= 0)
-
-           photonView.RPC("chickenDeath_RPC", RpcTarget.All);      
-           
+            photonView.RPC("chickenDeath_RPC", RpcTarget.All);
     }
 
 
