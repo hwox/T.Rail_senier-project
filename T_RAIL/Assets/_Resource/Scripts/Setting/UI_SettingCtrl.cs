@@ -27,10 +27,12 @@ public class UI_SettingCtrl : MonoBehaviour {
     public void On_BookWindow()
     {
         Book_Window.SetActive(true);
+        Book_Window.GetComponent<ShowStateInNotePad>().OpenNotePad();
     }
     public void Off_BookWindow()
     {
         Book_Window.SetActive(false);
+        Book_Window.GetComponent<ShowStateInNotePad>().CloseNotePad();
     }
 
 

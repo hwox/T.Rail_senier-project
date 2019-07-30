@@ -28,7 +28,7 @@ public class Train_Object : MonoBehaviourPunCallbacks
                               // 호출안할 상황이면 0.5
 
 
-    int[] ThisTrainNowObjects; // 4개의 영역에 각각 어떤 오브젝트가 들어가있는지 
+    public int[] ThisTrainNowObjects; // 4개의 영역에 각각 어떤 오브젝트가 들어가있는지 
 
 
    // 미리가지고 있어야 할 기차 내부의 메타
@@ -38,7 +38,7 @@ public class Train_Object : MonoBehaviourPunCallbacks
     public GameObject BackWall;// 제일 끝에 wall. 플레이어가 못 빠져나가게
     public GameObject TrainChain; // chain. 제일 마지막 칸만 off될 예정
 
-    public GameObject[] BrokenWall; // HP 떨어질 때마다 기차의 내구도 변화를 표현하는 기차의 벽면 0부터 3까지 왼쪽 순서대로
+    public GameObject[] FracturedWall; // HP 떨어질 때마다 기차의 내구도 변화를 표현하는 기차의 벽면 0부터 3까지 왼쪽 순서대로
 
 
 
@@ -247,11 +247,8 @@ public class Train_Object : MonoBehaviourPunCallbacks
 
         // 이 if문 왜 주석처리해야하냐면 어차피 수리도구로 바꿔야 돼서 주석처리해야함
 
-        Debug.Log("여기까지는 가냐????");
         if (!InTrainObjectUsed[_whatnumber]) {
-            Debug.Log("22222여기까지는 가냐????");
             ThisTrainNowObjects[_whatnumber] = _kind;
-            Debug.Log("3333여기까지는 가냐????");
             _obj.transform.parent = this.transform.GetChild(1);
             switch (_kind)
             {
@@ -279,11 +276,13 @@ public class Train_Object : MonoBehaviourPunCallbacks
     }
 
 
-    public void BrokenTrain()
+    public void FracturedTrain()
     {
         for(int i = 0; i < 4; i++)
         {
             // 이거ㅓ 함수가 한번 호출될 때마다 
+
+
         }
     }
 }
