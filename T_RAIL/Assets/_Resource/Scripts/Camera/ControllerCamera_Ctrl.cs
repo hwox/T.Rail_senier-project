@@ -21,7 +21,7 @@ public class ControllerCamera_Ctrl : MonoBehaviour {
 
         // 근데  이거 thiscamon은 없애도 될 거 ㅅ가은데
        // MCam.GetComponent<Mouse_Ctrl>().ThisCamOn = false;
-        this.GetComponent<Camera>().GetComponent<Mouse_Ctrl>().ThisCamSetOnOff(false);
+       this.GetComponent<Camera>().GetComponent<Mouse_Ctrl>().ThisCamSetOnOff(false);
 
     }
 
