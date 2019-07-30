@@ -51,7 +51,11 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
         WhereTrain_Object = _index;
         WhatNumber_Object = _whatnumber;
 
+        MaterialStorage_ctrl = MaterialStorage.GetComponent<MaterialForCreate>();
+
         if (!PhotonNetwork.IsMasterClient) return;
+
+        if (transform.root.GetComponent<Train_Object>().ctrl.train.Count != 1) return;
 
 
         if (WhatNumber_Object == 0)
@@ -90,7 +94,6 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
         //    }
         //}
 
-        MaterialStorage_ctrl = MaterialStorage.GetComponent<MaterialForCreate>();
     }
 
     void startBoxSofaInit()
