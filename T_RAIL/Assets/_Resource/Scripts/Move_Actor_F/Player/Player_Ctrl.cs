@@ -847,6 +847,12 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 anim.SetBool("IsWalk", true);
                 runTime += Time.deltaTime;
             }
+            if (Input.GetKey(KeyCode.Q))
+            {
+                // 기관총에서 벗어나자!
+                MCam_Ctrl.Vending_Machine_Cam(true, 0);
+               
+            }
 
             if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) ||
                 Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.W))
