@@ -82,6 +82,7 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
     IEnumerator GotoDest()//닭이 무작위로 정해진 위치로 향해 가기
     {
         GameObject[] Cdest = (GameObject[])SpwanManager.gameObject.GetComponent<ChickenManager>().dest.Clone();
+        nav.speed = 1.0f;
         while (true)
         {
             nav.SetDestination(Cdest[NextDestNum].transform.position);
