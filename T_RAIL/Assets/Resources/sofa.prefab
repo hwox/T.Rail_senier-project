@@ -133,3 +133,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NowSit: 0
   sitpassenger: {fileID: 0}
+  particle: {fileID: 1093195796835762, guid: 450d9e08462a4fc4fbb5f45b4d18bdc9, type: 2}

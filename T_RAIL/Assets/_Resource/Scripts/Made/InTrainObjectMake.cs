@@ -7,9 +7,6 @@ using UnityEngine.UI;
 
 public class InTrainObjectMake : MonoBehaviourPunCallbacks
 {
-
-
-
     public int WhereTrain_Object { get; set; } // 이 오브젝트가 기차의 몇번째 칸에 존재하는지
     public int WhatNumber_Object { get; set; } // 이 오브젝트가 기차의 행동영역 중 몇번째에 위치하는지
 
@@ -54,24 +51,31 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
         WhereTrain_Object = _index;
         WhatNumber_Object = _whatnumber;
 
+        MaterialStorage_ctrl = MaterialStorage.GetComponent<MaterialForCreate>();
+
         if (!PhotonNetwork.IsMasterClient) return;
 
-        //if (WhatNumber_Object == 0)
-        //{
-        //    photonView.RPC("MakeBox", RpcTarget.All, 1, WhatNumber_Object);
-        //}
-        //else if (WhatNumber_Object == 1)
-        //{
-        //    photonView.RPC("MakeSofa", RpcTarget.All, 1, WhatNumber_Object);
-        //}
-            if (WhatNumber_Object == 2)
-           {
-               photonView.RPC("MakeBox", RpcTarget.All, 1, WhatNumber_Object);
-           }
-           else if(WhatNumber_Object == 3)
-           {
-               photonView.RPC("MakeSofa", RpcTarget.All, 1, WhatNumber_Object);
-           }
+        if (transform.root.GetComponent<Train_Object>().ctrl.train.Count != 1) return;
+
+
+        if (WhatNumber_Object == 0)
+        {
+            photonView.RPC("MakeBox", RpcTarget.All, 1, WhatNumber_Object);
+        }
+        else if (WhatNumber_Object == 1)
+        {
+            photonView.RPC("MakeSofa", RpcTarget.All, 1, WhatNumber_Object);
+        }
+        else if (WhatNumber_Object == 2)
+        {
+            photonView.RPC("MakeBox", RpcTarget.All, 1, WhatNumber_Object);
+        }
+        else if (WhatNumber_Object == 3)
+        {
+            photonView.RPC("MakeSofa", RpcTarget.All, 1, WhatNumber_Object);
+        }
+
+        //Invoke("startBoxSofaInit", 2.0f);
         
         //if (WhereTrain_Object == 1)
         //{
@@ -90,7 +94,26 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
         //    }
         //}
 
-        MaterialStorage_ctrl = MaterialStorage.GetComponent<MaterialForCreate>();
+    }
+
+    void startBoxSofaInit()
+    {
+        if (WhatNumber_Object == 0)
+        {
+            photonView.RPC("MakeBox", RpcTarget.All, 1, WhatNumber_Object);
+        }
+        else if (WhatNumber_Object == 1)
+        {
+            photonView.RPC("MakeSofa", RpcTarget.All, 1, WhatNumber_Object);
+        }
+        else if (WhatNumber_Object == 2)
+        {
+            photonView.RPC("MakeBox", RpcTarget.All, 1, WhatNumber_Object);
+        }
+        else if (WhatNumber_Object == 3)
+        {
+            photonView.RPC("MakeSofa", RpcTarget.All, 1, WhatNumber_Object);
+        }
     }
 
     public void MakeBox_Button()

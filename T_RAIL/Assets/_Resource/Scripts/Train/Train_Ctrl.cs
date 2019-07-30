@@ -28,6 +28,10 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
 
     public Text RunMeterText;
 
+    float perMeter = 0.03f; // 이름 뭐로 해야할지 모르겠어서 이걸로해씀 나중에 바꿀지도 기차 달릴 떄마다
+    // 기차 HP 줄어드는데 그거 얼만큼 감소할지
+
+
     // 기차 처음 시작할 때 슬슬 빨라지는 애니메이션 추가하자
     // Mathf 로 계산해서
 
@@ -47,16 +51,36 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
         {
             photonView.RPC("Train_Add", RpcTarget.All);
         }
+
+        StartCoroutine(TrainHPMinus());
     }
 
     private void Update()
     {
         //if (photonView.IsMine)
-            RunMeterCalCulator();
+        RunMeterCalCulator();
 
 
-       // InvokeRepeating("trainSoundInvoke", 1.0f, 10.0f);
+        // InvokeRepeating("trainSoundInvoke", 1.0f, 10.0f);
 
+    }
+
+    IEnumerator TrainHPMinus()
+    {
+        yield return new WaitForSeconds(5.0f);
+
+        while (true)
+        {
+
+            for (int i = 0; i < train.Count; i++)
+            {
+                trainscript[i].Run_TrainHPMinus(perMeter);
+
+                yield return new WaitForSeconds(2.0f);
+            }
+
+
+        }
     }
 
     public void trainSoundInvoke()
@@ -66,12 +90,12 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
 
     public void RunMeterCalCulator()
     {
-        if (TrainGameManager.instance.Scene_state==1)
+        if (TrainGameManager.instance.Scene_state == 1)
         {
             // 2분에 2km
             Run_Meter += (TrainGameManager.instance.Speed * TrainGameManager.instance.Speed_stat) * Time.deltaTime;
 
-           float temp = GameValue.NextStationMeter - Run_Meter;
+            float temp = GameValue.NextStationMeter - Run_Meter;
 
             if (temp >= 0)
                 RunMeterText.text = "남은 거리 :" + temp.ToString("N0") + "M";
@@ -116,7 +140,7 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
             GameObject newTrain = PhotonNetwork.InstantiateSceneObject(Train_Prefab.name, new Vector3(0, 2.5f, -2), Quaternion.Euler(0, -90, 0), 0, null) as GameObject;
 
         }
-        
+
     }
 
     // 임시용
@@ -145,14 +169,14 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
     public void onTrainDeleteButton(int _removeindex)
     {
         //instance.trainindex-1 자리에 _removeindex를 그 인덱스가 Train_Delete로 전달됨
-        photonView.RPC("Train_Delete", RpcTarget.All, TrainGameManager.instance.trainindex-1);
+        photonView.RPC("Train_Delete", RpcTarget.All, TrainGameManager.instance.trainindex - 1);
     }
 
     [PunRPC]
     public void Train_Delete(int _removeindex)
     {
         //일단 제일 마지막 칸이면 지워지지 않게
-        if(TrainGameManager.instance.trainindex == 1)
+        if (TrainGameManager.instance.trainindex == 1)
         {
             return;
         }
@@ -210,9 +234,9 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
     }
     public void Wheel_Animation_Speed()
     {
-      //  for (int i = 0; i < Wheel_Anim.Length; i++)
+        //  for (int i = 0; i < Wheel_Anim.Length; i++)
         {
-       //     Wheel_Anim[i].speed = TrainGameManager.instance.speed / 20;
+            //     Wheel_Anim[i].speed = TrainGameManager.instance.speed / 20;
         }
     }
 

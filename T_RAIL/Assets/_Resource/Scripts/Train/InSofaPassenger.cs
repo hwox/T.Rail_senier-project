@@ -20,6 +20,13 @@ public class InSofaPassenger : MonoBehaviourPunCallbacks  {
     GameObject NowSitPassengerObject;
     int thisSofaIndex;
 
+    public GameObject particle;
+
+    private void Start()
+    {
+        GameObject temp = Instantiate(particle, transform.position, transform.rotation);
+        temp.transform.parent = this.transform;
+    }
 
     public void ActiveThisSofa()
     {
