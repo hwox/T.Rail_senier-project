@@ -39,6 +39,7 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("dd" + TrainGameManager.instance.NowItemUIUsable);
         if (ThisCamOn)
         {
             // UI이 위가 아니면
