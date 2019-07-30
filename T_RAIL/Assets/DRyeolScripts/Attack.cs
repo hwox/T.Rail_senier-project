@@ -24,7 +24,7 @@ public class Attack : MonoBehaviourPunCallbacks {
                 if (other.gameObject.GetComponent<Chicken_Ctrl>().live)
                 {
                     photonView.RPC("attack_RPC", RpcTarget.All, other.gameObject.GetPhotonView().ViewID);
-                   
+                    other.transform.LookAt(this.gameObject.transform);
                 }
             }
         }

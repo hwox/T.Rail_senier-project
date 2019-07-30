@@ -1,25 +1,20 @@
 fileFormatVersion: 2
-guid: ed506f2b1f74b7847af7ed9f141580bf
+guid: f68b99aa43fdb0b43b9eb88396b033fe
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Cube_Cube_000
-    100002: Cube_Cube_001
-    100004: //RootNode
-    400000: Cube_Cube_000
-    400002: Cube_Cube_001
-    400004: //RootNode
-    2100000: wood1
-    2300000: Cube_Cube_000
-    2300002: Cube_Cube_001
-    3300000: Cube_Cube_000
-    3300002: Cube_Cube_001
-    4300000: Cube_Cube_001
-    4300002: Cube_Cube_000
-    7400000: Default Take
-    9500000: //RootNode
-    2186277476908879412: ImportLogs
-  externalObjects: {}
+    100000: //RootNode
+    400000: //RootNode
+    2100000: Material.001
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Cylinder.004
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: 33a2432e30fbf594eb253223fdb1cdb0, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -50,7 +45,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 50
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
@@ -71,7 +66,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
     previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -95,7 +90,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
