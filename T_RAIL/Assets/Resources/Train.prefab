@@ -3269,7 +3269,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1597046123888030
 GameObject:
   m_ObjectHideFlags: 1
@@ -10357,16 +10357,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
+  ThisTrainNowObjects: 
   Machine_gun: {fileID: 1057772342422372}
   Ladder: {fileID: 1755153960668150}
   Ceiling: {fileID: 1754034800640608}
   BackWall: {fileID: 1568685052463590}
   TrainChain: {fileID: 1807671171228258}
-  BrokenWall:
+  FracturedWall:
   - {fileID: 1916341300468400}
   - {fileID: 1303579372728748}
   - {fileID: 1266891714624840}
   - {fileID: 1632053257437762}
+  BrokenWall: 00000000
   InTrainObjectUsed: 
   choiceInTrainObject:
   - {fileID: 1873573743894092}
@@ -17758,7 +17760,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 1
+  InstantiationId: 10
   isRuntimeInstantiated: 0
 --- !u!114 &114929157535397738
 MonoBehaviour:

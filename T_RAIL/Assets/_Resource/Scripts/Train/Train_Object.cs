@@ -9,7 +9,10 @@ public class Train_Object : MonoBehaviourPunCallbacks
 
 
     public float HP { get; set; } //  (기차의 체력) 
-    float PrevHP = 100; // 얘는 %이다.
+    float PrevHP = 80; // 얘는 %이다. 80으로 시작하는 이유는 100, 80, 60, 40, 20, 0 이렇게 체크할건데 
+    // (일단 테스트하려고 올려놨음.)
+    // 80으로 체크해야ㅑ 깎이는지 확인가능
+    
     [SerializeField]
     int index; // 몇번째 기차인지 
 
@@ -49,8 +52,6 @@ public class Train_Object : MonoBehaviourPunCallbacks
 
     PhotonView photonView;
 
-    // public GameObject Ladder_collider;
-
     private void Awake()
     {
         ctrl = TrainGameManager.instance.TrainCtrl.GetComponent<Train_Ctrl>();
@@ -63,8 +64,10 @@ public class Train_Object : MonoBehaviourPunCallbacks
         tr = gameObject.transform;
         Coroutine_calltime = 0.5f;
         StartCoroutine(Train_Position_Setting_Change());
+        StartCoroutine(TrainHPCheck()); // 어차피 Train_Object()가 먼저 실행되니까 여기서 코루틴 실행해도 HP 100부터.
         ThisTrainNowObjects = new int[4];
         InTrainObjectUsed = new bool[4];
+        BrokenWall = new bool[4];
         Init_AddTrain();
     }
 
@@ -189,8 +192,12 @@ public class Train_Object : MonoBehaviourPunCallbacks
         while (true)
         {
             // 조건 필요
-         
-            FracturedTrain();
+            if (HP < PrevHP && HP >= 10)
+            {
+                Debug.Log("코루틴ㄴ실행");
+                FracturedTrain();
+                PrevHP -= 20;
+            }
             yield return new WaitForSeconds(0.3f);
         }
 
