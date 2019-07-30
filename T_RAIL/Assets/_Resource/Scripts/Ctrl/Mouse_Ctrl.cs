@@ -45,6 +45,7 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
+            
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, IgnoreRay))
             {
                 if (Input.GetMouseButtonDown(0) && EventSystem.current.IsPointerOverGameObject() == false)
@@ -55,6 +56,7 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
                     //{
                     //   // Debug.Log(hit.collider.gameObject.layer);
                     //}
+                    Debug.Log(hit.collider.gameObject.name);
                     if (hit.collider.gameObject.layer.Equals(GameValue.itembox_layer))
                     {
                         // 상자일 경우!

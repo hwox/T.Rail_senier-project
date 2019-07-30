@@ -255,7 +255,6 @@ public class MaterialForCreate : MonoBehaviour
             {
                 if (!iron1)
                 {
-
                     iron1 = true;
                 }
                 else if (!iron2)
@@ -274,7 +273,7 @@ public class MaterialForCreate : MonoBehaviour
                     nail = true;
                 }
             }
-            if (ForMakeItem[i] == 6)
+            if (ForMakeItem[i] == (int)GameValue.itemCategory.hammer)
             {
                 if (!hammer)
                 {
