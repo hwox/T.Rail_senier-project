@@ -274,6 +274,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                         if (other.gameObject == TrainGameManager.instance.Station_PassengerManager[i])
                         {
                             photonView.RPC("passengerTouch", RpcTarget.All, i); //, eachPlayerIn[i]);
+                            StartCoroutine(CoinParticle(other.transform));
+                            
                         }
                     }
                 }
@@ -991,6 +993,17 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         itp.SetNode(0, new Vector3(10.0f, 0.0f, 0.0f));
         itp.SetNode(0, new Vector3(10.0f, 0.0f, 0.0f));
         iTween.MoveTo(gameObject, iTween.Hash("path", iTweenPath.GetPath("New Path 1"), "time", 7));
+    }
+
+    IEnumerator CoinParticle( Transform other)
+    {
+        Debug.Log("들어옴");
+        GameObject Cp = TrainGameManager.instance.GetObject(8);
+        Cp.SetActive(true);
+        TrainGameManager.instance.CoinNum += 10;
+        Cp.transform.position = other.position;
+        yield return new WaitForSeconds(3.0f);
+        Cp.SetActive(false);
     }
 
 }
