@@ -285,7 +285,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             if (Input.GetKeyDown(KeyCode.V))
             {
                 //여기서 이제다시 기차로
-                TrainGameManager.instance.Scene_state = 3;
+                TrainGameManager.instance.photonView.RPC("setSceneState_RPC", RpcTarget.All, 3);
+                //TrainGameManager.instance.Scene_state = 3;
 
 
                 for (int i = 0; i < TrainGameManager.MAKE_CHICKEN_COUNT; i++)
@@ -308,7 +309,17 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
     }
-   
+
+
+    //traingameManager로 이동
+    //[PunRPC]
+    //public void setSceneState_RPC(int _state)
+    //{
+    //    TrainGameManager.instance.Scene_state = _state;
+    //}
+
+
+
     [PunRPC]
     public void passengerTouch(int i)
     {

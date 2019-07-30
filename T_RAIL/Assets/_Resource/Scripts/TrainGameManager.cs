@@ -589,5 +589,9 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
     ///////////////////////////////////////////////////////////////////////////////////////
     ///
 
-
+    [PunRPC]
+    public void setSceneState_RPC(int _state)
+    {
+        TrainGameManager.instance.Scene_state = _state;
+    }
 }

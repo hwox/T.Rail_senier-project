@@ -1466,7 +1466,7 @@ Prefab:
     - target: {fileID: 114926657734411050, guid: 5d9648c5713c24c4ead0d991e0595880,
         type: 2}
       propertyPath: viewIdField
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114766929177505650, guid: 5d9648c5713c24c4ead0d991e0595880,
         type: 2}
@@ -1487,6 +1487,11 @@ Prefab:
         type: 2}
       propertyPath: viewIdField
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114926657734411050, guid: 5d9648c5713c24c4ead0d991e0595880,
+        type: 2}
+      propertyPath: InstantiationId
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
@@ -24874,6 +24879,7 @@ GameObject:
   - component: {fileID: 342035267}
   - component: {fileID: 342035268}
   - component: {fileID: 342035270}
+  - component: {fileID: 342035269}
   m_Layer: 0
   m_Name: PlayerList_Ctrl
   m_TagString: Untagged
@@ -24907,6 +24913,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerList: []
   eachPlayerIn: 
+--- !u!114 &342035269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 342035266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  viewIdField: 160
+  InstantiationId: 160
+  isRuntimeInstantiated: 0
 --- !u!114 &342035270
 MonoBehaviour:
   m_ObjectHideFlags: 0

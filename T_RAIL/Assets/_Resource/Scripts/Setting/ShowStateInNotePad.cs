@@ -62,7 +62,7 @@ public class ShowStateInNotePad : MonoBehaviour
     void ChangeTrainIndex()
     {
         Line.SetActive(true);
-        PageX.SetActive(falses);
+        PageX.SetActive(false);
         WhereTrainText.text = TrainIndexText[TrainInformationIndex];
 
         for (int i = 0; i < 4; i++)
