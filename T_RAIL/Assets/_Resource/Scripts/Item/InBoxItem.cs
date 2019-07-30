@@ -162,28 +162,28 @@ public class InBoxItem : MonoBehaviourPunCallbacks
         {
             switch (HaveItemInfo[i])
             {
-                case (int)GameValue.itemCategory.nail:
+                case (int)GameValue.itemCategory.food_tomato:
                     ItemImages[i].sprite = allitem.ItemImage[0];
                     break;
-                case (int)GameValue.itemCategory.ironpan:
+                case (int)GameValue.itemCategory.food_bean:
                     ItemImages[i].sprite = allitem.ItemImage[1];
                     break;
-                case (int)GameValue.itemCategory.food_tomato:
+                case (int)GameValue.itemCategory.food_chicken:
                     ItemImages[i].sprite = allitem.ItemImage[2];
                     break;
-                case (int)GameValue.itemCategory.food_bean:
+                case (int)GameValue.itemCategory.hammer:
                     ItemImages[i].sprite = allitem.ItemImage[3];
                     break;
-                case (int)GameValue.itemCategory.food_chicken:
+                case (int)GameValue.itemCategory.nail:
                     ItemImages[i].sprite = allitem.ItemImage[4];
                     break;
-                case (int)GameValue.itemCategory.hammer:
+                case (int)GameValue.itemCategory.medipack:
                     ItemImages[i].sprite = allitem.ItemImage[5];
                     break;
-                case (int)GameValue.itemCategory.medipack:
+                case (int)GameValue.itemCategory.woodboard:
                     ItemImages[i].sprite = allitem.ItemImage[6];
                     break;
-                case (int)GameValue.itemCategory.woodboard:
+                case (int)GameValue.itemCategory.ironpan:
                     ItemImages[i].sprite = allitem.ItemImage[7];
                     break;
                 default:

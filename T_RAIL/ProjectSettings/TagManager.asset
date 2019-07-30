@@ -37,9 +37,8 @@ TagManager:
   - enemy
   - train
   - chicken
-  - egg
-  - TrainRepair
-  - 
+  - egg- vendingmachine  - TrainRepair
+  -
   - sign
   - statiopassenger
   - wall

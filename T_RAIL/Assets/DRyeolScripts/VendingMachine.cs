@@ -1,21 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
+using Photon.Realtime;
 public class VendingMachine : MonoBehaviour {
 
     public GameObject[] button;
+
     public GameObject cam;
+    public GameObject itemCtrl;
     //public Camera cam;
     GameObject targetbutton;
 
     public bool VendingMachine_on = false;
-
+     int[] item_price = new int[8] { 2, 2, 2, 2, 1, 3, 3, 3 };
     // Use this for initialization
     void Start () {
         cam = GameObject.Find("VendingMachineCam");
+        itemCtrl = GameObject.Find("Item_Ctrl");
 
-       
+
+        
 
 
 
@@ -37,8 +42,18 @@ public class VendingMachine : MonoBehaviour {
                     
                     if (targetbutton == button[i])
                     {
-                        Debug.Log("마우스 클릭");
+                      
                         StartCoroutine(ClickButton(button[i]));
+
+                        if (TrainGameManager.instance.CoinNum >= item_price[i])
+                        {
+                            TrainGameManager.instance.CoinNum = TrainGameManager.instance.CoinNum - item_price[i];
+                            itemCtrl.GetComponent<AllItem_Ctrl>().VendingMachine_ItemGet(i + 1);
+                        }
+                        else
+                        {
+                            Debug.Log("돈 부족");
+                        }
                     }
                 }
             }

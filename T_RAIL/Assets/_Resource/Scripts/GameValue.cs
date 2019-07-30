@@ -4,14 +4,14 @@ static class GameValue {
 
     public enum itemCategory
     {
-        nail = 1, // 못
-        ironpan = 2, // 판(철판)
-        food_tomato = 3, // 음식
-        food_bean = 4,
-        food_chicken = 5,
-        hammer = 6, // 도끼
-        medipack = 7,
-        woodboard = 8,
+        food_tomato = 1, // 음식
+        food_bean = 2,
+        food_chicken = 3,
+        hammer = 4, // 망치
+        nail = 5, // 못
+        medipack = 6,
+        woodboard = 7,
+        ironpan = 8 // 판(철판
         //  spanner = 7, // 스패너
     }
     // 카메라 셋팅
@@ -38,8 +38,7 @@ static class GameValue {
     public const int train_layer = 24;
     public const int chicken_layer = 25;
     public const int egg_layer = 26;
-    public const int trainrepair_layer = 27;
-    public const int sign_layer = 29;
+    public const int vandingmachine_layer = 27;    public const int trainrepair_layer = 28;    public const int sign_layer = 29;
     public const int statiopassenger_layer = 30;
     public const int wall_layer = 31;
 

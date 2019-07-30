@@ -71,5 +71,7 @@ MonoBehaviour:
   - deleteItem_RPC
   - setSceneState_RPC
   - start2SecondLater_RPC
+  - VendingMachine_ItemGet
+  - vending_item
   DisableAutoOpenWizard: 1
   ShowSettings: 1
