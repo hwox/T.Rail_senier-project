@@ -38,7 +38,9 @@ static class GameValue {
     public const int train_layer = 24;
     public const int chicken_layer = 25;
     public const int egg_layer = 26;
-    public const int vandingmachine_layer = 27;    public const int trainrepair_layer = 28;    public const int sign_layer = 29;
+    public const int vandingmachine_layer = 27;
+    public const int trainrepair_layer = 28;
+    public const int sign_layer = 29;
     public const int statiopassenger_layer = 30;
     public const int wall_layer = 31;
 
