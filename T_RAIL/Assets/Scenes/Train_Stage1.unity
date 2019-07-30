@@ -1438,12 +1438,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
-    - target: {fileID: 223688616844114384, guid: 5d9648c5713c24c4ead0d991e0595880,
+    - target: {fileID: 114077255038464478, guid: 5d9648c5713c24c4ead0d991e0595880,
         type: 2}
-      propertyPath: m_Camera
+      propertyPath: ctrl
       value: 
-      objectReference: {fileID: 534669904}
-    - target: {fileID: 223494649351165324, guid: 5d9648c5713c24c4ead0d991e0595880,
+      objectReference: {fileID: 1304048000}
+    - target: {fileID: 223064224467528156, guid: 5d9648c5713c24c4ead0d991e0595880,
         type: 2}
       propertyPath: m_Camera
       value: 
@@ -1453,24 +1453,34 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 534669904}
-    - target: {fileID: 223064224467528156, guid: 5d9648c5713c24c4ead0d991e0595880,
+    - target: {fileID: 223494649351165324, guid: 5d9648c5713c24c4ead0d991e0595880,
         type: 2}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 534669904}
-    - target: {fileID: 114077255038464478, guid: 5d9648c5713c24c4ead0d991e0595880,
+    - target: {fileID: 223688616844114384, guid: 5d9648c5713c24c4ead0d991e0595880,
         type: 2}
-      propertyPath: ctrl
+      propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 1304048000}
-    - target: {fileID: 114926657734411050, guid: 5d9648c5713c24c4ead0d991e0595880,
+      objectReference: {fileID: 534669904}
+    - target: {fileID: 114391987435625026, guid: 5d9648c5713c24c4ead0d991e0595880,
         type: 2}
       propertyPath: viewIdField
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114766929177505650, guid: 5d9648c5713c24c4ead0d991e0595880,
+    - target: {fileID: 114391987435625026, guid: 5d9648c5713c24c4ead0d991e0595880,
+        type: 2}
+      propertyPath: InstantiationId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114505191909343002, guid: 5d9648c5713c24c4ead0d991e0595880,
         type: 2}
       propertyPath: viewIdField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114505191909343002, guid: 5d9648c5713c24c4ead0d991e0595880,
+        type: 2}
+      propertyPath: InstantiationId
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114714715675578268, guid: 5d9648c5713c24c4ead0d991e0595880,
@@ -1478,12 +1488,17 @@ Prefab:
       propertyPath: viewIdField
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114505191909343002, guid: 5d9648c5713c24c4ead0d991e0595880,
+    - target: {fileID: 114766929177505650, guid: 5d9648c5713c24c4ead0d991e0595880,
         type: 2}
       propertyPath: viewIdField
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114391987435625026, guid: 5d9648c5713c24c4ead0d991e0595880,
+    - target: {fileID: 114766929177505650, guid: 5d9648c5713c24c4ead0d991e0595880,
+        type: 2}
+      propertyPath: InstantiationId
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114926657734411050, guid: 5d9648c5713c24c4ead0d991e0595880,
         type: 2}
       propertyPath: viewIdField
       value: 6
@@ -1491,13 +1506,9 @@ Prefab:
     - target: {fileID: 114926657734411050, guid: 5d9648c5713c24c4ead0d991e0595880,
         type: 2}
       propertyPath: InstantiationId
-      value: 10
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1595425419640846, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1568685052463590, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
