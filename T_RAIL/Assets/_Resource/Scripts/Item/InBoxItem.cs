@@ -38,12 +38,17 @@ public class InBoxItem : MonoBehaviourPunCallbacks
 
     bool DragEnable = false;
 
+    public GameObject particle;
+
     void Start()
     {
         ItemImages = new Image[8];
         HaveItemInfo = new int[GameValue.ITEMLIMIT];
         // ActiveThisBox();
         GetImageComponent();
+
+        GameObject temp = Instantiate(particle);
+        temp.transform.parent = this.transform;
 
         this.transform.localPosition = Vector3.zero;
         this.gameObject.SetActive(false);

@@ -1480,6 +1480,7 @@ MonoBehaviour:
   allitem: {fileID: 0}
   HaveItemInfo: 
   ItemImages: []
+  particle: {fileID: 1093195796835762, guid: 450d9e08462a4fc4fbb5f45b4d18bdc9, type: 2}
 --- !u!222 &222032004012740210
 CanvasRenderer:
   m_ObjectHideFlags: 1
