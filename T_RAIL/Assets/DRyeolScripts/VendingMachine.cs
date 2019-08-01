@@ -31,7 +31,7 @@ public class VendingMachine : MonoBehaviour {
     void Update()
     {
 
-        //if (VendingMachine_on)
+        if (VendingMachine_on)
         {
             if (Input.GetMouseButtonDown(0))
             {
