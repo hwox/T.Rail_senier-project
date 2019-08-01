@@ -16,6 +16,7 @@ public class ColliderTrain : MonoBehaviour
         MCam_Ctrl = MCam.GetComponent<CamCtrl>();
     }
 
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer.Equals(GameValue.enemy_layer))
