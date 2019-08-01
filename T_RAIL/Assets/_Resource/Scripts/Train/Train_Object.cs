@@ -59,6 +59,9 @@ public class Train_Object : MonoBehaviourPunCallbacks
 
     PhotonView photonView;
 
+    public GameObject brokenParticle;
+    public GameObject repairParticle;
+
     private void Awake()
     {
         ctrl = TrainGameManager.instance.TrainCtrl.GetComponent<Train_Ctrl>();
@@ -356,6 +359,9 @@ public class Train_Object : MonoBehaviourPunCallbacks
         FracturedWall[_randomWall].transform.GetChild(0).gameObject.SetActive(false);
         FracturedWall[_randomWall].transform.GetChild(1).gameObject.SetActive(true);
         BrokenWall[_randomWall] = true;
+
+        GameObject temp = Instantiate(brokenParticle, FracturedWall[_randomWall].transform.GetChild(1).gameObject.transform);
+        temp.transform.parent = this.transform;
     }
 
 
@@ -446,6 +452,10 @@ public class Train_Object : MonoBehaviourPunCallbacks
         //HP += 20;
         //PrevHP += 20;
         MaterialStorage_ctrl.ItemListReset();
+
+        //GameObject temp = Instantiate(repairParticle, FracturedWall[NowClickIndex].transform.GetChild(0).gameObject.transform);
+        GameObject temp = Instantiate(repairParticle, FracturedWall[NowClickIndex].transform.GetChild(1).gameObject.transform);
+        temp.transform.parent = this.transform;
 
         RepairUIExit();
     }
