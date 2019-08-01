@@ -73,5 +73,10 @@ MonoBehaviour:
   - start2SecondLater_RPC
   - VendingMachine_ItemGet
   - vending_item
+  - Run_TrainHPMinus_RPC
+  - brokenWall_RPC
+  - Run_TrainPrevHPMinus_RPC
+  - RepairTrain_RPC
+  - OpenRepairUI_RPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1

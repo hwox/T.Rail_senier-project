@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class Enemy1_Ctrl : MonoBehaviourPunCallbacks
+public class Enemy_Ctrl : MonoBehaviourPunCallbacks
 {
     Enemy_Actor enemy;
     Transform tr;
@@ -14,11 +14,20 @@ public class Enemy1_Ctrl : MonoBehaviourPunCallbacks
     Vector3 Position_Set_Move;
     bool Position_Set_Go = false;
 
-
+    public int KindOfEnemy; // 1_ 코뿔소 / 2_선인장 / 3_허스키 
 
     public Transform Rhino_child; // 아니 이거 fbx가 이렇게 안잡으면 제대로 안움직임
     Vector3 Init_Rhino_child;
     Vector3 Init_Rhino;
+
+    public Transform Cactus_child;
+    Vector3 Init_Cactus_child;
+    Vector3 Init_Cactus;
+    public GameObject Cactus_Punch;
+
+    public Transform Husky_child;
+    Vector3 Init_Husky_child;
+    Vector3 Init_Husky;
 
     int follow_index; // 따라갈 기차의 인덱스 
     bool Retreat; // 후퇴
@@ -28,7 +37,7 @@ public class Enemy1_Ctrl : MonoBehaviourPunCallbacks
     {
         tr = GetComponent<Transform>();
         anim = GetComponent<Animator>();
-        StartCoroutine(Enemy_ActRoutine());
+
         enemy = new Enemy_Actor();
 
 
@@ -36,27 +45,56 @@ public class Enemy1_Ctrl : MonoBehaviourPunCallbacks
     // Use this for initialization
     void Start()
     {
-        Init_Rhino = tr.position;
-        Init_Rhino_child = Rhino_child.position;
+
+        switch (KindOfEnemy)
+        {
+            case 1:
+                RhinoInitSetting();
+                break;
+            case 2:
+                CactusInitSetting();
+                break;
+            case 3:
+                HuskyInitSetting();
+                break;
+            default:
+                TrainGameManager.instance.Error_print();
+                break;
+        }
+
+        StartCoroutine(Enemy_ActRoutine());
+        TrainGameManager.instance.ConditionCtrl.enemy1 = this.gameObject;
+        TrainGameManager.instance.ConditionCtrl.enemy_ctrl = this.GetComponent<Enemy_Ctrl>();
+        this.gameObject.SetActive(false);
 
         enemy.speed = 10.0f;  // enemy1은 스피드 기본고정
         anim.SetBool("IsRun", true);
-
-
-        TrainGameManager.instance.ConditionCtrl.enemy1 = this.gameObject;
-        TrainGameManager.instance.ConditionCtrl.enemy1_ctrl = this.GetComponent<Enemy1_Ctrl>();
-        this.gameObject.SetActive(false);
-
-       // StartCoroutine(Enemy_ActRoutine());
+        // StartCoroutine(Enemy_ActRoutine());
     }
 
+    void RhinoInitSetting()
+    {
 
+        Init_Rhino = tr.position;
+        Init_Rhino_child = Rhino_child.position;
+
+    }
+    void CactusInitSetting()
+    {
+        Init_Cactus = tr.position;
+        Init_Cactus_child = Cactus_child.position;
+    }
+
+    void HuskyInitSetting()
+    {
+
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer.Equals(GameValue.bullet_layer))
         {
             //총알맞으면
-            GameObject parti = TrainGameManager.instance.GetObject(3); // dust 
+            GameObject parti = TrainGameManager.instance.GetObject((int)GameValue.prefab_list.dustparticle); // dust 
             parti.transform.position = other.gameObject.transform.position;
             parti.SetActive(true);
             parti.transform.GetChild(0).gameObject.SetActive(true);
@@ -67,7 +105,7 @@ public class Enemy1_Ctrl : MonoBehaviourPunCallbacks
             TrainGameManager.instance.SoundManager.enemy_Sound_Play();
         }
     }
-    
+
     [PunRPC]
     public void isAttackedByBullet()
     {
@@ -76,6 +114,19 @@ public class Enemy1_Ctrl : MonoBehaviourPunCallbacks
 
     void Update()
     {
+        //switch (KindOfEnemy)
+        //{
+        //    case 1:
+        //        Rhino_Update();
+        //        break;
+        //    case 2:
+        //        break;
+        //    case 3:
+        //        break;
+        //    default:
+        //        TrainGameManager.instance.Error_print();
+        //        break;
+        //}
         if (Position_Set_Go)
         {
             Position_Set();
@@ -91,22 +142,24 @@ public class Enemy1_Ctrl : MonoBehaviourPunCallbacks
             }
         }
 
-
-        if (!Retreat) {
+        if (!Retreat)
+        {
             if (enemy.HP < 0)
             {
-                Enemy1_Retreat();
+                Enemy_Retreat();
                 Retreat = true;
             }
         }
         else if (Retreat)
         {
-            
+
             tr.Translate(0, 0, -10.0f * Time.deltaTime);
         }
-
     }
-    public void Enemy1_On()
+
+
+
+    public void Enemy_On()
     {
         follow_index = TrainGameManager.instance.trainindex;
         Debug.Log("follow_index" + follow_index);
@@ -114,22 +167,35 @@ public class Enemy1_Ctrl : MonoBehaviourPunCallbacks
         Position_Set_Go = true;
         Retreat = false;
         StartCoroutine(Enemy_ActRoutine());
-        TrainGameManager.instance.Notice_EnemyAppear();
+
+        switch (KindOfEnemy)
+        {
+            case 1:
+                TrainGameManager.instance.Notice_Someting("코뿔소 등장!");
+                break;
+            case 2:
+                TrainGameManager.instance.Notice_Someting("선인장 등장!");
+                break;
+            case 3:
+                TrainGameManager.instance.Notice_Someting("허스키 등장!");
+                break;
+            default:
+                TrainGameManager.instance.Error_print();
+                break;
+        }
     }
 
-    public void Enemy1_Retreat()
+    public void Enemy_Retreat()
     {
         // 후퇴할때
-        
         anim.SetBool("IsAttack", false);
         Position_Set_Go = false;
         Invoke("EnemyActiveOff", 2.5f);
         // 일단 애니메이션 다 끄고
     }
-    
+
     void Position_Set()
     {
-
         tr.LookAt(TrainGameManager.instance.TrainCtrl.train[follow_index - 1].transform);
         tr.position = Vector3.Slerp(tr.position, Position_Set_Destination, Time.deltaTime * 0.5f /** 5.0f*/);
     }
@@ -137,11 +203,6 @@ public class Enemy1_Ctrl : MonoBehaviourPunCallbacks
 
     IEnumerator Enemy_ActRoutine()
     {
-
-        // 몬스터는 기차 collider의 뒤까지만 달려오는거임 그래서 공격할때만 받게 
-        // 그리고 monster 나와있는 와중에는 train add안되게 막아놔야 됨
-
-
         if (!Position_Set_Go)
         {
             if (!Retreat)
@@ -156,28 +217,48 @@ public class Enemy1_Ctrl : MonoBehaviourPunCallbacks
         }
         else
         {
-            if (tr.position.x + 0.5f>= Position_Set_Destination.x)
+            if (tr.position.x + 0.5f >= Position_Set_Destination.x)
             {
                 Position_Set_Go = false;
             }
         }
+
         yield return new WaitForSeconds(3.0f);
 
         StartCoroutine(Enemy_ActRoutine());
 
     }
 
+   
+
     void EnemyActiveOff()
     {
-        
+        switch (KindOfEnemy)
+        {
+            case (int)GameValue.EnemyCategory.Rhino:
+                tr.position = Init_Rhino;
+                Rhino_child.position = Init_Rhino_child;
+                break;
+            case (int)GameValue.EnemyCategory.Cactus:
+                tr.position = Init_Cactus;
+                Cactus_child.position = Init_Cactus_child;
+                break;
+            case (int)GameValue.EnemyCategory.Husky:
+                tr.position = Init_Husky;
+               Husky_child.position = Init_Husky_child;
+                break;
+            default:
+                break;
+        }
+
         StopCoroutine(Enemy_ActRoutine());
-        tr.position = Init_Rhino;
-        Rhino_child.position = Init_Rhino_child;
-        enemy.HP = GameValue.enemy1_FullHp; // 피 다시 원래대로 돌려놓기
+       
+
+        enemy.HP = GameValue.enemy_FullHp; // 피 다시 원래대로 돌려놓기
         Retreat = false; // 이거 어차피 Hp= 0 에서 하는데 또해?
         TrainGameManager.instance.EnemyAppear = false;
         CancelInvoke("EnemuActiveOff");
-        TrainGameManager.instance.ConditionCtrl.TrainAddCondition_Enemy(); 
+        TrainGameManager.instance.ConditionCtrl.TrainAddCondition_Enemy();
 
         this.gameObject.SetActive(false);
     }

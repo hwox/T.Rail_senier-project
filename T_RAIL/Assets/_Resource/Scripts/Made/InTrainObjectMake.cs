@@ -96,25 +96,6 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
 
     }
 
-    void startBoxSofaInit()
-    {
-        if (WhatNumber_Object == 0)
-        {
-            photonView.RPC("MakeBox", RpcTarget.All, 1, WhatNumber_Object);
-        }
-        else if (WhatNumber_Object == 1)
-        {
-            photonView.RPC("MakeSofa", RpcTarget.All, 1, WhatNumber_Object);
-        }
-        else if (WhatNumber_Object == 2)
-        {
-            photonView.RPC("MakeBox", RpcTarget.All, 1, WhatNumber_Object);
-        }
-        else if (WhatNumber_Object == 3)
-        {
-            photonView.RPC("MakeSofa", RpcTarget.All, 1, WhatNumber_Object);
-        }
-    }
 
     public void MakeBox_Button()
     {

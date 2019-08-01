@@ -1,6 +1,7 @@
 ﻿
 
-static class GameValue {
+static class GameValue
+{
 
     public enum itemCategory
     {
@@ -13,6 +14,26 @@ static class GameValue {
         woodboard = 7,
         ironpan = 8 // 판(철판
         //  spanner = 7, // 스패너
+    }
+
+    public enum EnemyCategory
+    {
+        Rhino = 1,
+        Cactus = 2,
+        Husky = 3,
+    }
+
+    public enum prefab_list
+    {
+        bullet = 0,
+        passenger = 1,
+        stationpassenger = 2,
+        dustparticle = 3,
+        sofa = 4,
+        box = 5,
+        chicken = 6,
+        egg = 7,
+        coinparticle = 8
     }
     // 카메라 셋팅
     public const float Mcam_initrot_x = 20.0f;
@@ -51,7 +72,7 @@ static class GameValue {
 
 
     // 기차의 기본 체력
-    public const int Train_Standard_HP =100;
+    public const int Train_Standard_HP = 100;
     // 기차 속성의 기본값 
     public const float Durability = 100.0f;
     public const float speed = 9.0f;
@@ -79,11 +100,10 @@ static class GameValue {
 
 
     // enemy1 
-    public const int enemy1_FullHp = 200; // 한 텀
-
+    public const int enemy_FullHp = 200; // 한 텀
 
     // bullet
-    public const float bullet_speed = 1000.0f; 
+    public const float bullet_speed = 1000.0f;
 
     // status
     public const int StatusMAX = 5;
@@ -105,7 +125,11 @@ static class GameValue {
 
     public const int ITEMLIMIT = 6; // 한칸당 아이템 제한. 이름을 뭘로 해야될지 몰라서 LImit로
 
- 
+
+    public const int Stage1Index = 2; // stage1 끝이 몇번째 씬 인덱스인지 (역포함)
+    public const int Stage2Index = 4; // (역포함)
+    public const int Stage3Index = 6; //(엔딩씬포함)
+
     //
 }
 
@@ -114,6 +138,6 @@ static class GameValue {
 
 
 
-  
- 
+
+
 // 소파 제작에 필요한 물품
