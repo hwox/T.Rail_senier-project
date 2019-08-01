@@ -10,7 +10,7 @@ public class Enemy_Actor : Move_Actor {
     public Enemy_Actor()
     {
         base.Actor_Property = (int)Actor.Monster;
-        HP = GameValue.enemy1_FullHp;
+        HP = GameValue.enemy_FullHp;
     }
 
 }

@@ -24,11 +24,6 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
     {
 
 
-        if (Input.GetKey(KeyCode.N))
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Train_Stage3");
-        }
-
         if (Input.GetKey(KeyCode.O))
         {
             TestMeterMode = true;
@@ -67,6 +62,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
                     photonView.RPC("StationSceneLoad", RpcTarget.All);
                 }
             }
+            NextStageCheck();
         }
         else if (TrainGameManager.instance.Scene_state == 3)
         {
@@ -74,6 +70,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
             photonView.RPC("TrainSceneLoad", RpcTarget.All);
             TrainGameManager.instance.photonView.RPC("setSceneState_RPC", RpcTarget.All, 1);
             //TrainGameManager.instance.Scene_state = 1;
+           
         }
     }
 
@@ -104,6 +101,10 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
     public void TrainSceneLoad()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+        /////
+     
+
     }
 
     [PunRPC]
@@ -116,6 +117,10 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         //Debug.LogError("id : " + (PhotonNetwork.LocalPlayer.ActorNumber - 1 )+ "  floor : " + playerListController.playerList[PhotonNetwork.LocalPlayer.ActorNumber - 1].player.Where_Floor);
         //Debug.LogError("몇명 들어와있는지: " + playerListController.playerList.Count);
 
+        if (TrainGameManager.instance.EnemyAppear)
+        {
+            TrainGameManager.instance.ConditionCtrl.EnemyDisappear(); // 적 사라지게
+        }
         for (int i = 0; i < playerListController.playerList.Count; ++i)
         {
             playerListController.playerList[i].player.UpSize();
@@ -136,4 +141,28 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    void NextStageCheck()
+    {
+        int NextStage = SceneManager.GetActiveScene().buildIndex;
+
+        if (NextStage <= GameValue.Stage1Index && SceneManager.GetActiveScene().buildIndex >= 1)
+        {
+            TrainGameManager.instance.Stage = 1;
+            Debug.Log("stage1");
+        }
+        else if (NextStage >= GameValue.Stage1Index && NextStage < GameValue.Stage2Index)
+        {
+            TrainGameManager.instance.Stage = 2;
+            Debug.Log("stage2");
+        }
+        else if (NextStage >= GameValue.Stage2Index && NextStage < GameValue.Stage3Index)
+        {
+            TrainGameManager.instance.Stage = 3;
+            Debug.Log("stage3");
+        }
+        else if (NextStage >= GameValue.Stage3Index)
+        {
+            // 엔딩
+        }
+    }
 }

@@ -8,22 +8,18 @@ using Photon.Pun;
 public class TrainGameManager : MonoBehaviourPunCallbacks
 {
 
-    public enum prefab_list
-    {
-        bullet = 0,
-        passenger = 1,
-        stationpassenger = 2,
-        dustparticle = 3,
-        sofa = 4,
-        box = 5,
-        chicken = 6,
-        egg = 7,  
-        coinparticle=8
-
-            
-    }
-
-
+    //public enum prefab_list
+    //{
+    //    bullet = 0,
+    //    passenger = 1,
+    //    stationpassenger = 2,
+    //    dustparticle = 3,
+    //    sofa = 4,
+    //    box = 5,
+    //    chicken = 6,
+    //    egg = 7,  
+    //    coinparticle=8  
+    //}
     public static TrainGameManager instance = null;// TrainGameManager();
 
     public int AllStat;
@@ -134,8 +130,10 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
 
     public int CoinNum = 0;
 
+    public float runmeter = 0;
     public bool NowItemUIUsable { get; set; }
 
+    public int Stage; 
 
     private void Awake()
     {
@@ -159,21 +157,22 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
 
     public void SetObject_List()
     {
-        CreateObject(Origin[(int)prefab_list.bullet], MAKE_BULLET_COUNT, (int)prefab_list.bullet); //총알생성
-        CreateObject(Origin[(int)prefab_list.passenger], MAKE_PASSENGER_COUNT, (int)prefab_list.passenger); //승객생성
-        CreateObject(Origin[(int)prefab_list.stationpassenger], MAKE_STATIONPASSENGER_COUNT, (int)prefab_list.stationpassenger); //승객생성
-        CreateObject(Origin[(int)prefab_list.dustparticle], MAKE_DUSTPARTICLE_COUNT, (int)prefab_list.dustparticle); //승객생성
-        CreateObject(Origin[(int)prefab_list.sofa], MAKE_SOFA_COUNT, (int)prefab_list.sofa); //소파생성
-        CreateObject(Origin[(int)prefab_list.box], MAKE_BOX_COUNT, (int)prefab_list.box); //박스생성
-        CreateObject(Origin[(int)prefab_list.chicken], MAKE_CHICKEN_COUNT, (int)prefab_list.chicken); // 치킨생성
-        CreateObject(Origin[(int)prefab_list.egg], MAKE_EGG_COUNT, (int)prefab_list.egg); // 달걀생성
-        CreateObject(Origin[(int)prefab_list.coinparticle], MAKE_COINPARTICLE_COUNT, (int)prefab_list.coinparticle); // 코인파티클생성
+        CreateObject(Origin[(int)GameValue.prefab_list.bullet], MAKE_BULLET_COUNT, (int)GameValue.prefab_list.bullet); //총알생성
+        CreateObject(Origin[(int)GameValue.prefab_list.passenger], MAKE_PASSENGER_COUNT, (int)GameValue.prefab_list.passenger); //승객생성
+        CreateObject(Origin[(int)GameValue.prefab_list.stationpassenger], MAKE_STATIONPASSENGER_COUNT, (int)GameValue.prefab_list.stationpassenger); //승객생성
+        CreateObject(Origin[(int)GameValue.prefab_list.dustparticle], MAKE_DUSTPARTICLE_COUNT, (int)GameValue.prefab_list.dustparticle); //승객생성
+        CreateObject(Origin[(int)GameValue.prefab_list.sofa], MAKE_SOFA_COUNT, (int)GameValue.prefab_list.sofa); //소파생성
+        CreateObject(Origin[(int)GameValue.prefab_list.box], MAKE_BOX_COUNT, (int)GameValue.prefab_list.box); //박스생성
+        CreateObject(Origin[(int)GameValue.prefab_list.chicken], MAKE_CHICKEN_COUNT, (int)GameValue.prefab_list.chicken); // 치킨생성
+        CreateObject(Origin[(int)GameValue.prefab_list.egg], MAKE_EGG_COUNT, (int)GameValue.prefab_list.egg); // 달걀생성
+        CreateObject(Origin[(int)GameValue.prefab_list.coinparticle], MAKE_COINPARTICLE_COUNT, (int)GameValue.prefab_list.coinparticle); // 코인파티클생성
     }
-    public void Notice_EnemyAppear()
+    public void Notice_Someting(string text)
     {
         InGame_Notice.SetActive(true);
         // 여기는 striingbuilder로 바꾸기
-        InGame_Text.text = "코뿔소 등장 ! ";
+
+        InGame_Text.text = text;
     }
     ////////////////////////////////  pool   //////////////////////////////
     ///
@@ -184,14 +183,14 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
         {
             switch (prefab_index)
             {
-                case (int)prefab_list.bullet:
+                case (int)GameValue.prefab_list.bullet:
                     GameObject obj = Instantiate(_obj);
                     obj.transform.localPosition = Vector3.zero;
                     obj.SetActive(false);
                     obj.transform.parent = transform.GetChild(prefab_index);
                     BulletManager.Add(obj); 
                     break;
-                case (int)prefab_list.passenger:
+                case (int)GameValue.prefab_list.passenger:
                     if (!PhotonNetwork.IsMasterClient) return;
                     obj = PhotonNetwork.Instantiate(_obj.name, new Vector3(0,0,0), _obj.transform.rotation,0);
                     //이 밑에부분은 passenger_ctrl start 부분으로 뺌. 왜냐면 마스터 클라가 아니면 여기까지 도달을 안함
@@ -200,28 +199,28 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                     //obj.transform.parent = transform.GetChild(prefab_index);
                     //PassengerManager.Add(obj);
                     break;
-                case (int)prefab_list.stationpassenger:
+                case (int)GameValue.prefab_list.stationpassenger:
                     obj = Instantiate(_obj);
                     obj.transform.localPosition = Vector3.zero;
                     obj.SetActive(false);
                     obj.transform.parent = transform.GetChild(prefab_index);
                     Station_PassengerManager.Add(obj);
                     break;
-                case (int)prefab_list.dustparticle:
+                case (int)GameValue.prefab_list.dustparticle:
                     obj = Instantiate(_obj);
                     obj.transform.localPosition = Vector3.zero;
                     obj.SetActive(false);
                     obj.transform.parent = transform.GetChild(prefab_index);
                     DustParticle.Add(obj);
                     break;
-                case (int)prefab_list.sofa:
+                case (int)GameValue.prefab_list.sofa:
                     obj = Instantiate(_obj);
                     obj.transform.localPosition = Vector3.zero;
                     obj.SetActive(false);
                     obj.transform.parent = transform.GetChild(prefab_index);
                     SofaManager.Add(obj);
                     break;
-                case (int)prefab_list.box:
+                case (int)GameValue.prefab_list.box:
                     if (!PhotonNetwork.IsMasterClient) return;
                     obj = PhotonNetwork.Instantiate(_obj.name, new Vector3(0, 0, 0), _obj.transform.rotation, 0);
 
@@ -230,7 +229,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                     //obj.transform.parent = transform.GetChild(prefab_index);
                     //BoxManager.Add(obj);
                     break;
-                case (int)prefab_list.chicken:
+                case (int)GameValue.prefab_list.chicken:
                     if (!PhotonNetwork.IsMasterClient) return;
                     obj = PhotonNetwork.Instantiate(_obj.name, new Vector3(0, 0, 0), _obj.transform.rotation, 0);
                     //이 밑에부분은 Chicken_ctrl start 부분으로 뺌. 왜냐면 마스터 클라가 아니면 여기까지 도달을 안함
@@ -239,7 +238,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                     //obj.transform.parent = transform.GetChild(prefab_index);
                     //ChickenManager.Add(obj);
                     break;
-                case (int)prefab_list.egg:
+                case (int)GameValue.prefab_list.egg:
                     if (!PhotonNetwork.IsMasterClient) return;
                     obj = PhotonNetwork.Instantiate(_obj.name, new Vector3(0, 0, 0), _obj.transform.rotation, 0);
                     //obj.transform.localPosition = Vector3.zero;
@@ -247,7 +246,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                     //obj.transform.parent = transform.GetChild(prefab_index);
                     //EggManager.Add(obj);
                     break;
-                case (int)prefab_list.coinparticle:
+                case (int)GameValue.prefab_list.coinparticle:
                     obj = Instantiate(_obj);
                     obj.transform.localPosition = Vector3.zero;
                     obj.SetActive(false);
@@ -262,7 +261,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
         //필요한 오브젝트를 찾아서 반환
         switch (_objIndex)
         {
-            case (int)prefab_list.bullet:
+            case (int)GameValue.prefab_list.bullet:
                 if (BulletManager == null)
                 {
                     return null;
@@ -288,7 +287,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                 }
                 return null;
 
-            case (int)prefab_list.passenger:
+            case (int)GameValue.prefab_list.passenger:
 
                 if (PassengerManager == null)
                 {
@@ -314,7 +313,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                     return PassengerManager[i];
                 }
                 return null;
-            case (int)prefab_list.stationpassenger:
+            case (int)GameValue.prefab_list.stationpassenger:
 
                 if (Station_PassengerManager == null)
                 {
@@ -340,7 +339,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                     return Station_PassengerManager[i];
                 }
                 return null;
-            case (int)prefab_list.dustparticle:
+            case (int)GameValue.prefab_list.dustparticle:
 
                 if (DustParticle == null)
                 {
@@ -367,7 +366,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                 }
                 return null;
 
-            case (int)prefab_list.sofa:
+            case (int)GameValue.prefab_list.sofa:
 
                 if (SofaManager == null)
                 {
@@ -393,7 +392,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                     return SofaManager[i];
                 }
                 return null;
-            case (int)prefab_list.box:
+            case (int)GameValue.prefab_list.box:
 
                 if (BoxManager == null)
                 {
@@ -419,7 +418,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                     return BoxManager[i];
                 }
                 return null;
-            case (int)prefab_list.chicken:
+            case (int)GameValue.prefab_list.chicken:
 
                 if (ChickenManager == null)
                 {
@@ -446,7 +445,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                 }
                 return null;
 
-            case (int)prefab_list.egg:
+            case (int)GameValue.prefab_list.egg:
 
                 if (EggManager == null)
                 {
@@ -472,7 +471,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                     return EggManager[i];
                 }
                 return null;
-            case (int)prefab_list.coinparticle:
+            case (int)GameValue.prefab_list.coinparticle:
 
                 if (EggManager == null)
                 {
@@ -510,7 +509,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
     {
         switch (_objindex)
         {
-            case (int)prefab_list.bullet:
+            case (int)GameValue.prefab_list.bullet:
 
                 if (BulletManager == null)
                 {
@@ -527,7 +526,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                 BulletManager = null;
                 break;
 
-            case (int)prefab_list.passenger:
+            case (int)GameValue.prefab_list.passenger:
 
                 if (PassengerManager == null)
                 {
@@ -544,7 +543,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                 PassengerManager = null;
                 break;
 
-            case (int)prefab_list.stationpassenger:
+            case (int)GameValue.prefab_list.stationpassenger:
 
                 if (Station_PassengerManager == null)
                 {
@@ -561,7 +560,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                 Station_PassengerManager = null;
                 break;
 
-            case (int)prefab_list.sofa:
+            case (int)GameValue.prefab_list.sofa:
 
                 if (SofaManager == null)
                 {
@@ -578,7 +577,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                 SofaManager = null;
                 break;
 
-            case (int)prefab_list.box:
+            case (int)GameValue.prefab_list.box:
 
                 if (BoxManager == null)
                 {
@@ -594,7 +593,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                 }
                 BoxManager = null;
                 break;
-            case (int)prefab_list.chicken:
+            case (int)GameValue.prefab_list.chicken:
 
                 if (ChickenManager == null)
                 {
@@ -611,7 +610,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                 ChickenManager = null;
                 break;
 
-            case (int)prefab_list.egg:
+            case (int)GameValue.prefab_list.egg:
 
                 if (EggManager == null)
                 {
@@ -629,7 +628,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                 break;
 
 
-            case (int)prefab_list.coinparticle:
+            case (int)GameValue.prefab_list.coinparticle:
 
                 if (CoinParticle == null)
                 {

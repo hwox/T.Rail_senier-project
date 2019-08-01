@@ -56,7 +56,6 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
                     //{
                     //   // Debug.Log(hit.collider.gameObject.layer);
                     //}
-                    Debug.Log(hit.collider.gameObject.name);
                     if (hit.collider.gameObject.layer.Equals(GameValue.itembox_layer))
                     {
                         // 상자일 경우!

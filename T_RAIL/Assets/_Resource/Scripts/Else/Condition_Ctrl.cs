@@ -11,11 +11,23 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks
 
 
     public GameObject rhino;
+    public GameObject Cactus;
+    public GameObject Husky;
 
-    public GameObject enemy1;
-    public Enemy1_Ctrl enemy1_ctrl;
+    public GameObject NowEnemy;
 
+    [SerializeField]
+    GameObject enemyOnStage1;
 
+    [SerializeField]
+    GameObject enemyOnStage2;
+
+    [SerializeField]
+    GameObject enemyOnStage3;
+    // 지금 stage1에서 rhino만 만들던거를 cactus, husky도 만들어놓고 stage에 따라서
+    // onoff하는걸로
+
+    // 흠ㅁ 그냥 다 수정해서 enemy_ctrl로 통일시킬까
 
     private void Awake()
     {
@@ -31,7 +43,9 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks
         // 처음에 만들어놓을 몬스터들이나 기관총 ㅇ총알. 총알 방식은 좀 바꿔야될걳같음 기관총이 생기는거를
         // 기차도 
 
-        PhotonNetwork.InstantiateSceneObject(rhino.name, new Vector3(-200, 1.7f, -3.6f), Quaternion.Euler(0, 90, 0));
+        enemyOnStage1 = PhotonNetwork.InstantiateSceneObject(rhino.name, new Vector3(-200, 1.7f, -3.6f), Quaternion.Euler(0, 90, 0));
+        enemyOnStage2 = PhotonNetwork.InstantiateSceneObject(Cactus.name, new Vector3(-200, 1.7f, -3.6f), Quaternion.Euler(0, 90, 0));
+        enemyOnStage3 = PhotonNetwork.InstantiateSceneObject(Husky.name, new Vector3(-200, 1.7f, -3.6f), Quaternion.Euler(0, 90, 0));
 
         //이 주석부분 -> Enemy1_ctrl 스크립트 start()부분으로 옮김. train 생성과 같은 이유로
         //enemy1 =PhotonNetwork.InstantiateSceneObject(rhino.name, new Vector3(200, 1.7f, -3.6f), Quaternion.Euler(0,90,0));
@@ -42,21 +56,49 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks
     private void Start()
     {
         StartCoroutine(EnemyAppear_Condition());
-       
+
     }
-    public void onRhinoEnemyOnButton()
+    public void onEnemyOnButton()
     {
-        photonView.RPC("Rhino_Add", RpcTarget.All);
+        photonView.RPC("Enemy_Appear", RpcTarget.All);
     }
 
+    //[PunRPC]
+    //public void Rhino_Add()
+    //{
+    //    // 
+    //    TrainGameManager.instance.EnemyAppear = true;
+    //    NowEnemy.SetActive(true);
+    //    enemy_ctrl.Enemy_On();
+    //}
+
     [PunRPC]
-    public void Rhino_Add()
+    public void Enemy_Appear()
     {
-        // 
         TrainGameManager.instance.EnemyAppear = true;
-        enemy1.SetActive(true);
-        enemy1_ctrl.Enemy1_On();
+
+        switch (TrainGameManager.instance.Stage)
+        {
+            case 1:
+                NowEnemy = enemyOnStage1;
+
+                break;
+            case 2:
+                NowEnemy = enemyOnStage2;
+                break;
+            case 3:
+                NowEnemy = enemyOnStage3;
+                break;
+            default:
+                TrainGameManager.instance.Error_print();
+                break;
+        }
+               
+        NowEnemy.SetActive(true);
+       
+        NowEnemy.GetComponent<Enemy_Ctrl>().Enemy_On();
     }
+
 
     public void TrainAddCondition_Passenger(int _num)
     {
@@ -90,7 +132,12 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks
         }
     }
 
-
+    public void EnemyDisappear()
+    {
+        // 적 사라지게
+        // 1. 기차 -> 역에 갔다거나
+        NowEnemy.GetComponent<Enemy_Ctrl>().EnemyActiveOff();
+    }
 
     IEnumerator EnemyAppear_Condition()
     {

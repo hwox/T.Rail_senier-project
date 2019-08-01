@@ -638,7 +638,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         {
             // 몬스터 추가
 
-            TrainGameManager.instance.ConditionCtrl.onRhinoEnemyOnButton();
+            TrainGameManager.instance.ConditionCtrl.onEnemyOnButton();
             TrainGameManager.instance.EnemyAppear = true;
 
         }

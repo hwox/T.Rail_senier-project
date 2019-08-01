@@ -104,7 +104,6 @@ public class Train_Object : MonoBehaviourPunCallbacks
     {
         // 기차가 달릴수록 체력이 감소
         HP -= _meter;
-        Debug.Log(HP);
     }
 
     [PunRPC]

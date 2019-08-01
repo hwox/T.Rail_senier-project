@@ -1456,7 +1456,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b151fa417ed7a468f3d60be1f16b7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  KindOfEnemy: 1
   Rhino_child: {fileID: 4726149569731712}
+  Cactus_child: {fileID: 0}
+  Cactus_Punch: {fileID: 0}
+  Husky_child: {fileID: 0}
 --- !u!114 &114602300242794344
 MonoBehaviour:
   m_ObjectHideFlags: 1
