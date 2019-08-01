@@ -70,13 +70,16 @@ public class Train_Object : MonoBehaviourPunCallbacks
     {
         tr = gameObject.transform;
         Coroutine_calltime = 0.5f;
-        StartCoroutine(Train_Position_Setting_Change());
-        StartCoroutine(TrainHPCheck()); // 어차피 Train_Object()가 먼저 실행되니까 여기서 코루틴 실행해도 HP 100부터.
         ThisTrainNowObjects = new int[4];
         InTrainObjectUsed = new bool[4];
         BrokenWall = new bool[4];
         Init_AddTrain();
         ItemInhand = TrainGameManager.instance.ItemHand;
+
+        if (!PhotonNetwork.IsMasterClient) return;
+
+        StartCoroutine(Train_Position_Setting_Change());
+        StartCoroutine(TrainHPCheck()); // 어차피 Train_Object()가 먼저 실행되니까 여기서 코루틴 실행해도 HP 100부터.
     }
 
     public Train_Object()
@@ -90,8 +93,23 @@ public class Train_Object : MonoBehaviourPunCallbacks
 
     public void Run_TrainHPMinus(float meter)
     {
+        photonView.RPC("Run_TrainHPMinus_RPC", RpcTarget.All, meter);
+    }
+
+    [PunRPC]
+    void Run_TrainHPMinus_RPC(float _meter)
+    {
         // 기차가 달릴수록 체력이 감소
-        HP -= meter;
+        HP -= _meter;
+        Debug.Log(HP);
+    }
+
+    [PunRPC]
+    void Run_TrainPrevHPMinus_RPC(float _meter)
+    {
+        // 기차가 달릴수록 체력이 감소
+        PrevHP -= _meter;
+        Debug.Log(PrevHP);
     }
 
     public void ChangeTrainSetting(int _index)
@@ -203,7 +221,8 @@ public class Train_Object : MonoBehaviourPunCallbacks
             if (HP < PrevHP && HP >= 10)
             {
                 FracturedTrain();
-                PrevHP -= 20;
+                photonView.RPC("Run_TrainPrevHPMinus_RPC", RpcTarget.All, 20.0f);
+                //PrevHP -= 20;
             }
 
             if (HP <= 0)
@@ -211,7 +230,8 @@ public class Train_Object : MonoBehaviourPunCallbacks
                 if (index != 1)
                 {
                     Debug.Log("끝");
-                    ctrl.Train_Delete(index - 1);
+                    ctrl.photonView.RPC("Train_Delete", RpcTarget.All, index - 1);
+                    //ctrl.Train_Delete(index - 1);
                 }
                 else if (index == 1)
                 {
@@ -260,7 +280,7 @@ public class Train_Object : MonoBehaviourPunCallbacks
 
 
         //if (ctrl.train.Count == 1) 
-        Invoke("callFirstTrainInit", 3.0f);
+        Invoke("callFirstTrainInit", 2.0f);
     }
 
     public void callFirstTrainInit()
@@ -309,22 +329,36 @@ public class Train_Object : MonoBehaviourPunCallbacks
     }
 
 
+    //어떤 구멍이 뚫릴지 랜덤으로 정함
     public void FracturedTrain()
     {
+        if (!PhotonNetwork.IsMasterClient) return;
+
         int randomWall = Random.Range(0, 4);
 
         if (FracturedWall[randomWall].active && !BrokenWall[randomWall])
         {
             // 켜져있으면 끄고 끝
-            FracturedWall[randomWall].transform.GetChild(0).gameObject.SetActive(false);
-            FracturedWall[randomWall].transform.GetChild(1).gameObject.SetActive(true);
-            BrokenWall[randomWall] = true;
+            photonView.RPC("brokenWall_RPC", RpcTarget.All, randomWall);
+
+            //FracturedWall[randomWall].transform.GetChild(0).gameObject.SetActive(false);
+            //FracturedWall[randomWall].transform.GetChild(1).gameObject.SetActive(true);
+            //BrokenWall[randomWall] = true;
         }
         else
         {
             FracturedTrain();
         }
     }
+
+    [PunRPC]
+    void brokenWall_RPC(int _randomWall)
+    {
+        FracturedWall[_randomWall].transform.GetChild(0).gameObject.SetActive(false);
+        FracturedWall[_randomWall].transform.GetChild(1).gameObject.SetActive(true);
+        BrokenWall[_randomWall] = true;
+    }
+
 
     public void ClickFracturedTrain(string _name)
     {
@@ -363,15 +397,24 @@ public class Train_Object : MonoBehaviourPunCallbacks
 
     void OpenRepairUI(int index)
     {
-        NowClickIndex = index;
+        //NowClickIndex = index;
         FracturedWall[index].transform.GetChild(2).gameObject.SetActive(true);
         TrainGameManager.instance.NowItemUIUsable = false;
         ItemInhand.SetActive(true);
         RepairButton = FracturedWall[index].transform.GetChild(2).GetChild(2).GetComponent<Button>();
         MaterialStorage_ctrl = FracturedWall[index].transform.GetChild(2).GetChild(0).GetComponent<MaterialForCreate>();
         StartCoroutine(TrainRepairCheck());
+
+        photonView.RPC("OpenRepairUI_RPC", RpcTarget.All, index);
     }
 
+    [PunRPC]
+    void OpenRepairUI_RPC(int index)
+    {
+        NowClickIndex = index;
+    }
+
+    //
     IEnumerator TrainRepairCheck()
     {
         while (true)
@@ -392,9 +435,17 @@ public class Train_Object : MonoBehaviourPunCallbacks
 
     public void RepairTrain()
     {
+        photonView.RPC("RepairTrain_RPC", RpcTarget.All);
+    }
+
+    [PunRPC]
+    void RepairTrain_RPC()
+    {
         FracturedWall[NowClickIndex].transform.GetChild(0).gameObject.SetActive(true);
-        HP += 20;
-        PrevHP += 20;
+        photonView.RPC("Run_TrainHPMinus_RPC", RpcTarget.All, -20.0f);
+        photonView.RPC("Run_TrainPrevHPMinus_RPC", RpcTarget.All, -20.0f);
+        //HP += 20;
+        //PrevHP += 20;
         MaterialStorage_ctrl.ItemListReset();
 
         RepairUIExit();
