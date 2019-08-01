@@ -95,7 +95,11 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
             // 2분에 2km
             Run_Meter += (TrainGameManager.instance.Speed * TrainGameManager.instance.Speed_stat) * Time.deltaTime;
 
+            TrainGameManager.instance.runmeter = Run_Meter;
+
             float temp = GameValue.NextStationMeter - Run_Meter;
+
+
 
             if (temp >= 0)
                 RunMeterText.text = "남은 거리 :" + temp.ToString("N0") + "M";

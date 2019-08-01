@@ -134,6 +134,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
 
     public int CoinNum = 0;
 
+    public float runmeter = 0;
     public bool NowItemUIUsable { get; set; }
 
 

@@ -1,44 +1,69 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ChangeLight : MonoBehaviour {
 
-    Color DayLight = new Vector4(1f, 1f, 1f, 1f);
-    Color TwilightLight = new Vector4(0.9f, 0.4303677f, 0, 1f);
-    Color NightLight = new Vector4(0, 0, 0, 1f);
+  
+
+    Color GlassLand_LightA = new Vector4(1f, 1f, 1f, 1f);
+    Color GlassLand_LightB = new Vector4(0.9056604f, 0.498312f, 0.2264151f, 1f);
+
+    Color Desert_LightA = new Vector4(0.4142043f, 0.4142043f, 0.490566f, 1f);
+    Color Desert_LightB = new Vector4(0.1041296f, 0.1041296f, 0.490566f, 1f);
+
+    Color SnowField_LightA = new Vector4(0.6548199f, 0.4488697f, 0.7264151f, 1f);
+    Color SnowField_LightB = new Vector4(1f, 1f, 1f, 1f);
+
 
     Color Light_A, Light_B;
-    int SkychSign;
-    float time_count = 0;
-    float light_SpinAngle = 0;
+    int SceneNumber;
+
+    int angle;
 
     public Light li;
     
     // Use this for initialization
     void Start () {
         StartCoroutine("Changelightcolor");
-        SkychSign = 0;
+        
         li = GetComponent<Light>();
+        SceneNumber = SceneManager.GetActiveScene().buildIndex;
+
+        if (SceneNumber == 1)
+        {
+
+            Light_A = GlassLand_LightA; Light_B = GlassLand_LightB;
+            angle = 0;
+        }
+        else if (SceneNumber == 3)
+        {
+
+            Light_A = Desert_LightA; Light_B = Desert_LightB;
+            angle = 120;
+        }
+        else if (SceneNumber == 5)
+        {
+
+            Light_A = SnowField_LightA ; Light_B = SnowField_LightB;
+            angle = 240;
+        }
+
     }
 
     IEnumerator Changelightcolor()
     {
         while (true)
         {
-            double i = 0.1 * time_count;
-         
+            double i = TrainGameManager.instance.runmeter / GameValue.NextStationMeter;
+
+            Debug.Log(i);
+
+            li.color = Color.Lerp(Light_A, Light_B, (float)i);
            
-             li.color = Color.Lerp(Light_A, Light_B, (float)i);
-            time_count += 0.1f;
-            if (time_count >= 16)
-            {
-                time_count = 0;
-                SkychSign += 1;
-                if (SkychSign > 2)
-                    SkychSign = 0;
-            }
-            li.transform.Rotate(0, 0.75f, 0, Space.World);
+           
+            li.transform.rotation = Quaternion.Euler(34.945f, (float)i * 120 + angle, -70.30901f);
             yield return new WaitForSeconds(0.5f);
         }
 
@@ -46,20 +71,6 @@ public class ChangeLight : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (SkychSign == 0)
-        {
-          
-            Light_A = DayLight; Light_B = TwilightLight;
-        }
-        else if (SkychSign == 1)
-        {
-            
-            Light_A = TwilightLight; Light_B = NightLight;
-        }
-        else if (SkychSign == 2)
-        {
-          
-            Light_A = NightLight; Light_B = DayLight;
-        }
+      
     }
 }
