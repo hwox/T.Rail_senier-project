@@ -465,6 +465,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         }
 
         anim.SetFloat("RunTime", runTime);
+        anim.SetBool("IsAttack", false);
         SetPlayerMoveSpeed();
 
 
