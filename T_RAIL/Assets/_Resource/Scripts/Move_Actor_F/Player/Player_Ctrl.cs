@@ -330,6 +330,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 }
                 else
                 {
+                    anim.SetBool("IsWalk", false);
                     MCam_Ctrl.Vending_Machine_Cam(true, 0);
                     other.GetComponent<VendingMachine>().VendingMachine_on = true;
                     player.Where_Floor = 5;
