@@ -13,9 +13,12 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks
     public GameObject rhino;
 
     public GameObject enemy1;
-    public Enemy1_Ctrl enemy1_ctrl;
+    public Enemy_Ctrl enemy_ctrl;
 
+    public GameObject enemy2; // 선인장
+   // public Enemy2_Ctrl enemy2_ctrl; 
 
+    // 흠ㅁ 그냥 다 수정해서 enemy_ctrl로 통일시킬까
 
     private void Awake()
     {
@@ -55,8 +58,9 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks
         // 
         TrainGameManager.instance.EnemyAppear = true;
         enemy1.SetActive(true);
-        enemy1_ctrl.Enemy1_On();
+        enemy_ctrl.Enemy_On();
     }
+
 
     public void TrainAddCondition_Passenger(int _num)
     {
