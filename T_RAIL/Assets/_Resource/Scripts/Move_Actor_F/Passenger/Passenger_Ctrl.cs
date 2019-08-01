@@ -232,7 +232,6 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
             pass.Disease += 20;
         }
 
-        Debug.Log("1질병 : " + pass.Disease + "    배고픔 : " + pass.Hungry);
         photonView.RPC("setHungryDisease", RpcTarget.All , pass.Hungry, pass.Disease);
 
 
@@ -244,7 +243,6 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
     [PunRPC]
     public void setHungryDisease(int _hungry, int _disease)
     {
-        Debug.Log("2질병 : " + _disease + "    배고픔 : " + _hungry);
         pass.Hungry = _hungry;
         pass.Disease = _disease;
     }

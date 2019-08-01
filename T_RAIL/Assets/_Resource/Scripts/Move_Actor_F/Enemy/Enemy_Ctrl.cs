@@ -40,6 +40,7 @@ public class Enemy_Ctrl : MonoBehaviourPunCallbacks
 
         enemy = new Enemy_Actor();
 
+        DontDestroyOnLoad(gameObject);
 
     }
     // Use this for initialization
@@ -63,8 +64,8 @@ public class Enemy_Ctrl : MonoBehaviourPunCallbacks
         }
 
         StartCoroutine(Enemy_ActRoutine());
-        TrainGameManager.instance.ConditionCtrl.enemy1 = this.gameObject;
-        TrainGameManager.instance.ConditionCtrl.enemy_ctrl = this.GetComponent<Enemy_Ctrl>();
+    //    TrainGameManager.instance.ConditionCtrl.NowEnemy = this.gameObject;
+    //    TrainGameManager.instance.ConditionCtrl.enemy_ctrl = this.GetComponent<Enemy_Ctrl>();
         this.gameObject.SetActive(false);
 
         enemy.speed = 10.0f;  // enemy1은 스피드 기본고정
@@ -231,7 +232,7 @@ public class Enemy_Ctrl : MonoBehaviourPunCallbacks
 
    
 
-    void EnemyActiveOff()
+    public void EnemyActiveOff()
     {
         switch (KindOfEnemy)
         {
@@ -252,12 +253,11 @@ public class Enemy_Ctrl : MonoBehaviourPunCallbacks
         }
 
         StopCoroutine(Enemy_ActRoutine());
-       
-
+        anim.SetBool("IsAttack", false);
         enemy.HP = GameValue.enemy_FullHp; // 피 다시 원래대로 돌려놓기
         Retreat = false; // 이거 어차피 Hp= 0 에서 하는데 또해?
         TrainGameManager.instance.EnemyAppear = false;
-        CancelInvoke("EnemuActiveOff");
+        CancelInvoke("EnemyActiveOff");
         TrainGameManager.instance.ConditionCtrl.TrainAddCondition_Enemy();
 
         this.gameObject.SetActive(false);

@@ -24,11 +24,6 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
     {
 
 
-        if (Input.GetKey(KeyCode.N))
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Train_Stage3");
-        }
-
         if (Input.GetKey(KeyCode.O))
         {
             TestMeterMode = true;
@@ -122,6 +117,10 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         //Debug.LogError("id : " + (PhotonNetwork.LocalPlayer.ActorNumber - 1 )+ "  floor : " + playerListController.playerList[PhotonNetwork.LocalPlayer.ActorNumber - 1].player.Where_Floor);
         //Debug.LogError("몇명 들어와있는지: " + playerListController.playerList.Count);
 
+        if (TrainGameManager.instance.EnemyAppear)
+        {
+            TrainGameManager.instance.ConditionCtrl.EnemyDisappear(); // 적 사라지게
+        }
         for (int i = 0; i < playerListController.playerList.Count; ++i)
         {
             playerListController.playerList[i].player.UpSize();
