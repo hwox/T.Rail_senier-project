@@ -78,5 +78,6 @@ MonoBehaviour:
   - Run_TrainPrevHPMinus_RPC
   - RepairTrain_RPC
   - OpenRepairUI_RPC
+  - Enemy_Appear
   DisableAutoOpenWizard: 1
   ShowSettings: 1
