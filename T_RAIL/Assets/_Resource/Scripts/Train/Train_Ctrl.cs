@@ -137,7 +137,8 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
 
         if (TrainGameManager.instance.trainindex < GameValue.MaxTrainNumber)
         {
-            GameObject newTrain = PhotonNetwork.InstantiateSceneObject(Train_Prefab.name, new Vector3(0, 2.5f, -2), Quaternion.Euler(0, -90, 0), 0, null) as GameObject;
+            //GameObject newTrain = PhotonNetwork.InstantiateSceneObject(Train_Prefab.name, new Vector3(0, 2.5f, -2), Quaternion.Euler(0, -90, 0), 0, null) as GameObject;
+            GameObject newTrain = PhotonNetwork.Instantiate(Train_Prefab.name, new Vector3(0, 2.5f, -2), Quaternion.Euler(0, -90, 0), 0, null) as GameObject;
 
         }
 
