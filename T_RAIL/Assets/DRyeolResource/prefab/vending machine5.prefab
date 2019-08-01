@@ -3516,7 +3516,7 @@ MonoBehaviour:
   - {fileID: 1782293172155190}
   cam: {fileID: 0}
   itemCtrl: {fileID: 0}
-  VendingMachine_on: 1
+  VendingMachine_on: 0
 --- !u!137 &137188807527991776
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
