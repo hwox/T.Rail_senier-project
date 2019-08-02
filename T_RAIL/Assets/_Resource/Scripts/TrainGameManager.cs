@@ -127,6 +127,10 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
     public List<GameObject> CoinParticle;
     const int MAKE_COINPARTICLE_COUNT = 10;
 
+    //토마토 스프
+    public List<GameObject> tomatosoupM;
+    const int MAKE__TOMATOSOUP_COUNT = 5;
+
 
     public int Scene_state=1;
 
@@ -174,6 +178,8 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
         CreateObject(Origin[(int)GameValue.prefab_list.chicken], MAKE_CHICKEN_COUNT, (int)GameValue.prefab_list.chicken); // 치킨생성
         CreateObject(Origin[(int)GameValue.prefab_list.egg], MAKE_EGG_COUNT, (int)GameValue.prefab_list.egg); // 달걀생성
         CreateObject(Origin[(int)GameValue.prefab_list.coinparticle], MAKE_COINPARTICLE_COUNT, (int)GameValue.prefab_list.coinparticle); // 코인파티클생성
+        CreateObject(Origin[(int)GameValue.prefab_list.tomatosoup], MAKE__TOMATOSOUP_COUNT, (int)GameValue.prefab_list.tomatosoup);
+
     }
     public void Notice_Someting(string text)
     {
@@ -261,6 +267,14 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                     obj.transform.parent = transform.GetChild(prefab_index);
                     CoinParticle.Add(obj);
                     break;
+                case (int)GameValue.prefab_list.tomatosoup:
+                    obj = Instantiate(_obj);
+                    obj.transform.localPosition = Vector3.zero;
+                    obj.SetActive(false);
+                    obj.transform.parent = transform.GetChild(prefab_index);
+                    tomatosoupM.Add(obj);
+                    break;
+
             }
         }
     }
@@ -481,7 +495,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                 return null;
             case (int)GameValue.prefab_list.coinparticle:
 
-                if (EggManager == null)
+                if (CoinParticle == null)
                 {
                     return null;
                 }
@@ -503,6 +517,32 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                         continue;
                     }
                     return CoinParticle[i];
+                }
+                return null;
+            case (int)GameValue.prefab_list.tomatosoup:
+
+                if (tomatosoupM == null)
+                {
+                    return null;
+                }
+                int ts_Count = tomatosoupM.Count;
+
+                for (int i = 0; i < ts_Count; i++)
+                {
+                    GameObject obj = tomatosoupM[i];
+
+                    //활성화 돼있으면
+                    if (obj.active == true)
+                    {
+                        // 리스트의 마지막까지 돌았는데 다 사용중이다?
+                        if (i == ts_Count - 1)
+                        {
+                            CreateObject(obj, 1, _objIndex);
+                            return tomatosoupM[i + 1];
+                        }
+                        continue;
+                    }
+                    return tomatosoupM[i];
                 }
                 return null;
             default:
@@ -651,6 +691,23 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                     GameObject.Destroy(obj);
                 }
                 CoinParticle = null;
+                break;
+
+            case (int)GameValue.prefab_list.tomatosoup:
+
+                if (tomatosoupM == null)
+                {
+                    return;
+                }
+
+                int ts_Count = tomatosoupM.Count;
+
+                for (int i = 0; i < ts_Count; i++)
+                {
+                    GameObject obj = tomatosoupM[i];
+                    GameObject.Destroy(obj);
+                }
+                tomatosoupM = null;
                 break;
         }
     }
