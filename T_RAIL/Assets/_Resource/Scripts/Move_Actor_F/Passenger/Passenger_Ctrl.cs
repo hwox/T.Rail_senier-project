@@ -133,10 +133,13 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
     public void Passenger_Die()
     {
         // 죽었을 때 호출할 함수
+        Live = false;
+        // parent다시 gamemanager로 바꿔야 함 
+        this.gameObject.transform.parent = TrainGameManager.instance.gameObject.transform.GetChild((int)GameValue.prefab_list.passenger);
 
-        // Die 추가할 때 확인할 거 코루틴 멈추는지 안멈추는지
         StopCoroutine(PassengerIsEffectedByEnvironment());
 
+        this.gameObject.SetActive(false);
         DiseaseGauge.fillAmount = 0;
         HungryGauge.fillAmount = 0;
     }
@@ -176,8 +179,8 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
         pass.Hungry -= GameValue.HungryDecrease;
         item.Use_Food();
         // 이걸 false를 시킬까? 아니면 x를 추가할까
-        PassengerCareButtons.gameObject.SetActive(false);
-        PassengerStateRender.gameObject.SetActive(false);
+       // PassengerCareButtons.gameObject.SetActive(false);
+       // PassengerStateRender.gameObject.SetActive(false);
 
         Clicking = false;
     }
@@ -195,8 +198,8 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
         pass.Disease -= GameValue.DiseaseDncrease;
         item.Use_MediPack();
 
-        PassengerCareButtons.gameObject.SetActive(false);
-        PassengerStateRender.gameObject.SetActive(false);
+       // PassengerCareButtons.gameObject.SetActive(false);
+      //  PassengerStateRender.gameObject.SetActive(false);
 
         Clicking = false;
     }
@@ -232,8 +235,7 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
             pass.Disease += 20;
         }
 
-        photonView.RPC("setHungryDisease", RpcTarget.All , pass.Hungry, pass.Disease);
-
+        photonView.RPC("setHungryDisease", RpcTarget.All, pass.Hungry, pass.Disease);
 
         yield return new WaitForSeconds(2.5f);
 
