@@ -45,7 +45,7 @@ static class GameValue
 
 
     // layer int값
-    public const int hand_layer = 9;
+    public const int iteminven_layer = 9;
     public const int itembox_layer = 12;
     public const int passenger_layer = 13;
     public const int choice_layer = 14;

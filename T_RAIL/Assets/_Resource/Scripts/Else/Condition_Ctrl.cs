@@ -19,7 +19,6 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-        Debug.LogError(this.gameObject.name);
         photonView.RPC("Init_Make", RpcTarget.All);
     }
 
