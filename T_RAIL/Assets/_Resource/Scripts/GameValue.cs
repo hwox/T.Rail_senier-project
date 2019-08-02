@@ -33,7 +33,8 @@ static class GameValue
         box = 5,
         chicken = 6,
         egg = 7,
-        coinparticle = 8
+        coinparticle = 8,
+           tomatosoup=9
     }
     // 카메라 셋팅
     public const float Mcam_initrot_x = 20.0f;
@@ -116,7 +117,7 @@ static class GameValue
     public static readonly float[] T_ObjectZ = new float[4] { 3.5f, 1.5f, -0.3f, -2.0f };
 
     //playerMaxHp
-    public const int PlayerMaxHp = 10;
+    public const int PlayerMaxHp = 100;
 
 
     // 아이템 사용

@@ -10,6 +10,9 @@ public class VendingMachine : MonoBehaviour {
     public GameObject cam;
     public GameObject itemCtrl;
     //public Camera cam;
+
+    public GameObject item1;
+
     GameObject targetbutton;
 
     public bool VendingMachine_on = false;
@@ -45,11 +48,14 @@ public class VendingMachine : MonoBehaviour {
                       
                         StartCoroutine(ClickButton(button[i]));
 
+
+                        StartCoroutine(itemdrop(i));
                         if (TrainGameManager.instance.CoinNum >= item_price[i])
                         {
                             //TrainGameManager.instance.CoinNum = TrainGameManager.instance.CoinNum - item_price[i];
                             TrainGameManager.instance.GetComponent<PhotonView>().RPC("getCoin_RPC", RpcTarget.All, -item_price[i]);
                             itemCtrl.GetComponent<AllItem_Ctrl>().VendingMachine_ItemGet(i + 1);
+                           
                         }
                         else
                         {
@@ -87,5 +93,16 @@ public class VendingMachine : MonoBehaviour {
 
         button.GetComponent<Animator>().SetBool("click", false);
 
+    }
+     IEnumerator itemdrop(int i)
+     {
+
+        GameObject temp = TrainGameManager.instance.GetObject(i+9);
+        temp.SetActive(true);
+        temp.transform.position = item1.transform.position;
+       
+        temp.GetComponent<Rigidbody>().AddForce(Vector3.back *3 , ForceMode.Impulse);
+        yield return new WaitForSeconds(3.0f);
+        temp.SetActive(false);
     }
 }
