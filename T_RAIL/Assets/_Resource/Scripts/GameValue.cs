@@ -54,6 +54,7 @@ static class GameValue
 
 
     // layer int값
+    public const int iteminven_layer = 9;
     public const int itembox_layer = 12;
     public const int passenger_layer = 13;
     public const int choice_layer = 14;
@@ -126,7 +127,7 @@ static class GameValue
     public static readonly float[] T_ObjectZ = new float[4] { 3.5f, 1.5f, -0.3f, -2.0f };
 
     //playerMaxHp
-    public const int PlayerMaxHp = 10;
+    public const int PlayerMaxHp = 100;
 
 
     // 아이템 사용

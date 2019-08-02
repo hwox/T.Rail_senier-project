@@ -68,7 +68,7 @@ public class Enemy_Ctrl : MonoBehaviourPunCallbacks
                 break;
         }
 
-        StartCoroutine(Enemy_ActRoutine());
+       // StartCoroutine(Enemy_ActRoutine());
     //    TrainGameManager.instance.ConditionCtrl.NowEnemy = this.gameObject;
     //    TrainGameManager.instance.ConditionCtrl.enemy_ctrl = this.GetComponent<Enemy_Ctrl>();
         this.gameObject.SetActive(false);

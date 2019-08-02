@@ -16,22 +16,9 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks
 
     public GameObject NowEnemy;
 
-    //[SerializeField]
-    //public GameObject enemyOnStage1;
-
-    //[SerializeField]
-    //public GameObject enemyOnStage2;
-
-    //[SerializeField]
-    //public GameObject enemyOnStage3;
-    // 지금 stage1에서 rhino만 만들던거를 cactus, husky도 만들어놓고 stage에 따라서
-    // onoff하는걸로
-
-    // 흠ㅁ 그냥 다 수정해서 enemy_ctrl로 통일시킬까
 
     private void Awake()
     {
-        Debug.LogError(this.gameObject.name);
         photonView.RPC("Init_Make", RpcTarget.All);
     }
 

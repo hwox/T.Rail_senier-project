@@ -66,6 +66,7 @@ public class PlayerHand_Item : MonoBehaviour
         //    }
 
         //}
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -189,6 +190,7 @@ public class PlayerHand_Item : MonoBehaviour
                     allitem.UseLeftHandItem();
 
                     // 오류지점 ***************
+                    Debug.Log("clickUI가 뭔데 오류가 나?"+clickUI);
                     NowHave_Image.sprite = allitem.ItemImage[clickUI];
                     allitem.ItemCrack = false;
                 }

@@ -97,7 +97,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
             TrainGameManager.instance.SofaSitPassengerCtrl.PassengerRideInTrain();
 
             // 기차 다시 불러오면서 코루틴들 다시 호출
-            TrainGameManager.instance.TrainCtrl.SceneReLoadTrain();
+            TrainGameManager.instance.TrainCtrl.SceneReRoadTrain();
 
         }
 
@@ -121,6 +121,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
     {
 
         Train_Ctrl.Run_Meter = 0;
+
         Train_Ctrl.Hide();
         TrainGameManager.instance.Scene_state = 2;
         //Debug.LogError("id : " + (PhotonNetwork.LocalPlayer.ActorNumber - 1 )+ "  floor : " + playerListController.playerList[PhotonNetwork.LocalPlayer.ActorNumber - 1].player.Where_Floor);

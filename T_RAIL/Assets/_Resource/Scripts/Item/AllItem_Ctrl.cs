@@ -66,17 +66,6 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         boxNumber -= 1;
     }
 
-    public void HandItemUiOnOff(bool _onoff)
-    {
-        if (_onoff)
-        {
-            ItemInhand.SetActive(true);
-        }
-        else
-        {
-            ItemInhand.SetActive(false);
-        }
-    }
     public void Change_DragMouse(int _number)
     {
 
@@ -473,6 +462,9 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
                 photonView.RPC("vending_item", RpcTarget.All, Vnum);
                 photonView.RPC("ItemGet_Ironpan", RpcTarget.All);
                 break;
+            case 627:
+                photonView.RPC("vending_item", RpcTarget.All, Vnum);
+                break;
         }
 
     }
@@ -480,6 +472,13 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
     [PunRPC]
     public void vending_item(int itemcase)
     {
+
+
+        if(itemcase == 627)
+        {
+            chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "돈이 충분하지 않습니다.");
+        }
+
         if (boxItem.Count == 0)
         {
             chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "기차 내부에 박스가 없어서 아이템을 획득하지 못했습니다.");
