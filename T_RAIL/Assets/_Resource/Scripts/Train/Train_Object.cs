@@ -395,7 +395,10 @@ public class Train_Object : MonoBehaviourPunCallbacks
             FracturedWall[i].transform.GetChild(2).gameObject.SetActive(false);
         }
 
-        ItemInhand.SetActive(false);
+        if (!TrainGameManager.instance.UISettingCtrl.HandButtonOn)
+        {
+            ItemInhand.SetActive(false);
+        }
         TrainGameManager.instance.NowItemUIUsable = true;
         StopCoroutine(TrainRepairCheck());
     }

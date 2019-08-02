@@ -138,7 +138,12 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
         ChoiceCanvas.SetActive(false);
         SetButtons.SetActive(true);
         MakeButton.interactable = false;
-        ItemInhand.SetActive(false);
+
+        if (!TrainGameManager.instance.UISettingCtrl.HandButtonOn)
+        {
+
+            ItemInhand.SetActive(false);
+        }
 
         TrainGameManager.instance.NowItemUIUsable = true;
     }

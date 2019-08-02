@@ -45,11 +45,12 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            
+
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, IgnoreRay))
             {
                 if (Input.GetMouseButtonDown(0) && EventSystem.current.IsPointerOverGameObject() == false)
                 {
+                    Debug.Log("왼쪽");
                     // 만약에 마우스 클릭이 안된다?
                     // max distance 200.0f을 mathf.infinity로 바꿔볼것
                     //if (Physics.Raycast(ray, out hit))
@@ -80,7 +81,7 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
                         {
                             hit.collider.GetComponent<InTrainObjectMake>().ChoiceSetOn();
                         }
-          
+
                         // 이거 getHitObjectRPC 이 함수안에 내용 주석처리했음
                         photonView.RPC("getHitObjectRPC", RpcTarget.AllBuffered, hit.collider.gameObject.GetPhotonView().ViewID);
                     }
@@ -106,11 +107,12 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
                     }
 
                 }
-
                 else if (hit.collider.gameObject.layer.Equals(GameValue.passenger_layer))
                 {
                     hit.collider.GetComponent<Passenger_Ctrl>().PointerEnter();
                 }
+
+         
             }
         }
     }
