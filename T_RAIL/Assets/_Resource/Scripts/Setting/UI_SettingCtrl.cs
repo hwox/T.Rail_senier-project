@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UI_SettingCtrl : MonoBehaviour {
+public class UI_SettingCtrl : MonoBehaviour
+{
 
 
     public GameObject Setting_Window;
     public GameObject Book_Window;
+
+    public GameObject HandUI;
+    public GameObject HPUI;
+    bool HandButtonOn;
+    bool HPButtonOn;
 
     public void ExitGame()
     {
@@ -35,22 +41,34 @@ public class UI_SettingCtrl : MonoBehaviour {
         Book_Window.GetComponent<ShowStateInNotePad>().CloseNotePad();
     }
 
-    public void On_HP()
+    public void HPButtonClick()
     {
-
-    }
-    public void Off_HP()
-    {
-
-    }
-
-    public void On_HandButton()
-    {
-
-    }
-    public void Off_HandButton()
-    {
-
+        if (!HPButtonOn)
+        {
+            HPUI.SetActive(true);
+            HPButtonOn = true;
+        }
+        else if(HPButtonOn)
+        {
+            HPUI.SetActive(false);
+            HPButtonOn = false;
+        }
     }
 
+
+
+    public void HandButtonClick()
+    {
+        if (!HandButtonOn)
+        {
+            HandUI.SetActive(true);
+            HandButtonOn = true;
+        }
+        else if(HandButtonOn)
+        {
+            HandUI.SetActive(false);
+            HandButtonOn = false;
+        }
+
+    }
 }
