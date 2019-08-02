@@ -82,5 +82,6 @@ MonoBehaviour:
   - chickenDie_RPC
   - HideTrain_RPC
   - passenger_Die_RPC
+  - getCoin_RPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1

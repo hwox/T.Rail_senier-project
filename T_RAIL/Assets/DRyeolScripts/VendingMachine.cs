@@ -47,12 +47,14 @@ public class VendingMachine : MonoBehaviour {
 
                         if (TrainGameManager.instance.CoinNum >= item_price[i])
                         {
-                            TrainGameManager.instance.CoinNum = TrainGameManager.instance.CoinNum - item_price[i];
+                            //TrainGameManager.instance.CoinNum = TrainGameManager.instance.CoinNum - item_price[i];
+                            TrainGameManager.instance.GetComponent<PhotonView>().RPC("getCoin_RPC", RpcTarget.All, -item_price[i]);
                             itemCtrl.GetComponent<AllItem_Ctrl>().VendingMachine_ItemGet(i + 1);
                         }
                         else
                         {
                             Debug.Log("돈 부족");
+                            itemCtrl.GetComponent<AllItem_Ctrl>().VendingMachine_ItemGet(627);
                         }
                     }
                 }

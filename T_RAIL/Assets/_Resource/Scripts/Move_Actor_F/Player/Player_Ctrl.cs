@@ -1057,7 +1057,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         Debug.Log("들어옴");
         GameObject Cp = TrainGameManager.instance.GetObject(8);
         Cp.SetActive(true);
-        TrainGameManager.instance.CoinNum += 10;
+        TrainGameManager.instance.GetComponent<PhotonView>().RPC("getCoin_RPC", RpcTarget.All,10);
+        //TrainGameManager.instance.CoinNum += 10;
         Cp.transform.position = other.position;
       //  Cp.transform.Translate(Vector3.up);
         yield return new WaitForSeconds(3.0f);

@@ -662,4 +662,10 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
     {
         TrainGameManager.instance.Scene_state = _state;
     }
+
+    [PunRPC]
+    public void getCoin_RPC(int _num)
+    {
+        TrainGameManager.instance.CoinNum += _num;
+    }
 }
