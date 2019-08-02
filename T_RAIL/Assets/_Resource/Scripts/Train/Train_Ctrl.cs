@@ -260,11 +260,18 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
     }
     public void Hide()
     {
+        photonView.RPC("HideTrain_RPC", RpcTarget.All);
+    }
+
+    [PunRPC]
+    void HideTrain_RPC()
+    {
         for (int i = 0; i < TrainGameManager.instance.trainindex; i++)
         {
             train[i].SetActive(false);
         }
     }
+
     public void Appear()
     {
         for (int i = 0; i < TrainGameManager.instance.trainindex; i++)
