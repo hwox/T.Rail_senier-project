@@ -29,6 +29,8 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
 
     AllItem_Ctrl item;
 
+    public GameObject passengerDeathParticle;
+
     private void Awake()
     {
         pass = new Passenger_Actor();
@@ -132,6 +134,16 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
 
     public void Passenger_Die()
     {
+        photonView.RPC("passenger_Die_RPC", RpcTarget.All);
+    }
+
+
+    [PunRPC]
+    void passenger_Die_RPC()
+    {
+        GameObject temp = Instantiate(passengerDeathParticle, transform.position, transform.rotation);
+        temp.transform.parent = this.transform.parent;
+
         // 죽었을 때 호출할 함수
         Live = false;
         // parent다시 gamemanager로 바꿔야 함 
@@ -142,7 +154,9 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
         this.gameObject.SetActive(false);
         DiseaseGauge.fillAmount = 0;
         HungryGauge.fillAmount = 0;
+
     }
+
 
     // 1. 승객 hover + 현재 승객 상태
     // 2. 승객을 클릭하면 약/ 음식 선택
