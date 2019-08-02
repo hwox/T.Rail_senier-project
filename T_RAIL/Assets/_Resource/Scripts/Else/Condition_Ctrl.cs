@@ -44,7 +44,7 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks
         // 기차도 
 
         enemyOnStage1 = PhotonNetwork.InstantiateSceneObject(rhino.name, new Vector3(-200, 1.7f, -3.6f), Quaternion.Euler(0, 90, 0));
-        enemyOnStage2 = PhotonNetwork.InstantiateSceneObject(Cactus.name, new Vector3(-200, 1.7f, -3.6f), Quaternion.Euler(0, 90, 0));
+        enemyOnStage2 = PhotonNetwork.InstantiateSceneObject(Cactus.name, new Vector3(-200, 1.7f, -3.6f), Quaternion.Euler(0,110, 0));
         enemyOnStage3 = PhotonNetwork.InstantiateSceneObject(Husky.name, new Vector3(-200, 1.7f, -3.6f), Quaternion.Euler(0, 90, 0));
 
         //이 주석부분 -> Enemy1_ctrl 스크립트 start()부분으로 옮김. train 생성과 같은 이유로
