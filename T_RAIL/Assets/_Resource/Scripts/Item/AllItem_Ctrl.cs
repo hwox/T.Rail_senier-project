@@ -157,6 +157,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
                 if (boxItem[i].HaveItemInfo[j] == (int)GameValue.itemCategory.medipack)
                 {
                     boxItem[i].DeleteItem(j); // 아이템 지우기
+                    break;
                 }
             }
         }
@@ -190,6 +191,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
                 if (boxItem[i].HaveItemInfo[j] >= (int)GameValue.itemCategory.food_tomato && boxItem[i].HaveItemInfo[j] <= (int)GameValue.itemCategory.food_chicken)
                 {
                     boxItem[i].DeleteItem(j); // 아이템 지우기
+                    break;
                 }
             }
         }

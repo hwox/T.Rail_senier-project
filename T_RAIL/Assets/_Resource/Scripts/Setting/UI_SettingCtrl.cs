@@ -35,5 +35,22 @@ public class UI_SettingCtrl : MonoBehaviour {
         Book_Window.GetComponent<ShowStateInNotePad>().CloseNotePad();
     }
 
+    public void On_HP()
+    {
+
+    }
+    public void Off_HP()
+    {
+
+    }
+
+    public void On_HandButton()
+    {
+
+    }
+    public void Off_HandButton()
+    {
+
+    }
 
 }
