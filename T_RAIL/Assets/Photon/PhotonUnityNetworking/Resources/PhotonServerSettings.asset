@@ -81,5 +81,6 @@ MonoBehaviour:
   - Enemy_Appear
   - chickenDie_RPC
   - HideTrain_RPC
+  - passenger_Die_RPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
