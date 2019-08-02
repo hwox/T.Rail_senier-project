@@ -67,7 +67,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     // ui
     // public GameObject Push_Space_UI_pref; // space 누르라고 뜨는 ui. 얘는 프리팹 연결
     GameObject Push_Space_UI; // space 누르라고 뜨는 ui
-
+    Slider HP_UISlider;
 
     // particle
 
@@ -137,7 +137,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         //playerListController.playerList.Add(this.gameObject.GetComponent<Player_Ctrl>());
         //UIState_Ctrl = GameObject.Find("UIState_Ctrl").GetComponent<UIState_Ctrl>();
         //whereIam = player.Where_Train;
-
+        HP_UISlider = TrainGameManager.instance.PlayerHPUI[0].transform.GetChild(0).GetComponent<Slider>();
     }
 
     void Init_Set_Value()
@@ -474,6 +474,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         // 키입력
         GetKeyInput();
 
+        // 플레이어 HP를 UI와 연결
+        ConnectHPUI();
 
         if (stair_up)
         {
@@ -1064,4 +1066,16 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         Cp.SetActive(false);
     }
 
+
+    ////////////////////////////// Player HP UI ////////////////////////////////////
+
+    void ConnectHPUI()
+    {
+        // 0~3 까지 있음 0이 플레이어1
+
+        // 이 HP_UISlider는 start에서 받아오는 중임
+        HP_UISlider.value = (float)player.HP/GameValue.PlayerMaxHp;
+        
+
+    }
 }
