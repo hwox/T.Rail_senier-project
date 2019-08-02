@@ -134,12 +134,32 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
     public bool Usable_MediPack()
     {
         // 구급상자를 사용할 수 있는지
-        return true;
+        for (int i = 0; i < boxItem.Count; i++)
+        {
+            for (int j = 0; j < GameValue.ITEMLIMIT; j++)
+            {
+                if (boxItem[i].HaveItemInfo[j] == (int)GameValue.itemCategory.medipack)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public void Use_MediPack()
     {
         // 구급상자를 사용
+        for (int i = 0; i < boxItem.Count; i++)
+        {
+            for (int j = 0; j < GameValue.ITEMLIMIT; j++)
+            {
+                if (boxItem[i].HaveItemInfo[j] == (int)GameValue.itemCategory.medipack)
+                {
+                    boxItem[i].DeleteItem(j); // 아이템 지우기
+                }
+            }
+        }
     }
 
     public bool Usable_Food()
@@ -149,7 +169,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         {
             for (int j = 0; j < GameValue.ITEMLIMIT; j++)
             {
-                if (boxItem[i].HaveItemInfo[j] >= 3 && boxItem[i].HaveItemInfo[j] <= 5)
+                if (boxItem[i].HaveItemInfo[j] >= (int)GameValue.itemCategory.food_tomato && boxItem[i].HaveItemInfo[j] <= (int)GameValue.itemCategory.food_chicken)
                 {
                     return true;
                 }
@@ -167,7 +187,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         {
             for (int j = 0; j < GameValue.ITEMLIMIT; j++)
             {
-                if (boxItem[i].HaveItemInfo[j] >= 3 && boxItem[i].HaveItemInfo[j] <= 5)
+                if (boxItem[i].HaveItemInfo[j] >= (int)GameValue.itemCategory.food_tomato && boxItem[i].HaveItemInfo[j] <= (int)GameValue.itemCategory.food_chicken)
                 {
                     boxItem[i].DeleteItem(j); // 아이템 지우기
                 }

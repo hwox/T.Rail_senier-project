@@ -537,7 +537,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4244792937097890}
-  - component: {fileID: 114611351282818114}
   m_Layer: 0
   m_Name: TrainWallCollider
   m_TagString: Untagged
@@ -5161,7 +5160,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1597046123888030
 GameObject:
   m_ObjectHideFlags: 1
@@ -19059,7 +19058,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 6
+  InstantiationId: 1
   isRuntimeInstantiated: 0
 --- !u!114 &114394857818785906
 MonoBehaviour:
@@ -20319,7 +20318,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 5
+  InstantiationId: 2
   isRuntimeInstantiated: 0
 --- !u!114 &114506697298172636
 MonoBehaviour:
@@ -21986,18 +21985,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114611351282818114
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1076736648845722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: feecb0c5f4c44794fb8ac7163b701db7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroySecond: 5
 --- !u!114 &114611883680835262
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24058,7 +24045,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114246163877717286}
   viewIdField: 0
-  InstantiationId: 2
+  InstantiationId: 5
   isRuntimeInstantiated: 0
 --- !u!114 &114767963880710806
 MonoBehaviour:
@@ -26536,7 +26523,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 1
+  InstantiationId: 6
   isRuntimeInstantiated: 0
 --- !u!114 &114929157535397738
 MonoBehaviour:
