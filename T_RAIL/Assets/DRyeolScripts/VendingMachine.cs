@@ -15,8 +15,8 @@ public class VendingMachine : MonoBehaviour {
 
     GameObject targetbutton;
 
-    public bool VendingMachine_on = false;
-     int[] item_price = new int[8] { 2, 2, 2, 2, 1, 3, 3, 3 };
+    //public bool VendingMachine_on = false;
+     int[] item_price = new int[9] { 2, 2, 2, 2, 1, 4, 2, 2,2 };
     // Use this for initialization
     void Start () {
         cam = GameObject.Find("VendingMachineCam");
@@ -34,7 +34,7 @@ public class VendingMachine : MonoBehaviour {
     void Update()
     {
 
-        if (VendingMachine_on)
+        if (TrainGameManager.instance.VendingMachineOn)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -52,8 +52,16 @@ public class VendingMachine : MonoBehaviour {
                         StartCoroutine(itemdrop(i));
                         if (TrainGameManager.instance.CoinNum >= item_price[i])
                         {
-                            TrainGameManager.instance.CoinNum = TrainGameManager.instance.CoinNum - item_price[i];
-                            itemCtrl.GetComponent<AllItem_Ctrl>().VendingMachine_ItemGet(i + 1);
+                            if(i==9)
+                            {
+
+                            }
+                            else
+                            {
+                                TrainGameManager.instance.CoinNum = TrainGameManager.instance.CoinNum - item_price[i];
+                                itemCtrl.GetComponent<AllItem_Ctrl>().VendingMachine_ItemGet(i + 1);
+                            }
+                     
                            
                         }
                         else

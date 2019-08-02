@@ -324,17 +324,19 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             if (Input.GetKeyDown(KeyCode.V))
             {
 
-                if (other.GetComponent<VendingMachine>().VendingMachine_on)
+                if (TrainGameManager.instance.VendingMachineOn)
                 {
+                    
                     MCam_Ctrl.Vending_Machine_Cam(false, 0);
-                    other.GetComponent<VendingMachine>().VendingMachine_on = false;
+                    TrainGameManager.instance.VendingMachineOn = false;
                     player.Where_Floor = 4;
                 }
                 else
                 {
+                    player.rotate.y = 0.0f;
                     anim.SetBool("IsWalk", false);
                     MCam_Ctrl.Vending_Machine_Cam(true, 0);
-                    other.GetComponent<VendingMachine>().VendingMachine_on = true;
+                    TrainGameManager.instance.VendingMachineOn = true;
                     player.Where_Floor = 5;
                 }
               

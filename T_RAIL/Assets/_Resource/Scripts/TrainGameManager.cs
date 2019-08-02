@@ -131,6 +131,41 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
     public List<GameObject> tomatosoupM;
     const int MAKE__TOMATOSOUP_COUNT = 5;
 
+    //완두콩 스프
+    public List<GameObject> peasoupM;
+    const int MAKE__PEASOUP_COUNT = 5;
+
+    //치킨 스프
+    public List<GameObject> chickensoupM;
+    const int MAKE_CHICKENSOUP_COUNT = 5;
+
+    // 망치 
+    public List<GameObject> hammerM;
+    const int MAKE_HAMMER_COUNT = 5;
+
+    // 못 
+    public List<GameObject> nailM;
+    const int MAKE_NAIL_COUNT = 5;
+
+    // 구급상자 
+    public List<GameObject> medkitM;
+    const int MAKE_MEDKIT_COUNT = 5;
+
+    // 나무판자 
+    public List<GameObject> woodboardM;
+    const int MAKE_WOODBOARD_COUNT = 5;
+
+    // 철판 
+    public List<GameObject> ironpanM;
+    const int MAKE_IRONPAN_COUNT = 5;
+   
+
+    // 하트
+    public List<GameObject> heartM;
+    const int MAKE_HEART_COUNT = 5;
+
+  
+
 
     public int Scene_state=1;
 
@@ -145,7 +180,9 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
     public float runmeter = 0;
     public bool NowItemUIUsable { get; set; }
 
-    public int Stage; 
+    public int Stage;
+
+    public bool VendingMachineOn = false;
 
     private void Awake()
     {
@@ -178,7 +215,16 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
         CreateObject(Origin[(int)GameValue.prefab_list.chicken], MAKE_CHICKEN_COUNT, (int)GameValue.prefab_list.chicken); // 치킨생성
         CreateObject(Origin[(int)GameValue.prefab_list.egg], MAKE_EGG_COUNT, (int)GameValue.prefab_list.egg); // 달걀생성
         CreateObject(Origin[(int)GameValue.prefab_list.coinparticle], MAKE_COINPARTICLE_COUNT, (int)GameValue.prefab_list.coinparticle); // 코인파티클생성
-        CreateObject(Origin[(int)GameValue.prefab_list.tomatosoup], MAKE__TOMATOSOUP_COUNT, (int)GameValue.prefab_list.tomatosoup);
+        CreateObject(Origin[(int)GameValue.prefab_list.tomatosoup], MAKE__TOMATOSOUP_COUNT, (int)GameValue.prefab_list.tomatosoup); //토마토스프생성
+        CreateObject(Origin[(int)GameValue.prefab_list.peasoup], MAKE__TOMATOSOUP_COUNT, (int)GameValue.prefab_list.peasoup); //완두콩스프생성
+        CreateObject(Origin[(int)GameValue.prefab_list.chickensoup], MAKE_CHICKENSOUP_COUNT, (int)GameValue.prefab_list.chickensoup); //완두콩스프생성
+        CreateObject(Origin[(int)GameValue.prefab_list.hammer], MAKE_HAMMER_COUNT, (int)GameValue.prefab_list.hammer); //망치생성
+        CreateObject(Origin[(int)GameValue.prefab_list.nail], MAKE_NAIL_COUNT, (int)GameValue.prefab_list.nail); //못생성
+        CreateObject(Origin[(int)GameValue.prefab_list.medipack], MAKE_MEDKIT_COUNT, (int)GameValue.prefab_list.medipack); //구급상자생성
+        CreateObject(Origin[(int)GameValue.prefab_list.woodboard], MAKE_WOODBOARD_COUNT, (int)GameValue.prefab_list.woodboard); //망치생성
+        CreateObject(Origin[(int)GameValue.prefab_list.ironpan], MAKE_IRONPAN_COUNT, (int)GameValue.prefab_list.ironpan); //못생성
+        CreateObject(Origin[(int)GameValue.prefab_list.heart], MAKE_HEART_COUNT, (int)GameValue.prefab_list.heart); //구급상자생성
+
 
     }
     public void Notice_Someting(string text)
@@ -273,6 +319,62 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                     obj.SetActive(false);
                     obj.transform.parent = transform.GetChild(prefab_index);
                     tomatosoupM.Add(obj);
+                    break;
+                case (int)GameValue.prefab_list.peasoup:
+                    obj = Instantiate(_obj);
+                    obj.transform.localPosition = Vector3.zero;
+                    obj.SetActive(false);
+                    obj.transform.parent = transform.GetChild(prefab_index);
+                    peasoupM.Add(obj);
+                    break;
+                case (int)GameValue.prefab_list.chickensoup:
+                    obj = Instantiate(_obj);
+                    obj.transform.localPosition = Vector3.zero;
+                    obj.SetActive(false);
+                    obj.transform.parent = transform.GetChild(prefab_index);
+                    chickensoupM.Add(obj);
+                    break;
+                case (int)GameValue.prefab_list.hammer:
+                    obj = Instantiate(_obj);
+                    obj.transform.localPosition = Vector3.zero;
+                    obj.SetActive(false);
+                    obj.transform.parent = transform.GetChild(prefab_index);
+                    hammerM.Add(obj);
+                    break;
+                case (int)GameValue.prefab_list.nail:
+                    obj = Instantiate(_obj);
+                    obj.transform.localPosition = Vector3.zero;
+                    obj.SetActive(false);
+                    obj.transform.parent = transform.GetChild(prefab_index);
+                    nailM.Add(obj);
+                    break;
+                case (int)GameValue.prefab_list.medipack:
+                    obj = Instantiate(_obj);
+                    obj.transform.localPosition = Vector3.zero;
+                    obj.SetActive(false);
+                    obj.transform.parent = transform.GetChild(prefab_index);
+                    medkitM.Add(obj);
+                    break;
+                case (int)GameValue.prefab_list.woodboard:
+                    obj = Instantiate(_obj);
+                    obj.transform.localPosition = Vector3.zero;
+                    obj.SetActive(false);
+                    obj.transform.parent = transform.GetChild(prefab_index);
+                    woodboardM.Add(obj);
+                    break;
+                case (int)GameValue.prefab_list.ironpan:
+                    obj = Instantiate(_obj);
+                    obj.transform.localPosition = Vector3.zero;
+                    obj.SetActive(false);
+                    obj.transform.parent = transform.GetChild(prefab_index);
+                    ironpanM.Add(obj);
+                    break;
+                case (int)GameValue.prefab_list.heart:
+                    obj = Instantiate(_obj);
+                    obj.transform.localPosition = Vector3.zero;
+                    obj.SetActive(false);
+                    obj.transform.parent = transform.GetChild(prefab_index);
+                    heartM.Add(obj);
                     break;
 
             }
@@ -545,6 +647,215 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                     return tomatosoupM[i];
                 }
                 return null;
+            case (int)GameValue.prefab_list.peasoup:
+
+                if (peasoupM == null)
+                {
+                    return null;
+                }
+                int ps_Count = peasoupM.Count;
+
+                for (int i = 0; i < ps_Count; i++)
+                {
+                    GameObject obj = peasoupM[i];
+
+                    //활성화 돼있으면
+                    if (obj.active == true)
+                    {
+                        // 리스트의 마지막까지 돌았는데 다 사용중이다?
+                        if (i == ps_Count - 1)
+                        {
+                            CreateObject(obj, 1, _objIndex);
+                            return peasoupM[i + 1];
+                        }
+                        continue;
+                    }
+                    return peasoupM[i];
+                }
+                return null;
+            case (int)GameValue.prefab_list.chickensoup:
+
+                if (chickensoupM == null)
+                {
+                    return null;
+                }
+                int cs_Count = chickensoupM.Count;
+
+                for (int i = 0; i < cs_Count; i++)
+                {
+                    GameObject obj = chickensoupM[i];
+
+                    //활성화 돼있으면
+                    if (obj.active == true)
+                    {
+                        // 리스트의 마지막까지 돌았는데 다 사용중이다?
+                        if (i == cs_Count - 1)
+                        {
+                            CreateObject(obj, 1, _objIndex);
+                            return chickensoupM[i + 1];
+                        }
+                        continue;
+                    }
+                    return chickensoupM[i];
+                }
+                return null;
+
+            case (int)GameValue.prefab_list.hammer:
+
+                if (hammerM == null)
+                {
+                    return null;
+                }
+                int h_Count = hammerM.Count;
+
+                for (int i = 0; i < h_Count; i++)
+                {
+                    GameObject obj = hammerM[i];
+
+                    //활성화 돼있으면
+                    if (obj.active == true)
+                    {
+                        // 리스트의 마지막까지 돌았는데 다 사용중이다?
+                        if (i == h_Count - 1)
+                        {
+                            CreateObject(obj, 1, _objIndex);
+                            return hammerM[i + 1];
+                        }
+                        continue;
+                    }
+                    return hammerM[i];
+                }
+                return null;
+            case (int)GameValue.prefab_list.nail:
+
+                if (nailM == null)
+                {
+                    return null;
+                }
+                int n_Count = nailM.Count;
+
+                for (int i = 0; i < n_Count; i++)
+                {
+                    GameObject obj = nailM[i];
+
+                    //활성화 돼있으면
+                    if (obj.active == true)
+                    {
+                        // 리스트의 마지막까지 돌았는데 다 사용중이다?
+                        if (i == n_Count - 1)
+                        {
+                            CreateObject(obj, 1, _objIndex);
+                            return nailM[i + 1];
+                        }
+                        continue;
+                    }
+                    return nailM[i];
+                }
+                return null;
+            case (int)GameValue.prefab_list.medipack:
+
+                if (medkitM == null)
+                {
+                    return null;
+                }
+                int m_Count = medkitM.Count;
+
+                for (int i = 0; i < m_Count; i++)
+                {
+                    GameObject obj = medkitM[i];
+
+                    //활성화 돼있으면
+                    if (obj.active == true)
+                    {
+                        // 리스트의 마지막까지 돌았는데 다 사용중이다?
+                        if (i == m_Count - 1)
+                        {
+                            CreateObject(obj, 1, _objIndex);
+                            return medkitM[i + 1];
+                        }
+                        continue;
+                    }
+                    return medkitM[i];
+                }
+                return null;
+            case (int)GameValue.prefab_list.woodboard:
+
+                if (woodboardM == null)
+                {
+                    return null;
+                }
+                int w_Count = woodboardM.Count;
+
+                for (int i = 0; i < w_Count; i++)
+                {
+                    GameObject obj = woodboardM[i];
+
+                    //활성화 돼있으면
+                    if (obj.active == true)
+                    {
+                        // 리스트의 마지막까지 돌았는데 다 사용중이다?
+                        if (i == w_Count - 1)
+                        {
+                            CreateObject(obj, 1, _objIndex);
+                            return woodboardM[i + 1];
+                        }
+                        continue;
+                    }
+                    return woodboardM[i];
+                }
+                return null;
+            case (int)GameValue.prefab_list.ironpan:
+
+                if (ironpanM == null)
+                {
+                    return null;
+                }
+                int i_Count = ironpanM.Count;
+
+                for (int i = 0; i < i_Count; i++)
+                {
+                    GameObject obj = ironpanM[i];
+
+                    //활성화 돼있으면
+                    if (obj.active == true)
+                    {
+                        // 리스트의 마지막까지 돌았는데 다 사용중이다?
+                        if (i == i_Count - 1)
+                        {
+                            CreateObject(obj, 1, _objIndex);
+                            return ironpanM[i + 1];
+                        }
+                        continue;
+                    }
+                    return ironpanM[i];
+                }
+                return null;
+            case (int)GameValue.prefab_list.heart:
+
+                if (heartM == null)
+                {
+                    return null;
+                }
+                int ht_Count = heartM.Count;
+
+                for (int i = 0; i < ht_Count; i++)
+                {
+                    GameObject obj = heartM[i];
+
+                    //활성화 돼있으면
+                    if (obj.active == true)
+                    {
+                        // 리스트의 마지막까지 돌았는데 다 사용중이다?
+                        if (i == ht_Count - 1)
+                        {
+                            CreateObject(obj, 1, _objIndex);
+                            return heartM[i + 1];
+                        }
+                        continue;
+                    }
+                    return heartM[i];
+                }
+                return null;
             default:
                 return null;
 
@@ -709,8 +1020,139 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                 }
                 tomatosoupM = null;
                 break;
+
+            case (int)GameValue.prefab_list.peasoup:
+
+                if (peasoupM == null)
+                {
+                    return;
+                }
+
+                int ps_Count = peasoupM.Count;
+
+                for (int i = 0; i < ps_Count; i++)
+                {
+                    GameObject obj = peasoupM[i];
+                    GameObject.Destroy(obj);
+                }
+                peasoupM = null;
+                break;
+            case (int)GameValue.prefab_list.chickensoup:
+
+                if (chickensoupM == null)
+                {
+                    return;
+                }
+
+                int cs_Count = peasoupM.Count;
+
+                for (int i = 0; i < cs_Count; i++)
+                {
+                    GameObject obj = chickensoupM[i];
+                    GameObject.Destroy(obj);
+                }
+                chickensoupM = null;
+                break;
+            case (int)GameValue.prefab_list.hammer:
+
+                if (hammerM == null)
+                {
+                    return;
+                }
+
+                int h_Count = hammerM.Count;
+
+                for (int i = 0; i < h_Count; i++)
+                {
+                    GameObject obj = hammerM[i];
+                    GameObject.Destroy(obj);
+                }
+                hammerM = null;
+                break;
+
+            case (int)GameValue.prefab_list.nail:
+
+                if (nailM == null)
+                {
+                    return;
+                }
+
+                int n_Count = nailM.Count;
+
+                for (int i = 0; i < n_Count; i++)
+                {
+                    GameObject obj = nailM[i];
+                    GameObject.Destroy(obj);
+                }
+                nailM = null;
+                break;
+            case (int)GameValue.prefab_list.medipack:
+
+                if (medkitM == null)
+                {
+                    return;
+                }
+
+                int m_Count = medkitM.Count;
+
+                for (int i = 0; i < m_Count; i++)
+                {
+                    GameObject obj = medkitM[i];
+                    GameObject.Destroy(obj);
+                }
+                medkitM = null;
+                break;
+            case (int)GameValue.prefab_list.woodboard:
+
+                if (woodboardM == null)
+                {
+                    return;
+                }
+
+                int w_Count = woodboardM.Count;
+
+                for (int i = 0; i < w_Count; i++)
+                {
+                    GameObject obj = woodboardM[i];
+                    GameObject.Destroy(obj);
+                }
+                woodboardM = null;
+                break;
+            case (int)GameValue.prefab_list.ironpan:
+
+                if (ironpanM == null)
+                {
+                    return;
+                }
+
+                int i_Count = ironpanM.Count;
+
+                for (int i = 0; i < i_Count; i++)
+                {
+                    GameObject obj = ironpanM[i];
+                    GameObject.Destroy(obj);
+                }
+                ironpanM = null;
+                break;
+            case (int)GameValue.prefab_list.heart:
+
+                if (heartM == null)
+                {
+                    return;
+                }
+
+                int ht_Count = heartM.Count;
+
+                for (int i = 0; i < ht_Count; i++)
+                {
+                    GameObject obj = heartM[i];
+                    GameObject.Destroy(obj);
+                }
+                heartM = null;
+                break;
         }
     }
+    
     ///////////////////////////////////////////////////////////////////////////////////////
     ///
 
