@@ -1013,7 +1013,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         //player.position.z--;
         anim.SetBool("IsWalk", false);
         runTime = 0;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.0f);
         invincibility = false;
     }
 
