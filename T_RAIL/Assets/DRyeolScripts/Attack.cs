@@ -18,7 +18,7 @@ public class Attack : MonoBehaviourPunCallbacks {
         if (other.gameObject.layer.Equals(GameValue.chicken_layer))
         {
 
-            Debug.Log("공격");
+
             if ( attack )
             {
                 if (other.gameObject.GetComponent<Chicken_Ctrl>().live)

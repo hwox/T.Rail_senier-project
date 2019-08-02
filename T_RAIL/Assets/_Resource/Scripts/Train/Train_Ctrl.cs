@@ -281,4 +281,12 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
     }
     // hp 체크 코루틴
     // 얘를 gamemanger로 해야되나?
+
+    public void SceneReLoadTrain()
+    {
+        for(int i = 0; i < trainscript.Count; i++)
+        {
+            trainscript[i].TrainActiveReTrue();
+        }
+    }
 }
