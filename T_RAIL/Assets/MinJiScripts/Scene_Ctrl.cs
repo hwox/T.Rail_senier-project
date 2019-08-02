@@ -96,6 +96,9 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
             // 승객을 태우기 위해서 호출하는 함수
             TrainGameManager.instance.SofaSitPassengerCtrl.PassengerRideInTrain();
 
+            // 기차 다시 불러오면서 코루틴들 다시 호출
+            TrainGameManager.instance.TrainCtrl.SceneReLoadTrain();
+
         }
 
         for (int i = 0; i < 10; ++i)
