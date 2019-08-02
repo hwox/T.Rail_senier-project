@@ -219,11 +219,9 @@ public class Train_Object : MonoBehaviourPunCallbacks
     {
         while (true)
         {
-            Debug.Log("체크 코루틴 도는중");
             // 조건 필요
             if (HP < PrevHP && HP >= 10)
             {
-                Debug.Log("HP깎여서 뚫는거 대기중");
                 FracturedTrain();
                 photonView.RPC("Run_TrainPrevHPMinus_RPC", RpcTarget.All, 20.0f);
                 //PrevHP -= 20;

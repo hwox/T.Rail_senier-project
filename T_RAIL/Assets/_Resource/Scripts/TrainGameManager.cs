@@ -83,6 +83,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
     public GameObject Info_Canvas;
     public GameObject ItemHand;
     public GameObject UIStateCtrl;
+    public GameObject TrainRunUI;
 
     // #Pool
     public GameObject[] Origin; // 프리팹들 원본

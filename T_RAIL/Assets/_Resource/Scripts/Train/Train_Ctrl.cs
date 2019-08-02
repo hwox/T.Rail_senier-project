@@ -26,6 +26,7 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
     public List<Train_Object> trainscript = new List<Train_Object>();
 
 
+    Slider TrainRunSlider;
     public Text RunMeterText;
 
     float perMeter = 0.03f; // 이름 뭐로 해야할지 모르겠어서 이걸로해씀 나중에 바꿀지도 기차 달릴 떄마다
@@ -53,6 +54,7 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
         }
 
         StartCoroutine(TrainHPMinus());
+        TrainRunSlider = TrainGameManager.instance.TrainRunUI.GetComponent<Slider>();
     }
 
     private void Update()
@@ -97,21 +99,18 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
 
             TrainGameManager.instance.runmeter = Run_Meter;
 
-            float temp = GameValue.NextStationMeter - Run_Meter;
+           // float temp = GameValue.NextStationMeter - Run_Meter;
 
+            TrainRunSlider.value = (float)(Run_Meter/ GameValue.NextStationMeter);
 
-
-            if (temp >= 0)
-                RunMeterText.text = "남은 거리 :" + temp.ToString("N0") + "M";
-            else
-                RunMeterText.text = "남은 거리 : 0M";
-
-
-            //Run_Meter
+            //if (temp >= 0)
+            //    RunMeterText.text = "남은 거리 :" + temp.ToString("N0") + "M";
+            //else
+            //    RunMeterText.text = "남은 거리 : 0M";
         }
         else
         {
-            RunMeterText.text = " ";
+          //  RunMeterText.text = " ";
         }
 
     }
@@ -251,13 +250,13 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
         // no contain Wheel
     }
 
-    public void Train_HPMinus()
-    {
-        for (int i = 0; i < train.Count; i++)
-        {
-            //train[i].Run_TrainHPMinus(Run_Meter);
-        }
-    }
+    //public void Train_HPMinus()
+    //{
+    //    for (int i = 0; i < train.Count; i++)
+    //    {
+    //        //train[i].Run_TrainHPMinus(Run_Meter);
+    //    }
+    //}
     public void Hide()
     {
         photonView.RPC("HideTrain_RPC", RpcTarget.All);
@@ -266,6 +265,9 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
     [PunRPC]
     void HideTrain_RPC()
     {
+        TrainRunSlider.value = 0;
+        TrainGameManager.instance.TrainRunUI.SetActive(false);
+
         for (int i = 0; i < TrainGameManager.instance.trainindex; i++)
         {
             train[i].SetActive(false);
@@ -282,11 +284,13 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
     // hp 체크 코루틴
     // 얘를 gamemanger로 해야되나?
 
-    public void SceneReLoadTrain()
+    public void SceneReRoadTrain()
     {
+        TrainGameManager.instance.TrainRunUI.SetActive(true);
         for(int i = 0; i < trainscript.Count; i++)
         {
             trainscript[i].TrainActiveReTrue();
         }
     }
+
 }
