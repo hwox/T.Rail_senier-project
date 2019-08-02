@@ -16,14 +16,14 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks
 
     public GameObject NowEnemy;
 
-    [SerializeField]
-    public GameObject enemyOnStage1;
+    //[SerializeField]
+    //public GameObject enemyOnStage1;
 
-    [SerializeField]
-    public GameObject enemyOnStage2;
+    //[SerializeField]
+    //public GameObject enemyOnStage2;
 
-    [SerializeField]
-    public GameObject enemyOnStage3;
+    //[SerializeField]
+    //public GameObject enemyOnStage3;
     // 지금 stage1에서 rhino만 만들던거를 cactus, husky도 만들어놓고 stage에 따라서
     // onoff하는걸로
 
@@ -43,9 +43,10 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks
         // 처음에 만들어놓을 몬스터들이나 기관총 ㅇ총알. 총알 방식은 좀 바꿔야될걳같음 기관총이 생기는거를
         // 기차도 
 
-        enemyOnStage1 = PhotonNetwork.InstantiateSceneObject(rhino.name, new Vector3(-200, 1.7f, -3.6f), Quaternion.Euler(0, 90, 0));
-        enemyOnStage2 = PhotonNetwork.InstantiateSceneObject(Cactus.name, new Vector3(-200, 1.7f, -3.6f), Quaternion.Euler(0,110, 0));
-        enemyOnStage3 = PhotonNetwork.InstantiateSceneObject(Husky.name, new Vector3(-200, 1.7f, -3.6f), Quaternion.Euler(0, 90, 0));
+
+      //  enemyOnStage1 = PhotonNetwork.InstantiateSceneObject(rhino.name, new Vector3(-200, 1.7f, -3.6f), Quaternion.Euler(0, 90, 0));
+       // enemyOnStage2 = PhotonNetwork.InstantiateSceneObject(Cactus.name, new Vector3(-200, 1.7f, -3.6f), Quaternion.Euler(0,110, 0));
+      //  enemyOnStage3 = PhotonNetwork.InstantiateSceneObject(Husky.name, new Vector3(-200, 1.7f, -3.6f), Quaternion.Euler(0, 90, 0));
 
         //이 주석부분 -> Enemy1_ctrl 스크립트 start()부분으로 옮김. train 생성과 같은 이유로
         //enemy1 =PhotonNetwork.InstantiateSceneObject(rhino.name, new Vector3(200, 1.7f, -3.6f), Quaternion.Euler(0,90,0));
@@ -80,14 +81,14 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks
         switch (TrainGameManager.instance.Stage)
         {
             case 1:
-                NowEnemy = enemyOnStage1;
+                NowEnemy = rhino;
 
                 break;
             case 2:
-                NowEnemy = enemyOnStage2;
+                NowEnemy = Cactus;
                 break;
             case 3:
-                NowEnemy = enemyOnStage3;
+                NowEnemy = Husky;
                 break;
             default:
                 TrainGameManager.instance.Error_print();

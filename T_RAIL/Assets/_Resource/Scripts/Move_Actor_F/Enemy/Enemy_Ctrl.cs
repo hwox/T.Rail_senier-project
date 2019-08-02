@@ -32,7 +32,7 @@ public class Enemy_Ctrl : MonoBehaviourPunCallbacks
     int follow_index; // 따라갈 기차의 인덱스 
     bool Retreat; // 후퇴
 
-    public Condition_Ctrl condition_ctrl;
+  //  public Condition_Ctrl condition_ctrl;
 
     private void Awake()
     {
@@ -47,21 +47,21 @@ public class Enemy_Ctrl : MonoBehaviourPunCallbacks
     // Use this for initialization
     void Start()
     {
-        condition_ctrl = GameObject.Find("/State_Ctrl/Condition_Ctrl").GetComponent<Condition_Ctrl>();
+      //  condition_ctrl = GameObject.Find("/State_Ctrl/Condition_Ctrl").GetComponent<Condition_Ctrl>();
 
         switch (KindOfEnemy)
         {
             case 1:
                 RhinoInitSetting();
-                condition_ctrl.enemyOnStage1 = this.gameObject;
+              //  condition_ctrl.enemyOnStage1 = this.gameObject;
                 break;
             case 2:
                 CactusInitSetting();
-                condition_ctrl.enemyOnStage2 = this.gameObject;
+              //  condition_ctrl.enemyOnStage2 = this.gameObject;
                 break;
             case 3:
                 HuskyInitSetting();
-                condition_ctrl.enemyOnStage3 = this.gameObject;
+            //    condition_ctrl.enemyOnStage3 = this.gameObject;
                 break;
             default:
                 TrainGameManager.instance.Error_print();
@@ -81,19 +81,24 @@ public class Enemy_Ctrl : MonoBehaviourPunCallbacks
     void RhinoInitSetting()
     {
 
-        Init_Rhino = tr.position;
+        //Init_Rhino = tr.position;
+        Init_Rhino = new Vector3(-200, 1.7f, -3.6f);
         Init_Rhino_child = Rhino_child.position;
+
+        this.gameObject.SetActive(false);
 
     }
     void CactusInitSetting()
     {
-        Init_Cactus = tr.position;
+     //   Init_Cactus = tr.position;
+        Init_Cactus = new Vector3(-200, 1.7f, -3.6f);
         Init_Cactus_child = Cactus_child.position;
     }
 
     void HuskyInitSetting()
     {
-
+        Init_Husky = new Vector3(-200, 1.7f, -3.6f);
+        Init_Husky_child = Cactus_child.position;
     }
     private void OnTriggerEnter(Collider other)
     {

@@ -1516,7 +1516,6 @@ MonoBehaviour:
   Cactus_child: {fileID: 0}
   Cactus_Punch: {fileID: 0}
   Husky_child: {fileID: 4456845142415314}
-  condition_ctrl: {fileID: 0}
 --- !u!114 &114660287857572726
 MonoBehaviour:
   m_ObjectHideFlags: 1
