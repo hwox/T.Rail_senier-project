@@ -66,17 +66,6 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         boxNumber -= 1;
     }
 
-    public void HandItemUiOnOff(bool _onoff)
-    {
-        if (_onoff)
-        {
-            ItemInhand.SetActive(true);
-        }
-        else
-        {
-            ItemInhand.SetActive(false);
-        }
-    }
     public void Change_DragMouse(int _number)
     {
 

@@ -95,7 +95,11 @@ public class InBoxItem : MonoBehaviourPunCallbacks
         //  allitem.ItemInhand.SetActive(false);위에 동일한 거 true는 되는데 false는 안됨. 왜?
 
         MyInvenCanvas.gameObject.SetActive(false);
-        allitem.ItemInhand.SetActive(false);
+
+        if (!TrainGameManager.instance.UISettingCtrl.HandButtonOn)
+        {
+            allitem.ItemInhand.SetActive(false);
+        }
 
         TrainGameManager.instance.NowItemUIUsable = true;
     }
