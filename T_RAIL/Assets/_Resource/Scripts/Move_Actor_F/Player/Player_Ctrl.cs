@@ -1032,6 +1032,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         Cp.SetActive(true);
         TrainGameManager.instance.CoinNum += 10;
         Cp.transform.position = other.position;
+      //  Cp.transform.Translate(Vector3.up);
         yield return new WaitForSeconds(3.0f);
         Cp.SetActive(false);
     }
