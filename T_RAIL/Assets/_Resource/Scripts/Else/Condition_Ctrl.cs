@@ -17,13 +17,13 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks
     public GameObject NowEnemy;
 
     [SerializeField]
-    GameObject enemyOnStage1;
+    public GameObject enemyOnStage1;
 
     [SerializeField]
-    GameObject enemyOnStage2;
+    public GameObject enemyOnStage2;
 
     [SerializeField]
-    GameObject enemyOnStage3;
+    public GameObject enemyOnStage3;
     // 지금 stage1에서 rhino만 만들던거를 cactus, husky도 만들어놓고 stage에 따라서
     // onoff하는걸로
 
@@ -31,15 +31,15 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            photonView.RPC("Init_Make", RpcTarget.All);
-        }
+        Debug.LogError(this.gameObject.name);
+        photonView.RPC("Init_Make", RpcTarget.All);
     }
 
     [PunRPC]
     void Init_Make()
     {
+        //if (!PhotonNetwork.IsMasterClient) return;
+
         // 처음에 만들어놓을 몬스터들이나 기관총 ㅇ총알. 총알 방식은 좀 바꿔야될걳같음 기관총이 생기는거를
         // 기차도 
 

@@ -40,12 +40,19 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
             photonView.RPC("StationSceneLoad", RpcTarget.All);
         }
 
+        //state==1 기차 안 / state == 3 역
+        if (TrainGameManager.instance.Scene_state == 1)
+        {
+            NextStageCheck();
+        }
 
-        if (!PhotonNetwork.IsMasterClient) return;
+            if (!PhotonNetwork.IsMasterClient) return;
 
         //state==1 기차 안 / state == 3 역
         if (TrainGameManager.instance.Scene_state == 1)
         {
+            //NextStageCheck();
+
             if (!TestMeterMode)
             {
                 if (GameValue.NextStationMeter < Train_Ctrl.Run_Meter)
@@ -62,7 +69,6 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
                     photonView.RPC("StationSceneLoad", RpcTarget.All);
                 }
             }
-            NextStageCheck();
         }
         else if (TrainGameManager.instance.Scene_state == 3)
         {
