@@ -344,6 +344,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                     MCam_Ctrl.Vending_Machine_Cam(false, 0);
                     TrainGameManager.instance.VendingMachineOn = false;
                     player.Where_Floor = 4;
+                    other.GetComponent<VendingMachine>().customer = player;
+                    Debug.Log(player.HP);
                 }
                 else
                 {
@@ -352,6 +354,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                     MCam_Ctrl.Vending_Machine_Cam(true, 0);
                     TrainGameManager.instance.VendingMachineOn = true;
                     player.Where_Floor = 5;
+                    Debug.Log(player.HP);
                 }
               
             }
@@ -582,15 +585,15 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 // 1층에서 칸 이동이나 그런거할 떄
 
                 // 플레이어의 x좌표를 전달해줌(카메라 이동관련)
-                MCam_Ctrl.GetPlayerX(player.position.x);
+                MCam_Ctrl.SetPlayerX(player.position.x);
 
                 break;
             case 2:
-                MCam_Ctrl.GetPlayerX(player.position.x);
+                MCam_Ctrl.SetPlayerX(player.position.x);
                 break;
             case 3:
             case 4:
-                MCam_Ctrl.GetPlayerX(player.position.x);
+                MCam_Ctrl.SetPlayerX(player.position.x);
                 break;
         }
 

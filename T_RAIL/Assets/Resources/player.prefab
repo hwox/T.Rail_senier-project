@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114561383226387818}
   - component: {fileID: 114560943422132080}
   - component: {fileID: 114537870420915034}
+  - component: {fileID: 114152107718208564}
   m_Layer: 21
   m_Name: player
   m_TagString: Untagged
@@ -136,7 +137,7 @@ GameObject:
   - component: {fileID: 114305680330118004}
   - component: {fileID: 54818759989017614}
   - component: {fileID: 114700780553631044}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: 'attackreach '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -880,7 +881,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1014540451394702}
   m_LocalRotation: {x: -0, y: 0.6884226, z: -0, w: -0.7253098}
-  m_LocalPosition: {x: 5.26, y: 3.3, z: -7.64}
+  m_LocalPosition: {x: 4.48, y: 2.4477916, z: -10.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4379721805300126}
@@ -1160,6 +1161,27 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114152107718208564
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1014540451394702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01bffa8aa898b437183cd5617f7b5303, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathName: push
+  pathColor: {r: 0, g: 1, b: 1, a: 1}
+  nodes:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  nodeCount: 3
+  initialized: 1
+  initialName: New Path 1
+  pathVisible: 0
 --- !u!114 &114265445870221514
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1291,7 +1313,7 @@ MonoBehaviour:
   - {fileID: 114560943422132080}
   - {fileID: 114537870420915034}
   viewIdField: 0
-  InstantiationId: 12
+  InstantiationId: 11
   isRuntimeInstantiated: 0
 --- !u!114 &114700780553631044
 MonoBehaviour:
@@ -1312,7 +1334,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 11
+  InstantiationId: 13
   isRuntimeInstantiated: 0
 --- !u!114 &114749372244307306
 MonoBehaviour:

@@ -13,6 +13,8 @@ public class VendingMachine : MonoBehaviour {
 
     public GameObject item1;
 
+    public Player_Actor customer;
+
     GameObject targetbutton;
 
     //public bool VendingMachine_on = false;
@@ -49,12 +51,15 @@ public class VendingMachine : MonoBehaviour {
                         StartCoroutine(ClickButton(button[i]));
 
 
-                        StartCoroutine(itemdrop(i));
+                      
                         if (TrainGameManager.instance.CoinNum >= item_price[i])
                         {
-                            if(i==9)
-                            {
-
+                            StartCoroutine(itemdrop(i));
+                            if (i+1==9)
+                            {                               
+                                customer.HP += 5;
+                                if (customer.HP>GameValue.PlayerMaxHp)
+                                    customer.HP = 100;
                             }
                             else
                             {
