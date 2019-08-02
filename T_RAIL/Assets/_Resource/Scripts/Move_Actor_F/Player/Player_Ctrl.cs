@@ -234,6 +234,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (!invincibility)
             {
+                Debug.Log("맞음");
                 StartCoroutine("Beaten");
             }
             
@@ -1037,18 +1038,25 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         player.HP--;
         invincibility = true;
         //player.position.z--;
-        anim.SetBool("IsWalk", false);
+        transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().materials[0].color = new Vector4(0.7056604f, 0.2308945f, 0.2238875f, 1f);
+        anim.SetBool("IsBeaten", true);
+       // anim.SetBool("IsWalk", false);
         runTime = 0;
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1.05f);
+        anim.SetBool("IsBeaten", false);
+        anim.SetBool("IsAttack", false);
+        transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().materials[0].color = new Vector4(0.868735f, 0.7077841f, 0.5328797f, 1f);
+        //anim.SetBool("IsBeaten", false);
         invincibility = false;
     }
 
     void BeatenPath()
     {
-        itp.SetNode(0, new Vector3(10.0f, 0.0f, 0.0f));
-        itp.SetNode(0, new Vector3(10.0f, 0.0f, 0.0f));
-        itp.SetNode(0, new Vector3(10.0f, 0.0f, 0.0f));
-        iTween.MoveTo(gameObject, iTween.Hash("path", iTweenPath.GetPath("New Path 1"), "time", 7));
+        
+        //itp.SetNode(0, new Vector3(10.0f, 0.0f, 0.0f));
+        //itp.SetNode(0, new Vector3(10.0f, 0.0f, 0.0f));
+        //itp.SetNode(0, new Vector3(10.0f, 0.0f, 0.0f));
+        //iTween.MoveTo(gameObject, iTween.Hash("path", iTweenPath.GetPath("New Path 1"), "time", 7));
     }
 
     IEnumerator CoinParticle( Transform other)
