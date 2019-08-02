@@ -58,7 +58,8 @@ public class ChangeLight : MonoBehaviour {
         {
             double i = TrainGameManager.instance.runmeter / GameValue.NextStationMeter;
 
-          //  Debug.Log(i);
+            //Debug.Log(i);
+            //Debug.Log(i);
 
             li.color = Color.Lerp(Light_A, Light_B, (float)i);
            

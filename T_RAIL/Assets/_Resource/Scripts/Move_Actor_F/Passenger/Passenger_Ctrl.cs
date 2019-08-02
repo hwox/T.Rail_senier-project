@@ -138,7 +138,7 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
         this.gameObject.transform.parent = TrainGameManager.instance.gameObject.transform.GetChild((int)GameValue.prefab_list.passenger);
 
         StopCoroutine(PassengerIsEffectedByEnvironment());
-
+        ExitButtonCanvas();
         this.gameObject.SetActive(false);
         DiseaseGauge.fillAmount = 0;
         HungryGauge.fillAmount = 0;

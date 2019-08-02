@@ -172,6 +172,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4377477771888832}
+  - component: {fileID: 114045883032742196}
   m_Layer: 0
   m_Name: repairParticle
   m_TagString: Untagged
@@ -318,6 +319,18 @@ Transform:
   m_Father: {fileID: 4377477771888832}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -180, y: 90, z: 0}
+--- !u!114 &114045883032742196
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1995312764493206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feecb0c5f4c44794fb8ac7163b701db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroySecond: 5
 --- !u!198 &198122388559080114
 ParticleSystem:
   m_ObjectHideFlags: 1

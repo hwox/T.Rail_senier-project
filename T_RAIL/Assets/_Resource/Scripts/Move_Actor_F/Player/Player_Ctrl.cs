@@ -644,6 +644,32 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
         }
 
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            TrainGameManager.instance.allitemCtrl.ItemGet_FoodTomato_Button();
+        }
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            TrainGameManager.instance.allitemCtrl.ItemGet_Hammer_Button();
+        }
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            TrainGameManager.instance.allitemCtrl.ItemGet_Nail_Button();
+        }
+        if (Input.GetKeyDown(KeyCode.F4))
+        {
+            TrainGameManager.instance.allitemCtrl.ItemGet_MediPack_Button();
+        }
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            TrainGameManager.instance.allitemCtrl.ItemGet_WoodBoard_Button();
+        }
+        if (Input.GetKeyDown(KeyCode.F6))
+        {
+            TrainGameManager.instance.allitemCtrl.ItemGet_Ironpan_Button();
+        }
+ 
+
         Quaternion rot = Quaternion.identity;
         rot.eulerAngles = new Vector3(player.rotate.x, player.rotate.y, player.rotate.z);
         // tr.position = new Vector3(player.position.x, player.position.y, player.position.z);
