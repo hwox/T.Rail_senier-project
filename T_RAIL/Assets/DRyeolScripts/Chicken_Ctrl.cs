@@ -22,7 +22,7 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
 
     public void BeatenTrue()
     {
-        Invoke("beatenTrueInvoke", 0.3f); 
+        Invoke("beatenTrueInvoke", 0.1f); 
            
     }
 
