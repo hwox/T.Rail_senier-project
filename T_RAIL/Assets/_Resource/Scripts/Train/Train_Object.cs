@@ -82,7 +82,7 @@ public class Train_Object : MonoBehaviourPunCallbacks
         if (!PhotonNetwork.IsMasterClient) return;
 
         StartCoroutine(Train_Position_Setting_Change());
-        StartCoroutine(TrainHPCheck()); // 어차피 Train_Object()가 먼저 실행되니까 여기서 코루틴 실행해도 HP 100부터.
+        StartCoroutine(TrainHPCheck()); // 어차피 Train_Object()가 먼저 실행되니까 여기서 코루틴 실행해도 R 100부터.
     }
 
     public Train_Object()
@@ -111,7 +111,7 @@ public class Train_Object : MonoBehaviourPunCallbacks
     {
         // 기차가 달릴수록 체력이 감소
         PrevHP -= _meter;
-        Debug.Log(PrevHP);
+
     }
 
     public void ChangeTrainSetting(int _index)
@@ -219,9 +219,11 @@ public class Train_Object : MonoBehaviourPunCallbacks
     {
         while (true)
         {
+            Debug.Log("체크 코루틴 도는중");
             // 조건 필요
             if (HP < PrevHP && HP >= 10)
             {
+                Debug.Log("HP깎여서 뚫는거 대기중");
                 FracturedTrain();
                 photonView.RPC("Run_TrainPrevHPMinus_RPC", RpcTarget.All, 20.0f);
                 //PrevHP -= 20;
@@ -231,7 +233,6 @@ public class Train_Object : MonoBehaviourPunCallbacks
             {
                 if (index != 1)
                 {
-                    Debug.Log("끝");
                     ctrl.photonView.RPC("Train_Delete", RpcTarget.All, index - 1);
                     //ctrl.Train_Delete(index - 1);
                 }
@@ -336,6 +337,7 @@ public class Train_Object : MonoBehaviourPunCallbacks
     {
         if (!PhotonNetwork.IsMasterClient) return;
 
+        Debug.Log("뚫리는함수");
         int randomWall = Random.Range(0, 4);
 
         if (FracturedWall[randomWall].active && !BrokenWall[randomWall])
@@ -458,5 +460,12 @@ public class Train_Object : MonoBehaviourPunCallbacks
         temp.transform.parent = this.transform;
 
         RepairUIExit();
+    }
+
+    public void TrainActiveReTrue()
+    {
+        // 역에서 기차 갈 때 기차 다시 켜면서 
+        // 코루틴 다시 켜주기
+        StartCoroutine(TrainHPCheck());
     }
 }

@@ -119,9 +119,9 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             Init_Set_Value();
 
             //생성되면 플레이어 리스트에 스스로를 넣어줌.
-            playerListController = GameObject.Find("PlayerList_Ctrl").GetComponent<playerListController_minj>();
+            playerListController = TrainGameManager.instance.PlayerListCtrl.GetComponent<playerListController_minj>();
             playerListController.playerList.Add(this.gameObject.GetComponent<Player_Ctrl>());
-            UIState_Ctrl = GameObject.Find("UIState_Ctrl").GetComponent<UIState_Ctrl>();
+            UIState_Ctrl = TrainGameManager.instance.UIStateCtrl.GetComponent<UIState_Ctrl>();
             whereIam = player.Where_Train;
         }
     }
@@ -292,18 +292,19 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (Input.GetKeyDown(KeyCode.V))
             {
-                //여기서 이제다시 기차로
-                TrainGameManager.instance.photonView.RPC("setSceneState_RPC", RpcTarget.All, 3);
-                //TrainGameManager.instance.Scene_state = 3;
 
 
                 for (int i = 0; i < TrainGameManager.MAKE_CHICKEN_COUNT; i++)
                 {
                     if (gameObject.activeSelf == true)
-                    { 
+                    {
                         TrainGameManager.instance.ChickenManager[i].GetComponent<Chicken_Ctrl>().die();
                     }
                 }
+
+                //여기서 이제다시 기차로
+                TrainGameManager.instance.photonView.RPC("setSceneState_RPC", RpcTarget.All, 3);
+                //TrainGameManager.instance.Scene_state = 3;
             }
         }
 
@@ -313,7 +314,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (Input.GetKeyDown(KeyCode.V))
             {
-                GameObject.Find("Item_Ctrl").GetComponent<AllItem_Ctrl>().ItemGet_Random(other.gameObject.GetPhotonView().ViewID);
+               TrainGameManager.instance.allitemCtrl.ItemGet_Random(other.gameObject.GetPhotonView().ViewID);
             }
         }
 

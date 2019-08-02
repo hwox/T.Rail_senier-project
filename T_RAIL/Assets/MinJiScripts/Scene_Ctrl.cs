@@ -96,6 +96,9 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
             // 승객을 태우기 위해서 호출하는 함수
             TrainGameManager.instance.SofaSitPassengerCtrl.PassengerRideInTrain();
 
+            // 기차 다시 불러오면서 코루틴들 다시 호출
+            TrainGameManager.instance.TrainCtrl.SceneReLoadTrain();
+
         }
 
         for (int i = 0; i < 10; ++i)
@@ -154,17 +157,17 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         if (NextStage <= GameValue.Stage1Index && SceneManager.GetActiveScene().buildIndex >= 1)
         {
             TrainGameManager.instance.Stage = 1;
-            Debug.Log("stage1");
+            //Debug.Log("stage1");
         }
         else if (NextStage >= GameValue.Stage1Index && NextStage < GameValue.Stage2Index)
         {
             TrainGameManager.instance.Stage = 2;
-            Debug.Log("stage2");
+            //Debug.Log("stage2");
         }
         else if (NextStage >= GameValue.Stage2Index && NextStage < GameValue.Stage3Index)
         {
             TrainGameManager.instance.Stage = 3;
-            Debug.Log("stage3");
+            //Debug.Log("stage3");
         }
         else if (NextStage >= GameValue.Stage3Index)
         {

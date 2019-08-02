@@ -1804,6 +1804,8 @@ MonoBehaviour:
   Medical: {fileID: 114363648248477538}
   HungryGauge: {fileID: 114349566649859276}
   DiseaseGauge: {fileID: 114752999752842688}
+  passengerDeathParticle: {fileID: 1466385494797962, guid: c64ba2183f05378478d8307fdd879c41,
+    type: 2}
 --- !u!114 &114693410300986208
 MonoBehaviour:
   m_ObjectHideFlags: 1

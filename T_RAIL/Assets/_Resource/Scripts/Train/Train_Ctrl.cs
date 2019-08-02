@@ -260,11 +260,18 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
     }
     public void Hide()
     {
+        photonView.RPC("HideTrain_RPC", RpcTarget.All);
+    }
+
+    [PunRPC]
+    void HideTrain_RPC()
+    {
         for (int i = 0; i < TrainGameManager.instance.trainindex; i++)
         {
             train[i].SetActive(false);
         }
     }
+
     public void Appear()
     {
         for (int i = 0; i < TrainGameManager.instance.trainindex; i++)
@@ -274,4 +281,12 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
     }
     // hp 체크 코루틴
     // 얘를 gamemanger로 해야되나?
+
+    public void SceneReLoadTrain()
+    {
+        for(int i = 0; i < trainscript.Count; i++)
+        {
+            trainscript[i].TrainActiveReTrue();
+        }
+    }
 }
