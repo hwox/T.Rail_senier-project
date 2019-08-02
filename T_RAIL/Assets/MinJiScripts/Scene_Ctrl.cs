@@ -157,17 +157,17 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         if (NextStage <= GameValue.Stage1Index && SceneManager.GetActiveScene().buildIndex >= 1)
         {
             TrainGameManager.instance.Stage = 1;
-            Debug.Log("stage1");
+            //Debug.Log("stage1");
         }
         else if (NextStage >= GameValue.Stage1Index && NextStage < GameValue.Stage2Index)
         {
             TrainGameManager.instance.Stage = 2;
-            Debug.Log("stage2");
+            //Debug.Log("stage2");
         }
         else if (NextStage >= GameValue.Stage2Index && NextStage < GameValue.Stage3Index)
         {
             TrainGameManager.instance.Stage = 3;
-            Debug.Log("stage3");
+            //Debug.Log("stage3");
         }
         else if (NextStage >= GameValue.Stage3Index)
         {

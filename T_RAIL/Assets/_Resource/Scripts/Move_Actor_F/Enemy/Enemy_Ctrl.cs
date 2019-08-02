@@ -103,7 +103,7 @@ public class Enemy_Ctrl : MonoBehaviourPunCallbacks
        //Init_Husky = new Vector3(-200, 1.7f, -3.6f);
        Init_Husky = tr.position;
         tr.position = new Vector3(-200, 1.7f, -3.6f);
-        Init_Husky_child = Cactus_child.position;
+        Init_Husky_child = Husky_child.position;
     }
     private void OnTriggerEnter(Collider other)
     {

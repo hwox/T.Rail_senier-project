@@ -82,7 +82,7 @@ public class Train_Object : MonoBehaviourPunCallbacks
         if (!PhotonNetwork.IsMasterClient) return;
 
         StartCoroutine(Train_Position_Setting_Change());
-        StartCoroutine(TrainHPCheck()); // 어차피 Train_Object()가 먼저 실행되니까 여기서 코루틴 실행해도 HP 100부터.
+        StartCoroutine(TrainHPCheck()); // 어차피 Train_Object()가 먼저 실행되니까 여기서 코루틴 실행해도 R 100부터.
     }
 
     public Train_Object()

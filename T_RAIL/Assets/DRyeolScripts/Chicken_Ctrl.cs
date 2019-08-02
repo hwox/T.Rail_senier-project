@@ -137,6 +137,12 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
 
     public void die()
     {
+        photonView.RPC("chickenDie_RPC", RpcTarget.All);
+    }
+
+    [PunRPC]
+    void chickenDie_RPC()
+    {
         StopCoroutine("GotoDestPreson");
         StopCoroutine("BeatenFalse");
         this.gameObject.SetActive(false);
