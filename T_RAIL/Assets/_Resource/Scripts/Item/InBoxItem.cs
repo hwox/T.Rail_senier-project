@@ -105,6 +105,18 @@ public class InBoxItem : MonoBehaviourPunCallbacks
     }
 
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("DragItem"))
+        {
+            // 걍 아이템 넣고 훅
+
+        // 이 상자에 자리 없으면 안들어가게 -> 다시 원상복귀
+        // 상자에 자리 있으면 앞칸부터 검사해서 채워넣기
+
+        }
+    }
+
     public void DestroyTrain()
     {
         //allitem.HaveItemInfo.RemoveAt();
