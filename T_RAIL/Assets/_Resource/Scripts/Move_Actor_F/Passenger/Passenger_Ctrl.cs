@@ -133,10 +133,13 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
     public void Passenger_Die()
     {
         // 죽었을 때 호출할 함수
-
-        // Die 추가할 때 확인할 거 코루틴 멈추는지 안멈추는지
+        
         StopCoroutine(PassengerIsEffectedByEnvironment());
+        Live = false;
 
+        // parent다시 gamemanager로 바꿔야 함 
+
+        this.gameObject.SetActive(false);
         DiseaseGauge.fillAmount = 0;
         HungryGauge.fillAmount = 0;
     }
@@ -233,7 +236,6 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
         }
 
         photonView.RPC("setHungryDisease", RpcTarget.All , pass.Hungry, pass.Disease);
-
 
         yield return new WaitForSeconds(2.5f);
 
