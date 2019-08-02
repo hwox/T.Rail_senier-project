@@ -34,7 +34,16 @@ static class GameValue
         chicken = 6,
         egg = 7,
         coinparticle = 8,
-           tomatosoup=9
+        tomatosoup=9,
+        peasoup=10,
+        chickensoup=11,
+        hammer=12,
+        nail=13,
+        medipack = 14,
+        woodboard = 15,
+        ironpan = 16,
+        heart=17// 판(철판
+
     }
     // 카메라 셋팅
     public const float Mcam_initrot_x = 20.0f;

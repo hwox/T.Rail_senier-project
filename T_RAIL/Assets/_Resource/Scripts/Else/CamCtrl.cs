@@ -97,9 +97,14 @@ public class CamCtrl : MonoBehaviour
         // Cam_1FloorInitPosition();
     }
 
-    public void GetPlayerX(float position_x)
+    public void SetPlayerX(float position_x)
     {
         player_position_x = position_x;
+    }
+
+    public int GetPlayer_floor()
+    {
+        return player_floor;
     }
 
     public void Change_floor(int _floor)

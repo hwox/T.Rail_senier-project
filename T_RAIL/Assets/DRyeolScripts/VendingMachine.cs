@@ -13,10 +13,12 @@ public class VendingMachine : MonoBehaviour {
 
     public GameObject item1;
 
+    public Player_Actor customer;
+
     GameObject targetbutton;
 
-    public bool VendingMachine_on = false;
-     int[] item_price = new int[8] { 2, 2, 2, 2, 1, 3, 3, 3 };
+    //public bool VendingMachine_on = false;
+     int[] item_price = new int[9] { 2, 2, 2, 2, 1, 4, 2, 2,2 };
     // Use this for initialization
     void Start () {
         cam = GameObject.Find("VendingMachineCam");
@@ -34,7 +36,7 @@ public class VendingMachine : MonoBehaviour {
     void Update()
     {
 
-        if (VendingMachine_on)
+        if (TrainGameManager.instance.VendingMachineOn)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -49,12 +51,23 @@ public class VendingMachine : MonoBehaviour {
                         StartCoroutine(ClickButton(button[i]));
 
 
-                        StartCoroutine(itemdrop(i));
+                      
                         if (TrainGameManager.instance.CoinNum >= item_price[i])
                         {
-                            //TrainGameManager.instance.CoinNum = TrainGameManager.instance.CoinNum - item_price[i];
+                            StartCoroutine(itemdrop(i));
+                            if (i+1==9)
+                            {                               
+                                customer.HP += 5;
+                                if (customer.HP>GameValue.PlayerMaxHp)
+                                    customer.HP = 100;
+                            }
+                            else
+                            {
+                                //TrainGameManager.instance.CoinNum = TrainGameManager.instance.CoinNum - item_price[i];
                             TrainGameManager.instance.GetComponent<PhotonView>().RPC("getCoin_RPC", RpcTarget.All, -item_price[i]);
-                            itemCtrl.GetComponent<AllItem_Ctrl>().VendingMachine_ItemGet(i + 1);
+                                itemCtrl.GetComponent<AllItem_Ctrl>().VendingMachine_ItemGet(i + 1);
+                            }
+                     
                            
                         }
                         else

@@ -83,5 +83,8 @@ MonoBehaviour:
   - HideTrain_RPC
   - passenger_Die_RPC
   - getCoin_RPC
+  - connectHPUI_RPC
+  - setActivePlayerHPUI_RPC
+  - setPlayerHP
   DisableAutoOpenWizard: 1
   ShowSettings: 1

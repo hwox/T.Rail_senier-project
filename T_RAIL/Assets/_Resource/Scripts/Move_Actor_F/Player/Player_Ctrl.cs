@@ -67,7 +67,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     // ui
     // public GameObject Push_Space_UI_pref; // space 누르라고 뜨는 ui. 얘는 프리팹 연결
     GameObject Push_Space_UI; // space 누르라고 뜨는 ui
-    Slider HP_UISlider;
+    public Slider HP_UISlider;
 
     // particle
 
@@ -137,7 +137,21 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         //playerListController.playerList.Add(this.gameObject.GetComponent<Player_Ctrl>());
         //UIState_Ctrl = GameObject.Find("UIState_Ctrl").GetComponent<UIState_Ctrl>();
         //whereIam = player.Where_Train;
-        HP_UISlider = TrainGameManager.instance.PlayerHPUI[0].transform.GetChild(0).GetComponent<Slider>();
+        photonView.RPC("setActivePlayerHPUI_RPC", RpcTarget.All,  photonView.ViewID);
+    }
+
+    [PunRPC]
+    void setActivePlayerHPUI_RPC(int viewID)
+    {
+        TrainGameManager.instance.PlayerHPUI[viewID / 1000 - 1].SetActive(true);
+        //playerListController.playerList[actorNum].HP_UISlider = TrainGameManager.instance.PlayerHPUI[actorNum].transform.GetChild(0).GetComponent<Slider>();
+        for (int i = 0; i < playerListController.playerList.Count; ++i)
+        {
+            if (playerListController.playerList[i].photonView.ViewID == viewID)
+            {
+                playerListController.playerList[i].HP_UISlider = TrainGameManager.instance.PlayerHPUI[viewID / 1000 - 1].transform.GetChild(0).GetComponent<Slider>();
+            }
+        }
     }
 
     void Init_Set_Value()
@@ -324,18 +338,23 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             if (Input.GetKeyDown(KeyCode.V))
             {
 
-                if (other.GetComponent<VendingMachine>().VendingMachine_on)
+                if (TrainGameManager.instance.VendingMachineOn)
                 {
+                    
                     MCam_Ctrl.Vending_Machine_Cam(false, 0);
-                    other.GetComponent<VendingMachine>().VendingMachine_on = false;
+                    TrainGameManager.instance.VendingMachineOn = false;
                     player.Where_Floor = 4;
+                    other.GetComponent<VendingMachine>().customer = player;
+                    Debug.Log(player.HP);
                 }
                 else
                 {
+                    player.rotate.y = 0.0f;
                     anim.SetBool("IsWalk", false);
                     MCam_Ctrl.Vending_Machine_Cam(true, 0);
-                    other.GetComponent<VendingMachine>().VendingMachine_on = true;
+                    TrainGameManager.instance.VendingMachineOn = true;
                     player.Where_Floor = 5;
+                    Debug.Log(player.HP);
                 }
 
             }
@@ -565,15 +584,15 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 // 1층에서 칸 이동이나 그런거할 떄
 
                 // 플레이어의 x좌표를 전달해줌(카메라 이동관련)
-                MCam_Ctrl.GetPlayerX(player.position.x);
+                MCam_Ctrl.SetPlayerX(player.position.x);
 
                 break;
             case 2:
-                MCam_Ctrl.GetPlayerX(player.position.x);
+                MCam_Ctrl.SetPlayerX(player.position.x);
                 break;
             case 3:
             case 4:
-                MCam_Ctrl.GetPlayerX(player.position.x);
+                MCam_Ctrl.SetPlayerX(player.position.x);
                 CoinUI();
                 break;
             case 5:
@@ -635,6 +654,14 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             default:
                 break;
         }
+
+        //테스트용
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+
+            photonView.RPC("setPlayerHP", RpcTarget.All, photonView.ViewID, 10);
+        }
+
 
         if (Input.GetKeyDown(KeyCode.T))
         {
@@ -1016,7 +1043,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 {
                     photonView.RPC("changeMy_Where_Train", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber - 1, i + 1);
                 }
-
             }
         }
 
@@ -1041,7 +1067,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     ///////////////////////////
     IEnumerator Beaten()
     {
-        player.HP--;
+        photonView.RPC("setPlayerHP", RpcTarget.All, photonView.ViewID, 10);
         invincibility = true;
         //player.position.z--;
         transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().materials[0].color = new Vector4(0.7056604f, 0.2308945f, 0.2238875f, 1f);
@@ -1054,6 +1080,21 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().materials[0].color = new Vector4(0.868735f, 0.7077841f, 0.5328797f, 1f);
         //anim.SetBool("IsBeaten", false);
         invincibility = false;
+    }
+
+    [PunRPC]
+    void setPlayerHP(int viewID, int _hp)
+    {
+        for (int i = 0; i < playerListController.playerList.Count; ++i)
+        {
+            if (playerListController.playerList[i].photonView.ViewID == viewID)
+            {
+                playerListController.playerList[i].player.HP -= _hp;
+                Debug.Log("call view id : " + viewID);
+                Debug.Log("call view id hp : " + playerListController.playerList[i].player.HP);
+            }
+        }
+        //player.HP -= _hp;
     }
 
     void BeatenPath()
@@ -1083,12 +1124,16 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
     void ConnectHPUI()
     {
+        photonView.RPC("connectHPUI_RPC", RpcTarget.All);
+    }
+
+    [PunRPC]
+    void connectHPUI_RPC()
+    {
         // 0~3 까지 있음 0이 플레이어1
 
         // 이 HP_UISlider는 start에서 받아오는 중임
-        HP_UISlider.value = (float)player.HP / GameValue.PlayerMaxHp;
-
-
+  
     }
 
     void CoinUI()

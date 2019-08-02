@@ -1022,6 +1022,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Setting_Window: {fileID: 0}
   Book_Window: {fileID: 0}
+  HandUI: {fileID: 0}
+  HPUI: {fileID: 0}
 --- !u!4 &128792407
 Transform:
   m_ObjectHideFlags: 0
@@ -34017,7 +34019,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: de07bf378e7247444a0715ad2ff509e3, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -109.7
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: de07bf378e7247444a0715ad2ff509e3, type: 2}
       propertyPath: m_LocalPosition.y
@@ -34049,6 +34051,18 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: de07bf378e7247444a0715ad2ff509e3, type: 2}
       propertyPath: InitialModule.startSize.minScalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: de07bf378e7247444a0715ad2ff509e3, type: 2}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 332.52042
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: de07bf378e7247444a0715ad2ff509e3, type: 2}
+      propertyPath: InitialModule.maxNumParticles
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: de07bf378e7247444a0715ad2ff509e3, type: 2}
+      propertyPath: InitialModule.startSize.scalar
       value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
