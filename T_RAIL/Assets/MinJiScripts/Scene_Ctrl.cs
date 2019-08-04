@@ -104,6 +104,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
     public void SetTrainPlayer()// 기차로 갈때
     {
         Train_Ctrl.Appear();
+        TrainGameManager.instance.ConditionCtrl.TrainAddCondition_Passenger(TrainGameManager.instance.GetPassengerCount);
 
         TrainGameManager.instance.CoinUI.SetActive(false);
         for (int i = 0; i < playerListController.playerList.Count; ++i)

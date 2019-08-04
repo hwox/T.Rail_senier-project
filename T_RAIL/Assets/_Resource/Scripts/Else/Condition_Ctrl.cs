@@ -69,7 +69,6 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks
         {
             case 1:
                 NowEnemy = rhino;
-
                 break;
             case 2:
                 NowEnemy = Cactus;
@@ -90,6 +89,8 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks
 
     public void TrainAddCondition_Passenger(int _num)
     {
+        if (!PhotonNetwork.IsMasterClient) return;
+
         // 여기서 전달받는 _num은 역에서 총 승객을 몇명이나 먹었는지의 값을
         // 넣어주면 됨. 
         // 표지판 sign하고 다음으로 넘어가는 부분? 그 쯤에서 호출하는거 추천
@@ -108,6 +109,7 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks
 
     public void TrainAddCondition_Enemy()
     {
+        if (!PhotonNetwork.IsMasterClient) return;
 
         TrainGameManager.instance.totalkickoutEnemy += 1;
 
