@@ -14,6 +14,7 @@ public class VendingMachine : MonoBehaviour {
     public GameObject item1;
 
     public Player_Actor customer;
+    public GameObject myPlayer;
 
     GameObject targetbutton;
 
@@ -56,15 +57,14 @@ public class VendingMachine : MonoBehaviour {
                         {
                             StartCoroutine(itemdrop(i));
                             if (i+1==9)
-                            {                               
-                                customer.HP += 5;
-                                if (customer.HP>GameValue.PlayerMaxHp)
-                                    customer.HP = 100;
+                            {
+                                myPlayer.GetComponent<PhotonView>().RPC("setPlayerHP", RpcTarget.All, myPlayer.GetComponent<PhotonView>().ViewID, -10);
+                                //customer.HP += 5;
                             }
                             else
                             {
                                 //TrainGameManager.instance.CoinNum = TrainGameManager.instance.CoinNum - item_price[i];
-                            TrainGameManager.instance.GetComponent<PhotonView>().RPC("getCoin_RPC", RpcTarget.All, -item_price[i]);
+                                TrainGameManager.instance.GetComponent<PhotonView>().RPC("getCoin_RPC", RpcTarget.All, -item_price[i]);
                                 itemCtrl.GetComponent<AllItem_Ctrl>().VendingMachine_ItemGet(i + 1);
                             }
                      
@@ -113,7 +113,9 @@ public class VendingMachine : MonoBehaviour {
         GameObject temp = TrainGameManager.instance.GetObject(i+9);
         temp.SetActive(true);
         temp.transform.position = item1.transform.position;
-       
+
+        TrainGameManager.instance.SoundManager.buy_item_Sound_Play();
+
         temp.GetComponent<Rigidbody>().AddForce(Vector3.back *3 , ForceMode.Impulse);
         yield return new WaitForSeconds(3.0f);
         temp.SetActive(false);

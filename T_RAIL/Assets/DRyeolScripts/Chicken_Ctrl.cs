@@ -161,6 +161,8 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
         anim.SetBool("Is Death", true);
         yield return new WaitForSeconds(2.7f);
         StartCoroutine("CoinParticle");
+        TrainGameManager.instance.SoundManager.coin_Sound_Play();
+
         GameObject egg = TrainGameManager.instance.GetObject(7);
         egg.SetActive(true);
         egg.transform.position = this.gameObject.transform.position;
