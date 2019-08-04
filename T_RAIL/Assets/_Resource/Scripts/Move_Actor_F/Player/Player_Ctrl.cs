@@ -137,7 +137,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         //playerListController.playerList.Add(this.gameObject.GetComponent<Player_Ctrl>());
         //UIState_Ctrl = GameObject.Find("UIState_Ctrl").GetComponent<UIState_Ctrl>();
         //whereIam = player.Where_Train;
-        photonView.RPC("setActivePlayerHPUI_RPC", RpcTarget.All,  photonView.ViewID);
+        photonView.RPC("setActivePlayerHPUI_RPC", RpcTarget.All, photonView.ViewID);
     }
 
     [PunRPC]
@@ -248,7 +248,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (!invincibility)
             {
-               
+
                 StartCoroutine("Beaten");
             }
 
@@ -340,7 +340,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
                 if (TrainGameManager.instance.VendingMachineOn)
                 {
-                    
+
                     MCam_Ctrl.Vending_Machine_Cam(false, 0);
                     TrainGameManager.instance.VendingMachineOn = false;
                     player.Where_Floor = 4;
@@ -357,7 +357,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                     Debug.LogError(other.gameObject.name);
                     other.GetComponent<VendingMachine>().myPlayer = this.gameObject;
                     other.GetComponent<VendingMachine>().customer = player;
-                 
+
                 }
 
             }
@@ -498,7 +498,15 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
 
         // 키입력
-        GetKeyInput();
+        if (!player.Die)
+        {
+            GetKeyInput();
+        }
+        else
+        {
+            // 죽었으면
+            // position값을 다른 플레이어 것으로 바꾸는 함수 호출
+        }
 
         // 플레이어 HP를 UI와 연결
         ConnectHPUI();
@@ -588,10 +596,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
             case 1:
                 // 1층에서 칸 이동이나 그런거할 떄
-
                 // 플레이어의 x좌표를 전달해줌(카메라 이동관련)
                 MCam_Ctrl.SetPlayerX(player.position.x);
-
                 break;
             case 2:
                 MCam_Ctrl.SetPlayerX(player.position.x);
@@ -1094,16 +1100,24 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     void setPlayerHP(int viewID, int _hp)
     {
-        for (int i = 0; i < playerListController.playerList.Count; ++i)
+        if (!player.Die)
         {
-            if (playerListController.playerList[i].photonView.ViewID == viewID)
+            for (int i = 0; i < playerListController.playerList.Count; ++i)
             {
-                playerListController.playerList[i].player.HP -= _hp;
-                Debug.Log("call view id : " + viewID);
-                Debug.Log("call view id hp : " + playerListController.playerList[i].player.HP);
+                if (playerListController.playerList[i].photonView.ViewID == viewID)
+                {
+                    playerListController.playerList[i].player.HP -= _hp;
+                    Debug.Log("call view id : " + viewID);
+                    Debug.Log("call view id hp : " + playerListController.playerList[i].player.HP);
 
-                if (playerListController.playerList[i].player.HP >= 100)
-                    playerListController.playerList[i].player.HP = 100;
+                    if (playerListController.playerList[i].player.HP >= 100)
+                        playerListController.playerList[i].player.HP = 100;
+
+                    if(player.HP <= 0)
+                    {
+                        player.Die = true;
+                    }
+                }
             }
         }
         //player.HP -= _hp;
@@ -1120,7 +1134,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
     IEnumerator CoinParticle(Transform other)
     {
-       // Debug.Log("들어옴");
+        // Debug.Log("들어옴");
         GameObject Cp = TrainGameManager.instance.GetObject(8);
         Cp.SetActive(true);
         TrainGameManager.instance.GetComponent<PhotonView>().RPC("getCoin_RPC", RpcTarget.All, 10);
@@ -1151,5 +1165,16 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     void CoinUI()
     {
         TrainGameManager.instance.CoinUI.transform.GetChild(0).GetComponent<Text>().text = "X " + TrainGameManager.instance.CoinNum.ToString();
+    }
+
+    //////////////////////////// DIe  ////////////////////////////
+    void GhostPlayer(float _x, float _y/*, float _z*/)
+    {
+        player.position.x = _x;
+        player.position.y = _y;
+        WhereTrain_CalculPosition(player.position.x);
+        TrainGameManager.instance.NowItemUIUsable = false; // 아무것도 클릭못해
+       // player.position.y = _y;
+       //  player.position.z = _z;
     }
 }
