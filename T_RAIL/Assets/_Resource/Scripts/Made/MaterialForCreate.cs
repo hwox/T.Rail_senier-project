@@ -9,13 +9,19 @@ public class MaterialForCreate : MonoBehaviour
 
 
     // 소파나 박스 눌렀을 때 뜨는 재료창
+    [SerializeField]
     List<int> ForMakeItem = new List<int>();  // 옮겨놓은 아이템
+
+    [SerializeField]
     int[] ItemCount; // 똑같은 아이템 몇개인지
     // 나중에 손으로 가져갈 거 대비한 crack
     public bool ItemCrack;
     AllItem_Ctrl allitem;
 
+
     GameObject[] Storage;
+
+    [SerializeField]
     int[] WhatInStorage; // 뭐가 자꾸 늘어나네 얘는 그 인덱스에 있는게 몇번째 아이템인ㄴ지
     Text[] StorageCount;
 
@@ -23,7 +29,7 @@ public class MaterialForCreate : MonoBehaviour
     // 앞에는 index 뒤에는 count
 
     int StorageIndex = 0;
-
+    public int index = 0;
     // Use this for initialization
     void Start()
     {
@@ -68,6 +74,7 @@ public class MaterialForCreate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.CompareTag("DragItem"))
         {
             //  allitem.ItemHandToMaterialStorage = true;
@@ -92,14 +99,14 @@ public class MaterialForCreate : MonoBehaviour
                 Debug.Log("보관함 6개 넘어서 못넣어 이제");
             }
         }
+
     }
 
     private void OnTriggerExit(Collider other)
     {
-
         if (other.CompareTag("DragItem"))
         {
-            // allitem.ItemHandToMaterialStorage = false;
+            //  allitem.ItemHandToMaterialStorage = false;
         }
     }
 
@@ -109,7 +116,7 @@ public class MaterialForCreate : MonoBehaviour
     {
         //int StorageIndex = 0;
         bool Enable = false;
-        int index = 0;
+        index = 0;
 
         for (int i = 0; i < 6; i++)
         {
@@ -127,14 +134,13 @@ public class MaterialForCreate : MonoBehaviour
         {
             StorageCount[index].text = ItemCount[ForMakeItem[ForMakeItem.Count - 1] - 1].ToString();
         }
-
         else if (!Enable)
         {
             // 겹치는거없어
             // 이미지 띄우기
             WhatInStorage[StorageIndex] = ForMakeItem[ForMakeItem.Count - 1];
             Storage[StorageIndex].GetComponent<Image>().sprite = allitem.ItemImage[ForMakeItem[ForMakeItem.Count - 1] - 1];
-            StorageCount[index].text = ItemCount[ForMakeItem[ForMakeItem.Count - 1] - 1].ToString();
+            StorageCount[StorageIndex].text = ItemCount[ForMakeItem[ForMakeItem.Count - 1] - 1].ToString();
             StorageIndex += 1;
         }
 
@@ -144,6 +150,8 @@ public class MaterialForCreate : MonoBehaviour
             Storage[StorageIndex].GetComponent<Image>().sprite = allitem.NullImage;
 
         }
+
+
     }
 
     public bool IsBoxMakeEnable()
