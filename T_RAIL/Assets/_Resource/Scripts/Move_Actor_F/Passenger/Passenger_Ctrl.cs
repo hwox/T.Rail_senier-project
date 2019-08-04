@@ -154,6 +154,7 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
         this.gameObject.SetActive(false);
         DiseaseGauge.fillAmount = 0;
         HungryGauge.fillAmount = 0;
+        TrainGameManager.instance.SoundManager.Passenger_Die_Sound_Play();
 
     }
 

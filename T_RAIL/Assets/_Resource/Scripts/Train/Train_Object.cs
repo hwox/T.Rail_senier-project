@@ -111,7 +111,6 @@ public class Train_Object : MonoBehaviourPunCallbacks
     {
         // 기차가 달릴수록 체력이 감소
         PrevHP -= _meter;
-
     }
 
     public void ChangeTrainSetting(int _index)

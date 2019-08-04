@@ -24,7 +24,7 @@ public class MachineGun_Ctrl : MonoBehaviour
     }
     public void gun_down()
     {
-
+       
             Quaternion rotation = Quaternion.identity;
             rotation.eulerAngles = new Vector3(0, 0, 20.0f * Time.deltaTime);
             this.gameObject.transform.localRotation *= rotation; 
@@ -48,17 +48,7 @@ public class MachineGun_Ctrl : MonoBehaviour
         this.gameObject.transform.localRotation *= rotation; 
 
     }
-    public void gun_fire(bool fire)
-    {
-        if (fire)
-        {
 
-        }
-        else if (!fire)
-        {
-
-        }
-    }
 }
 
 
