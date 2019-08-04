@@ -15,9 +15,14 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
 
     bool tempOn = false; //첫번째씬에서 켜는용
 
+
+    Camera MCam; // maincamera
+    CamCtrl MCam_Ctrl; // 카메라에 달린 camctrl
     // Use this for initialization
     void Start()
     {
+        MCam = Camera.main;
+        MCam_Ctrl = MCam.GetComponent<CamCtrl>();
         DontDestroyOnLoad(this);
     }
 
@@ -79,6 +84,10 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
             TrainGameManager.instance.photonView.RPC("setSceneState_RPC", RpcTarget.All, 1);
             //TrainGameManager.instance.Scene_state = 1;
            
+        }
+        else if (TrainGameManager.instance.Scene_state == 4)
+        {
+            EndingSceneLoad();
         }
     }
 
@@ -157,6 +166,9 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         }
 
     }
+
+    
+
     [PunRPC]
     public void StationSceneLoad()
     {
@@ -172,6 +184,26 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
 
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+
+    public void EndingSceneLoad()
+    {
+        MCam_Ctrl.EndingCam(true, 0);
+        MCam_Ctrl.Change_floor(5);
+
+        
+        for (int i = 0; i < playerListController.playerList.Count; ++i)
+        {
+         
+            playerListController.playerList[i].player.Where_Floor = 5;
+     
+         
+        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
     }
 
     void NextStageCheck()
@@ -201,7 +233,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         }
         else if (NextStage >= GameValue.Stage3Index)
         {
-            // 엔딩
+            TrainGameManager.instance.Stage = 4;
         }
     }
 }

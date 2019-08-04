@@ -42,7 +42,8 @@ static class GameValue
         medipack = 14,
         woodboard = 15,
         ironpan = 16,
-        heart=17// 판(철판
+        heart=17,
+        endingtrain=18
 
     }
     // 카메라 셋팅
