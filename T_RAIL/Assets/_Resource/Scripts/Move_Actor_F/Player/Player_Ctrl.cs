@@ -46,7 +46,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     float runTime; // 걷는 거 2초이상 달리기
 
     bool stair_up; // 사다리 올라가고 있는 중
-    bool stair_down; // 사다리 내려가고 있는 중
+    public bool stair_down; // 사다리 내려가고 있는 중
     bool jump_now;
 
     int space_state = 0; // 기본은 0인데 space가 눌려지는 상황 (highlight되는 모든애들) 에서 state change
@@ -61,7 +61,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
     // render 
     Camera MCam; // maincamera
-    CamCtrl MCam_Ctrl; // 카메라에 달린 camctrl
+    public CamCtrl MCam_Ctrl; // 카메라에 달린 camctrl
     StationCam_Ctrl SCam_Ctrl;
 
     // ui
