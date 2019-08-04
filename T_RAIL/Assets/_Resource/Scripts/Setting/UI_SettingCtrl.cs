@@ -23,7 +23,7 @@ public class UI_SettingCtrl : MonoBehaviour
 
     public void On_ExitWindow()
     {
-
+        TrainGameManager.instance.SoundManager.ExitWindow_Sound_Play();
         Exit_Window.SetActive(true);
     }
 

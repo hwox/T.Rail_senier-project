@@ -62,9 +62,7 @@ public class StateController_Ctrl : MonoBehaviourPunCallbacks
             photonView.RPC("stateChange", RpcTarget.All, 0, true);
             NowStat();
         }
-        else
-        {
-        }
+        
     }
 
     public void SpeedDOWN()
@@ -82,7 +80,7 @@ public class StateController_Ctrl : MonoBehaviourPunCallbacks
     public void NoiseUP()
     {
         if (TrainGameManager.instance.NowsumStat < TrainGameManager.instance.AllStat &&
-           GameValue.StatusMAX < TrainGameManager.instance.Noise_stat)
+           GameValue.StatusMAX > TrainGameManager.instance.Noise_stat)
         {
             //TrainGameManager.instance.Noise_stat += 1;
             photonView.RPC("stateChange", RpcTarget.All, 1, true);
@@ -103,7 +101,7 @@ public class StateController_Ctrl : MonoBehaviourPunCallbacks
     public void DefenceUP()
     {
         if (TrainGameManager.instance.NowsumStat < TrainGameManager.instance.AllStat &&
-           GameValue.StatusMAX < TrainGameManager.instance.Defence_stat)
+           GameValue.StatusMAX > TrainGameManager.instance.Defence_stat)
         {
             photonView.RPC("stateChange", RpcTarget.All, 2, true);
             //TrainGameManager.instance.Defence_stat += 1;
