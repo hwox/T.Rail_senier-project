@@ -68,36 +68,42 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient)
         {
             StartCoroutine("GotoDest");
-            StartCoroutine("FindNextDest");
+            FindNextDest();
         }
     }
-
-    IEnumerator FindNextDest()// 무작위 위치 찾기
+    [PunRPC]
+    void FindNextDest()// 무작위 위치 찾기
     {
-        NextDestNum = Random.Range(0, 10);
-        // Debug.Log(NextDestNum);
-        yield return 5;
-    }
 
+        NextDestNum = Random.Range(0, 10);
+
+       float RSpped = (Random.Range(0, 4));
+       RSpped = (RSpped / 5)+1;
+
+       
+       anim.speed = RSpped;
+       nav.speed = RSpped;
+
+    }
     IEnumerator GotoDest()//닭이 무작위로 정해진 위치로 향해 가기
     {
         GameObject[] Cdest = (GameObject[])SpwanManager.gameObject.GetComponent<ChickenManager>().dest.Clone();
-        nav.speed = 1.0f;
+       
         while (true)
         {
             nav.SetDestination(Cdest[NextDestNum].transform.position);
-            if (Vector3.Distance(transform.position, prePos) > 0.01f)
+            if (Vector3.Distance(transform.position, Cdest[NextDestNum].transform.position) > 3.0f)
             {
-                // anim.SetBool("Is Beaten", false);
+                
             }
             else
             {
 
-                StartCoroutine("FindNextDest");
-                // anim.SetBool("IsSearch", true);
+                FindNextDest();
+              
 
             }
-            prePos = transform.position;
+            
             yield return new WaitForSeconds(0.01f);
         }
 

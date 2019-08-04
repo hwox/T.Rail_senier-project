@@ -348,10 +348,10 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 }
                 else
                 {
+                    TrainGameManager.instance.VendingMachineOn = true;
                     player.rotate.y = 0.0f;
                     anim.SetBool("IsWalk", false);
                     MCam_Ctrl.Vending_Machine_Cam(true, 0);
-                    TrainGameManager.instance.VendingMachineOn = true;
                     player.Where_Floor = 5;
 
                     Debug.LogError(other.gameObject.name);

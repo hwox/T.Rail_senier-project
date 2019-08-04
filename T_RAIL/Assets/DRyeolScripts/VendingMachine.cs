@@ -19,7 +19,7 @@ public class VendingMachine : MonoBehaviour {
     GameObject targetbutton;
 
     //public bool VendingMachine_on = false;
-     int[] item_price = new int[9] { 2, 2, 2, 2, 1, 4, 2, 2,2 };
+     int[] item_price = new int[9] { 2, 2, 2, 2, 1, 4, 1, 2,2 };
     // Use this for initialization
     void Start () {
         cam = GameObject.Find("VendingMachineCam");
@@ -60,6 +60,7 @@ public class VendingMachine : MonoBehaviour {
                             {
                                 myPlayer.GetComponent<PhotonView>().RPC("setPlayerHP", RpcTarget.All, myPlayer.GetComponent<PhotonView>().ViewID, -10);
                                 //customer.HP += 5;
+                                TrainGameManager.instance.CoinNum -= item_price[8];
                             }
                             else
                             {
