@@ -46,7 +46,7 @@ public class SoundManager : MonoBehaviourPunCallbacks {
     public AudioClip coin_Sound; //승객 먹을때, 닭잡을때
     public AudioClip buy_item_Sound; //자판기 소리
 
-
+    public AudioClip ExitWindow_Sound; // 끌거냐고 묻는 UI
 
 
     private void Awake()
@@ -119,6 +119,12 @@ public class SoundManager : MonoBehaviourPunCallbacks {
     public void buy_item_Sound_Play()
     {
         Effect2_Source.clip = buy_item_Sound;
+        Effect2_Source.Play();
+    }
+
+    public void ExitWindow_Sound_Play()
+    {
+        Effect2_Source.clip = ExitWindow_Sound;
         Effect2_Source.Play();
     }
 }

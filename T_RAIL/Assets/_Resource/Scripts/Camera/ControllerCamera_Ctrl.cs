@@ -34,6 +34,7 @@ public class ControllerCamera_Ctrl : MonoBehaviour {
         MCam.GetComponent<Mouse_Ctrl>().ThisCamSetOnOff(true);
         ControllerCam.enabled = false;
         ExitStateController.SetActive(false);
+        TrainGameManager.instance.SoundManager.onButtonClickSound();
         TrainGameManager.instance.StateControllerCtrl.StateTxtOnOff(false);
     }
 }
