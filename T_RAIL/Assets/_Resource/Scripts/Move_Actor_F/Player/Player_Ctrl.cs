@@ -501,6 +501,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         if (!player.Die)
         {
             GetKeyInput();
+            DieCheck();
         }
         else
         {
@@ -1113,10 +1114,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                     if (playerListController.playerList[i].player.HP >= 100)
                         playerListController.playerList[i].player.HP = 100;
 
-                    if(player.HP <= 0)
-                    {
-                        player.Die = true;
-                    }
                 }
             }
         }
@@ -1172,9 +1169,22 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     {
         player.position.x = _x;
         player.position.y = _y;
-        WhereTrain_CalculPosition(player.position.x);
+      //  WhereTrain_CalculPosition(player.position.x);
         TrainGameManager.instance.NowItemUIUsable = false; // 아무것도 클릭못해
        // player.position.y = _y;
        //  player.position.z = _z;
+    }
+
+    void DieCheck()
+    {
+        if(player.Where_Train > TrainGameManager.instance.trainindex)
+        {
+            player.HP = -99;
+        }
+
+        if(player.HP < 0)
+        {
+            player.Die = true;
+        }
     }
 }

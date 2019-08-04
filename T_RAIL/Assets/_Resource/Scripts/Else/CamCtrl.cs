@@ -7,6 +7,7 @@ public class CamCtrl : MonoBehaviour
 
     public GameObject Enemy_Appear_Cam;
     public GameObject VendingMachineCam;
+    public GameObject Ending_Camera;
     // 혹시 카메라 전환할때?
 
     Transform tr;
@@ -147,6 +148,25 @@ public class CamCtrl : MonoBehaviour
             this.GetComponent<Camera>().GetComponent<Mouse_Ctrl>().ThisCamSetOnOff(true);
             this.GetComponent<Camera>().enabled = true;
             VendingMachineCam.GetComponent<Camera>().enabled = false;
+
+
+        }
+    }
+
+    public void EndingCam(bool onoff, int index)
+    {
+        if (onoff)
+        {
+
+            Ending_Camera.GetComponent<Camera>().enabled = true;
+            this.GetComponent<Camera>().GetComponent<Mouse_Ctrl>().ThisCamSetOnOff(false);
+            this.GetComponent<Camera>().enabled = false;
+        }
+        else if (!onoff)
+        {
+            this.GetComponent<Camera>().GetComponent<Mouse_Ctrl>().ThisCamSetOnOff(true);
+            this.GetComponent<Camera>().enabled = true;
+            Ending_Camera.GetComponent<Camera>().enabled = false;
 
 
         }
