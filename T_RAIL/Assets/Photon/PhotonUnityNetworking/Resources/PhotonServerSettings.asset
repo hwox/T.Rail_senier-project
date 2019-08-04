@@ -86,5 +86,6 @@ MonoBehaviour:
   - connectHPUI_RPC
   - setActivePlayerHPUI_RPC
   - setPlayerHP
+  - AddItem
   DisableAutoOpenWizard: 1
   ShowSettings: 1

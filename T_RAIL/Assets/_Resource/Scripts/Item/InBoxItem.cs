@@ -147,6 +147,7 @@ public class InBoxItem : MonoBehaviourPunCallbacks
         thisBoxIndex = -99; // 일단 어떻게 사용할지 몰라서 쓰레기값 넣어주기 
     }
 
+    [PunRPC]
     public void AddItem(int _item)
     {
 

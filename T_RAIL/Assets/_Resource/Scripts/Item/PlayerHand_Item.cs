@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class PlayerHand_Item : MonoBehaviour
+public class PlayerHand_Item : MonoBehaviourPunCallbacks
 {
 
     AllItem_Ctrl allitem;
@@ -189,7 +190,8 @@ public class PlayerHand_Item : MonoBehaviour
                         if (allitem.boxItem[BoxIndex].HaveItemInfo[i].Equals(0))
                         {
                             // 비교해봐서 0번이 아닌 슬롯(비어있지 않은 슬롯)에 앞에부터 채워나가기
-                            allitem.boxItem[BoxIndex].AddItem(allitem.LeftHand_Pocket);
+                            //allitem.boxItem[BoxIndex].AddItem(allitem.LeftHand_Pocket);
+                            allitem.boxItem[BoxIndex].photonView.RPC("AddItem", RpcTarget.All, allitem.LeftHand_Pocket);
 
                             break;
                         }
@@ -224,8 +226,8 @@ public class PlayerHand_Item : MonoBehaviour
                         if (allitem.boxItem[BoxIndex].HaveItemInfo[i].Equals(0))
                         {
                             // 비교해봐서 0번이 아닌 슬롯(비어있지 않은 슬롯)에 앞에부터 채워나가기
-                            allitem.boxItem[BoxIndex].AddItem(allitem.RightHand_Pocket);
-
+                            //allitem.boxItem[BoxIndex].AddItem(allitem.RightHand_Pocket);
+                            allitem.boxItem[BoxIndex].photonView.RPC("AddItem", RpcTarget.All, allitem.RightHand_Pocket);
                             break;
                         }
                     }
