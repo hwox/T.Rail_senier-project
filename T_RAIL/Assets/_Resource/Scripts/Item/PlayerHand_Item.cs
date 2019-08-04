@@ -190,7 +190,11 @@ public class PlayerHand_Item : MonoBehaviour
                     allitem.UseLeftHandItem();
 
                     // 오류지점 ***************
-                    Debug.Log("clickUI가 뭔데 오류가 나?"+clickUI);
+
+                    // 아 알았다 오류 왜 나는지.. MaterialForCreate에서는 그냥 
+                    // 충돌이 일어나면 아이템을 썼다고 처리해버리니까 얘는 Image를 넣으려고 해도 이미 
+                    // 가진 정보가 없어서 NullRef 오류가 뜨는 거
+                    // MaterialForCreate도 갖다가 놓으면 아이템 들어가게 bool 변수 써서 바꿔야겠다.
                     NowHave_Image.sprite = allitem.ItemImage[clickUI];
                     allitem.ItemCrack = false;
                 }

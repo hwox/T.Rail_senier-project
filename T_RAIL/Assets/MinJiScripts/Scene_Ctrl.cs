@@ -85,6 +85,8 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
     public void SetTrainPlayer()// 기차로 갈때
     {
         Train_Ctrl.Appear();
+
+        TrainGameManager.instance.CoinUI.SetActive(false);
         for (int i = 0; i < playerListController.playerList.Count; ++i)
         {
             playerListController.playerList[i].player.DownSize();
@@ -123,6 +125,8 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         Train_Ctrl.Run_Meter = 0;
 
         Train_Ctrl.Hide();
+
+        TrainGameManager.instance.CoinUI.SetActive(true);
         TrainGameManager.instance.Scene_state = 2;
         //Debug.LogError("id : " + (PhotonNetwork.LocalPlayer.ActorNumber - 1 )+ "  floor : " + playerListController.playerList[PhotonNetwork.LocalPlayer.ActorNumber - 1].player.Where_Floor);
         //Debug.LogError("몇명 들어와있는지: " + playerListController.playerList.Count);

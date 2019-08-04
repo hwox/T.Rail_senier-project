@@ -235,10 +235,10 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             // 표지판
             if (!near_sign)
             {
-              //  space_state = (int)player_space_state.sign;
-              //  Near_Object = other.transform;
-              //  highlighter = Near_Object.GetComponent<Highlighter>();
-              //  near_sign = true;
+                //  space_state = (int)player_space_state.sign;
+                //  Near_Object = other.transform;
+                //  highlighter = Near_Object.GetComponent<Highlighter>();
+                //  near_sign = true;
                 //  Push_Space_UI.SetActive(true);
                 //   Push_Space_UI.transform.position = MCam.WorldToScreenPoint(Near_Object.position) + new Vector3(0, 130, 0);
             }
@@ -251,13 +251,13 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                
                 StartCoroutine("Beaten");
             }
-            
-        }
-
-
-
 
         }
+
+
+
+
+    }
     private void OnTriggerStay(Collider other)
     {
 
@@ -278,10 +278,10 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 //  Push_Space_UI.SetActive(false);
                 //  Destroy(other.gameObject);
                 //GameObject.Find("SofaSitPassenger_Ctrl").GetComponent<SofaSitPassenger_Ctrl>().sofaNubmer
-             
-             
-            
-               
+
+
+
+
                 if (TrainGameManager.instance.SopaNum > TrainGameManager.instance.totalPassenger)
                 {
                     for (int i = 0; i < TrainGameManager.instance.Station_PassengerManager.Count; ++i)
@@ -294,7 +294,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                             {
                                 space_state = 0;
                                 near_stationpassenger = false;
-                                
+
                             }
                         }
                     }
@@ -328,7 +328,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (Input.GetKeyDown(KeyCode.V))
             {
-               TrainGameManager.instance.allitemCtrl.ItemGet_Random(other.gameObject.GetPhotonView().ViewID);
+                TrainGameManager.instance.allitemCtrl.ItemGet_Random(other.gameObject.GetPhotonView().ViewID);
             }
         }
 
@@ -356,7 +356,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                     player.Where_Floor = 5;
                  
                 }
-              
+
             }
         }
     }
@@ -433,8 +433,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (near_sign)
             {
-              //  space_state = 0;
-              //  near_sign = false;
+                //  space_state = 0;
+                //  near_sign = false;
                 //  Push_Space_UI.SetActive(false);
             }
         }
@@ -462,7 +462,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             || other.gameObject.layer.Equals(GameValue.itembox_layer))
         {
             player.WallConflictDirections_Reset();
-        }   
+        }
 
     }
 
@@ -577,7 +577,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         // 카메라에 플레이어가 몇층에 있는지 전달 
         MCam_Ctrl.Change_floor(player.Where_Floor);
 
-
         switch (player.Where_Floor)
         {
 
@@ -594,6 +593,10 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             case 3:
             case 4:
                 MCam_Ctrl.SetPlayerX(player.position.x);
+                CoinUI();
+                break;
+            case 5:
+                CoinUI();
                 break;
             case 5:
                 
@@ -702,7 +705,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         {
             TrainGameManager.instance.allitemCtrl.ItemGet_Ironpan_Button();
         }
- 
+
 
         Quaternion rot = Quaternion.identity;
         rot.eulerAngles = new Vector3(player.rotate.x, player.rotate.y, player.rotate.z);
@@ -936,7 +939,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 anim.SetBool("IsWalk", true);
                 runTime += Time.deltaTime;
             }
-          
+
 
             if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) ||
                 Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.W))
@@ -969,9 +972,9 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         BulletInfoSetting(TrainGameManager.instance.GetObject(0), m_CurrentLaunchForce);
         iTween.ShakePosition(gun_child.gameObject, iTween.Hash("time", 0.5f, "z", 0.2f));
         iTween.ShakePosition(gameObject, iTween.Hash("time", 0.5f, "z", 0.2f));
-      
 
-      m_CurrentLaunchForce = m_MinLaunchForce;
+
+        m_CurrentLaunchForce = m_MinLaunchForce;
     }
 
     public void Move(char key)
@@ -1072,7 +1075,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         //player.position.z--;
         transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().materials[0].color = new Vector4(0.7056604f, 0.2308945f, 0.2238875f, 1f);
         anim.SetBool("IsBeaten", true);
-       // anim.SetBool("IsWalk", false);
+        // anim.SetBool("IsWalk", false);
         runTime = 0;
         yield return new WaitForSeconds(1.05f);
         anim.SetBool("IsBeaten", false);
@@ -1099,22 +1102,22 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
     void BeatenPath()
     {
-        
+
         //itp.SetNode(0, new Vector3(10.0f, 0.0f, 0.0f));
         //itp.SetNode(0, new Vector3(10.0f, 0.0f, 0.0f));
         //itp.SetNode(0, new Vector3(10.0f, 0.0f, 0.0f));
         //iTween.MoveTo(gameObject, iTween.Hash("path", iTweenPath.GetPath("New Path 1"), "time", 7));
     }
 
-    IEnumerator CoinParticle( Transform other)
+    IEnumerator CoinParticle(Transform other)
     {
        // Debug.Log("들어옴");
         GameObject Cp = TrainGameManager.instance.GetObject(8);
         Cp.SetActive(true);
-        TrainGameManager.instance.GetComponent<PhotonView>().RPC("getCoin_RPC", RpcTarget.All,10);
+        TrainGameManager.instance.GetComponent<PhotonView>().RPC("getCoin_RPC", RpcTarget.All, 10);
         //TrainGameManager.instance.CoinNum += 10;
         Cp.transform.position = other.position;
-      //  Cp.transform.Translate(Vector3.up);
+        //  Cp.transform.Translate(Vector3.up);
         yield return new WaitForSeconds(3.0f);
         Cp.SetActive(false);
     }
@@ -1133,6 +1136,12 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         // 0~3 까지 있음 0이 플레이어1
 
         // 이 HP_UISlider는 start에서 받아오는 중임
-        HP_UISlider.value = (float)player.HP/GameValue.PlayerMaxHp;
+  
+    }
+
+    void CoinUI()
+    {
+        Debug.Log(TrainGameManager.instance.CoinNum);
+        TrainGameManager.instance.CoinUI.transform.GetChild(0).GetComponent<Text>().text = "X " + TrainGameManager.instance.CoinNum.ToString();
     }
 }
