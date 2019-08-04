@@ -14,15 +14,39 @@ public class SoundManager : MonoBehaviourPunCallbacks {
 
 
     //lobby
+    [Header("Lobby Sound")]
     public AudioClip buttonClickSound;
 
-    //stage1
+    //stage1 초원
+    [Header("Stage1 Sound")]
     public AudioClip stage1BGM;
-    public AudioClip Machine_Gun_Sound;
-    public AudioClip InGameButtonSound;
     public AudioClip enemy_Sound;
     public AudioClip Train_Sound;
     public AudioClip enemy_attack_Sound;
+
+
+    //stage2 사막
+    [Header("Stage2 Sound")]
+    public AudioClip stage2BGM;
+
+
+    //stage3 설원
+    [Header("Stage3 Sound")]
+    public AudioClip stage3BGM;
+
+
+    [Header("Common Sound")]
+    public AudioClip Machine_Gun_Sound;
+    public AudioClip InGameButtonSound; 
+    public AudioClip Box_Sofa_instance_Sound; //박스 소파 생성 시
+    public AudioClip train_Break_Sound; //기차 뚫릴 먹을시
+    public AudioClip train_Treat_Sound; //기차 수리시
+    public AudioClip hunger_Treat_Sound; //음식 먹을시
+    public AudioClip disease_Treat_Sound; //질병 치료시
+    public AudioClip coin_Sound; //승객 먹을때, 닭잡을때
+    public AudioClip buy_item_Sound; //자판기 소리
+
+
 
 
     private void Awake()

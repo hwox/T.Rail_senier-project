@@ -5,8 +5,8 @@
 5. 航甘 宏陛 - music_comedy_quirky_fun_knockoutししししししししししししししししししししししししししししししししししししししししし
 6. 气惯家府 - 气惯+家府1ししししししししししししししししししししししししししししししししししししししししししししししししししししし
 购啊 悼傈家府. 惑痢备概 ? 			- Special & Powerup (15)
-澜侥 冈绰 家府 				- Crunch Bite Item (2)
-5. 铰按 怕匡锭 捣家府 			- Reward 1
+澜侥 冈绰 家府 				- Crunch Bite Item (2) しししししししししししししししし
+5. 铰按 怕匡锭 捣家府 			- Reward 1しししししししししししししししししししししししし
 5. 辆捞逞扁绰家府 				- papers 3
 4. 鳖付蓖家府 				- bird_jungle_crow_call_caw_squawk_01
 
@@ -14,4 +14,4 @@
 1. 拌鄂 柄瘤绰 家府				- potion Drink(3). wav
 2. 催 嘎绰家府				-att-sound1-3 or att-sound1-10
 3. 催 家府 				- 催家府_部部部部
-4. 鳃傅 登绰 家府 鹅府傅 捞繁芭 器记冈绰家府 	-
+4. 鳃傅 登绰 家府 鹅府傅 捞繁芭 器记冈绰家府 	-SE_ITEM_USE_OTHER

@@ -598,9 +598,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             case 5:
                 CoinUI();
                 break;
-            case 5:
-                
-                break;
         }
 
         //////플레이어들이 어디에 있는지 확인

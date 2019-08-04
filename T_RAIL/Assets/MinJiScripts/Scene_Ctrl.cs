@@ -111,11 +111,19 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
     [PunRPC]
     public void TrainSceneLoad()
     {
+
+        //초원 
+        if (SceneManager.GetActiveScene().buildIndex + 1 == 1)
+        {
+            TrainGameManager.instance.SoundManager.TrainStage1_BGMSoundPlay();
+        }
+        //사막
+        else if (SceneManager.GetActiveScene().buildIndex + 1 == 3)
+        {
+            TrainGameManager.instance.SoundManager.TrainStage1_BGMSoundPlay();
+        }
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-
-        /////
-     
-
     }
 
     [PunRPC]
@@ -150,9 +158,14 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
     [PunRPC]
     public void StationSceneLoad()
     {
-        //UnityEngine.SceneManagement.SceneManager.LoadScene("Station_Stage1");
-        //UnityEngine.SceneManagement.SceneManager.LoadScene("Station_Stage2");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+        //첫번째 역에서 브금 바뀌는지 테스트
+        if (SceneManager.GetActiveScene().buildIndex + 1 == 2)
+            TrainGameManager.instance.SoundManager.TrainStage1_BGMSoundPlay();
+        //설원
+        else if (SceneManager.GetActiveScene().buildIndex + 1 == 4)
+            TrainGameManager.instance.SoundManager.TrainStage1_BGMSoundPlay();
     }
 
     void NextStageCheck()
@@ -162,6 +175,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         if (NextStage <= GameValue.Stage1Index && SceneManager.GetActiveScene().buildIndex >= 1)
         {
             TrainGameManager.instance.Stage = 1;
+            
             //Debug.Log("stage1");
         }
         else if (NextStage >= GameValue.Stage1Index && NextStage < GameValue.Stage2Index)
