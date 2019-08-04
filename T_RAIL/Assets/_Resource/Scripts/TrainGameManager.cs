@@ -77,6 +77,9 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
     // # PlayerHPUI
     public GameObject[] PlayerHPUI;
 
+    // # StateController_Ctrl;
+    public StateController_Ctrl StateControllerCtrl;
+
 
     // #
     public GameObject PlayerListCtrl;

@@ -75671,6 +75671,7 @@ MonoBehaviour:
   - {fileID: 1573726554}
   - {fileID: 1799017227}
   - {fileID: 77746355}
+  StateControllerCtrl: {fileID: 2140476040}
   PlayerListCtrl: {fileID: 342035266}
   Info_Canvas: {fileID: 540288765}
   ItemHand: {fileID: 1104002336}
