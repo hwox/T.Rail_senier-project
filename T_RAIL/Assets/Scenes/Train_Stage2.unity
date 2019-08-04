@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657642, g: 0.49641156, b: 0.5748181, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657755, g: 0.4964127, b: 0.57481825, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1827,8 +1827,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a188e3148f62bdd459ab143e9edccf64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Setting_Window: {fileID: 0}
+  Exit_Window: {fileID: 0}
   Book_Window: {fileID: 0}
+  HandUI: {fileID: 0}
+  HPUI: {fileID: 0}
 --- !u!4 &128792407
 Transform:
   m_ObjectHideFlags: 0
@@ -12129,11 +12131,21 @@ MonoBehaviour:
   UI2_Source: {fileID: 1487775896}
   buttonClickSound: {fileID: 8300000, guid: dff463d8e99364f4da0bc248929ea47c, type: 3}
   stage1BGM: {fileID: 8300000, guid: 775df7a216485fa4c833dfc1c51c75c6, type: 3}
-  Machine_Gun_Sound: {fileID: 8300000, guid: a44819b7e801cea40adc27634c0ef81c, type: 3}
-  InGameButtonSound: {fileID: 8300000, guid: db09ac3ff7c53944297f646c276d4fdd, type: 3}
   enemy_Sound: {fileID: 8300000, guid: 3828f76581d12854cbbc0e15cf76255f, type: 3}
   Train_Sound: {fileID: 8300000, guid: 02341fe39556af140976c0c2f03c927f, type: 3}
   enemy_attack_Sound: {fileID: 8300000, guid: 262653f519b002043aa6562c924e3750, type: 3}
+  stage2BGM: {fileID: 0}
+  stage3BGM: {fileID: 0}
+  Machine_Gun_Sound: {fileID: 8300000, guid: a44819b7e801cea40adc27634c0ef81c, type: 3}
+  InGameButtonSound: {fileID: 8300000, guid: db09ac3ff7c53944297f646c276d4fdd, type: 3}
+  Box_Sofa_instance_Sound: {fileID: 0}
+  train_Break_Sound: {fileID: 0}
+  train_Treat_Sound: {fileID: 0}
+  hunger_Treat_Sound: {fileID: 0}
+  disease_Treat_Sound: {fileID: 0}
+  coin_Sound: {fileID: 0}
+  buy_item_Sound: {fileID: 0}
+  ExitWindow_Sound: {fileID: 0}
 --- !u!1 &505996708
 GameObject:
   m_ObjectHideFlags: 0
@@ -22677,7 +22689,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 827609275}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.24, y: 1.45, z: -100}
+  m_LocalPosition: {x: -2.25, y: 1.42, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1391171814}
@@ -49843,6 +49855,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UsableStatus: {fileID: 0}
+  SpeedTxt: {fileID: 0}
+  NoiseTxt: {fileID: 0}
+  DefencTxt: {fileID: 0}
 --- !u!114 &2140476041
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14818,7 +14818,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 041ea54f42d9dae42b836033fc541d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ForMakeItem: 
+  ItemCount: 
   ItemCrack: 0
+  WhatInStorage: 
+  index: 0
 --- !u!114 &114121071391262378
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16363,7 +16367,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 041ea54f42d9dae42b836033fc541d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ForMakeItem: 
+  ItemCount: 
   ItemCrack: 0
+  WhatInStorage: 
+  index: 0
 --- !u!114 &114197964450676030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21329,7 +21337,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 041ea54f42d9dae42b836033fc541d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ForMakeItem: 
+  ItemCount: 
   ItemCrack: 0
+  WhatInStorage: 
+  index: 0
 --- !u!114 &114564859096579756
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21729,7 +21741,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 041ea54f42d9dae42b836033fc541d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ForMakeItem: 
+  ItemCount: 
   ItemCrack: 0
+  WhatInStorage: 
+  index: 0
 --- !u!114 &114595997215111998
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22482,7 +22498,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 041ea54f42d9dae42b836033fc541d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ForMakeItem: 
+  ItemCount: 
   ItemCrack: 0
+  WhatInStorage: 
+  index: 0
 --- !u!114 &114648544659267360
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23094,7 +23114,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 041ea54f42d9dae42b836033fc541d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ForMakeItem: 
+  ItemCount: 
   ItemCrack: 0
+  WhatInStorage: 
+  index: 0
 --- !u!114 &114688607532423850
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26057,7 +26081,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 041ea54f42d9dae42b836033fc541d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ForMakeItem: 
+  ItemCount: 
   ItemCrack: 0
+  WhatInStorage: 
+  index: 0
 --- !u!114 &114895534905335962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26991,7 +27019,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 041ea54f42d9dae42b836033fc541d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ForMakeItem: 
+  ItemCount: 
   ItemCrack: 0
+  WhatInStorage: 
+  index: 0
 --- !u!114 &114959179348029632
 MonoBehaviour:
   m_ObjectHideFlags: 1

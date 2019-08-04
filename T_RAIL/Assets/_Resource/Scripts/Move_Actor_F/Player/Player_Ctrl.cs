@@ -1150,7 +1150,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
     void CoinUI()
     {
-        Debug.Log(TrainGameManager.instance.CoinNum);
         TrainGameManager.instance.CoinUI.transform.GetChild(0).GetComponent<Text>().text = "X " + TrainGameManager.instance.CoinNum.ToString();
     }
 }
