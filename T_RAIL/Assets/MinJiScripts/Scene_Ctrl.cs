@@ -231,8 +231,9 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
             TrainGameManager.instance.Stage = 3;
             //Debug.Log("stage3");
         }
-        else if (NextStage >= GameValue.Stage3Index)
+        else 
         {
+            
             TrainGameManager.instance.Stage = 4;
         }
     }

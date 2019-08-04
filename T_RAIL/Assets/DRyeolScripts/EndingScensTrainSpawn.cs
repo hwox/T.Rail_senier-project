@@ -16,7 +16,7 @@ public class EndingScensTrainSpawn : MonoBehaviour {
         {
             GameObject train = TrainGameManager.instance.GetObject(18);
             train.SetActive(true);
-            train.transform.position = new Vector3(-37 - (i * trainGap), 2.87f, -9.7f);
+            train.transform.position = new Vector3(-57 - (i * trainGap), 2.87f, -9.7f);
 
           
             train.transform.parent = this.transform;
@@ -25,7 +25,7 @@ public class EndingScensTrainSpawn : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
-        //trainNum = TrainGameManager.instance.trainindex;
+        trainNum = TrainGameManager.instance.trainindex;
         newtrain(trainNum);
     }
     void Update(){
