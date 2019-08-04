@@ -45,9 +45,10 @@ public class SoundManager : MonoBehaviourPunCallbacks {
     public AudioClip disease_Treat_Sound; //질병 치료시
     public AudioClip coin_Sound; //승객 먹을때, 닭잡을때
     public AudioClip buy_item_Sound; //자판기 소리
-
+    public AudioClip passenger_die_Sound; //승객 죽을때 
+    public AudioClip train_door_open_Sound; // 역에서 그냥 틀고 시작 기차 문열리는소리
     public AudioClip ExitWindow_Sound; // 끌거냐고 묻는 UI
-
+    public AudioClip ladder_Sound; //사다리 오르고 내리는 소리 
 
     private void Awake()
     {
@@ -126,5 +127,41 @@ public class SoundManager : MonoBehaviourPunCallbacks {
     {
         Effect2_Source.clip = ExitWindow_Sound;
         Effect2_Source.Play();
+    }
+
+    public void Train_Break_Sound_Play()
+    {
+        Effect1_Source.clip = train_Break_Sound;
+        Effect1_Source.Play();
+    }
+
+    public void Train_Treat_Sound_Play()
+    {
+        Effect1_Source.clip = train_Treat_Sound;
+        Effect1_Source.Play();
+    }
+
+    public void Hunger_Treat_Sound_Play()
+    {
+        Effect1_Source.clip = hunger_Treat_Sound;
+        Effect1_Source.Play();
+    }
+
+    public void Disease_Treat_Sound_Play()
+    {
+        Effect1_Source.clip = disease_Treat_Sound;
+        Effect1_Source.Play();
+    }
+
+    public void Train_door_open_Sound_Play()
+    {
+        Effect1_Source.clip = train_door_open_Sound;
+        Effect1_Source.Play();
+    }
+
+    public void Ladder_Sound_Play()
+    {
+        UI2_Source.clip = ladder_Sound;
+        UI2_Source.Play();
     }
 }

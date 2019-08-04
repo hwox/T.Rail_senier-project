@@ -159,6 +159,8 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
         ItemInhand.SetActive(true);
         BoxNeedItemExplain.SetActive(false);
         SofaNeedItemExplain.SetActive(false);
+
+        TrainGameManager.instance.SoundManager.onButtonClickSound();
     }
 
     public void ChoiceSofaButton()
@@ -171,6 +173,7 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
         BoxNeedItemExplain.SetActive(false);
         SofaNeedItemExplain.SetActive(false);
 
+        TrainGameManager.instance.SoundManager.onButtonClickSound();
     }
 
     public void MakeObject()

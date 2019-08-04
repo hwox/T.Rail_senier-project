@@ -43,7 +43,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
     public bool ItemBoxToHand;
     public bool ItemHandToBox;
     public bool ItemHTBEnable; // HandToBox하려니까 box에 collision 때문에
-   //public bool ItemHandToMaterialStorage;
+   public bool ItemHandToMaterialStorage;
 
     public int NowChoiceBox; // HandToBox -> 몇번째 박스인지
 
@@ -91,6 +91,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
             ItemHandToBox = false;
             NowDragItemInfo = 0;
         }
+            TrainGameManager.instance.SoundManager.onButtonClickSound();
     }
 
     public void Position_DragMouse()

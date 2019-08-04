@@ -193,8 +193,10 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
         pass.Hungry -= GameValue.HungryDecrease;
         item.Use_Food();
         // 이걸 false를 시킬까? 아니면 x를 추가할까
-       // PassengerCareButtons.gameObject.SetActive(false);
-       // PassengerStateRender.gameObject.SetActive(false);
+        // PassengerCareButtons.gameObject.SetActive(false);
+        // PassengerStateRender.gameObject.SetActive(false);
+
+        TrainGameManager.instance.SoundManager.Hunger_Treat_Sound_Play();
 
         Clicking = false;
     }
@@ -212,8 +214,10 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
         pass.Disease -= GameValue.DiseaseDncrease;
         item.Use_MediPack();
 
-       // PassengerCareButtons.gameObject.SetActive(false);
-      //  PassengerStateRender.gameObject.SetActive(false);
+        // PassengerCareButtons.gameObject.SetActive(false);
+        //  PassengerStateRender.gameObject.SetActive(false);
+
+        TrainGameManager.instance.SoundManager.Disease_Treat_Sound_Play();
 
         Clicking = false;
     }
