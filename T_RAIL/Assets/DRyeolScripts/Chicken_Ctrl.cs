@@ -68,23 +68,22 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient)
         {
             StartCoroutine("GotoDest");
-            FindNextDest();
+
+            NextDestNum = Random.Range(0, 10);
+            float RSpeed = (Random.Range(0, 4));
+            photonView.RPC("FindNextDest", RpcTarget.All ,NextDestNum, RSpeed);
         }
     }
+
     [PunRPC]
-    void FindNextDest()// 무작위 위치 찾기
+    void FindNextDest(int _NextDestNum, int _RSpeed)// 무작위 위치 찾기
     {
-
-        NextDestNum = Random.Range(0, 10);
-
-       float RSpped = (Random.Range(0, 4));
-       RSpped = (RSpped / 5)+1;
-
+        _RSpeed = (_RSpeed / 5)+1;
        
-       anim.speed = RSpped;
-       nav.speed = RSpped;
-
+       anim.speed = _RSpeed;
+       nav.speed = _RSpeed;
     }
+
     IEnumerator GotoDest()//닭이 무작위로 정해진 위치로 향해 가기
     {
         GameObject[] Cdest = (GameObject[])SpwanManager.gameObject.GetComponent<ChickenManager>().dest.Clone();
@@ -98,16 +97,13 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
             }
             else
             {
-
-                FindNextDest();
-              
-
+                NextDestNum = Random.Range(0, 10);
+                float RSpeed = (Random.Range(0, 4));
+                photonView.RPC("FindNextDest", RpcTarget.All, NextDestNum, RSpeed);
             }
             
             yield return new WaitForSeconds(0.01f);
         }
-
-
     }
 
 

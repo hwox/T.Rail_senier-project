@@ -76,7 +76,8 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
 
             for (int i = 0; i < train.Count; i++)
             {
-                trainscript[i].Run_TrainHPMinus(perMeter/ TrainGameManager.instance.Defence_stat);
+                trainscript[i].photonView.RPC("Run_TrainHPMinus_RPC", RpcTarget.All, perMeter / TrainGameManager.instance.Defence_stat); //HP -=2/*other.GetComponent<Enemy1_Ctrl>().E_damage*/;
+                //trainscript[i].Run_TrainHPMinus(perMeter/ TrainGameManager.instance.Defence_stat);
 
                 yield return new WaitForSeconds(2.0f);
             }
@@ -120,16 +121,7 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
     {
         if (!TrainGameManager.instance.EnemyAppear)
         {
-            if (PhotonNetwork.IsMasterClient)
-            {
-                photonView.RPC("Train_Add", RpcTarget.All);
-                //Debug.Log("마스터 클라가 눌럿음 ");
-            }
-            else
-            {
-                photonView.RPC("Train_Add", RpcTarget.All);
-                //Debug.Log("다른 클라가 눌렀음 ");
-            }
+            photonView.RPC("Train_Add", RpcTarget.All);
         }
     }
 
