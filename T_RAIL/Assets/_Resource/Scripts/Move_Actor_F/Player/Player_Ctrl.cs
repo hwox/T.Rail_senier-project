@@ -344,8 +344,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                     MCam_Ctrl.Vending_Machine_Cam(false, 0);
                     TrainGameManager.instance.VendingMachineOn = false;
                     player.Where_Floor = 4;
-                    other.GetComponent<VendingMachine>().customer = player;
-                
+
                 }
                 else
                 {
@@ -354,6 +353,10 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                     MCam_Ctrl.Vending_Machine_Cam(true, 0);
                     TrainGameManager.instance.VendingMachineOn = true;
                     player.Where_Floor = 5;
+
+                    Debug.LogError(other.gameObject.name);
+                    other.GetComponent<VendingMachine>().myPlayer = this.gameObject;
+                    other.GetComponent<VendingMachine>().customer = player;
                  
                 }
 
@@ -378,6 +381,9 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         TrainGameManager.instance.GetPassengerCount++;
         TrainGameManager.instance.totalPassenger++;
         Debug.Log("GetPassengerCount " + TrainGameManager.instance.GetPassengerCount);
+
+        TrainGameManager.instance.SoundManager.coin_Sound_Play();
+
     }
 
     [PunRPC]
@@ -1092,6 +1098,9 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 playerListController.playerList[i].player.HP -= _hp;
                 Debug.Log("call view id : " + viewID);
                 Debug.Log("call view id hp : " + playerListController.playerList[i].player.HP);
+
+                if (playerListController.playerList[i].player.HP >= 100)
+                    playerListController.playerList[i].player.HP = 100;
             }
         }
         //player.HP -= _hp;

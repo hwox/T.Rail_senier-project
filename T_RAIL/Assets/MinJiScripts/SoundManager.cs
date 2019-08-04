@@ -102,6 +102,26 @@ public class SoundManager : MonoBehaviourPunCallbacks {
         Effect2_Source.Play();
     }
 
+    //  TrainGameManager.instance.SoundManager.Box_Sofa_instance_Sound_Play();
+
+    public void Box_Sofa_instance_Sound_Play()
+    {
+        Effect2_Source.clip = Box_Sofa_instance_Sound;
+        Effect2_Source.Play();
+    }
+
+    public void coin_Sound_Play()
+    {
+        Effect1_Source.clip = coin_Sound;
+        Effect1_Source.Play();
+    }
+
+    public void buy_item_Sound_Play()
+    {
+        Effect2_Source.clip = buy_item_Sound;
+        Effect2_Source.Play();
+    }
+
     public void ExitWindow_Sound_Play()
     {
         Effect2_Source.clip = ExitWindow_Sound;

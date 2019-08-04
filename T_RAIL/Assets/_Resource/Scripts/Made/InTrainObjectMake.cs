@@ -117,6 +117,7 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
         // 그래서 보면? trainscript에 지금 어느칸에 있는지를 이용해서 InTrainSetting 함수에 접근해서 오브젝트풀링 된 오브젝트를 하나 넘겨줌.
         // 그걸 넘겨 받아서 저 함수로 가보면 
         TrainGameManager.instance.TrainCtrl.trainscript[WhereTrain_Object - 1].InTrainObject_Setting(TrainGameManager.instance.GetObject(5), WhatNumber_Object , 2);
+        TrainGameManager.instance.SoundManager.Box_Sofa_instance_Sound_Play();
         this.gameObject.SetActive(false);
     }
 
@@ -124,6 +125,7 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
     public void MakeSofa(int WhereTrain_Object, int WhatNumber_Object)
     {
         TrainGameManager.instance.TrainCtrl.trainscript[WhereTrain_Object - 1].InTrainObject_Setting(TrainGameManager.instance.GetObject(4), WhatNumber_Object, 1);
+        TrainGameManager.instance.SoundManager.Box_Sofa_instance_Sound_Play();
         this.gameObject.SetActive(false);
     }
 
