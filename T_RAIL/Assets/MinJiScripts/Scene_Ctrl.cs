@@ -149,6 +149,13 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         {
             playerListController.playerList[i].player.UpSize();
             playerListController.playerList[i].player.SetStationPlayer(i);
+
+            //Camera.main.gameObject.GetComponent<CamCtrl>().EnemyAppear_Cam(false, 0);
+            playerListController.playerList[i].MCam_Ctrl.EnemyAppear_Cam(false, 0);
+            playerListController.playerList[i].MCam_Ctrl.inTrain();
+            //playerListController.playerList[i].stair_down = true;
+            TrainGameManager.instance.TrainCtrl.trainscript[playerListController.playerList[i].player.Where_Train - 1].Ceiling_OnOff(false);
+            
             playerListController.playerList[i].player.Where_Floor = 4;
             playerListController.playerList[i].player.AxeActive();
             //Debug.Log("id : " + (i) + "  floor : " + playerListController.playerList[i].player.Where_Floor);
