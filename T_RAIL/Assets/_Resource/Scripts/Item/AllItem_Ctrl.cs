@@ -91,6 +91,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
             ItemHandToBox = false;
             NowDragItemInfo = 0;
         }
+            TrainGameManager.instance.SoundManager.onButtonClickSound();
     }
 
     public void Position_DragMouse()

@@ -362,6 +362,8 @@ public class Train_Object : MonoBehaviourPunCallbacks
 
         GameObject temp = Instantiate(brokenParticle, FracturedWall[_randomWall].transform.GetChild(1).gameObject.transform);
         temp.transform.parent = this.transform;
+
+        TrainGameManager.instance.SoundManager.Train_Break_Sound_Play();
     }
 
 
@@ -459,6 +461,8 @@ public class Train_Object : MonoBehaviourPunCallbacks
         //GameObject temp = Instantiate(repairParticle, FracturedWall[NowClickIndex].transform.GetChild(0).gameObject.transform);
         GameObject temp = Instantiate(repairParticle, FracturedWall[NowClickIndex].transform.GetChild(1).gameObject.transform);
         temp.transform.parent = this.transform;
+
+        TrainGameManager.instance.SoundManager.Train_Treat_Sound_Play();
 
         RepairUIExit();
     }

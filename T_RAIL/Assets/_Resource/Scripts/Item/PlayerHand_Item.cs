@@ -97,6 +97,7 @@ public class PlayerHand_Item : MonoBehaviourPunCallbacks
         allitem.ItemHTBEnable = true;
         switch (WhatHand)
         {
+
             case 1:
                 // 왼손
                 if (allitem.LeftHand_Pocket != 0)
@@ -123,6 +124,8 @@ public class PlayerHand_Item : MonoBehaviourPunCallbacks
                 // 슬롯에 아이템이 존재하지 않으면 함수 종료
                 //  빈 이미지의 객체를 마우스의 위치로 가져온다.
                 // 슬롯의 이미지를 없애준다
+
+
                 break;
             case 2:
                 //오른손
@@ -146,6 +149,8 @@ public class PlayerHand_Item : MonoBehaviourPunCallbacks
                     clickUI = 0;
                     DragEnable = false;
                 }
+
+
                 break;
         }
 

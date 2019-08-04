@@ -780,6 +780,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                     // 그러고 나서사다리 끝나면
                     // 올라가고 stair_up = false; 하고
                     // 천장에 올라가면 뚜껑도 setactive.true해줘야되네
+                    TrainGameManager.instance.SoundManager.Ladder_Sound_Play();
                 }
 
 
@@ -848,6 +849,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                     TrainGameManager.instance.TrainCtrl.trainscript[player.Where_Train - 1].Ceiling_OnOff(false);
                     anim.SetBool("UpToLadder", true);
                     stair_down = true;
+
+                    TrainGameManager.instance.SoundManager.Ladder_Sound_Play();
                 }
             }
         }

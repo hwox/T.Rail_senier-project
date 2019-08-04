@@ -162,11 +162,15 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
     {
 
         //첫번째 역에서 브금 바뀌는지 테스트
-
+        if (SceneManager.GetActiveScene().buildIndex + 1 == 2)
+            TrainGameManager.instance.SoundManager.Train_door_open_Sound_Play();
         //설원
-        if (SceneManager.GetActiveScene().buildIndex + 1 == 4)
+        else if (SceneManager.GetActiveScene().buildIndex + 1 == 4)
+        {
             TrainGameManager.instance.SoundManager.TrainStage3_BGMSoundPlay();
+            TrainGameManager.instance.SoundManager.Train_door_open_Sound_Play();
 
+        }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
