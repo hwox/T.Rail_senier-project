@@ -171,7 +171,11 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
     public List<GameObject> heartM;
     const int MAKE_HEART_COUNT = 5;
 
-  
+    // 엔딩 기차
+    public List<GameObject> endingtrainM;
+    const int MAKE_ENDINGTRAIN_COUNT = 13;
+
+
 
 
     public int Scene_state=1;
@@ -230,7 +234,8 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
         CreateObject(Origin[(int)GameValue.prefab_list.medipack], MAKE_MEDKIT_COUNT, (int)GameValue.prefab_list.medipack); //구급상자생성
         CreateObject(Origin[(int)GameValue.prefab_list.woodboard], MAKE_WOODBOARD_COUNT, (int)GameValue.prefab_list.woodboard); //망치생성
         CreateObject(Origin[(int)GameValue.prefab_list.ironpan], MAKE_IRONPAN_COUNT, (int)GameValue.prefab_list.ironpan); //못생성
-        CreateObject(Origin[(int)GameValue.prefab_list.heart], MAKE_HEART_COUNT, (int)GameValue.prefab_list.heart); //구급상자생성
+        CreateObject(Origin[(int)GameValue.prefab_list.heart], MAKE_HEART_COUNT, (int)GameValue.prefab_list.heart); //하트 생성
+        CreateObject(Origin[(int)GameValue.prefab_list.endingtrain], MAKE_ENDINGTRAIN_COUNT, (int)GameValue.prefab_list.endingtrain); //엔딩 기차 생성
 
 
     }
@@ -382,6 +387,13 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                     obj.SetActive(false);
                     obj.transform.parent = transform.GetChild(prefab_index);
                     heartM.Add(obj);
+                    break;
+                case (int)GameValue.prefab_list.endingtrain:
+                    obj = Instantiate(_obj);
+                    obj.transform.localPosition = Vector3.zero;
+                    obj.SetActive(false);
+                    obj.transform.parent = transform.GetChild(prefab_index);
+                    endingtrainM.Add(obj);
                     break;
 
             }
@@ -863,6 +875,32 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                     return heartM[i];
                 }
                 return null;
+            case (int)GameValue.prefab_list.endingtrain:
+
+                if (endingtrainM == null)
+                {
+                    return null;
+                }
+                int et_Count = endingtrainM.Count;
+
+                for (int i = 0; i < et_Count; i++)
+                {
+                    GameObject obj = endingtrainM[i];
+
+                    //활성화 돼있으면
+                    if (obj.active == true)
+                    {
+                        // 리스트의 마지막까지 돌았는데 다 사용중이다?
+                        if (i == et_Count - 1)
+                        {
+                            CreateObject(obj, 1, _objIndex);
+                            return endingtrainM[i + 1];
+                        }
+                        continue;
+                    }
+                    return endingtrainM[i];
+                }
+                return null;
             default:
                 return null;
 
@@ -1157,6 +1195,23 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                 }
                 heartM = null;
                 break;
+            case (int)GameValue.prefab_list.endingtrain:
+
+                if (endingtrainM == null)
+                {
+                    return;
+                }
+
+                int et_Count = endingtrainM.Count;
+
+                for (int i = 0; i < et_Count; i++)
+                {
+                    GameObject obj = endingtrainM[i];
+                    GameObject.Destroy(obj);
+                }
+                endingtrainM = null;
+                break;
+
         }
     }
     
