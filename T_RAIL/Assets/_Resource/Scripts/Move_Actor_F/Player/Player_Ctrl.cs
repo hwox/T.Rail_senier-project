@@ -248,7 +248,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (!invincibility)
             {
-                Debug.Log("맞음");
+               
                 StartCoroutine("Beaten");
             }
 
@@ -345,7 +345,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                     TrainGameManager.instance.VendingMachineOn = false;
                     player.Where_Floor = 4;
                     other.GetComponent<VendingMachine>().customer = player;
-                    Debug.Log(player.HP);
+                
                 }
                 else
                 {
@@ -354,7 +354,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                     MCam_Ctrl.Vending_Machine_Cam(true, 0);
                     TrainGameManager.instance.VendingMachineOn = true;
                     player.Where_Floor = 5;
-                    Debug.Log(player.HP);
+                 
                 }
 
             }
@@ -597,6 +597,9 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 break;
             case 5:
                 CoinUI();
+                break;
+            case 5:
+                
                 break;
         }
 
@@ -1108,7 +1111,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
     IEnumerator CoinParticle(Transform other)
     {
-        Debug.Log("들어옴");
+       // Debug.Log("들어옴");
         GameObject Cp = TrainGameManager.instance.GetObject(8);
         Cp.SetActive(true);
         TrainGameManager.instance.GetComponent<PhotonView>().RPC("getCoin_RPC", RpcTarget.All, 10);
