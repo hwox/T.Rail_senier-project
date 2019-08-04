@@ -17,6 +17,7 @@ public class StateController_Ctrl : MonoBehaviourPunCallbacks
     [PunRPC]
     public void stateChange(int category, bool isUp)
     {
+        TrainGameManager.instance.SoundManager.onButtonClickSound();
         switch (category)
         {
             //speed

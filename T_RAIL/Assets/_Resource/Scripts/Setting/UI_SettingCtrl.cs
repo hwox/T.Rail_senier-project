@@ -23,11 +23,13 @@ public class UI_SettingCtrl : MonoBehaviour
 
     public void On_ExitWindow()
     {
+
         Exit_Window.SetActive(true);
     }
 
     public void Off_ExitWindow()
     {
+        TrainGameManager.instance.SoundManager.onButtonClickSound();
         Exit_Window.SetActive(false);
     }
     public void GameExit()
@@ -37,17 +39,20 @@ public class UI_SettingCtrl : MonoBehaviour
 
     public void On_BookWindow()
     {
+        TrainGameManager.instance.SoundManager.onButtonClickSound();
         Book_Window.SetActive(true);
         Book_Window.GetComponent<ShowStateInNotePad>().OpenNotePad();
     }
     public void Off_BookWindow()
     {
+        TrainGameManager.instance.SoundManager.onButtonClickSound();
         Book_Window.SetActive(false);
         Book_Window.GetComponent<ShowStateInNotePad>().CloseNotePad();
     }
 
     public void HPButtonClick()
     {
+        TrainGameManager.instance.SoundManager.onButtonClickSound();
         if (!HPButtonOn)
         {
             HPUI.SetActive(true);
@@ -64,6 +69,7 @@ public class UI_SettingCtrl : MonoBehaviour
 
     public void HandButtonClick()
     {
+        TrainGameManager.instance.SoundManager.onButtonClickSound();
         if (!HandButtonOn)
         {
             HandUI.SetActive(true);
