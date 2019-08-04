@@ -256,7 +256,7 @@ public class InBoxItem : MonoBehaviourPunCallbacks
             if (!allitem.ItemBoxToHand)
             {
                 // 아이템 안갖다넣음 그래서 이미지 null 아니고 그대로 있는거
-                ItemImages[clickUI].sprite = allitem.ItemImage[clickUI_image];
+                ItemImages[clickUI].sprite = allitem.ItemImage[clickUI_image-1];
 
                 allitem.ItemBoxToHand = false;
             }
