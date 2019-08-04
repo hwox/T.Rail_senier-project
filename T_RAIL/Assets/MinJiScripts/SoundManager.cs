@@ -66,6 +66,18 @@ public class SoundManager : MonoBehaviourPunCallbacks {
         BGM_Source.Play();
     }
 
+    public void TrainStage2_BGMSoundPlay()
+    {
+        BGM_Source.clip = stage2BGM;
+        BGM_Source.Play();
+    }
+
+    public void TrainStage3_BGMSoundPlay()
+    {
+        BGM_Source.clip = stage3BGM;
+        BGM_Source.Play();
+    }
+
     public void Machine_Gun_Sound_Play()
     {
         Effect1_Source.clip = Machine_Gun_Sound;

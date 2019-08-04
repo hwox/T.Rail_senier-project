@@ -1133,7 +1133,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         // 0~3 까지 있음 0이 플레이어1
 
         // 이 HP_UISlider는 start에서 받아오는 중임
-
+        HP_UISlider.value = (float)player.HP / GameValue.PlayerMaxHp;
     }
 
     void CoinUI()

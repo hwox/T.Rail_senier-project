@@ -13,6 +13,8 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
 
     bool TestMeterMode; // test용 모드위해 추가하는 거
 
+    bool tempOn = false; //첫번째씬에서 켜는용
+
     // Use this for initialization
     void Start()
     {
@@ -120,7 +122,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         //사막
         else if (SceneManager.GetActiveScene().buildIndex + 1 == 3)
         {
-            TrainGameManager.instance.SoundManager.TrainStage1_BGMSoundPlay();
+            TrainGameManager.instance.SoundManager.TrainStage2_BGMSoundPlay();
         }
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -158,14 +160,14 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
     [PunRPC]
     public void StationSceneLoad()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
         //첫번째 역에서 브금 바뀌는지 테스트
-        if (SceneManager.GetActiveScene().buildIndex + 1 == 2)
-            TrainGameManager.instance.SoundManager.TrainStage1_BGMSoundPlay();
+
         //설원
-        else if (SceneManager.GetActiveScene().buildIndex + 1 == 4)
-            TrainGameManager.instance.SoundManager.TrainStage1_BGMSoundPlay();
+        if (SceneManager.GetActiveScene().buildIndex + 1 == 4)
+            TrainGameManager.instance.SoundManager.TrainStage3_BGMSoundPlay();
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     void NextStageCheck()
@@ -176,6 +178,11 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         {
             TrainGameManager.instance.Stage = 1;
             
+            if(tempOn == false)
+            {
+                TrainGameManager.instance.SoundManager.TrainStage1_BGMSoundPlay();
+                tempOn = true;
+            }
             //Debug.Log("stage1");
         }
         else if (NextStage >= GameValue.Stage1Index && NextStage < GameValue.Stage2Index)
