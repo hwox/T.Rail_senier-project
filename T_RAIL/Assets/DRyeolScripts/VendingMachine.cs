@@ -72,7 +72,7 @@ public class VendingMachine : MonoBehaviour {
                         }
                         else
                         {
-                            Debug.Log("돈 부족");
+                            //Debug.Log("돈 부족");
                             itemCtrl.GetComponent<AllItem_Ctrl>().VendingMachine_ItemGet(627);
                         }
                     }
@@ -91,7 +91,7 @@ public class VendingMachine : MonoBehaviour {
         if (Physics.Raycast(ray, out hit, 100.0f))
         {
             Cbutton = hit.collider.gameObject;
-            Debug.Log(Cbutton.name);
+            //Debug.Log(Cbutton.name);
         }
             return Cbutton;
     }
@@ -101,7 +101,7 @@ public class VendingMachine : MonoBehaviour {
     {
 
         button.GetComponent<Animator>().SetBool("click", true);
-        Debug.Log("클릭");
+        //Debug.Log("클릭");
         yield return new WaitForSeconds(0.2f);
 
         button.GetComponent<Animator>().SetBool("click", false);
