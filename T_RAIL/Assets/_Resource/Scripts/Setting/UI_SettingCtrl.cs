@@ -7,7 +7,7 @@ public class UI_SettingCtrl : MonoBehaviour
 {
 
 
-    public GameObject Setting_Window;
+    public GameObject Exit_Window;
     public GameObject Book_Window;
 
     public GameObject HandUI;
@@ -21,14 +21,18 @@ public class UI_SettingCtrl : MonoBehaviour
         Application.Quit();
     }
 
-    public void On_SettingWindow()
+    public void On_ExitWindow()
     {
-        Setting_Window.SetActive(true);
+        Exit_Window.SetActive(true);
     }
 
-    public void Off_SettingWindow()
+    public void Off_ExitWindow()
     {
-        Setting_Window.SetActive(false);
+        Exit_Window.SetActive(false);
+    }
+    public void GameExit()
+    {
+        Application.Quit();
     }
 
     public void On_BookWindow()
