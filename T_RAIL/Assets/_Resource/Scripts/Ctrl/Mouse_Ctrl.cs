@@ -66,6 +66,7 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
                         //new Vector3(m_Position.x, m_Position.y, m_Position.z);
                         if (TrainGameManager.instance.NowItemUIUsable)
                         {
+                            TrainGameManager.instance.SoundManager.OpenInven_Sound_Play();
                             hit.collider.GetComponent<InBoxItem>().OpenBoxInven();
                         }
                     }
@@ -73,6 +74,7 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
                     else if (hit.collider.gameObject.layer.Equals(GameValue.passenger_layer))
                     {
                         // 승객일 경우 
+                        TrainGameManager.instance.SoundManager.OpenInven_Sound_Play();
                         hit.collider.GetComponent<Passenger_Ctrl>().ClickForPassengerCare();
                     }
                     else if (hit.collider.gameObject.layer.Equals(GameValue.choice_layer))

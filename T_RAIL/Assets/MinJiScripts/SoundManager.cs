@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class SoundManager : MonoBehaviourPunCallbacks {
+public class SoundManager : MonoBehaviourPunCallbacks
+{
 
     public AudioSource BGM_Source;
     public AudioSource Effect1_Source;
@@ -37,7 +38,7 @@ public class SoundManager : MonoBehaviourPunCallbacks {
 
     [Header("Common Sound")]
     public AudioClip Machine_Gun_Sound;
-    public AudioClip InGameButtonSound; 
+    public AudioClip InGameButtonSound;
     public AudioClip Box_Sofa_instance_Sound; //박스 소파 생성 시
     public AudioClip train_Break_Sound; //기차 뚫릴 먹을시
     public AudioClip train_Treat_Sound; //기차 수리시
@@ -49,6 +50,8 @@ public class SoundManager : MonoBehaviourPunCallbacks {
     public AudioClip train_door_open_Sound; // 역에서 그냥 틀고 시작 기차 문열리는소리
     public AudioClip ExitWindow_Sound; // 끌거냐고 묻는 UI
     public AudioClip ladder_Sound; //사다리 오르고 내리는 소리 
+    public AudioClip InvenOpen_Sound;
+
 
     private void Awake()
     {
@@ -163,5 +166,16 @@ public class SoundManager : MonoBehaviourPunCallbacks {
     {
         UI2_Source.clip = ladder_Sound;
         UI2_Source.Play();
+    }
+    public void OpenInven_Sound_Play()
+    {
+        Effect2_Source.clip = InvenOpen_Sound;
+        Effect2_Source.Play();
+    }
+
+    public void Passenger_Die_Sound_Play()
+    {
+        Effect2_Source.clip = passenger_die_Sound;
+        Effect2_Source.Play();
     }
 }

@@ -51361,15 +51361,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 15
       objectReference: {fileID: 0}
-    - target: {fileID: 1932064610390020, guid: 39dd6fd95eacafd489324036d5b7ce29, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114104154560267730, guid: 39dd6fd95eacafd489324036d5b7ce29,
-        type: 2}
-      propertyPath: ExitWindow_Sound
-      value: 
-      objectReference: {fileID: 8300000, guid: 0e1dc6774a1dbdf4894d0e2bbce66338, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39dd6fd95eacafd489324036d5b7ce29, type: 2}
   m_IsPrefabAsset: 0
