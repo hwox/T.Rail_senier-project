@@ -118,6 +118,7 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
         Live = true;
         this.transform.localPosition = Vector3.zero;
         anim.SetBool("IsSit", true);
+        TrainGameManager.instance.nowPassenger += 1;
 
         //마스터클라이언트만 코루틴 실행하고 다른애들한텐 그 결과만 알려주기 
         if (!PhotonNetwork.IsMasterClient)
@@ -149,6 +150,7 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
         // parent다시 gamemanager로 바꿔야 함 
         this.gameObject.transform.parent = TrainGameManager.instance.gameObject.transform.GetChild((int)GameValue.prefab_list.passenger);
 
+        TrainGameManager.instance.nowPassenger -= 1;
         StopCoroutine(PassengerIsEffectedByEnvironment());
         ExitButtonCanvas();
         this.gameObject.SetActive(false);

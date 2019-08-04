@@ -380,7 +380,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         TrainGameManager.instance.Station_PassengerManager[i].gameObject.SetActive(false);
         TrainGameManager.instance.GetPassengerCount++;
         TrainGameManager.instance.totalPassenger++;
-        Debug.Log("GetPassengerCount " + TrainGameManager.instance.GetPassengerCount);
+       // Debug.Log("GetPassengerCount " + TrainGameManager.instance.GetPassengerCount);
 
         TrainGameManager.instance.SoundManager.coin_Sound_Play();
 
