@@ -32,7 +32,7 @@ public class Enemy_Ctrl : MonoBehaviourPunCallbacks
     int follow_index; // 따라갈 기차의 인덱스 
     bool Retreat; // 후퇴
 
-  //  public Condition_Ctrl condition_ctrl;
+    //  public Condition_Ctrl condition_ctrl;
 
     private void Awake()
     {
@@ -47,30 +47,30 @@ public class Enemy_Ctrl : MonoBehaviourPunCallbacks
     // Use this for initialization
     void Start()
     {
-      //  condition_ctrl = GameObject.Find("/State_Ctrl/Condition_Ctrl").GetComponent<Condition_Ctrl>();
+        //  condition_ctrl = GameObject.Find("/State_Ctrl/Condition_Ctrl").GetComponent<Condition_Ctrl>();
 
         switch (KindOfEnemy)
         {
             case 1:
                 RhinoInitSetting();
-              //  condition_ctrl.enemyOnStage1 = this.gameObject;
+                //  condition_ctrl.enemyOnStage1 = this.gameObject;
                 break;
             case 2:
                 CactusInitSetting();
-              //  condition_ctrl.enemyOnStage2 = this.gameObject;
+                //  condition_ctrl.enemyOnStage2 = this.gameObject;
                 break;
             case 3:
                 HuskyInitSetting();
-            //    condition_ctrl.enemyOnStage3 = this.gameObject;
+                //    condition_ctrl.enemyOnStage3 = this.gameObject;
                 break;
             default:
                 TrainGameManager.instance.Error_print();
                 break;
         }
 
-       // StartCoroutine(Enemy_ActRoutine());
-    //    TrainGameManager.instance.ConditionCtrl.NowEnemy = this.gameObject;
-    //    TrainGameManager.instance.ConditionCtrl.enemy_ctrl = this.GetComponent<Enemy_Ctrl>();
+        // StartCoroutine(Enemy_ActRoutine());
+        //    TrainGameManager.instance.ConditionCtrl.NowEnemy = this.gameObject;
+        //    TrainGameManager.instance.ConditionCtrl.enemy_ctrl = this.GetComponent<Enemy_Ctrl>();
         this.gameObject.SetActive(false);
 
         enemy.speed = 10.0f;  // enemy1은 스피드 기본고정
@@ -82,7 +82,7 @@ public class Enemy_Ctrl : MonoBehaviourPunCallbacks
     {
 
         Init_Rhino = tr.position;
-       // Init_Rhino = new Vector3(-200, 1.7f, -3.6f);
+        // Init_Rhino = new Vector3(-200, 1.7f, -3.6f);
         Init_Rhino_child = Rhino_child.position;
 
         tr.position = new Vector3(-200, 1.7f, -3.6f);
@@ -92,7 +92,7 @@ public class Enemy_Ctrl : MonoBehaviourPunCallbacks
     }
     void CactusInitSetting()
     {
-       Init_Cactus = tr.position;
+        Init_Cactus = tr.position;
         //  Init_Cactus = new Vector3(-200, 1.7f, -3.6f);
         tr.position = new Vector3(-200, 1.7f, -3.6f);
         Init_Cactus_child = Cactus_child.position;
@@ -100,8 +100,8 @@ public class Enemy_Ctrl : MonoBehaviourPunCallbacks
 
     void HuskyInitSetting()
     {
-       //Init_Husky = new Vector3(-200, 1.7f, -3.6f);
-       Init_Husky = tr.position;
+        //Init_Husky = new Vector3(-200, 1.7f, -3.6f);
+        Init_Husky = tr.position;
         tr.position = new Vector3(-200, 1.7f, -3.6f);
         Init_Husky_child = Husky_child.position;
     }
@@ -125,7 +125,7 @@ public class Enemy_Ctrl : MonoBehaviourPunCallbacks
     [PunRPC]
     public void isAttackedByBullet()
     {
-        enemy.HP -= 30 / TrainGameManager.instance.Defence_stat;
+        enemy.HP -= 10 * TrainGameManager.instance.Defence_stat;
     }
 
     void Update()
@@ -245,7 +245,7 @@ public class Enemy_Ctrl : MonoBehaviourPunCallbacks
 
     }
 
-   
+
 
     public void EnemyActiveOff()
     {
@@ -261,7 +261,7 @@ public class Enemy_Ctrl : MonoBehaviourPunCallbacks
                 break;
             case (int)GameValue.EnemyCategory.Husky:
                 tr.position = Init_Husky;
-               Husky_child.position = Init_Husky_child;
+                Husky_child.position = Init_Husky_child;
                 break;
             default:
                 break;

@@ -15,6 +15,7 @@ public class UI_SettingCtrl : MonoBehaviour
     public bool HandButtonOn { get; set; }
     public bool HPButtonOn { get; set; }
 
+
     public void ExitGame()
     {
         Application.Quit();

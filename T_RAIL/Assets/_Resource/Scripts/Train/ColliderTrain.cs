@@ -24,8 +24,7 @@ public class ColliderTrain : MonoBehaviourPunCallbacks
         {
             MCam_Ctrl.Hit_EnemyCam(true);
 
-            TrainGameManager.instance.TrainCtrl.trainscript[TrainGameManager.instance.trainindex - 1].photonView.RPC("Run_TrainHPMinus_RPC", RpcTarget.All, 2.0f); //HP -=2/*other.GetComponent<Enemy1_Ctrl>().E_damage*/;
-            Debug.Log("HP"+TrainGameManager.instance.TrainCtrl.trainscript[TrainGameManager.instance.trainindex - 1].HP);
+            TrainGameManager.instance.TrainCtrl.trainscript[TrainGameManager.instance.trainindex - 1].photonView.RPC("Run_TrainHPMinus_RPC", RpcTarget.All, 6.0f / TrainGameManager.instance.Defence_stat); //HP -=2/*other.GetComponent<Enemy1_Ctrl>().E_damage*/;
 
             TrainGameManager.instance.SoundManager.enemy_attack_Sound_Play();
         }

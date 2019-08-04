@@ -23,6 +23,7 @@ public class ControllerCamera_Ctrl : MonoBehaviour {
         // MCam.GetComponent<Mouse_Ctrl>().ThisCamOn = false;
         MCam.GetComponent<Mouse_Ctrl>().ThisCamSetOnOff(false);
 
+        TrainGameManager.instance.StateControllerCtrl.StateTxtOnOff(true);
 
     }
 
@@ -33,6 +34,6 @@ public class ControllerCamera_Ctrl : MonoBehaviour {
         MCam.GetComponent<Mouse_Ctrl>().ThisCamSetOnOff(true);
         ControllerCam.enabled = false;
         ExitStateController.SetActive(false);
-
+        TrainGameManager.instance.StateControllerCtrl.StateTxtOnOff(false);
     }
 }

@@ -181,24 +181,6 @@ public class PlayerHand_Item : MonoBehaviourPunCallbacks
         {
             case 1:
 
-                // storage는 그냥 그대로 collider로 하고 어차피
-                // 아이템 관련 UI 두 개씩 못켜니까 그대로 하고
-                // 손에서 박스로 다시 가는것만
-
-                //if (!allitem.ItemBoxToHand )
-                //{
-                //    allitem.UseLeftHandItem();
-                //    NowHave_Image.sprite = allitem.NullImage;
-                //    //NowHave_Image.sprite = allitem.ItemImage[clickUI];
-                //    allitem.ItemBoxToHand = false;
-                //}
-                //else if (allitem.ItemBoxToHand)
-                //{
-                //    //  NowHave_Image.sprite = allitem.NullImage;
-                //    NowHave_Image.sprite = allitem.ItemImage[clickUI];
-                //    allitem.ItemBoxToHand = false;
-                //}
-
                 if (allitem.ItemHandToBox)
                 {
                     int BoxIndex = allitem.NowChoiceBox;
@@ -234,20 +216,6 @@ public class PlayerHand_Item : MonoBehaviourPunCallbacks
                 break;
             case 2:
                 //오른손
-                //if (!allitem.ItemBoxToHand)
-                //{
-                //    allitem.UseRightHandItem();
-                //    NowHave_Image.sprite = allitem.NullImage;
-
-                //    allitem.ItemBoxToHand = false;
-                //}
-                //else if (allitem.ItemBoxToHand)
-                //{
-                //    NowHave_Image.sprite = allitem.ItemImage[clickUI];
-
-                //    allitem.ItemBoxToHand = false;
-                //}
-
 
                 if (allitem.ItemHandToBox)
                 {
