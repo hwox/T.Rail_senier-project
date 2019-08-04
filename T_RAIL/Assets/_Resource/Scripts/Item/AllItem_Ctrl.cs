@@ -40,7 +40,13 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
     public int LeftHand_Pocket;
     public int RightHand_Pocket;
 
-    public bool ItemCrack; // 아이템 옮겨졌는가?ㅜ
+    public bool ItemBoxToHand;
+    public bool ItemHandToBox;
+    public bool ItemHTBEnable; // HandToBox하려니까 box에 collision 때문에
+   //public bool ItemHandToMaterialStorage;
+
+    public int NowChoiceBox; // HandToBox -> 몇번째 박스인지
+
     public int LeftFlag = 0; // 왼손에 닿았는가ㅎ
     public int RightFlag = 0; // 오른손에 닿았는가 ㅎ
 
@@ -81,7 +87,8 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         else if (!_onoff)
         {
             DragCursorSprite.gameObject.SetActive(false);
-            ItemCrack = false;
+            ItemBoxToHand = false;
+            ItemHandToBox = false;
             NowDragItemInfo = 0;
         }
     }
@@ -118,6 +125,11 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         RightHand_PocketObject.GetComponent<Image>().sprite = NullImage;
         UseInLeftHand = 0;
         UseInRightHand = 0;
+    }
+
+    public void ForItemToBoxIndex(int index)
+    {
+        NowChoiceBox = index;
     }
 
     public bool Usable_MediPack()
@@ -224,7 +236,6 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
     {
         photonView.RPC("ItemGet_MediPack", RpcTarget.All);
     }
-
     [PunRPC]
     public void ItemGet_Nail()
     {
@@ -248,7 +259,6 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         if (boxCount == boxItem.Count)
             chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
     }
-
     [PunRPC]
     public void ItemGet_Ironpan()
     {
@@ -271,7 +281,6 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         if (boxCount == boxItem.Count)
             chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
     }
-
     [PunRPC]
     public void ItemGet_FoodTomato()
     {
@@ -297,7 +306,6 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         if (boxCount == boxItem.Count)
             chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
     }
-
     [PunRPC]
     public void ItemGet_FoodBean()
     {
@@ -321,7 +329,6 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         if (boxCount == boxItem.Count)
             chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
     }
-
     [PunRPC]
     public void ItemGet_FoodChicken()
     {
@@ -344,9 +351,6 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         if (boxCount == boxItem.Count)
             chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
     }
-
-
-
     [PunRPC]
     public void ItemGet_Hammer()
     {
@@ -369,9 +373,6 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         if (boxCount == boxItem.Count)
             chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
     }
-
-
-
     [PunRPC]
     public void ItemGet_MediPack()
     {
@@ -394,8 +395,6 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         if (boxCount == boxItem.Count)
             chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
     }
-
-
     [PunRPC]
     public void ItemGet_WoodBoard()
     {
@@ -419,10 +418,6 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         if (boxCount == boxItem.Count)
             chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
     }
-
-
-
-
     [PunRPC]
     public void VendingMachine_ItemGet(int Vnum)
     {
@@ -468,7 +463,6 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         }
 
     }
-
     [PunRPC]
     public void vending_item(int itemcase)
     {
@@ -514,13 +508,6 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
             }
         }
     }
-
-
-
-
-
-
-
     public void ItemGet_Random(int viewID)
     {
         int ItemNumber = Random.Range(0, (int)GameValue.itemCategory.ironpan + 1);
@@ -562,11 +549,6 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
                 break;
         }
     }
-
-
-
-
-
     [PunRPC]
     public void setEggActiveFalse(int viewID, int itemCase)
     {
