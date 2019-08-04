@@ -375,20 +375,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114104154560267730, guid: 39dd6fd95eacafd489324036d5b7ce29,
-        type: 2}
-      propertyPath: passenger_die_Sound
-      value: 
-      objectReference: {fileID: 8300000, guid: e59d4b836ec4105498d464acb24b8a07, type: 3}
-    - target: {fileID: 114104154560267730, guid: 39dd6fd95eacafd489324036d5b7ce29,
-        type: 2}
-      propertyPath: InvenOpen_Sound
-      value: 
-      objectReference: {fileID: 8300000, guid: 821ff8f92f876a04da7899a129c56a1c, type: 3}
-    - target: {fileID: 1932064610390020, guid: 39dd6fd95eacafd489324036d5b7ce29, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39dd6fd95eacafd489324036d5b7ce29, type: 2}
   m_IsPrefabAsset: 0
