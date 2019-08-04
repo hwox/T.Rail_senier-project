@@ -206,7 +206,8 @@ public class Player_Actor : Move_Actor {
    }
     public void SetStationPlayer(int n)
     {
-        position = new Pos(-1 * n * 2, 1.74f, -2.5f);
+        position = new Pos(-1 * n * 2, 1.78f, -2.5f);
+        //position = new Pos(-1 * n * 2, 1.74f, -2.5f);
        
     }
     public void SetTrainPlayer(int n)

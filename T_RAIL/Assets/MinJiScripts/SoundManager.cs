@@ -12,7 +12,7 @@ public class SoundManager : MonoBehaviourPunCallbacks
     public AudioSource Effect3_Source;
     public AudioSource UI1_Source;
     public AudioSource UI2_Source;
-
+    public AudioSource foot_Source;
 
     //lobby
     [Header("Lobby Sound")]
@@ -52,6 +52,7 @@ public class SoundManager : MonoBehaviourPunCallbacks
     public AudioClip ladder_Sound; //사다리 오르고 내리는 소리 
     public AudioClip InvenOpen_Sound;
 
+    public AudioClip foot_Sound; //플레이어 발자국소리
 
     private void Awake()
     {
@@ -177,5 +178,11 @@ public class SoundManager : MonoBehaviourPunCallbacks
     {
         Effect2_Source.clip = passenger_die_Sound;
         Effect2_Source.Play();
+    }
+
+    public void Player_foot_Sound_Play()
+    {
+        foot_Source.clip = foot_Sound;
+        foot_Source.Play();
     }
 }
