@@ -48,17 +48,21 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         }
 
         //state==1 기차 안 / state == 3 역
-        if (TrainGameManager.instance.Scene_state == 1)
-        {
+       // if (TrainGameManager.instance.Scene_state == 1)
+      //  {
+         //   Debug.Log("Check함수 호출");
             NextStageCheck();
-        }
+        //}
+        //else
+        //{
+        //    Debug.Log("여기에요여기ㅣ!!!");
+        //}
 
             if (!PhotonNetwork.IsMasterClient) return;
 
         //state==1 기차 안 / state == 3 역
         if (TrainGameManager.instance.Scene_state == 1)
         {
-            //NextStageCheck();
 
             if (!TestMeterMode)
             {
@@ -76,6 +80,8 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
                     photonView.RPC("StationSceneLoad", RpcTarget.All);
                 }
             }
+
+            NextStageCheck();
         }
         else if (TrainGameManager.instance.Scene_state == 3)
         {
@@ -83,10 +89,12 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
             photonView.RPC("TrainSceneLoad", RpcTarget.All);
             TrainGameManager.instance.photonView.RPC("setSceneState_RPC", RpcTarget.All, 1);
             //TrainGameManager.instance.Scene_state = 1;
-           
+            NextStageCheck();
+
         }
         else if (TrainGameManager.instance.Scene_state == 4)
         {
+
             EndingSceneLoad();
         }
     }
@@ -197,6 +205,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
 
     public void EndingSceneLoad()
     {
+
         MCam_Ctrl.EndingCam(true, 0);
         MCam_Ctrl.Change_floor(5);
 
@@ -227,21 +236,23 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
                 TrainGameManager.instance.SoundManager.TrainStage1_BGMSoundPlay();
                 tempOn = true;
             }
-            //Debug.Log("stage1");
+
         }
         else if (NextStage >= GameValue.Stage1Index && NextStage < GameValue.Stage2Index)
         {
             TrainGameManager.instance.Stage = 2;
-            //Debug.Log("stage2");
+    
         }
         else if (NextStage >= GameValue.Stage2Index && NextStage < GameValue.Stage3Index)
         {
             TrainGameManager.instance.Stage = 3;
-            //Debug.Log("stage3");
+
         }
-        else if (NextStage >= GameValue.Stage3Index)
-        {
+        else 
+        {            
             TrainGameManager.instance.Stage = 4;
+            TrainGameManager.instance.Scene_state = 4;
         }
+
     }
 }

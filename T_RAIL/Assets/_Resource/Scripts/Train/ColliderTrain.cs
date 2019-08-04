@@ -13,7 +13,7 @@ public class ColliderTrain : MonoBehaviourPunCallbacks
     // Use this for initialization
     void Start()
     {
-        MCam = Camera.main;
+        MCam = TrainGameManager.instance.MCam;
         MCam_Ctrl = MCam.GetComponent<CamCtrl>();
     }
 

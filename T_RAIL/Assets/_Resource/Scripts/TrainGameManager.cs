@@ -74,6 +74,11 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
     public GameObject InGame_Notice; // 게임 내에서의 알림사항 ex) 몬스터 등장
     public Text InGame_Text;
 
+
+    // #Camera
+    public Camera MCam;
+
+
     // # PlayerHPUI
     public GameObject[] PlayerHPUI;
 
