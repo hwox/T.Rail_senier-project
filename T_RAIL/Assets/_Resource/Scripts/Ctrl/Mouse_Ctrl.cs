@@ -50,7 +50,7 @@ public class Mouse_Ctrl : MonoBehaviourPunCallbacks
             {
                 if (Input.GetMouseButtonDown(0) && EventSystem.current.IsPointerOverGameObject() == false)
                 {
-                    Debug.Log("왼쪽");
+
                     // 만약에 마우스 클릭이 안된다?
                     // max distance 200.0f을 mathf.infinity로 바꿔볼것
                     //if (Physics.Raycast(ray, out hit))

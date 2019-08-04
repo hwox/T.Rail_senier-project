@@ -39106,7 +39106,7 @@ AudioSource:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 775df7a216485fa4c833dfc1c51c75c6, type: 3}
@@ -50389,10 +50389,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d80026c8491e3649a7b68470ecde688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NowHave: 0
   NowHave_Image: {fileID: 1225696609}
   WhatHand: 2
-  hand_ItemCrack: 0
 --- !u!65 &730615237
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -85794,10 +85792,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d80026c8491e3649a7b68470ecde688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NowHave: 0
   NowHave_Image: {fileID: 1040487700}
   WhatHand: 1
-  hand_ItemCrack: 0
 --- !u!54 &1296121877
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -100390,7 +100386,9 @@ MonoBehaviour:
   RightHand_PocketObject: {fileID: 1225696607}
   LeftHand_Pocket: 0
   RightHand_Pocket: 0
-  ItemCrack: 0
+  ItemBoxToHand: 0
+  ItemHandToBox: 0
+  NowChoiceBox: 0
   LeftFlag: 0
   RightFlag: 0
   UseInLeftHand: 0

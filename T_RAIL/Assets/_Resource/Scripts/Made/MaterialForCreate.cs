@@ -70,10 +70,9 @@ public class MaterialForCreate : MonoBehaviour
     {
         if (other.CompareTag("DragItem"))
         {
-
+            //  allitem.ItemHandToMaterialStorage = true;
             if (StorageIndex <= 6)
             {
-                //ForMakeItem.Add(other.GetComponent<PlayerHand_Item>().NowHave);
                 if (allitem.UseInLeftHand == 1)
                 {
                     ForMakeItem.Add(allitem.LeftHand_Pocket);
@@ -92,6 +91,15 @@ public class MaterialForCreate : MonoBehaviour
             {
                 Debug.Log("보관함 6개 넘어서 못넣어 이제");
             }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+
+        if (other.CompareTag("DragItem"))
+        {
+            // allitem.ItemHandToMaterialStorage = false;
         }
     }
 
@@ -140,7 +148,7 @@ public class MaterialForCreate : MonoBehaviour
 
     public bool IsBoxMakeEnable()
     {
-       
+
         bool wood1 = false;
         bool wood2 = false;
         bool nail = false;
@@ -181,7 +189,7 @@ public class MaterialForCreate : MonoBehaviour
             }
 
 
-            if(hammer && wood1 && wood2 && nail)
+            if (hammer && wood1 && wood2 && nail)
             {
                 return true;
             }
@@ -189,9 +197,9 @@ public class MaterialForCreate : MonoBehaviour
 
         return false;
     }
-            // 다 찾았으면 그것도 다 지워야 되네
-            // 뺄거잖아
-            // 어차피 뺄 필요없나?
+    // 다 찾았으면 그것도 다 지워야 되네
+    // 뺄거잖아
+    // 어차피 뺄 필요없나?
     public bool IsSofaMakeEnable()
     {
         bool wood = false;

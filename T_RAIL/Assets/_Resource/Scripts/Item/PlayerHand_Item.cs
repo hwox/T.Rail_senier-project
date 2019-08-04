@@ -8,7 +8,6 @@ public class PlayerHand_Item : MonoBehaviour
 
     AllItem_Ctrl allitem;
 
-    public int NowHave; // 현재 가지고 있는 아이템
     public Image NowHave_Image; // 현재 손ㄴ바닥에 있는 Image
 
 
@@ -16,9 +15,9 @@ public class PlayerHand_Item : MonoBehaviour
 
     int clickUI;
 
-    bool DragEnable = false;
+    bool DragEnable = true;
 
-    public bool hand_ItemCrack; // 손아이템용 크랙
+    // public bool hand_ItemCrack; // 손아이템용 크랙
 
     private void Start()
     {
@@ -44,7 +43,7 @@ public class PlayerHand_Item : MonoBehaviour
                 allitem.RightFlag = 1;
             }
 
-            allitem.ItemCrack = true;
+            allitem.ItemBoxToHand = true;
         }
 
         //if (other.CompareTag("itemboxinven"))
@@ -68,19 +67,14 @@ public class PlayerHand_Item : MonoBehaviour
         //}
 
     }
-
     private void OnTriggerExit(Collider other)
     {
+
         if (other.CompareTag("DragItem"))
         {
-            // NowHave = 0;
-            allitem.ItemCrack = false;
-            allitem.LeftFlag = 0;
-            allitem.RightFlag = 0;
-
+            allitem.ItemBoxToHand = false;
         }
     }
-
 
     public void ItemUse()
     {
@@ -99,7 +93,7 @@ public class PlayerHand_Item : MonoBehaviour
         // 만약 해당 슬롯에 아이템이 없다면 아무일도 안하고      
         // 아이템이 있으면 드래그.
         // 그리고 여기서 애초에 처음 위치값도 지정해줘야할듯
-
+        allitem.ItemHTBEnable = true;
         switch (WhatHand)
         {
             case 1:
@@ -177,85 +171,121 @@ public class PlayerHand_Item : MonoBehaviour
     }
     public void DragMouse_Up()
     {
+        allitem.ItemHTBEnable = false;
         // 만약에 
         // 아이템창에 닿으면 그 아이템창에 이거 현재 아이템 정보 저장하고
         // 지금 내 아이템들은 다 초기화 시켜야 함
         // 얘가 마지막 그러면 여기서 
-
         switch (WhatHand)
         {
             case 1:
-                if (!allitem.ItemCrack)
+
+                // storage는 그냥 그대로 collider로 하고 어차피
+                // 아이템 관련 UI 두 개씩 못켜니까 그대로 하고
+                // 손에서 박스로 다시 가는것만
+
+                //if (!allitem.ItemBoxToHand )
+                //{
+                //    allitem.UseLeftHandItem();
+                //    NowHave_Image.sprite = allitem.NullImage;
+                //    //NowHave_Image.sprite = allitem.ItemImage[clickUI];
+                //    allitem.ItemBoxToHand = false;
+                //}
+                //else if (allitem.ItemBoxToHand)
+                //{
+                //    //  NowHave_Image.sprite = allitem.NullImage;
+                //    NowHave_Image.sprite = allitem.ItemImage[clickUI];
+                //    allitem.ItemBoxToHand = false;
+                //}
+
+                if (allitem.ItemHandToBox)
                 {
+                    int BoxIndex = allitem.NowChoiceBox;
+                    // allitem.boxItem.H
+                    for (int i = 0; i < allitem.boxItem[BoxIndex].HaveItemInfo.Length; i++)
+                    {
+                        if (allitem.boxItem[BoxIndex].HaveItemInfo[i].Equals(0))
+                        {
+                            // 비교해봐서 0번이 아닌 슬롯(비어있지 않은 슬롯)에 앞에부터 채워나가기
+                            allitem.boxItem[BoxIndex].AddItem(allitem.LeftHand_Pocket);
+
+                            break;
+                        }
+                    }
                     allitem.UseLeftHandItem();
-
-                    // 오류지점 ***************
-
-                    // 아 알았다 오류 왜 나는지.. MaterialForCreate에서는 그냥 
-                    // 충돌이 일어나면 아이템을 썼다고 처리해버리니까 얘는 Image를 넣으려고 해도 이미 
-                    // 가진 정보가 없어서 NullRef 오류가 뜨는 거
-                    // MaterialForCreate도 갖다가 놓으면 아이템 들어가게 bool 변수 써서 바꿔야겠다.
-                    NowHave_Image.sprite = allitem.ItemImage[clickUI];
-                    allitem.ItemCrack = false;
-                }
-                else if (allitem.ItemCrack)
-                {
                     NowHave_Image.sprite = allitem.NullImage;
-
-                    allitem.ItemCrack = false;
+                    allitem.ItemHandToBox = false;
                 }
-
-
-                // 재료창을 위한 손 아이템 사용
-                if (hand_ItemCrack)
+                else if (!allitem.ItemHandToBox)
                 {
-                    allitem.UseLeftHandItem();
-                    NowHave_Image.sprite = allitem.ItemImage[clickUI];
-                    hand_ItemCrack = false;
+                    if (allitem.LeftHand_Pocket == 0)
+                    {
+                        NowHave_Image.sprite = allitem.NullImage;
+                    }
+                    else
+                    {
+                        NowHave_Image.sprite = allitem.ItemImage[clickUI-1];
+                        allitem.ItemHandToBox = false;
+                    }
                 }
-                else if (!hand_ItemCrack)
-                {
-                    NowHave_Image.sprite = allitem.NullImage;
-
-                    hand_ItemCrack = false;
-                }
-
 
                 break;
             case 2:
                 //오른손
-                if (!allitem.ItemCrack)
+                //if (!allitem.ItemBoxToHand)
+                //{
+                //    allitem.UseRightHandItem();
+                //    NowHave_Image.sprite = allitem.NullImage;
+
+                //    allitem.ItemBoxToHand = false;
+                //}
+                //else if (allitem.ItemBoxToHand)
+                //{
+                //    NowHave_Image.sprite = allitem.ItemImage[clickUI];
+
+                //    allitem.ItemBoxToHand = false;
+                //}
+
+
+                if (allitem.ItemHandToBox)
                 {
+                    int BoxIndex = allitem.NowChoiceBox;
+                    // allitem.boxItem.H
+                    for (int i = 0; i < allitem.boxItem[BoxIndex].HaveItemInfo.Length; i++)
+                    {
+                        if (allitem.boxItem[BoxIndex].HaveItemInfo[i].Equals(0))
+                        {
+                            // 비교해봐서 0번이 아닌 슬롯(비어있지 않은 슬롯)에 앞에부터 채워나가기
+                            allitem.boxItem[BoxIndex].AddItem(allitem.RightHand_Pocket);
+
+                            break;
+                        }
+                    }
                     allitem.UseRightHandItem();
                     NowHave_Image.sprite = allitem.NullImage;
+                    allitem.ItemHandToBox = false;
 
-                    allitem.ItemCrack = false;
                 }
-                else if (allitem.ItemCrack)
+                else if (!allitem.ItemHandToBox )
                 {
-                    NowHave_Image.sprite = allitem.ItemImage[clickUI];
+                    if (allitem.RightHand_Pocket == 0)
+                    {
 
-                    allitem.ItemCrack = false;
+                        NowHave_Image.sprite = allitem.NullImage;
+                        Debug.Log("?");
+                    }
+                    else
+                    {
+                        NowHave_Image.sprite = allitem.ItemImage[clickUI-1];
+                        allitem.ItemHandToBox = false;
+                        Debug.Log("?2");
+                    }
                 }
 
-
-                // 재료창을 위한 손 아이템 사용
-                if (hand_ItemCrack)
-                {
-                    allitem.UseRightHandItem();
-                    NowHave_Image.sprite = allitem.ItemImage[clickUI];
-
-                    hand_ItemCrack = false;
-                }
-                else if (!hand_ItemCrack)
-                {
-
-                    NowHave_Image.sprite = allitem.NullImage;
-                    hand_ItemCrack = false;
-                }
 
                 break;
         }
+        allitem.ItemHandToBox = false;
         allitem.UseInLeftHand = 0;
         allitem.UseInRightHand = 0;
     }

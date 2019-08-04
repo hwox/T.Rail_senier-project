@@ -215,8 +215,6 @@ namespace Photon.Pun.Demo.Asteroids
             {
                 int id = photonView.ViewID/1000;
                 PhotonNetwork.Instantiate(ourplayerPrefab.name, new Vector3(-1 * id * 2, 3.8f, -2.5f), Quaternion.Euler(0, 180, 0), 0);
-                Debug.LogError(PhotonNetwork.CurrentRoom.PlayerCount);
-                Debug.Log("프리팹 생성!");
             }
 
 
