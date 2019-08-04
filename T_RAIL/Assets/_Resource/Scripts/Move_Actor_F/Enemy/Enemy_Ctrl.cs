@@ -81,7 +81,7 @@ public class Enemy_Ctrl : MonoBehaviourPunCallbacks
     void RhinoInitSetting()
     {
 
-        Init_Rhino = tr.position;
+        Init_Rhino = new Vector3(-200, 1.7f, -3.6f); ;
         // Init_Rhino = new Vector3(-200, 1.7f, -3.6f);
         Init_Rhino_child = Rhino_child.position;
 
@@ -92,7 +92,7 @@ public class Enemy_Ctrl : MonoBehaviourPunCallbacks
     }
     void CactusInitSetting()
     {
-        Init_Cactus = tr.position;
+        Init_Cactus = new Vector3(-200, 1.7f, -3.6f); ;
         //  Init_Cactus = new Vector3(-200, 1.7f, -3.6f);
         tr.position = new Vector3(-200, 1.7f, -3.6f);
         Init_Cactus_child = Cactus_child.position;
@@ -101,7 +101,7 @@ public class Enemy_Ctrl : MonoBehaviourPunCallbacks
     void HuskyInitSetting()
     {
         //Init_Husky = new Vector3(-200, 1.7f, -3.6f);
-        Init_Husky = tr.position;
+        Init_Husky = new Vector3(-200, 1.7f, -3.6f); ;
         tr.position = new Vector3(-200, 1.7f, -3.6f);
         Init_Husky_child = Husky_child.position;
     }

@@ -248,14 +248,10 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
 
         }
         else 
-        {
-            
+        {            
             TrainGameManager.instance.Stage = 4;
             TrainGameManager.instance.Scene_state = 4;
         }
-        else
-        {
 
-        }
     }
 }
