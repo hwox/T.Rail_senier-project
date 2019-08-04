@@ -380,7 +380,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         TrainGameManager.instance.Station_PassengerManager[i].gameObject.SetActive(false);
         TrainGameManager.instance.GetPassengerCount++;
         TrainGameManager.instance.totalPassenger++;
-        Debug.Log("GetPassengerCount " + TrainGameManager.instance.GetPassengerCount);
+       // Debug.Log("GetPassengerCount " + TrainGameManager.instance.GetPassengerCount);
 
         TrainGameManager.instance.SoundManager.coin_Sound_Play();
 
@@ -843,6 +843,9 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                     // 주변에 머신건이 있으면?
                     player.Where_Floor = 3;
                     MCam_Ctrl.EnemyAppear_Cam(true, player.Where_Train);
+                    TrainGameManager.instance.SoundManager.SitMachineGun_Sound_Play();
+                    anim.SetBool("IsWalk", false);
+                    anim.SetBool("IsRun", false);
 
                     space_state = 0;
                     near_gun = false;
@@ -960,7 +963,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 anim.SetBool("IsWalk", false);
                 runTime = 0;
             }
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.F))
             {
                 anim.SetBool("IsAttack", true);
                 if (attack_possible)
@@ -968,7 +971,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                     attackleach.GetComponent<Attack>().attack = true;
                 }
             }
-            if (Input.GetKeyUp(KeyCode.Space))
+            if (Input.GetKeyUp(KeyCode.F))
             {
                 anim.SetBool("IsAttack", false);
                 attack_possible = true;

@@ -38,27 +38,7 @@ public class SofaSitPassenger_Ctrl : MonoBehaviour
 
     public void PassengerRideInTrain()
     {
-        // int temp = TrainGameManager.instance.GetPassengerCount;
-        //int temp = 1;
-        //if (temp >= 0)
-        //{
-        //    for (int i = 0; i < temp; i++)
-        //    {
 
-        //        for (int j = 0; j < passengers.Count; j++)
-        //        {
-        //            if (!passengers[j].NowSit)
-        //            {
-        //                passengers[j].SitPassenger(TrainGameManager.instance.GetObject(1));
-        //                break;
-        //            }
-        //        }
-
-
-        //    }
-
-        //    TrainGameManager.instance.GetPassengerCount = 0; // 다시 0으로 
-        //}
         int temp = TrainGameManager.instance.GetPassengerCount;
         if (temp >= 0)
         {

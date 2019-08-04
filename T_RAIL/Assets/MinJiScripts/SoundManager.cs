@@ -53,6 +53,7 @@ public class SoundManager : MonoBehaviourPunCallbacks
     public AudioClip InvenOpen_Sound;
 
     public AudioClip foot_Sound; //플레이어 발자국소리
+    public AudioClip SitMachineGun_Sound; // 기관총에 앉았을 때
 
     private void Awake()
     {
@@ -180,6 +181,11 @@ public class SoundManager : MonoBehaviourPunCallbacks
         Effect2_Source.Play();
     }
 
+    public void SitMachineGun_Sound_Play()
+    {
+        Effect2_Source.clip = SitMachineGun_Sound;
+        Effect2_Source.Play();
+    }
     public void Player_foot_Sound_Play()
     {
         foot_Source.clip = foot_Sound;
