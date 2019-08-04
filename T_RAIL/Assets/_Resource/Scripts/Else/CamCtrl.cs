@@ -157,13 +157,14 @@ public class CamCtrl : MonoBehaviour
     {
         if (onoff)
         {
-
+            Debug.Log("켜짐");
             Ending_Camera.GetComponent<Camera>().enabled = true;
             this.GetComponent<Camera>().GetComponent<Mouse_Ctrl>().ThisCamSetOnOff(false);
             this.GetComponent<Camera>().enabled = false;
         }
         else if (!onoff)
         {
+            Debug.Log("꺼짐");
             this.GetComponent<Camera>().GetComponent<Mouse_Ctrl>().ThisCamSetOnOff(true);
             this.GetComponent<Camera>().enabled = true;
             Ending_Camera.GetComponent<Camera>().enabled = false;
