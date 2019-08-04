@@ -76,7 +76,7 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
 
             for (int i = 0; i < train.Count; i++)
             {
-                trainscript[i].Run_TrainHPMinus(perMeter);
+                trainscript[i].Run_TrainHPMinus(perMeter/ TrainGameManager.instance.Defence_stat);
 
                 yield return new WaitForSeconds(2.0f);
             }

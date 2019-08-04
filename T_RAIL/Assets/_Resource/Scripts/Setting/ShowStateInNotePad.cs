@@ -47,6 +47,7 @@ public class ShowStateInNotePad : MonoBehaviour
         if (TrainInformationIndex < 12)
         {
             TrainInformationIndex += 1;
+            WhereTrainText.text = TrainIndexText[TrainInformationIndex];
             ChangeTrainIndex();
         }
 
@@ -55,7 +56,9 @@ public class ShowStateInNotePad : MonoBehaviour
     {
         if (TrainInformationIndex > 0)
         {
+
             TrainInformationIndex -= 1;
+            WhereTrainText.text = TrainIndexText[TrainInformationIndex];
             ChangeTrainIndex();
         }
 
@@ -64,7 +67,6 @@ public class ShowStateInNotePad : MonoBehaviour
     {
         UsingNotePad = true;
         StartCoroutine(StateInformationRenewal());
-        Debug.Log("잉?");
     }
     public void CloseNotePad()
     {
@@ -81,7 +83,7 @@ public class ShowStateInNotePad : MonoBehaviour
         {
             Line.SetActive(true);
             PageX.SetActive(false);
-            WhereTrainText.text = TrainIndexText[TrainInformationIndex];
+           // WhereTrainText.text = TrainIndexText[TrainInformationIndex];
 
             Train_Object train = TrainCtrl.trainscript[TrainInformationIndex];
 

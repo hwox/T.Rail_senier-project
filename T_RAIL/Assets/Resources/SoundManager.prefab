@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4124318775359354
 Transform:
   m_ObjectHideFlags: 1
@@ -832,7 +832,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -968,9 +968,10 @@ MonoBehaviour:
   disease_Treat_Sound: {fileID: 8300000, guid: ad00d58a4c0d0ce47a1f7ebab97a338f, type: 3}
   coin_Sound: {fileID: 8300000, guid: f9fbbfa9416f5c2468d02f4a8bb8cdbe, type: 3}
   buy_item_Sound: {fileID: 8300000, guid: 90f51259d436cf84380a7ccb7a832571, type: 3}
-  passenger_die_Sound: {fileID: 0}
+  passenger_die_Sound: {fileID: 8300000, guid: e59d4b836ec4105498d464acb24b8a07, type: 3}
   train_door_open_Sound: {fileID: 8300000, guid: 76a0e1d63c4580344849a60db8033884,
     type: 3}
-  ExitWindow_Sound: {fileID: 0}
+  ExitWindow_Sound: {fileID: 8300000, guid: 0e1dc6774a1dbdf4894d0e2bbce66338, type: 3}
   ladder_Sound: {fileID: 8300000, guid: dcfef7402b8ea2f4c8ddf94ea510e615, type: 3}
+  InvenOpen_Sound: {fileID: 8300000, guid: 821ff8f92f876a04da7899a129c56a1c, type: 3}
   foot_Sound: {fileID: 8300000, guid: ed759362cc3ad9347b728ae842076e90, type: 3}

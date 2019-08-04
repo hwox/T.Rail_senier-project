@@ -87,5 +87,6 @@ MonoBehaviour:
   - setActivePlayerHPUI_RPC
   - setPlayerHP
   - AddItem
+  - FindNextDest
   DisableAutoOpenWizard: 1
   ShowSettings: 1
