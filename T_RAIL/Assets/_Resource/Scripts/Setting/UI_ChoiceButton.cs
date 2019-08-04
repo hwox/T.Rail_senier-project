@@ -62,7 +62,6 @@ public class UI_ChoiceButton : MonoBehaviourPunCallbacks
 
     public void GetHitObject(GameObject hit_object)
     {
-
         Hit_Object = hit_object;
         Hit_Object.transform.SetParent(Hit_Object.transform.parent);
     }

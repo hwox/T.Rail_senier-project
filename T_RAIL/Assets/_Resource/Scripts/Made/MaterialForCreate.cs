@@ -93,13 +93,11 @@ public class MaterialForCreate : MonoBehaviour
 
                 DrawMaterialStorageImage();
             }
-
             else
             {
                 Debug.Log("보관함 6개 넘어서 못넣어 이제");
             }
         }
-
     }
 
     private void OnTriggerExit(Collider other)
