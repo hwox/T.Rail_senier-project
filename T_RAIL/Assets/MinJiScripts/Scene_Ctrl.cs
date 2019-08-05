@@ -95,7 +95,24 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         else if (TrainGameManager.instance.Scene_state == 4)
         {
 
-            EndingSceneLoad();
+          
+            if (!TestMeterMode)
+            {
+                if (GameValue.NextStationMeter < Train_Ctrl.Run_Meter)
+                {
+                    EndingSceneLoad();
+                    TrainGameManager.instance.Scene_state = 5;
+                }
+            }
+            else
+            {
+                if (GameValue.TestMeter < Train_Ctrl.Run_Meter)
+                {
+                    EndingSceneLoad();
+                    TrainGameManager.instance.Scene_state = 5;
+                }
+            }
+         
         }
     }
 
@@ -144,6 +161,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         }
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+      
     }
 
     [PunRPC]
@@ -200,7 +218,13 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
             TrainGameManager.instance.SoundManager.Train_door_open_Sound_Play();
 
         }
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+       
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        
+
+        
+  
     }
 
 
@@ -219,6 +243,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
          
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+      
 
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
@@ -237,22 +262,38 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
                 TrainGameManager.instance.SoundManager.TrainStage1_BGMSoundPlay();
                 tempOn = true;
             }
+          
 
         }
         else if (NextStage >= GameValue.Stage1Index && NextStage < GameValue.Stage2Index)
         {
             TrainGameManager.instance.Stage = 2;
-    
+
+      
         }
         else if (NextStage >= GameValue.Stage2Index && NextStage < GameValue.Stage3Index)
         {
-            TrainGameManager.instance.Stage = 3;
 
+            if (NextStage == 5)
+            {
+              
+                if (TrainGameManager.instance.Scene_state != 5)
+                {
+                    TrainGameManager.instance.Stage = 4;
+                    TrainGameManager.instance.Scene_state =4 ;
+                }
+            }
+            else
+            {
+            
+                TrainGameManager.instance.Stage = 3;
+            }
+                      
+        
         }
         else 
-        {            
-            TrainGameManager.instance.Stage = 4;
-            TrainGameManager.instance.Scene_state = 4;
+        {
+          
         }
 
     }

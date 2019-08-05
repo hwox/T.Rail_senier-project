@@ -11,7 +11,7 @@ public class Helicopter_Ctrl : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        StartCoroutine("closeDoor");
+       // StartCoroutine("closeDoor");
     }
 
     // Update is called once per frame
