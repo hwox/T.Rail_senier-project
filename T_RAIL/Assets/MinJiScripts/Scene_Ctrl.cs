@@ -47,11 +47,26 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
             photonView.RPC("StationSceneLoad", RpcTarget.All);
         }
 
+        if (Input.GetKeyDown(KeyCode.F10))
+        {
+            TrainGameManager.instance.Ending_Stage = 1;
+        }
+        if (Input.GetKeyDown(KeyCode.F11))
+        {
+            TrainGameManager.instance.Ending_Stage = 2;
+        }
+        if (Input.GetKeyDown(KeyCode.F12))
+        {
+            TrainGameManager.instance.Ending_Stage = 3;
+        }
+
+
+
         //state==1 기차 안 / state == 3 역
-       // if (TrainGameManager.instance.Scene_state == 1)
-      //  {
-         //   Debug.Log("Check함수 호출");
-            NextStageCheck();
+        // if (TrainGameManager.instance.Scene_state == 1)
+        //  {
+        //   Debug.Log("Check함수 호출");
+        NextStageCheck();
         //}
         //else
         //{
@@ -220,7 +235,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         }
 
        
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1 );
         
 
         
@@ -230,7 +245,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
 
     public void EndingSceneLoad()
     {
-
+        Train_Ctrl.Hide();
         MCam_Ctrl.EndingCam(true, 0);
         MCam_Ctrl.Change_floor(5);
 
@@ -242,11 +257,14 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
      
          
         }
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-      
 
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
+      
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + TrainGameManager.instance.Ending_Stage);
+        
+       
+
+
+
     }
 
     void NextStageCheck()
