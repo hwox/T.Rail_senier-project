@@ -88,7 +88,7 @@ static class GameValue
     // 기차 속성의 기본값 
     public const float Durability = 1.0f;
     public const float speed = 9.0f;
-    public const int noise = 100;
+    public const float noise = 3.0f;
 
 
     // 다음역 까지의 거리

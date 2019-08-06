@@ -65,15 +65,15 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         //state==1 기차 안 / state == 3 역
         // if (TrainGameManager.instance.Scene_state == 1)
         //  {
-        //   Debug.Log("Check함수 호출");
+        // 
         NextStageCheck();
         //}
         //else
         //{
-        //    Debug.Log("여기에요여기ㅣ!!!");
+        // 
         //}
 
-            if (!PhotonNetwork.IsMasterClient) return;
+        if (!PhotonNetwork.IsMasterClient) return;
 
         //state==1 기차 안 / state == 3 역
         if (TrainGameManager.instance.Scene_state == 1)
@@ -110,7 +110,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         else if (TrainGameManager.instance.Scene_state == 4)
         {
 
-          
+
             if (!TestMeterMode)
             {
                 if (GameValue.NextStationMeter < Train_Ctrl.Run_Meter)
@@ -127,7 +127,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
                     TrainGameManager.instance.Scene_state = 5;
                 }
             }
-         
+
         }
     }
 
@@ -159,6 +159,8 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         {
             TrainGameManager.instance.Station_PassengerManager[i].SetActive(false);
         }
+
+        TrainGameManager.instance.SoundManager.TrainDriving_Sound_Play();
     }
     [PunRPC]
     public void TrainSceneLoad()
@@ -176,7 +178,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         }
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-      
+
     }
 
     [PunRPC]
@@ -206,18 +208,18 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
             playerListController.playerList[i].MCam_Ctrl.inTrain();
             //playerListController.playerList[i].stair_down = true;
 
-            if(playerListController.playerList[i].player.Where_Train - 1 >= 0)
-                 TrainGameManager.instance.TrainCtrl.trainscript[playerListController.playerList[i].player.Where_Train - 1].Ceiling_OnOff(false);
-            
+            if (playerListController.playerList[i].player.Where_Train - 1 >= 0)
+                TrainGameManager.instance.TrainCtrl.trainscript[playerListController.playerList[i].player.Where_Train - 1].Ceiling_OnOff(false);
+
             playerListController.playerList[i].player.Where_Floor = 4;
             playerListController.playerList[i].player.AxeActive();
 
             //photonView.RPC("setPlayerInStationState", RpcTarget.All, i);
         }
-
+        TrainGameManager.instance.SoundManager.TrainDriving_Sound_Stop();
     }
 
-    
+
 
     [PunRPC]
     public void StationSceneLoad()
@@ -233,13 +235,8 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
             TrainGameManager.instance.SoundManager.Train_door_open_Sound_Play();
 
         }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
-       
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1 );
-        
-
-        
-  
     }
 
 
@@ -248,22 +245,11 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         Train_Ctrl.Hide();
         MCam_Ctrl.EndingCam(true, 0);
         MCam_Ctrl.Change_floor(5);
-
-        
         for (int i = 0; i < playerListController.playerList.Count; ++i)
         {
-         
             playerListController.playerList[i].player.Where_Floor = 5;
-     
-         
         }
-
-      
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + TrainGameManager.instance.Ending_Stage);
-        
-       
-
-
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + TrainGameManager.instance.Ending_Stage);
 
     }
 
@@ -274,44 +260,43 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         if (NextStage <= GameValue.Stage1Index && SceneManager.GetActiveScene().buildIndex >= 1)
         {
             TrainGameManager.instance.Stage = 1;
-            
-            if(tempOn == false)
+
+            if (tempOn == false)
             {
+
                 TrainGameManager.instance.SoundManager.TrainStage1_BGMSoundPlay();
+                TrainGameManager.instance.SoundManager.TrainDriving_Sound_Play();
                 tempOn = true;
             }
-          
+
 
         }
         else if (NextStage >= GameValue.Stage1Index && NextStage < GameValue.Stage2Index)
         {
             TrainGameManager.instance.Stage = 2;
 
-      
+
         }
         else if (NextStage >= GameValue.Stage2Index && NextStage < GameValue.Stage3Index)
         {
 
             if (NextStage == 5)
             {
-              
+
                 if (TrainGameManager.instance.Scene_state != 5)
                 {
                     TrainGameManager.instance.Stage = 4;
-                    TrainGameManager.instance.Scene_state =4 ;
+                    TrainGameManager.instance.Scene_state = 4;
                 }
             }
             else
             {
-            
                 TrainGameManager.instance.Stage = 3;
             }
-                      
-        
         }
-        else 
+        else
         {
-          
+
         }
 
     }
