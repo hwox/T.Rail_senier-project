@@ -76,7 +76,7 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    void FindNextDest(int _NextDestNum, int _RSpeed)// 무작위 위치 찾기
+    void FindNextDest(int _NextDestNum, float _RSpeed)// 무작위 위치 찾기
     {
         _RSpeed = (_RSpeed / 5)+1;
        

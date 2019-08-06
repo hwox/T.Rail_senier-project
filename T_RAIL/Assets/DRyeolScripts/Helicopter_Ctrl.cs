@@ -30,7 +30,8 @@ public class Helicopter_Ctrl : MonoBehaviour
         // Update is called once per frame
     void Update()
     {
-
+        iTween.ShakePosition(gameObject, iTween.Hash("time", 0.5f, "y", 0.05f));
+       
         for (int i = 0; i < propeller.Length; i++)
         {
             propeller[i].transform.Rotate(0, 0.0f, 10.0f);
