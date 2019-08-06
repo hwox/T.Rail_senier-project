@@ -97,6 +97,7 @@ public class ShowStateInNotePad : MonoBehaviour
                     switch (TrainObject[i])
                     {
                         case 1:
+                            
                             PassengerState[i].SetActive(true);
                             PassengerStateSetting(i);
                             //소파

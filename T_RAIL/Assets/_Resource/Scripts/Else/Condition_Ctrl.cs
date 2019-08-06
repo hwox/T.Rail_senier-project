@@ -44,7 +44,6 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks
     private void Start()
     {
         StartCoroutine(EnemyAppear_Condition());
-
     }
     public void onEnemyOnButton()
     {

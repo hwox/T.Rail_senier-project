@@ -100,6 +100,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         }
         else if (TrainGameManager.instance.Scene_state == 3)
         {
+            
             photonView.RPC("SetTrainPlayer", RpcTarget.All);
             photonView.RPC("TrainSceneLoad", RpcTarget.All);
             TrainGameManager.instance.photonView.RPC("setSceneState_RPC", RpcTarget.All, 1);
@@ -242,6 +243,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
 
     public void EndingSceneLoad()
     {
+
         Train_Ctrl.Hide();
         MCam_Ctrl.EndingCam(true, 0);
         MCam_Ctrl.Change_floor(5);
@@ -281,8 +283,8 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         }
         else if (NextStage >= GameValue.Stage3Index)
         {
-            TrainGameManager.instance.Stage = 4;
             TrainGameManager.instance.Scene_state = 4;
+           // TrainGameManager.instance.Stage = 4;
         }
         else
         {
