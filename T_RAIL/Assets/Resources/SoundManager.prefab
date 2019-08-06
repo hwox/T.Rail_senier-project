@@ -1103,3 +1103,5 @@ MonoBehaviour:
   foot_Sound: {fileID: 8300000, guid: 886e160a0b79965448f57404ca5047af, type: 3}
   SitMachineGun_Sound: {fileID: 8300000, guid: 2f457f9ba42064f4988b58bd4e562afb, type: 3}
   TrainDriving_Sound: {fileID: 8300000, guid: 9d58eb05c304b4d479bf6bfbbef9c1e9, type: 3}
+  ChickenDie_Sound: {fileID: 8300000, guid: 20ad16703df63474a8481c13e76d8f5f, type: 3}
+  HPIncrease_Sound: {fileID: 8300000, guid: f370c99cda7f20849bca7f647b104bc2, type: 3}

@@ -43,7 +43,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
     public bool ItemBoxToHand;
     public bool ItemHandToBox;
     public bool ItemHTBEnable; // HandToBox하려니까 box에 collision 때문에
-   public bool ItemHandToMaterialStorage;
+    public bool ItemHandToMaterialStorage;
 
     public int NowChoiceBox; // HandToBox -> 몇번째 박스인지
 
@@ -58,7 +58,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
     void Start()
     {//
      //   LeftUIImage = ItemInhand.transform.GetChild(0).GetChild(0).gameObject;
-      //  RightUIImage = ItemInhand.transform.GetChild(1).GetChild(0).gameObject;
+     //  RightUIImage = ItemInhand.transform.GetChild(1).GetChild(0).gameObject;
     }
 
     public void AddedItemBox(InBoxItem inbox)
@@ -91,7 +91,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
             ItemHandToBox = false;
             NowDragItemInfo = 0;
         }
-            TrainGameManager.instance.SoundManager.onButtonClickSound();
+        TrainGameManager.instance.SoundManager.onButtonClickSound();
     }
 
     public void Position_DragMouse()
@@ -258,7 +258,10 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         }
 
         if (boxCount == boxItem.Count)
+        {
             chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+            TrainGameManager.instance.Notice_Someting("박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+        }
     }
     [PunRPC]
     public void ItemGet_Ironpan()
@@ -280,7 +283,10 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         }
 
         if (boxCount == boxItem.Count)
+        {
             chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+            TrainGameManager.instance.Notice_Someting("박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+        }
     }
     [PunRPC]
     public void ItemGet_FoodTomato()
@@ -305,7 +311,10 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         }
 
         if (boxCount == boxItem.Count)
+        {
             chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+            TrainGameManager.instance.Notice_Someting("박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+        }
     }
     [PunRPC]
     public void ItemGet_FoodBean()
@@ -328,7 +337,11 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         }
 
         if (boxCount == boxItem.Count)
+        {
             chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+            TrainGameManager.instance.Notice_Someting("박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+        }
+
     }
     [PunRPC]
     public void ItemGet_FoodChicken()
@@ -350,7 +363,10 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         }
 
         if (boxCount == boxItem.Count)
+        {
             chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+            TrainGameManager.instance.Notice_Someting("박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+        }
     }
     [PunRPC]
     public void ItemGet_Hammer()
@@ -372,7 +388,10 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         }
 
         if (boxCount == boxItem.Count)
+        {
             chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+            TrainGameManager.instance.Notice_Someting("박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+        }
     }
     [PunRPC]
     public void ItemGet_MediPack()
@@ -394,7 +413,10 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         }
 
         if (boxCount == boxItem.Count)
+        {
             chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+            TrainGameManager.instance.Notice_Someting("박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+        }
     }
     [PunRPC]
     public void ItemGet_WoodBoard()
@@ -403,13 +425,13 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         int boxCount = 0;
 
         for (int i = 0; i < boxItem.Count; i++)
-         {
-             if (!boxItem[i].IsBoxFull())
-             {
-                 // 앞의 순서대로 박스가 full이 아니면 여기에 들어가기
-                 boxItem[i].AddItem((int)GameValue.itemCategory.woodboard);
-                 break;
-             }
+        {
+            if (!boxItem[i].IsBoxFull())
+            {
+                // 앞의 순서대로 박스가 full이 아니면 여기에 들어가기
+                boxItem[i].AddItem((int)GameValue.itemCategory.woodboard);
+                break;
+            }
             else //박스 꽉참
             {
                 boxCount++;
@@ -417,12 +439,15 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         }
 
         if (boxCount == boxItem.Count)
+        {
             chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+            TrainGameManager.instance.Notice_Someting("박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+        }
     }
+
     [PunRPC]
     public void VendingMachine_ItemGet(int Vnum)
     {
-        Debug.Log("들어옴11111");
         switch (Vnum)
         {
             case 1:
@@ -469,14 +494,17 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
     {
 
 
-        if(itemcase == 627)
+        if (itemcase == 627)
         {
             chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "돈이 충분하지 않습니다.");
+            TrainGameManager.instance.Notice_Someting("돈이 충분하지 않습니다.");
         }
+    
 
         if (boxItem.Count == 0)
         {
             chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "기차 내부에 박스가 없어서 아이템을 획득하지 못했습니다.");
+            TrainGameManager.instance.Notice_Someting("기차 내부에 박스가 없어서 아이템을 획득하지 못했습니다.");
         }
         else
         {
@@ -518,7 +546,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
             case 1:
                 photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID, ItemNumber);
                 photonView.RPC("ItemGet_FoodTomato", RpcTarget.All);
-           
+
                 break;
             case 2:
                 photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID, ItemNumber);
@@ -530,21 +558,21 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
                 break;
             case 4:
                 photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID, ItemNumber);
-                photonView.RPC("ItemGet_Hammer", RpcTarget.All);             
+                photonView.RPC("ItemGet_Hammer", RpcTarget.All);
                 break;
             case 5:
                 photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID, ItemNumber);
-                photonView.RPC("ItemGet_Nail", RpcTarget.All);          
+                photonView.RPC("ItemGet_Nail", RpcTarget.All);
                 break;
-            case 6:          
+            case 6:
                 photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID, ItemNumber);
                 photonView.RPC("ItemGet_MediPack", RpcTarget.All);
                 break;
-            case 7:            
+            case 7:
                 photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID, ItemNumber);
                 photonView.RPC("ItemGet_WoodBoard", RpcTarget.All);
                 break;
-            case 8:        
+            case 8:
                 photonView.RPC("setEggActiveFalse", RpcTarget.All, viewID, ItemNumber);
                 photonView.RPC("ItemGet_Ironpan", RpcTarget.All);
                 break;
@@ -560,6 +588,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         if (boxItem.Count == 0)
         {
             chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "기차 내부에 박스가 없어서 아이템을 획득하지 못했습니다.");
+            TrainGameManager.instance.Notice_Someting("기차 내부에 박스가 없어서 아이템을 획득하지 못했습니다.");
         }
         else
         {
@@ -570,7 +599,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
                     break;
                 case 2:
                     chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "아이템 [콩 스프]을 획득했습니다.");
-                   break;
+                    break;
                 case 3:
                     chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "아이템 [치킨 스프]를 획득했습니다.");
                     break;
