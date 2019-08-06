@@ -260,6 +260,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     }
     private void OnTriggerStay(Collider other)
     {
+        if (!photonView.IsMine) return;
 
         if (other.gameObject.layer.Equals(GameValue.wall_layer)
                || other.gameObject.layer.Equals(GameValue.sofa_layer)
@@ -337,14 +338,13 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (Input.GetKeyDown(KeyCode.V))
             {
+            
 
                 if (TrainGameManager.instance.VendingMachineOn)
                 {
-
                     MCam_Ctrl.Vending_Machine_Cam(false, 0);
                     TrainGameManager.instance.VendingMachineOn = false;
                     player.Where_Floor = 4;
-
                 }
                 else
                 {
