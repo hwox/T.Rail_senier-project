@@ -89,7 +89,7 @@ public class StateController_Ctrl : MonoBehaviourPunCallbacks
 
     public void SpeedDOWN()
     {
-        if (TrainGameManager.instance.Speed_stat > 0)
+        if (TrainGameManager.instance.Speed_stat > 1)
         {
             //TrainGameManager.instance.Speed_stat -= 1;
             //Debug.Log("Speed_state : " + TrainGameManager.instance.Speed_stat);
@@ -112,7 +112,7 @@ public class StateController_Ctrl : MonoBehaviourPunCallbacks
 
     public void NoiseDOWN()
     {
-        if (TrainGameManager.instance.Noise_stat > 0)
+        if (TrainGameManager.instance.Noise_stat > 1)
         {
             photonView.RPC("stateChange", RpcTarget.All, 1, false);
             //TrainGameManager.instance.Noise_stat -= 1;
@@ -133,7 +133,7 @@ public class StateController_Ctrl : MonoBehaviourPunCallbacks
 
     public void DefenceDOWN()
     {
-        if (TrainGameManager.instance.Defence_stat > 0)
+        if (TrainGameManager.instance.Defence_stat >1)
         {
             photonView.RPC("stateChange", RpcTarget.All, 2, false);
             //TrainGameManager.instance.Defence_stat -= 1;

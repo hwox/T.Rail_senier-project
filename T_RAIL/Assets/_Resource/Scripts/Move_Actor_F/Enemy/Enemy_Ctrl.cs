@@ -68,6 +68,7 @@ public class Enemy_Ctrl : MonoBehaviourPunCallbacks
                 break;
         }
 
+       
         // StartCoroutine(Enemy_ActRoutine());
         //    TrainGameManager.instance.ConditionCtrl.NowEnemy = this.gameObject;
         //    TrainGameManager.instance.ConditionCtrl.enemy_ctrl = this.GetComponent<Enemy_Ctrl>();
@@ -82,7 +83,6 @@ public class Enemy_Ctrl : MonoBehaviourPunCallbacks
     {
 
         Init_Rhino = new Vector3(-200, 1.7f, -3.6f); ;
-        // Init_Rhino = new Vector3(-200, 1.7f, -3.6f);
         Init_Rhino_child = Rhino_child.position;
 
         tr.position = new Vector3(-200, 1.7f, -3.6f);
@@ -93,16 +93,16 @@ public class Enemy_Ctrl : MonoBehaviourPunCallbacks
     void CactusInitSetting()
     {
         Init_Cactus = new Vector3(-200, 1.7f, -3.6f); ;
-        //  Init_Cactus = new Vector3(-200, 1.7f, -3.6f);
         tr.position = new Vector3(-200, 1.7f, -3.6f);
+       // enemy.HP += 50;
         Init_Cactus_child = Cactus_child.position;
     }
 
     void HuskyInitSetting()
     {
-        //Init_Husky = new Vector3(-200, 1.7f, -3.6f);
         Init_Husky = new Vector3(-200, 1.7f, -3.6f); ;
         tr.position = new Vector3(-200, 1.7f, -3.6f);
+       // enemy.HP += 100;
         Init_Husky_child = Husky_child.position;
     }
     private void OnTriggerEnter(Collider other)
@@ -179,7 +179,7 @@ public class Enemy_Ctrl : MonoBehaviourPunCallbacks
     {
         follow_index = TrainGameManager.instance.trainindex;
         Debug.Log("follow_index" + follow_index);
-        Position_Set_Destination = new Vector3((GameValue.Train_distance * (follow_index - 1) - 18), tr.position.y, tr.position.z);
+       
         Position_Set_Go = true;
         Retreat = false;
         StartCoroutine(Enemy_ActRoutine());
@@ -187,12 +187,15 @@ public class Enemy_Ctrl : MonoBehaviourPunCallbacks
         switch (KindOfEnemy)
         {
             case 1:
+                Position_Set_Destination = new Vector3((GameValue.Train_distance * (follow_index - 1) - 18), tr.position.y, tr.position.z);
                 TrainGameManager.instance.Notice_Someting("코뿔소 등장!");
                 break;
             case 2:
+                Position_Set_Destination = new Vector3((GameValue.Train_distance * (follow_index - 1) - 18), tr.position.y - 0.3f, tr.position.z + 5.0f);
                 TrainGameManager.instance.Notice_Someting("선인장 등장!");
                 break;
             case 3:
+                Position_Set_Destination = new Vector3((GameValue.Train_distance * (follow_index - 1) - 18), tr.position.y, tr.position.z);
                 TrainGameManager.instance.Notice_Someting("허스키 등장!");
                 break;
             default:
@@ -228,7 +231,8 @@ public class Enemy_Ctrl : MonoBehaviourPunCallbacks
             else if (Retreat)
             {
                 // 후퇴해 
-                anim.SetBool("IsRun", true);
+                anim.SetBool("IsAttack", false);
+             //   anim.SetBool("IsRun", true);
             }
         }
         else

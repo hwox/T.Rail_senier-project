@@ -36,7 +36,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
 
     public float Defence { get; set; } // 기차의 내구도
     public float Speed { get; set; } // 현재 기차가 달리는 스피드 -> 맵에서 사용할거임
-    public float Noise { get; set; } // 현재 기차가 내는 소음
+    public int Noise { get; set; } // 현재 기차가 내는 소음
 
     public int trainindex; // 지금 기차 몇개 붙어있는지
                            // 몇개 붙어있는지 가지고 제일 마지막 위치 -> 기관총

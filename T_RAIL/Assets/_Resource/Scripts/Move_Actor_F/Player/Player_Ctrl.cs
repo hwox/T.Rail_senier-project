@@ -619,6 +619,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         //    //각 플레이어에게 지금 어디냐고 rpc로 물어보고 rpc로 답을 받음
         //    photonView.RPC("Question_Where_I_am", RpcTarget.All, i); //, eachPlayerIn[i]);
         //}
+
     }
 
     //[PunRPC]
@@ -632,7 +633,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     public void changeMy_Where_Train(int playerID, int i)
     {
-        //Debug.LogError("시발!!! : " + playerID + " i 는 :" + i);
         playerListController.playerList[playerID].player.Where_Train = i;
         playerListController.eachPlayerIn[playerID] = playerListController.playerList[playerID].player.Where_Train;
 
@@ -781,12 +781,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
                     floor1 = Near_Object.transform.GetChild(0);
                     floor2 = Near_Object.transform.GetChild(1);
-
-                    //parti_player_move.SetActive(true);
-                    // Instantiate(parti_player_move, tr.position+ Vector3.up*2.0f, Quaternion.identity);
-                    // 그러고 나서사다리 끝나면
-                    // 올라가고 stair_up = false; 하고
-                    // 천장에 올라가면 뚜껑도 setactive.true해줘야되네
                     TrainGameManager.instance.SoundManager.Ladder_Sound_Play();
                 }
 
@@ -877,6 +871,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         if (Input.GetKey(KeyCode.Q))
         {
             // 기관총에서 벗어나자!
+            TrainGameManager.instance.SoundManager.SitMachineGun_Sound_Play();
             MCam_Ctrl.EnemyAppear_Cam(false, 0);
             player.Where_Floor = 2;
         }
