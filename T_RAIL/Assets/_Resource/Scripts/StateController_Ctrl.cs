@@ -14,6 +14,10 @@ public class StateController_Ctrl : MonoBehaviourPunCallbacks
     public TextMesh NoiseTxt;
     public TextMesh DefencTxt;
 
+    public Transform Speed_DrawingStatus;
+    public Transform Noise_DrawingStatus;
+    public Transform Defence_DrawingStatus;
+
     [PunRPC]
     public void stateChange(int category, bool isUp)
     {
@@ -23,10 +27,15 @@ public class StateController_Ctrl : MonoBehaviourPunCallbacks
             //speed
             case 0:
                 if (true == isUp)
+                {
                     TrainGameManager.instance.Speed_stat += 1;
-
+                    Speed_DrawingStatus.Rotate(-40, 0, 0);
+                }
                 else
+                {
                     TrainGameManager.instance.Speed_stat -= 1;
+                    Speed_DrawingStatus.Rotate(40, 0, 0);
+                }
 
                 SpeedTxt.text = TrainGameManager.instance.Speed_stat.ToString();
                 break;
@@ -34,18 +43,31 @@ public class StateController_Ctrl : MonoBehaviourPunCallbacks
             //noise
             case 1:
                 if (true == isUp)
+                {
                     TrainGameManager.instance.Noise_stat += 1;
+                    Noise_DrawingStatus.Rotate(-40, 0, 0);
+                }
                 else
+                {
                     TrainGameManager.instance.Noise_stat -= 1;
+                    Noise_DrawingStatus.Rotate(40, 0, 0);
+                }
                 NoiseTxt.text = TrainGameManager.instance.Noise_stat.ToString();
+                TrainGameManager.instance.SoundManager.TrainDriving_Source.volume = 0.1f * ((GameValue.StatusMAX + 1) - (float)TrainGameManager.instance.Noise_stat);
                 break;
 
             //defence
             case 2:
                 if (true == isUp)
+                {
                     TrainGameManager.instance.Defence_stat += 1;
+                    Defence_DrawingStatus.Rotate(-40, 0, 0);
+                }
                 else
+                {
                     TrainGameManager.instance.Defence_stat -= 1;
+                    Defence_DrawingStatus.Rotate(40, 0, 0);
+                }
                 DefencTxt.text = TrainGameManager.instance.Defence_stat.ToString();
                 break;
         }
@@ -62,7 +84,7 @@ public class StateController_Ctrl : MonoBehaviourPunCallbacks
             photonView.RPC("stateChange", RpcTarget.All, 0, true);
             NowStat();
         }
-        
+
     }
 
     public void SpeedDOWN()
@@ -126,7 +148,7 @@ public class StateController_Ctrl : MonoBehaviourPunCallbacks
             SpeedTxt.gameObject.SetActive(true);
             NoiseTxt.gameObject.SetActive(true);
             DefencTxt.gameObject.SetActive(true);
-            
+
         }
         else if (!_onoff)
         {

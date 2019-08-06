@@ -13,6 +13,7 @@ public class SoundManager : MonoBehaviourPunCallbacks
     public AudioSource UI1_Source;
     public AudioSource UI2_Source;
     public AudioSource foot_Source;
+    public AudioSource TrainDriving_Source;
 
     //lobby
     [Header("Lobby Sound")]
@@ -54,6 +55,7 @@ public class SoundManager : MonoBehaviourPunCallbacks
 
     public AudioClip foot_Sound; //플레이어 발자국소리
     public AudioClip SitMachineGun_Sound; // 기관총에 앉았을 때
+    public AudioClip TrainDriving_Sound; // 기차 움직일 때 내는 소리
 
     private void Awake()
     {
@@ -190,5 +192,15 @@ public class SoundManager : MonoBehaviourPunCallbacks
     {
         foot_Source.clip = foot_Sound;
         foot_Source.Play();
+    }
+
+    public void TrainDriving_Sound_Play()
+    {
+        TrainDriving_Source.clip = TrainDriving_Sound;
+        TrainDriving_Source.Play();
+    }
+    public void TrainDriving_Sound_Stop()
+    {
+        TrainDriving_Source.Stop();
     }
 }
