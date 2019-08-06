@@ -17,6 +17,7 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
     //state 0= 걷기 ,1= 공격 ,2= 공격당함
     int NextDestNum;
     public int HP=5;
+    
 
     public GameObject particle;
 
@@ -39,13 +40,16 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
         StartCoroutine("BeatenFalse");
         HP -= 1;
         if (HP <= 0)
+        {
             photonView.RPC("chickenDeath_RPC", RpcTarget.All);
+        }
     }
 
 
     [PunRPC]
     void chickenDeath_RPC()
     {
+        TrainGameManager.instance.SoundManager.ChickenDie_Sound_Play();
         StartCoroutine("Death");
     }
 
@@ -76,7 +80,7 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    void FindNextDest(int _NextDestNum, int _RSpeed)// 무작위 위치 찾기
+    void FindNextDest(int _NextDestNum, float _RSpeed)// 무작위 위치 찾기
     {
         _RSpeed = (_RSpeed / 5)+1;
        
@@ -164,7 +168,6 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
         yield return new WaitForSeconds(2.7f);
         StartCoroutine("CoinParticle");
         TrainGameManager.instance.SoundManager.coin_Sound_Play();
-
         GameObject egg = TrainGameManager.instance.GetObject(7);
         egg.SetActive(true);
         egg.transform.position = this.gameObject.transform.position;

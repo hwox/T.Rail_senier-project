@@ -49,11 +49,11 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     public bool stair_down; // 사다리 내려가고 있는 중
     bool jump_now;
 
-    int space_state = 0; // 기본은 0인데 space가 눌려지는 상황 (highlight되는 모든애들) 에서 state change
-    bool near_stair; // 사다리근처
-    bool near_gun; // 머신건 근처
-    bool near_stationpassenger;// 역승객 근처
-    bool near_sign; // 표지판
+    //int space_state = 0; // 기본은 0인데 space가 눌려지는 상황 (highlight되는 모든애들) 에서 state change
+    //bool near_stair; // 사다리근처
+    //bool near_gun; // 머신건 근처
+    //bool near_stationpassenger;// 역승객 근처
+    //bool near_sign; // 표지판
 
     Transform floor1;
     Transform floor2;
@@ -70,7 +70,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     public Slider HP_UISlider;
 
     // particle
-
+    
     public GameObject parti_player_move;
 
     // 총알발사
@@ -95,6 +95,9 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject axe;
     bool invincibility = false;
     iTweenPath itp;
+
+    // 자판기
+    bool keydown = false;
 
 
     /// ////////////////////////////////////////////////////////////////////////
@@ -125,6 +128,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             playerListController.playerList.Add(this.gameObject.GetComponent<Player_Ctrl>());
             UIState_Ctrl = TrainGameManager.instance.UIStateCtrl.GetComponent<UIState_Ctrl>();
             whereIam = player.Where_Train;
+            
         }
     }
 
@@ -186,12 +190,12 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         if (!stair_up && !stair_down)
         {
 
-            if (!near_stair && other.gameObject.layer.Equals(GameValue.ladder_layer))
+            if (!TrainGameManager.instance.near_stair && other.gameObject.layer.Equals(GameValue.ladder_layer))
             {
-                space_state = (int)player_space_state.Ladder;
+                TrainGameManager.instance.highligh_state = (int)player_space_state.Ladder;
                 Near_Object = other.transform;
                 highlighter = Near_Object.GetComponent<Highlighter>();
-                near_stair = true;
+                TrainGameManager.instance.near_stair = true;
                 //   Push_Space_UI.SetActive(true);
 
                 //   Push_Space_UI.transform.position = MCam.WorldToScreenPoint(Near_Object.position) + new Vector3(10, 150, 0);
@@ -199,7 +203,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             if (other.gameObject.layer.Equals(GameValue.floor2_layer))
             {
                 // 내려갈때 쓸거얌
-                space_state = (int)player_space_state.Ladder_Down;
+                TrainGameManager.instance.highligh_state = (int)player_space_state.Ladder_Down;
 
             }
         }
@@ -207,14 +211,14 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         if (other.gameObject.layer.Equals(GameValue.machinegun_layer))
         {
             // 머신건 근처
-            if (!near_gun)
+            if (!TrainGameManager.instance.near_gun)
             {
-                space_state = (int)player_space_state.Machine_gun;
+                TrainGameManager.instance.highligh_state = (int)player_space_state.Machine_gun;
                 Near_Object = other.transform;
                 gun_child = other.transform.GetChild(0);
                 gun_ctrl = gun_child.GetComponent<MachineGun_Ctrl>();
                 highlighter = Near_Object.GetComponent<Highlighter>();
-                near_gun = true;
+                TrainGameManager.instance.near_gun = true;
                 //  Push_Space_UI.SetActive(true);
                 //  Push_Space_UI.transform.position = MCam.WorldToScreenPoint(Near_Object.position) + new Vector3(-20, 130, 0);
             }
@@ -222,12 +226,12 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         if (other.gameObject.layer.Equals(GameValue.statiopassenger_layer))
         {
             // 역 승객
-            if (!near_stationpassenger)
+            if (!TrainGameManager.instance.near_stationpassenger)
             {
-                space_state = (int)player_space_state.stationpassenger;
+                TrainGameManager.instance.highligh_state = (int)player_space_state.stationpassenger;
                 Near_Object = other.transform;
                 highlighter = Near_Object.GetComponent<Highlighter>();
-                near_stationpassenger = true;
+                TrainGameManager.instance.near_stationpassenger = true;
                 //    Push_Space_UI.SetActive(true);
                 //    Push_Space_UI.transform.position = MCam.WorldToScreenPoint(Near_Object.position) + new Vector3(-20, 130, 0);
             }
@@ -235,12 +239,12 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         if (other.gameObject.layer.Equals(GameValue.sign_layer))
         {
             // 표지판
-            if (!near_sign)
+            if (!TrainGameManager.instance.near_sign)
             {
-                //  space_state = (int)player_space_state.sign;
-                //  Near_Object = other.transform;
-                //  highlighter = Near_Object.GetComponent<Highlighter>();
-                //  near_sign = true;
+                TrainGameManager.instance.highligh_state = (int)player_space_state.sign;
+                  Near_Object = other.transform;
+                  highlighter = Near_Object.GetComponent<Highlighter>();
+                TrainGameManager.instance.near_sign = true;
                 //  Push_Space_UI.SetActive(true);
                 //   Push_Space_UI.transform.position = MCam.WorldToScreenPoint(Near_Object.position) + new Vector3(0, 130, 0);
             }
@@ -250,8 +254,12 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (!invincibility)
             {
-
-                StartCoroutine("Beaten");
+                
+                if (other.GetComponent<Chicken_Ctrl>().live)
+                {
+                    StartCoroutine("Beaten");
+                }
+                    
             }
 
         }
@@ -293,14 +301,18 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                         {
                             photonView.RPC("passengerTouch", RpcTarget.All, i); //, eachPlayerIn[i]);
                             StartCoroutine(CoinParticle(other.transform));
-                            if (near_stationpassenger)
+                            if (TrainGameManager.instance.near_stationpassenger)
                             {
-                                space_state = 0;
-                                near_stationpassenger = false;
+                                TrainGameManager.instance.highligh_state = 0;
+                                TrainGameManager.instance.near_stationpassenger = false;
 
                             }
                         }
                     }
+                }
+                else
+                {
+                    TrainGameManager.instance.Notice_Someting("소파가 가득차서 승객을 태울 수 없습니다.");
                 }
             }
         }
@@ -322,6 +334,9 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 //여기서 이제다시 기차로
                 TrainGameManager.instance.photonView.RPC("setSceneState_RPC", RpcTarget.All, 3);
                 //TrainGameManager.instance.Scene_state = 3;
+                TrainGameManager.instance.highligh_state = 0;
+                TrainGameManager.instance.near_sign = false;
+
             }
         }
 
@@ -340,28 +355,35 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (Input.GetKeyDown(KeyCode.V))
             {
-            
+                if(!keydown)
+                { 
+                    if (TrainGameManager.instance.VendingMachineOn)
+                    {
+                        MCam_Ctrl.Vending_Machine_Cam(false, 0);
+                        TrainGameManager.instance.VendingMachineOn = false;
+                        player.Where_Floor = 4;
+                        Debug.LogError("나옴");
+                    }
+                    else
+                    {
+                        player.rotate.y = 0.0f;
+                        anim.SetBool("IsWalk", false);
+                        MCam_Ctrl.Vending_Machine_Cam(true, 0);
+                        player.Where_Floor = 5;
 
-                if (TrainGameManager.instance.VendingMachineOn)
-                {
-                    MCam_Ctrl.Vending_Machine_Cam(false, 0);
-                    TrainGameManager.instance.VendingMachineOn = false;
-                    player.Where_Floor = 4;
+                        Debug.LogError("들어감");
+                        other.GetComponent<VendingMachine>().myPlayer = this.gameObject;
+                        other.GetComponent<VendingMachine>().customer = player;
+                        TrainGameManager.instance.VendingMachineOn = true;
+
+                    }
+                    keydown = true;
                 }
-                else
-                {
-                    TrainGameManager.instance.VendingMachineOn = true;
-                    player.rotate.y = 0.0f;
-                    anim.SetBool("IsWalk", false);
-                    MCam_Ctrl.Vending_Machine_Cam(true, 0);
-                    player.Where_Floor = 5;
-
-                    Debug.LogError(other.gameObject.name);
-                    other.GetComponent<VendingMachine>().myPlayer = this.gameObject;
-                    other.GetComponent<VendingMachine>().customer = player;
-
-                }
-
+              
+            }
+            if (Input.GetKeyUp(KeyCode.V))
+            {
+                keydown = false;
             }
         }
     }
@@ -407,10 +429,10 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         // 사다리! 올라가는 중이 아니며 
         if (!stair_up && other.gameObject.layer.Equals(GameValue.ladder_layer))
         {
-            if (near_stair)
+            if (TrainGameManager.instance.near_stair)
             {
-                space_state = 0;
-                near_stair = false;
+                TrainGameManager.instance.highligh_state = 0;
+                TrainGameManager.instance.near_stair = false;
                 //   Push_Space_UI.SetActive(false);
             }
         }
@@ -418,20 +440,20 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         // 머신건 근처
         if (other.gameObject.layer.Equals(GameValue.machinegun_layer))
         {
-            if (near_gun)
+            if (TrainGameManager.instance.near_gun)
             {
-                space_state = 0;
-                near_gun = false;
+                TrainGameManager.instance.highligh_state = 0;
+                TrainGameManager.instance.near_gun = false;
                 //   Push_Space_UI.SetActive(false);
             }
         }
         //역 승객
         if (other.gameObject.layer.Equals(GameValue.statiopassenger_layer))
         {
-            if (near_stationpassenger)
+            if (TrainGameManager.instance.near_stationpassenger)
             {
-                space_state = 0;
-                near_stationpassenger = false;
+                TrainGameManager.instance.highligh_state = 0;
+                TrainGameManager.instance.near_stationpassenger = false;
                 //  Push_Space_UI.SetActive(false);
             }
         }
@@ -439,10 +461,10 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         // 표지판 
         if (other.gameObject.layer.Equals(GameValue.sign_layer))
         {
-            if (near_sign)
+            if (TrainGameManager.instance.near_sign)
             {
-                //  space_state = 0;
-                //  near_sign = false;
+                TrainGameManager.instance.highligh_state = 0;
+                TrainGameManager.instance.near_sign = false;
                 //  Push_Space_UI.SetActive(false);
             }
         }
@@ -489,7 +511,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         whereIam = player.Where_Train;
 
         // 이 highlight는 나중에 따로 함수로 뺄고야 일단 정리ㅣ되면 빼겟음
-        if (near_stair || near_sign || near_stationpassenger)
+        if (TrainGameManager.instance.near_stair || TrainGameManager.instance.near_sign || TrainGameManager.instance.near_stationpassenger)
         {
             // 근데 이것도 사다리 올라가는 중에는 X 
             highlighter.Hover(hoverColor);
@@ -622,6 +644,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         //    //각 플레이어에게 지금 어디냐고 rpc로 물어보고 rpc로 답을 받음
         //    photonView.RPC("Question_Where_I_am", RpcTarget.All, i); //, eachPlayerIn[i]);
         //}
+
     }
 
     //[PunRPC]
@@ -635,7 +658,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     public void changeMy_Where_Train(int playerID, int i)
     {
-        //Debug.LogError("시발!!! : " + playerID + " i 는 :" + i);
         playerListController.playerList[playerID].player.Where_Train = i;
         playerListController.eachPlayerIn[playerID] = playerListController.playerList[playerID].player.Where_Train;
 
@@ -775,21 +797,15 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 // 사다리 가까이서 space누르면 올라가기 == 1
                 // 기관총 앞에서 space누르면 기관총에 장착되기 == 2
 
-                if (space_state.Equals((int)player_space_state.Ladder))
+                if (TrainGameManager.instance.highligh_state.Equals((int)player_space_state.Ladder))
                 {
                     stair_up = true;
                     anim.SetBool("UpToLadder", true);
-                    near_stair = false;
+                    TrainGameManager.instance.near_stair = false;
                     //Push_Space_UI.SetActive(false);
 
                     floor1 = Near_Object.transform.GetChild(0);
                     floor2 = Near_Object.transform.GetChild(1);
-
-                    //parti_player_move.SetActive(true);
-                    // Instantiate(parti_player_move, tr.position+ Vector3.up*2.0f, Quaternion.identity);
-                    // 그러고 나서사다리 끝나면
-                    // 올라가고 stair_up = false; 하고
-                    // 천장에 올라가면 뚜껑도 setactive.true해줘야되네
                     TrainGameManager.instance.SoundManager.Ladder_Sound_Play();
                 }
 
@@ -843,7 +859,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             if (Input.GetKeyDown(KeyCode.V))
             {
                 // 머신건에 앉기
-                if (space_state.Equals((int)player_space_state.Machine_gun))
+                if (TrainGameManager.instance.highligh_state.Equals((int)player_space_state.Machine_gun))
                 {
                     // 주변에 머신건이 있으면?
                     player.Where_Floor = 3;
@@ -864,13 +880,13 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                     anim.SetBool("IsWalk", false);
                     anim.SetBool("IsRun", false);
 
-                    space_state = 0;
-                    near_gun = false;
+                    TrainGameManager.instance.highligh_state = 0;
+                    TrainGameManager.instance.near_gun = false;
                     //Push_Space_UI.SetActive(false);
                 }
 
                 // 밑층으로 내려가기
-                if (space_state.Equals((int)player_space_state.Ladder_Down))
+                if (TrainGameManager.instance.highligh_state.Equals((int)player_space_state.Ladder_Down))
                 {
                     player.position.y = floor2.position.y;
                     TrainGameManager.instance.TrainCtrl.trainscript[player.Where_Train - 1].Ceiling_OnOff(false);
@@ -907,6 +923,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         if (Input.GetKey(KeyCode.Q))
         {
             // 기관총에서 벗어나자!
+            TrainGameManager.instance.SoundManager.SitMachineGun_Sound_Play();
             MCam_Ctrl.EnemyAppear_Cam(false, 0);
             player.Where_Floor = 2;
         }
@@ -986,6 +1003,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 runTime += Time.deltaTime;
             }
 
+           
 
             if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) ||
                 Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.W))

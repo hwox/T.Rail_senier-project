@@ -132,20 +132,21 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks
     IEnumerator EnemyAppear_Condition()
     {
 
-        //if (!TrainGameManager.instance.EnemyAppear && 
-        //    TrainGameManager.instance.TrainCtrl.Run_Meter > 30.0f)
-        //{
-        //    int noiseSound = TrainGameManager.instance.Noise /
-        //        TrainGameManager.instance.Noise_stat;
+        if (!TrainGameManager.instance.EnemyAppear && 
+            TrainGameManager.instance.TrainCtrl.Run_Meter > 30.0f)
+        {
+            Debug.Log("적 spawn 코루틴 동작중");
+            int noiseSound = TrainGameManager.instance.Noise / TrainGameManager.instance.Noise_stat;
 
-        //    int random = Random.Range(0, 200);
-        //    if (random < noiseSound)
-        //    {
-        //        // enemy 호출 함수
-        //        onRhinoEnemyOnButton();
-        //        TrainGameManager.instance.EnemyAppear = true;
-        //    }
-        //}
+            int random = Random.Range(0, 250);
+            Debug.Log(random);
+            if (random < noiseSound)
+            {
+                // enemy 호출 함수
+                onEnemyOnButton();
+                TrainGameManager.instance.EnemyAppear = true;
+            }
+        }
         yield return new WaitForSeconds(5.0f);
 
         StartCoroutine(EnemyAppear_Condition());

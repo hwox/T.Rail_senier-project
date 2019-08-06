@@ -43,6 +43,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1116369957303634
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4380537534066180}
+  - component: {fileID: 82529215475706390}
+  m_Layer: 0
+  m_Name: TrainDriving_Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1209796456736888
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,6 +173,7 @@ Transform:
   - {fileID: 4318766965610042}
   - {fileID: 4466659850069738}
   - {fileID: 4548876155969518}
+  - {fileID: 4380537534066180}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -172,6 +189,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4124318775359354}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4380537534066180
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1116369957303634}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4124318775359354}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4385036387076798
 Transform:
@@ -631,6 +661,101 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!82 &82529215475706390
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1116369957303634}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.3
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!82 &82555552509558540
 AudioSource:
   m_ObjectHideFlags: 1
@@ -832,7 +957,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -951,6 +1076,7 @@ MonoBehaviour:
   UI1_Source: {fileID: 82555552509558540}
   UI2_Source: {fileID: 82707695224562680}
   foot_Source: {fileID: 82490331227675254}
+  TrainDriving_Source: {fileID: 82529215475706390}
   buttonClickSound: {fileID: 8300000, guid: dff463d8e99364f4da0bc248929ea47c, type: 3}
   stage1BGM: {fileID: 8300000, guid: 775df7a216485fa4c833dfc1c51c75c6, type: 3}
   enemy_Sound: {fileID: 8300000, guid: ee151172e0d9657468ab8a75f0ab9a88, type: 3}
@@ -976,3 +1102,6 @@ MonoBehaviour:
   InvenOpen_Sound: {fileID: 8300000, guid: 821ff8f92f876a04da7899a129c56a1c, type: 3}
   foot_Sound: {fileID: 8300000, guid: 886e160a0b79965448f57404ca5047af, type: 3}
   SitMachineGun_Sound: {fileID: 8300000, guid: 2f457f9ba42064f4988b58bd4e562afb, type: 3}
+  TrainDriving_Sound: {fileID: 8300000, guid: 9d58eb05c304b4d479bf6bfbbef9c1e9, type: 3}
+  ChickenDie_Sound: {fileID: 8300000, guid: 20ad16703df63474a8481c13e76d8f5f, type: 3}
+  HPIncrease_Sound: {fileID: 8300000, guid: f370c99cda7f20849bca7f647b104bc2, type: 3}

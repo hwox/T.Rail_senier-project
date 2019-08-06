@@ -133,7 +133,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
 
     //달걀
     public List<GameObject> EggManager;
-    const int MAKE_EGG_COUNT = 10;
+    public const int MAKE_EGG_COUNT = 10;
 
     //코인 파티클
     public List<GameObject> CoinParticle;
@@ -180,6 +180,12 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
     public List<GameObject> endingtrainM;
     const int MAKE_ENDINGTRAIN_COUNT = 13;
 
+
+    public int highligh_state = 0;
+    public bool near_stair; // 사다리근처
+    public bool near_gun; // 머신건 근처
+    public bool near_stationpassenger;// 역승객 근처
+    public bool near_sign; // 표지판
 
 
 
