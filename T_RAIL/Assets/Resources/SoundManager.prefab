@@ -974,5 +974,5 @@ MonoBehaviour:
   ExitWindow_Sound: {fileID: 8300000, guid: 0e1dc6774a1dbdf4894d0e2bbce66338, type: 3}
   ladder_Sound: {fileID: 8300000, guid: dcfef7402b8ea2f4c8ddf94ea510e615, type: 3}
   InvenOpen_Sound: {fileID: 8300000, guid: 821ff8f92f876a04da7899a129c56a1c, type: 3}
-  foot_Sound: {fileID: 8300000, guid: ed759362cc3ad9347b728ae842076e90, type: 3}
+  foot_Sound: {fileID: 8300000, guid: 886e160a0b79965448f57404ca5047af, type: 3}
   SitMachineGun_Sound: {fileID: 8300000, guid: 2f457f9ba42064f4988b58bd4e562afb, type: 3}
