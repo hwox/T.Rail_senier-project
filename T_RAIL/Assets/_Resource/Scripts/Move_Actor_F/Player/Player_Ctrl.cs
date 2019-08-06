@@ -308,6 +308,10 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                         }
                     }
                 }
+                else
+                {
+                    TrainGameManager.instance.Notice_Someting("소파가 가득차서 승객을 태울 수 없습니다.");
+                }
             }
         }
         //표지판에서 기차출발시키기

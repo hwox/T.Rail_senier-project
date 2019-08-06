@@ -40,13 +40,16 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
         StartCoroutine("BeatenFalse");
         HP -= 1;
         if (HP <= 0)
+        {
             photonView.RPC("chickenDeath_RPC", RpcTarget.All);
+        }
     }
 
 
     [PunRPC]
     void chickenDeath_RPC()
     {
+        TrainGameManager.instance.SoundManager.ChickenDie_Sound_Play();
         StartCoroutine("Death");
     }
 
@@ -165,7 +168,6 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
         yield return new WaitForSeconds(2.7f);
         StartCoroutine("CoinParticle");
         TrainGameManager.instance.SoundManager.coin_Sound_Play();
-
         GameObject egg = TrainGameManager.instance.GetObject(7);
         egg.SetActive(true);
         egg.transform.position = this.gameObject.transform.position;
