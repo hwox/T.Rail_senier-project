@@ -181,6 +181,12 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
     const int MAKE_ENDINGTRAIN_COUNT = 13;
 
 
+    public int highligh_state = 0;
+    public bool near_stair; // 사다리근처
+    public bool near_gun; // 머신건 근처
+    public bool near_stationpassenger;// 역승객 근처
+    public bool near_sign; // 표지판
+
 
 
     public int Scene_state=1;

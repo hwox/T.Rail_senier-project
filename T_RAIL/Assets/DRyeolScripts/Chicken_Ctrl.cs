@@ -17,6 +17,7 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
     //state 0= 걷기 ,1= 공격 ,2= 공격당함
     int NextDestNum;
     public int HP=5;
+    
 
     public GameObject particle;
 
