@@ -49,7 +49,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     public bool stair_down; // 사다리 내려가고 있는 중
     bool jump_now;
 
-    int space_state = 0; // 기본은 0인데 space가 눌려지는 상황 (highlight되는 모든애들) 에서 state change
+    //int space_state = 0; // 기본은 0인데 space가 눌려지는 상황 (highlight되는 모든애들) 에서 state change
     //bool near_stair; // 사다리근처
     //bool near_gun; // 머신건 근처
     //bool near_stationpassenger;// 역승객 근처
@@ -95,6 +95,9 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject axe;
     bool invincibility = false;
     iTweenPath itp;
+
+    // 자판기
+    bool keydown = false;
 
 
     /// ////////////////////////////////////////////////////////////////////////
@@ -346,26 +349,35 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (Input.GetKeyDown(KeyCode.V))
             {
-                if (TrainGameManager.instance.VendingMachineOn)
-                {
-                    MCam_Ctrl.Vending_Machine_Cam(false, 0);
-                    TrainGameManager.instance.VendingMachineOn = false;
-                    player.Where_Floor = 4;
+                if(!keydown)
+                { 
+                    if (TrainGameManager.instance.VendingMachineOn)
+                    {
+                        MCam_Ctrl.Vending_Machine_Cam(false, 0);
+                        TrainGameManager.instance.VendingMachineOn = false;
+                        player.Where_Floor = 4;
+                        Debug.LogError("나옴");
+                    }
+                    else
+                    {
+                        player.rotate.y = 0.0f;
+                        anim.SetBool("IsWalk", false);
+                        MCam_Ctrl.Vending_Machine_Cam(true, 0);
+                        player.Where_Floor = 5;
+
+                        Debug.LogError("들어감");
+                        other.GetComponent<VendingMachine>().myPlayer = this.gameObject;
+                        other.GetComponent<VendingMachine>().customer = player;
+                        TrainGameManager.instance.VendingMachineOn = true;
+
+                    }
+                    keydown = true;
                 }
-                else
-                {
-                    player.rotate.y = 0.0f;
-                    anim.SetBool("IsWalk", false);
-                    MCam_Ctrl.Vending_Machine_Cam(true, 0);
-                    player.Where_Floor = 5;
-
-                    Debug.LogError(other.gameObject.name);
-                    other.GetComponent<VendingMachine>().myPlayer = this.gameObject;
-                    other.GetComponent<VendingMachine>().customer = player;
-                    TrainGameManager.instance.VendingMachineOn = true;
-
-                }
-
+              
+            }
+            if (Input.GetKeyUp(KeyCode.V))
+            {
+                keydown = false;
             }
         }
     }
@@ -778,7 +790,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 // 사다리 가까이서 space누르면 올라가기 == 1
                 // 기관총 앞에서 space누르면 기관총에 장착되기 == 2
 
-                if (space_state.Equals((int)player_space_state.Ladder))
+                if (TrainGameManager.instance.highligh_state.Equals((int)player_space_state.Ladder))
                 {
                     stair_up = true;
                     anim.SetBool("UpToLadder", true);
@@ -957,6 +969,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 runTime += Time.deltaTime;
             }
 
+           
 
             if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) ||
                 Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.W))

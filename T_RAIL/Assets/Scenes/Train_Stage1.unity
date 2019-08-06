@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45083314, g: 0.50074697, b: 0.57467777, a: 1}
+  m_IndirectSpecularColor: {r: 0.45083255, g: 0.50074613, b: 0.574677, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -13695,6 +13695,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerListController: {fileID: 342035268}
   Train_Ctrl: {fileID: 1304048000}
+  egg: {fileID: 1536627581}
 --- !u!114 &216123168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75913,6 +75914,11 @@ MonoBehaviour:
   ironpanM: []
   heartM: []
   endingtrainM: []
+  highligh_state: 0
+  near_stair: 0
+  near_gun: 0
+  near_stationpassenger: 0
+  near_sign: 0
   Scene_state: 1
   LeftHandItem: 0
   RightHandItem: 0
