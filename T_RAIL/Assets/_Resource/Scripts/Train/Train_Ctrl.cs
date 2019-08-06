@@ -93,7 +93,7 @@ public class Train_Ctrl : MonoBehaviourPunCallbacks
 
     public void RunMeterCalCulator()
     {
-        if (TrainGameManager.instance.Scene_state == 1)
+        if (TrainGameManager.instance.Scene_state == 1|| TrainGameManager.instance.Scene_state == 4)
         {
             // 2분에 2km
             Run_Meter += (TrainGameManager.instance.Speed * TrainGameManager.instance.Speed_stat) * Time.deltaTime;

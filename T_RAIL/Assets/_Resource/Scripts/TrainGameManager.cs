@@ -200,6 +200,8 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
 
     public bool VendingMachineOn = false;
 
+    public int Ending_Stage = 1;
+
     private void Awake()
     {
         instance = this;
