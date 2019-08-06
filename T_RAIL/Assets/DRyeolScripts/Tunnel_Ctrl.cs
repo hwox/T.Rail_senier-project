@@ -62,7 +62,7 @@ public class Tunnel_Ctrl : MonoBehaviour {
     }
     IEnumerator StartShakeCamera()
     {
-        yield return new WaitForSeconds(0.38f);
+        yield return new WaitForSeconds(0.30f);
         StartCoroutine("ShakeCamera");
     }
 
@@ -72,7 +72,7 @@ public class Tunnel_Ctrl : MonoBehaviour {
         while (true)
         {
             iTween.ShakeRotation(camera, iTween.Hash("time", 1.2f, "x", 0.5f));
-
+            //iTween.ShakeRotation(camera, iTween.Hash("time", 1.2f, "z", 0.5f));
             yield return new WaitForSeconds(2.8f);
         }
     }
