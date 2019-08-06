@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-
-public class MaterialForCreate : MonoBehaviour
+public class MaterialForCreate : MonoBehaviourPunCallbacks
 {
 
 
     // 소파나 박스 눌렀을 때 뜨는 재료창
     [SerializeField]
-    List<int> ForMakeItem = new List<int>();  // 옮겨놓은 아이템
+    public List<int> ForMakeItem = new List<int>();  // 옮겨놓은 아이템
 
     [SerializeField]
     int[] ItemCount; // 똑같은 아이템 몇개인지
     // 나중에 손으로 가져갈 거 대비한 crack
     public bool ItemCrack;
-    AllItem_Ctrl allitem;
+    public AllItem_Ctrl allitem;
 
 
     GameObject[] Storage;
@@ -82,12 +82,14 @@ public class MaterialForCreate : MonoBehaviour
             {
                 if (allitem.UseInLeftHand == 1)
                 {
-                    ForMakeItem.Add(allitem.LeftHand_Pocket);
+                    //ForMakeItem.Add(allitem.LeftHand_Pocket);
+                    transform.parent.parent.GetComponent<PhotonView>().RPC("putMakeInventory", RpcTarget.All ,1 , allitem.LeftHand_Pocket);
                     allitem.UseLeftHandItem();
                 }
                 if (allitem.UseInRightHand == 1)
                 {
-                    ForMakeItem.Add(allitem.RightHand_Pocket);
+                    //ForMakeItem.Add(allitem.RightHand_Pocket);
+                    transform.parent.parent.GetComponent<PhotonView>().RPC("putMakeInventory", RpcTarget.All, 2,allitem.RightHand_Pocket);
                     allitem.UseRightHandItem();
                 }
 

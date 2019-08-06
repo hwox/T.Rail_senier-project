@@ -105,6 +105,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Awake()
     {
+        //if (!photonView.IsMine) return;
+
         DontDestroyOnLoad(gameObject);
 
         //if (photonView.ViewID % 2 == 0)
@@ -481,6 +483,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     void Update()
     {
         tr.localScale = new Vector3(player.size.x, player.size.y, player.size.z);
+
         if (!photonView.IsMine) return;
 
         whereIam = player.Where_Train;
@@ -810,6 +813,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     // 2층에 올라갔을 때의 키입력 함수
     void Player_key_floor2()
     {
+        if (!photonView.IsMine) return;
+
         WhereTrain_CalculPosition(player.position.x);
         if (!stair_up && !stair_down)
         {
@@ -842,7 +847,19 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 {
                     // 주변에 머신건이 있으면?
                     player.Where_Floor = 3;
-                    MCam_Ctrl.EnemyAppear_Cam(true, player.Where_Train);
+
+                    for(int i=0;i<playerListController.playerList.Count; ++i)
+                    {
+                        if(photonView.ViewID == playerListController.playerList[i].photonView.ViewID)
+                        {
+                            //photonView.RPC("debugError", RpcTarget.All, i);
+                            Debug.LogError("걔 아이디 뭔데 " + playerListController.playerList[i].photonView.ViewID);
+                            Debug.LogError("그럼 걔 위치는 뭔데 " + playerListController.eachPlayerIn[i]);
+                            MCam_Ctrl.EnemyAppear_Cam(true, playerListController.eachPlayerIn[photonView.ViewID/1000 - 1]);
+                        }
+                    }
+
+
                     TrainGameManager.instance.SoundManager.SitMachineGun_Sound_Play();
                     anim.SetBool("IsWalk", false);
                     anim.SetBool("IsRun", false);
@@ -865,6 +882,19 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
     }
+
+    //public int getPlayerWhereTriain(int i)
+    //{
+    //
+    //}
+
+    //[PunRPC]
+    //void debugError(int i)
+    //{
+    //    Debug.LogError("dddd" + playerListController.playerList[i].photonView.ViewID);
+    //    Debug.LogError("그럼 얘 id는 뭔데 " + photonView.ViewID);
+    //    Debug.LogError("그럼 걔 위치는 뭔데 " + playerListController.playerList[i].player.Where_Train);
+    //}
 
     void Player_key_MachinGun()
     {
