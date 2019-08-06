@@ -49,7 +49,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     public bool stair_down; // 사다리 내려가고 있는 중
     bool jump_now;
 
-    int space_state = 0; // 기본은 0인데 space가 눌려지는 상황 (highlight되는 모든애들) 에서 state change
+    //int space_state = 0; // 기본은 0인데 space가 눌려지는 상황 (highlight되는 모든애들) 에서 state change
     //bool near_stair; // 사다리근처
     //bool near_gun; // 머신건 근처
     //bool near_stationpassenger;// 역승객 근처
@@ -96,6 +96,9 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     bool invincibility = false;
     iTweenPath itp;
 
+    // 자판기
+    bool keydown = false;
+
 
     /// ////////////////////////////////////////////////////////////////////////
 
@@ -105,6 +108,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Awake()
     {
+        //if (!photonView.IsMine) return;
+
         DontDestroyOnLoad(gameObject);
 
         //if (photonView.ViewID % 2 == 0)
@@ -350,26 +355,35 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (Input.GetKeyDown(KeyCode.V))
             {
-                if (TrainGameManager.instance.VendingMachineOn)
-                {
-                    MCam_Ctrl.Vending_Machine_Cam(false, 0);
-                    TrainGameManager.instance.VendingMachineOn = false;
-                    player.Where_Floor = 4;
+                if(!keydown)
+                { 
+                    if (TrainGameManager.instance.VendingMachineOn)
+                    {
+                        MCam_Ctrl.Vending_Machine_Cam(false, 0);
+                        TrainGameManager.instance.VendingMachineOn = false;
+                        player.Where_Floor = 4;
+                        Debug.LogError("나옴");
+                    }
+                    else
+                    {
+                        player.rotate.y = 0.0f;
+                        anim.SetBool("IsWalk", false);
+                        MCam_Ctrl.Vending_Machine_Cam(true, 0);
+                        player.Where_Floor = 5;
+
+                        Debug.LogError("들어감");
+                        other.GetComponent<VendingMachine>().myPlayer = this.gameObject;
+                        other.GetComponent<VendingMachine>().customer = player;
+                        TrainGameManager.instance.VendingMachineOn = true;
+
+                    }
+                    keydown = true;
                 }
-                else
-                {
-                    player.rotate.y = 0.0f;
-                    anim.SetBool("IsWalk", false);
-                    MCam_Ctrl.Vending_Machine_Cam(true, 0);
-                    player.Where_Floor = 5;
-
-                    Debug.LogError(other.gameObject.name);
-                    other.GetComponent<VendingMachine>().myPlayer = this.gameObject;
-                    other.GetComponent<VendingMachine>().customer = player;
-                    TrainGameManager.instance.VendingMachineOn = true;
-
-                }
-
+              
+            }
+            if (Input.GetKeyUp(KeyCode.V))
+            {
+                keydown = false;
             }
         }
     }
@@ -491,6 +505,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     void Update()
     {
         tr.localScale = new Vector3(player.size.x, player.size.y, player.size.z);
+
         if (!photonView.IsMine) return;
 
         whereIam = player.Where_Train;
@@ -782,7 +797,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 // 사다리 가까이서 space누르면 올라가기 == 1
                 // 기관총 앞에서 space누르면 기관총에 장착되기 == 2
 
-                if (space_state.Equals((int)player_space_state.Ladder))
+                if (TrainGameManager.instance.highligh_state.Equals((int)player_space_state.Ladder))
                 {
                     stair_up = true;
                     anim.SetBool("UpToLadder", true);
@@ -814,6 +829,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     // 2층에 올라갔을 때의 키입력 함수
     void Player_key_floor2()
     {
+        if (!photonView.IsMine) return;
+
         WhereTrain_CalculPosition(player.position.x);
         if (!stair_up && !stair_down)
         {
@@ -846,7 +863,19 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 {
                     // 주변에 머신건이 있으면?
                     player.Where_Floor = 3;
-                    MCam_Ctrl.EnemyAppear_Cam(true, player.Where_Train);
+
+                    for(int i=0;i<playerListController.playerList.Count; ++i)
+                    {
+                        if(photonView.ViewID == playerListController.playerList[i].photonView.ViewID)
+                        {
+                            //photonView.RPC("debugError", RpcTarget.All, i);
+                            Debug.LogError("걔 아이디 뭔데 " + playerListController.playerList[i].photonView.ViewID);
+                            Debug.LogError("그럼 걔 위치는 뭔데 " + playerListController.eachPlayerIn[i]);
+                            MCam_Ctrl.EnemyAppear_Cam(true, playerListController.eachPlayerIn[photonView.ViewID/1000 - 1]);
+                        }
+                    }
+
+
                     TrainGameManager.instance.SoundManager.SitMachineGun_Sound_Play();
                     anim.SetBool("IsWalk", false);
                     anim.SetBool("IsRun", false);
@@ -869,6 +898,19 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
     }
+
+    //public int getPlayerWhereTriain(int i)
+    //{
+    //
+    //}
+
+    //[PunRPC]
+    //void debugError(int i)
+    //{
+    //    Debug.LogError("dddd" + playerListController.playerList[i].photonView.ViewID);
+    //    Debug.LogError("그럼 얘 id는 뭔데 " + photonView.ViewID);
+    //    Debug.LogError("그럼 걔 위치는 뭔데 " + playerListController.playerList[i].player.Where_Train);
+    //}
 
     void Player_key_MachinGun()
     {
@@ -961,6 +1003,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 runTime += Time.deltaTime;
             }
 
+           
 
             if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) ||
                 Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.W))

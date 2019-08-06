@@ -9,7 +9,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
 
     public playerListController_minj playerListController;
     public Train_Ctrl Train_Ctrl;
-
+    public GameObject egg;
 
     bool TestMeterMode; // test용 모드위해 추가하는 거
 
@@ -100,18 +100,17 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         }
         else if (TrainGameManager.instance.Scene_state == 3)
         {
-            
             photonView.RPC("SetTrainPlayer", RpcTarget.All);
             photonView.RPC("TrainSceneLoad", RpcTarget.All);
             TrainGameManager.instance.photonView.RPC("setSceneState_RPC", RpcTarget.All, 1);
             //TrainGameManager.instance.Scene_state = 1;
             NextStageCheck();
 
+
+
         }
         else if (TrainGameManager.instance.Scene_state == 4)
         {
-
-
             if (!TestMeterMode)
             {
                 if (GameValue.NextStationMeter < Train_Ctrl.Run_Meter)
@@ -137,6 +136,8 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
     public void SetTrainPlayer()// 기차로 갈때
     {
         Train_Ctrl.Appear();
+        EggHide();
+        highligh_off();
         TrainGameManager.instance.ConditionCtrl.TrainAddCondition_Passenger(TrainGameManager.instance.GetPassengerCount);
 
         TrainGameManager.instance.CoinUI.SetActive(false);
@@ -187,7 +188,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
     {
 
         Train_Ctrl.Run_Meter = 0;
-
+        highligh_off();
         Train_Ctrl.Hide();
 
         TrainGameManager.instance.CoinUI.SetActive(true);
@@ -243,7 +244,6 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
 
     public void EndingSceneLoad()
     {
-
         Train_Ctrl.Hide();
         MCam_Ctrl.EndingCam(true, 0);
         MCam_Ctrl.Change_floor(5);
@@ -270,21 +270,37 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
                 TrainGameManager.instance.SoundManager.TrainDriving_Sound_Play();
                 tempOn = true;
             }
-
+            Debug.Log("여기");
 
         }
         else if (NextStage >= GameValue.Stage1Index && NextStage < GameValue.Stage2Index)
         {
             TrainGameManager.instance.Stage = 2;
+            Debug.Log("여여기");
         }
         else if (NextStage >= GameValue.Stage2Index && NextStage < GameValue.Stage3Index)
         {
-            TrainGameManager.instance.Stage = 3;
+                if(NextStage==5)
+                {
+                    if(TrainGameManager.instance.Scene_state !=5)
+                    {
+                        TrainGameManager.instance.Scene_state = 4;
+
+                      
+                    }
+
+                }
+            
+                TrainGameManager.instance.Stage = 3;
+               
+            
+         
+          
         }
         else if (NextStage >= GameValue.Stage3Index)
         {
-            TrainGameManager.instance.Scene_state = 4;
-           // TrainGameManager.instance.Stage = 4;
+            TrainGameManager.instance.Stage = 4;
+          
         }
         else
         {
@@ -292,4 +308,23 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         }
 
     }
+
+    void EggHide()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            egg.transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
+
+    void highligh_off()
+    {
+
+        TrainGameManager.instance.highligh_state = 0;
+        TrainGameManager.instance.near_stair = false;
+        TrainGameManager.instance.near_gun = false;
+        TrainGameManager.instance.near_stationpassenger = false;
+        TrainGameManager.instance.near_sign = false;
+    }
+
 }

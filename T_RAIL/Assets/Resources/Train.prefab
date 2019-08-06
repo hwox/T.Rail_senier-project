@@ -14845,6 +14845,7 @@ MonoBehaviour:
   ForMakeItem: 
   ItemCount: 
   ItemCrack: 0
+  allitem: {fileID: 0}
   WhatInStorage: 
   index: 0
 --- !u!114 &114121071391262378
@@ -16408,6 +16409,7 @@ MonoBehaviour:
   ForMakeItem: 
   ItemCount: 
   ItemCrack: 0
+  allitem: {fileID: 0}
   WhatInStorage: 
   index: 0
 --- !u!114 &114197964450676030
@@ -21378,6 +21380,7 @@ MonoBehaviour:
   ForMakeItem: 
   ItemCount: 
   ItemCrack: 0
+  allitem: {fileID: 0}
   WhatInStorage: 
   index: 0
 --- !u!114 &114564859096579756
@@ -21782,6 +21785,7 @@ MonoBehaviour:
   ForMakeItem: 
   ItemCount: 
   ItemCrack: 0
+  allitem: {fileID: 0}
   WhatInStorage: 
   index: 0
 --- !u!114 &114595997215111998
@@ -22539,6 +22543,7 @@ MonoBehaviour:
   ForMakeItem: 
   ItemCount: 
   ItemCrack: 0
+  allitem: {fileID: 0}
   WhatInStorage: 
   index: 0
 --- !u!114 &114648544659267360
@@ -23155,6 +23160,7 @@ MonoBehaviour:
   ForMakeItem: 
   ItemCount: 
   ItemCrack: 0
+  allitem: {fileID: 0}
   WhatInStorage: 
   index: 0
 --- !u!114 &114688607532423850
@@ -26122,6 +26128,7 @@ MonoBehaviour:
   ForMakeItem: 
   ItemCount: 
   ItemCrack: 0
+  allitem: {fileID: 0}
   WhatInStorage: 
   index: 0
 --- !u!114 &114895534905335962
@@ -27060,6 +27067,7 @@ MonoBehaviour:
   ForMakeItem: 
   ItemCount: 
   ItemCrack: 0
+  allitem: {fileID: 0}
   WhatInStorage: 
   index: 0
 --- !u!114 &114959179348029632

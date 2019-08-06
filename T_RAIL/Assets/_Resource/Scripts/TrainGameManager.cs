@@ -133,7 +133,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
 
     //달걀
     public List<GameObject> EggManager;
-    const int MAKE_EGG_COUNT = 10;
+    public const int MAKE_EGG_COUNT = 10;
 
     //코인 파티클
     public List<GameObject> CoinParticle;

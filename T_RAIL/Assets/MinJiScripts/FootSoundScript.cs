@@ -9,7 +9,7 @@ public class FootSoundScript : MonoBehaviour {
         if (_col.gameObject.layer == LayerMask.NameToLayer("Station"))
         {
             TrainGameManager.instance.SoundManager.Player_foot_Sound_Play();
-            Debug.LogError("발");
+
         }
     }
 }
