@@ -58,7 +58,10 @@ public class SoundManager : MonoBehaviourPunCallbacks
     public AudioClip TrainDriving_Sound; // 기차 움직일 때 내는 소리
     public AudioClip ChickenDie_Sound; // 닭 죽을 때
     public AudioClip HPIncrease_Sound; // 자판기에서 하트 먹을 때
+    public AudioClip EggEat_Sound; // 달걀 먹었을 때
 
+    public AudioClip TrainWhistle_Sound; // 엔딩에서 기차 달려갈 때
+    public AudioClip Helicopter_Sound; // 엔딩_헬리콥터 소리 
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -215,6 +218,23 @@ public class SoundManager : MonoBehaviourPunCallbacks
     public void ChickenDie_Sound_Play()
     {
         Effect2_Source.clip = ChickenDie_Sound;
+        Effect2_Source.Play();
+    }
+    public void EggEat_Sound_Play()
+    {
+        Effect1_Source.clip = EggEat_Sound;
+        Effect1_Source.Play();
+    }
+
+    public void Helicopter_Sound_Play()
+    {
+        Effect1_Source.clip = Helicopter_Sound;
+        Effect1_Source.Play();
+    }
+
+    public void TrainWhistle_Sound_Play()
+    {
+        Effect2_Source.clip = TrainWhistle_Sound;
         Effect2_Source.Play();
     }
 }
