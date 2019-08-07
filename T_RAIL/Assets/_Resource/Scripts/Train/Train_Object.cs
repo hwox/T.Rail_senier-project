@@ -472,4 +472,24 @@ public class Train_Object : MonoBehaviourPunCallbacks
         // 코루틴 다시 켜주기
         StartCoroutine(TrainHPCheck());
     }
+
+    [PunRPC]
+    void putMakeInventory(int _handnum, int _item)
+    {
+        switch (_handnum)
+        {
+            case 1:
+                Debug.LogError("왼손 : " + _item);
+                MaterialStorage_ctrl.ForMakeItem.Add(_item);
+                break;
+
+            case 2:
+                Debug.LogError("오른손 : " + _item);
+                MaterialStorage_ctrl.ForMakeItem.Add(_item);
+                break;
+
+            default: break;
+        }
+    }
+
 }

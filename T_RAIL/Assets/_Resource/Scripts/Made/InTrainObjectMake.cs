@@ -315,9 +315,9 @@ public class InTrainObjectMake : MonoBehaviourPunCallbacks
 
 
     [PunRPC]
-    void putMakeInventory(int _handNum, int _item)
+    void putMakeInventory(int _handnum, int _item)
     {
-        switch(_handNum)
+        switch (_handnum)
         {
             case 1:
                 Debug.LogError("왼손 : " + _item);

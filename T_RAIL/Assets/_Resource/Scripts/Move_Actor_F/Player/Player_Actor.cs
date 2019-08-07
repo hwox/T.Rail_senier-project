@@ -10,6 +10,7 @@ public class Player_Actor : Move_Actor {
     public GameObject axe;
     public Player_Actor()
     {
+
         base.Actor_Property = (int)Actor.Player; // property에 player 라고 정의
 
         //position = new Pos(-1, 3.8f, -2.5f);
