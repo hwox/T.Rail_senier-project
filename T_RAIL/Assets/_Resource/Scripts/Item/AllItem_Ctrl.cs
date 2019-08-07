@@ -314,7 +314,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
         if (boxCount == boxItem.Count)
         {
             chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "기차 내부에 박스가 없어서 아이템을 획득하지 못했습니다.");
-            chatGui.chatClient.SendPrivateMessage("HAPPY", "기차 내부에 박스가 없어서 아이템을 획득하지 못했습니다.");
+            //chatGui.chatClient.SendPrivateMessage("HAPPY", "기차 내부에 박스가 없어서 아이템을 획득하지 못했습니다.");
             //chatGui.OnPrivateMessage(PhotonNetwork.LocalPlayer.NickName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.", "HAPPY");
             //chatGui.OnPrivateMessage("System", "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.", chatGui.selectedChannelName);
             TrainGameManager.instance.Notice_Someting("박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
