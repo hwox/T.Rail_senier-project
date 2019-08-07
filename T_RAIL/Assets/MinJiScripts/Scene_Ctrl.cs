@@ -245,6 +245,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
+
     }
 
     [PunRPC]
@@ -258,6 +259,10 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
             playerListController.playerList[i].player_floor_minji = 5;
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + TrainGameManager.instance.Ending_Stage);
+        if (TrainGameManager.instance.EnemyAppear)
+        {
+            TrainGameManager.instance.ConditionCtrl.EnemyDisappear(); // 적 사라지게
+        }
 
         TrainGameManager.instance.Scene_state = 5;
     }
