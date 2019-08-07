@@ -99,14 +99,15 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     // 자판기
     bool keydown = false;
 
-    public int player_floor_minji;
-    public int player_where_minji;
 
     /// ////////////////////////////////////////////////////////////////////////
 
     public playerListController_minj playerListController;
     public UIState_Ctrl UIState_Ctrl;
-    public int whereIam;
+    //public int whereIam;
+
+    public int player_floor_minji;
+    public int player_where_minji;
 
     private void Awake()
     {
@@ -129,8 +130,11 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             playerListController = TrainGameManager.instance.PlayerListCtrl.GetComponent<playerListController_minj>();
             playerListController.playerList.Add(this.gameObject.GetComponent<Player_Ctrl>());
             UIState_Ctrl = TrainGameManager.instance.UIStateCtrl.GetComponent<UIState_Ctrl>();
-            whereIam = player.Where_Train;
-            
+            //whereIam = player.Where_Train;
+            player_floor_minji = 1;
+            player_where_minji = 1;
+
+
         }
     }
 
@@ -363,7 +367,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                     {
                         MCam_Ctrl.Vending_Machine_Cam(false, 0);
                         TrainGameManager.instance.VendingMachineOn = false;
-                        player.Where_Floor = 4;
+                        player_floor_minji = 4;
                         Debug.LogError("나옴");
                     }
                     else
@@ -371,7 +375,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                         player.rotate.y = 0.0f;
                         anim.SetBool("IsWalk", false);
                         MCam_Ctrl.Vending_Machine_Cam(true, 0);
-                        player.Where_Floor = 5;
+                        player_floor_minji = 5;
 
                         Debug.LogError("들어감");
                         other.GetComponent<VendingMachine>().myPlayer = this.gameObject;
@@ -510,7 +514,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
         if (!photonView.IsMine) return;
 
-        whereIam = player.Where_Train;
+        //player_where_minji = player.Where_Train;
 
         // 이 highlight는 나중에 따로 함수로 뺄고야 일단 정리ㅣ되면 빼겟음
         if (TrainGameManager.instance.near_stair || TrainGameManager.instance.near_sign || TrainGameManager.instance.near_stationpassenger)
@@ -554,7 +558,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             {
                 stair_up = false;
                 // 파티클도 추가하고 2층으로 올라간 위치에 생기게 해야함
-                player.Where_Floor = 2;
+                player_floor_minji = 2;
 
 
                 anim.SetBool("UpToLadder", false);
@@ -563,7 +567,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 MCam_Ctrl.uptoCeiling();
 
                 // trainmanager의 trainctrl에 연결해서 그 컨트롤의 list 중 trainscript에서 천장 onoff 변경
-                TrainGameManager.instance.TrainCtrl.trainscript[player.Where_Train - 1].Ceiling_OnOff(true);
+                TrainGameManager.instance.TrainCtrl.trainscript[player_where_minji - 1].Ceiling_OnOff(true);
 
                 //false는 여기가 아니고 space눌렀을 때ㄹ.
             }
@@ -586,7 +590,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             {
                 stair_down = false;
                 // 1층으로 내려와
-                player.Where_Floor = 1;
+                player_floor_minji = 1;
 
                 anim.speed = 1;
                 anim.SetBool("UpToLadder", false);
@@ -617,9 +621,9 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
 
         // 카메라에 플레이어가 몇층에 있는지 전달 
-        MCam_Ctrl.Change_floor(player.Where_Floor);
+        MCam_Ctrl.Change_floor(player_floor_minji);
 
-        switch (player.Where_Floor)
+        switch (player_floor_minji)
         {
 
             case 1:
@@ -660,8 +664,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     public void changeMy_Where_Train(int playerID, int i)
     {
-        playerListController.playerList[playerID].player.Where_Train = i;
-        playerListController.eachPlayerIn[playerID] = playerListController.playerList[playerID].player.Where_Train;
+        playerListController.playerList[playerID].player_where_minji = i;
+        playerListController.eachPlayerIn[playerID] = playerListController.playerList[playerID].player_where_minji;
 
         UIState_Ctrl.CallRPConTrainScrollBar();
         //UIState_Ctrl.onTrainScrollBar();
@@ -671,7 +675,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
     void GetKeyInput()
     {
-        switch (player.Where_Floor)
+        switch (player_floor_minji)
         {
             // 플레이어가 몇 층에 있는지에 따라서 입력을 다르게 받을 거라서.
             // where_floor -> player가 이게 3이면 기관총에 앉아잇는거
@@ -864,16 +868,18 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 if (TrainGameManager.instance.highligh_state.Equals((int)player_space_state.Machine_gun))
                 {
                     // 주변에 머신건이 있으면?
-                    player.Where_Floor = 3;
+                    player_floor_minji = 3;
 
                     for(int i=0;i<playerListController.playerList.Count; ++i)
                     {
                         if(photonView.ViewID == playerListController.playerList[i].photonView.ViewID)
                         {
                             //photonView.RPC("debugError", RpcTarget.All, i);
-                            Debug.LogError("걔 아이디 뭔데 " + playerListController.playerList[i].photonView.ViewID);
-                            Debug.LogError("그럼 걔 위치는 뭔데 " + playerListController.eachPlayerIn[i]);
-                            MCam_Ctrl.EnemyAppear_Cam(true, playerListController.eachPlayerIn[photonView.ViewID/1000 - 1]);
+                            Debug.LogError("걔 아이디 뭔데 " +i+"   "+ playerListController.playerList[i].photonView.ViewID);
+                            Debug.LogError("그럼 걔 위치는 뭔데 " + playerListController.playerList[i].player_where_minji);
+                            //MCam_Ctrl.EnemyAppear_Cam(true, playerListController.eachPlayerIn[photonView.ViewID/1000 - 1]);
+                            MCam_Ctrl.EnemyAppear_Cam(true, playerListController.playerList[i].player_where_minji);
+
                         }
                     }
 
@@ -891,7 +897,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 if (TrainGameManager.instance.highligh_state.Equals((int)player_space_state.Ladder_Down))
                 {
                     player.position.y = floor2.position.y;
-                    TrainGameManager.instance.TrainCtrl.trainscript[player.Where_Train - 1].Ceiling_OnOff(false);
+                    TrainGameManager.instance.TrainCtrl.trainscript[player_where_minji - 1].Ceiling_OnOff(false);
                     anim.SetBool("UpToLadder", true);
                     stair_down = true;
 
@@ -927,7 +933,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             // 기관총에서 벗어나자!
             TrainGameManager.instance.SoundManager.SitMachineGun_Sound_Play();
             MCam_Ctrl.EnemyAppear_Cam(false, 0);
-            player.Where_Floor = 2;
+            player_floor_minji = 2;
         }
         // 
 
@@ -1101,8 +1107,14 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
         if (position > 7.0f)
         {
-            player.Where_Train = 0;
-            photonView.RPC("changeMy_Where_Train", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber - 1, 0);
+            player_where_minji = 0;
+            for (int i = 0; i < playerListController.playerList.Count; ++i)
+            {
+                if (photonView.ViewID == playerListController.playerList[i].photonView.ViewID)
+                {
+                    photonView.RPC("changeMy_Where_Train", RpcTarget.All, i, 0);
+                }
+            }
         }
         else
         {
@@ -1110,7 +1122,13 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             {
                 if (((i * traindistance) + dist2) < position && ((i * traindistance) - dist2) > position)
                 {
-                    photonView.RPC("changeMy_Where_Train", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber - 1, i + 1);
+                    for (int j = 0; j < playerListController.playerList.Count; ++j)
+                    {
+                        if (photonView.ViewID == playerListController.playerList[j].photonView.ViewID)
+                        {
+                            photonView.RPC("changeMy_Where_Train", RpcTarget.All, j, i + 1);
+                        }
+                    }
                 }
             }
         }
@@ -1230,7 +1248,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
     void DieCheck()
     {
-        if(player.Where_Train > TrainGameManager.instance.trainindex)
+        if(player_where_minji > TrainGameManager.instance.trainindex)
         {
             player.HP = -99;
         }
@@ -1240,4 +1258,17 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             player.Die = true;
         }
     }
+
+    public void AxeActive()
+    {
+        if (player_floor_minji == 4)
+        {
+            axe.SetActive(true);
+        }
+        else
+        {
+            axe.SetActive(false);
+        }
+    }
+
 }

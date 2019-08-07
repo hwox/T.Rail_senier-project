@@ -259,7 +259,8 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
 
         if (boxCount == boxItem.Count)
         {
-            chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+
+            chatGui.OnPrivateMessage("System", "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.", chatGui.selectedChannelName);
             TrainGameManager.instance.Notice_Someting("박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
         }
     }
@@ -284,7 +285,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
 
         if (boxCount == boxItem.Count)
         {
-            chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+            chatGui.OnPrivateMessage("System", "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.", chatGui.selectedChannelName);
             TrainGameManager.instance.Notice_Someting("박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
         }
     }
@@ -312,7 +313,10 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
 
         if (boxCount == boxItem.Count)
         {
-            chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+            chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "기차 내부에 박스가 없어서 아이템을 획득하지 못했습니다.");
+            chatGui.chatClient.SendPrivateMessage("HAPPY", "기차 내부에 박스가 없어서 아이템을 획득하지 못했습니다.");
+            //chatGui.OnPrivateMessage(PhotonNetwork.LocalPlayer.NickName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.", "HAPPY");
+            //chatGui.OnPrivateMessage("System", "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.", chatGui.selectedChannelName);
             TrainGameManager.instance.Notice_Someting("박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
         }
     }
@@ -338,7 +342,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
 
         if (boxCount == boxItem.Count)
         {
-            chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+            chatGui.OnPrivateMessage("System", "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.", chatGui.selectedChannelName);
             TrainGameManager.instance.Notice_Someting("박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
         }
 
@@ -364,7 +368,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
 
         if (boxCount == boxItem.Count)
         {
-            chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+            chatGui.OnPrivateMessage("System", "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.", chatGui.selectedChannelName);
             TrainGameManager.instance.Notice_Someting("박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
         }
     }
@@ -389,7 +393,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
 
         if (boxCount == boxItem.Count)
         {
-            chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+            chatGui.OnPrivateMessage("System", "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.", chatGui.selectedChannelName);
             TrainGameManager.instance.Notice_Someting("박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
         }
     }
@@ -414,7 +418,7 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
 
         if (boxCount == boxItem.Count)
         {
-            chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+            chatGui.OnPrivateMessage("System", "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.", chatGui.selectedChannelName);
             TrainGameManager.instance.Notice_Someting("박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
         }
     }
@@ -440,57 +444,57 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
 
         if (boxCount == boxItem.Count)
         {
-            chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
+            chatGui.OnPrivateMessage("System", "박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.", chatGui.selectedChannelName);
             TrainGameManager.instance.Notice_Someting("박스의 인벤토리가 가득 차 아이템을 획득하지 못했습니다.");
         }
     }
 
     [PunRPC]
-    public void VendingMachine_ItemGet(int Vnum)
+    public void VendingMachine_ItemGet(int viewID, int Vnum)
     {
         switch (Vnum)
         {
             case 1:
-                photonView.RPC("vending_item", RpcTarget.All, Vnum);
+                photonView.RPC("vending_item", RpcTarget.All, viewID, Vnum);
                 photonView.RPC("ItemGet_FoodTomato", RpcTarget.All);
 
                 break;
             case 2:
-                photonView.RPC("vending_item", RpcTarget.All, Vnum);
+                photonView.RPC("vending_item", RpcTarget.All, viewID, Vnum);
                 photonView.RPC("ItemGet_FoodBean", RpcTarget.All);
                 break;
             case 3:
-                photonView.RPC("vending_item", RpcTarget.All, Vnum);
+                photonView.RPC("vending_item", RpcTarget.All, viewID, Vnum);
                 photonView.RPC("ItemGet_FoodChicken", RpcTarget.All);
                 break;
             case 4:
-                photonView.RPC("vending_item", RpcTarget.All, Vnum);
+                photonView.RPC("vending_item", RpcTarget.All, viewID, Vnum);
                 photonView.RPC("ItemGet_Hammer", RpcTarget.All);
                 break;
             case 5:
-                photonView.RPC("vending_item", RpcTarget.All, Vnum);
+                photonView.RPC("vending_item", RpcTarget.All, viewID, Vnum);
                 photonView.RPC("ItemGet_Nail", RpcTarget.All);
                 break;
             case 6:
-                photonView.RPC("vending_item", RpcTarget.All, Vnum);
+                photonView.RPC("vending_item", RpcTarget.All, viewID, Vnum);
                 photonView.RPC("ItemGet_MediPack", RpcTarget.All);
                 break;
             case 7:
-                photonView.RPC("vending_item", RpcTarget.All, Vnum);
+                photonView.RPC("vending_item", RpcTarget.All, viewID, Vnum);
                 photonView.RPC("ItemGet_WoodBoard", RpcTarget.All);
                 break;
             case 8:
-                photonView.RPC("vending_item", RpcTarget.All, Vnum);
+                photonView.RPC("vending_item", RpcTarget.All, viewID, Vnum);
                 photonView.RPC("ItemGet_Ironpan", RpcTarget.All);
                 break;
             case 627:
-                photonView.RPC("vending_item", RpcTarget.All, Vnum);
+                photonView.RPC("vending_item", RpcTarget.All, viewID, Vnum);
                 break;
         }
 
     }
     [PunRPC]
-    public void vending_item(int itemcase)
+    public void vending_item(int viewID, int itemcase)
     {
 
 
