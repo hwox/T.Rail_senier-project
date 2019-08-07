@@ -10237,6 +10237,7 @@ MonoBehaviour:
   UI1_Source: {fileID: 1519934640}
   UI2_Source: {fileID: 1487775896}
   foot_Source: {fileID: 0}
+  TrainDriving_Source: {fileID: 0}
   buttonClickSound: {fileID: 8300000, guid: dff463d8e99364f4da0bc248929ea47c, type: 3}
   stage1BGM: {fileID: 8300000, guid: 775df7a216485fa4c833dfc1c51c75c6, type: 3}
   enemy_Sound: {fileID: 8300000, guid: 3828f76581d12854cbbc0e15cf76255f, type: 3}
@@ -10260,6 +10261,12 @@ MonoBehaviour:
   InvenOpen_Sound: {fileID: 0}
   foot_Sound: {fileID: 0}
   SitMachineGun_Sound: {fileID: 0}
+  TrainDriving_Sound: {fileID: 0}
+  ChickenDie_Sound: {fileID: 0}
+  HPIncrease_Sound: {fileID: 0}
+  EggEat_Sound: {fileID: 0}
+  TrainWhistle_Sound: {fileID: 0}
+  Helicopter_Sound: {fileID: 0}
 --- !u!1 &503267036
 GameObject:
   m_ObjectHideFlags: 0
@@ -43178,7 +43185,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &2006628109
 AudioListener:
   m_ObjectHideFlags: 0
@@ -44642,6 +44649,9 @@ MonoBehaviour:
   SpeedTxt: {fileID: 0}
   NoiseTxt: {fileID: 0}
   DefencTxt: {fileID: 0}
+  Speed_DrawingStatus: {fileID: 0}
+  Noise_DrawingStatus: {fileID: 0}
+  Defence_DrawingStatus: {fileID: 0}
 --- !u!114 &2140476041
 MonoBehaviour:
   m_ObjectHideFlags: 0
