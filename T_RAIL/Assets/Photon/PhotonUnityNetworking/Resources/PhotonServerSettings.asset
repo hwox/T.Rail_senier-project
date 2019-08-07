@@ -90,5 +90,7 @@ MonoBehaviour:
   - FindNextDest
   - debugError
   - putMakeInventory
+  - EndingSceneLoad
+  - endingSetting
   DisableAutoOpenWizard: 1
   ShowSettings: 1

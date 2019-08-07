@@ -43,6 +43,7 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks
 
     private void Start()
     {
+        if (!PhotonNetwork.IsMasterClient) return;
         StartCoroutine(EnemyAppear_Condition());
     }
     public void onEnemyOnButton()
