@@ -11,7 +11,8 @@ public class Helicopter_Ctrl : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-       // StartCoroutine("closeDoor");
+      //  TrainGameManager.instance.SoundManager.
+      //  TrainGameManager.instance.Soundmanager.TrainWhistl_Sound_Play();
     }
 
 
