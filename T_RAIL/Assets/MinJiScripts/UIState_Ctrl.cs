@@ -13,7 +13,7 @@ public class UIState_Ctrl : MonoBehaviourPunCallbacks
     void Start()
     {
         photonView.RPC("onTrainScrollBar", RpcTarget.All);
-        //onTrainScrollBar();
+        ////onTrainScrollBar();
     }
 
     public void CallRPConTrainScrollBar()
@@ -43,8 +43,11 @@ public class UIState_Ctrl : MonoBehaviourPunCallbacks
         //플레이어의 숫자만큼 돌면서 각자가 어디있는지 확인
         for (int i = 0; i < PhotonNetwork.CurrentRoom.PlayerCount; ++i)
         {
-            if (playerListController.eachPlayerIn[i] != 0)
-                TrainUI[playerListController.eachPlayerIn[i] - 1].transform.GetChild(i + 1).gameObject.SetActive(true);
+            if (playerListController.playerList[i].player_where_minji != 0)
+            {
+                //Debug.LogError(playerListController.playerList[i].player_where_minji - 1 + "ddddddd");
+                TrainUI[playerListController.playerList[i].player_where_minji - 1].transform.GetChild(playerListController.playerList[i].GetComponent<PhotonView>().ViewID / 1000).gameObject.SetActive(true);
+            }       //TrainUI[playerListController.eachPlayerIn[i] - 1].transform.GetChild(i + 1).gameObject.SetActive(true);
         };
 
     }

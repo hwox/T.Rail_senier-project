@@ -61,7 +61,8 @@ public class VendingMachine : MonoBehaviour {
                                 TrainGameManager.instance.SoundManager.HPIncrease_Sound_Play();
                                 myPlayer.GetComponent<PhotonView>().RPC("setPlayerHP", RpcTarget.All, myPlayer.GetComponent<PhotonView>().ViewID, -10);
                                 //customer.HP += 5;
-                                TrainGameManager.instance.CoinNum -= item_price[8];
+                                //TrainGameManager.instance.CoinNum -= item_price[8];
+                                TrainGameManager.instance.GetComponent<PhotonView>().RPC("getCoin_RPC", RpcTarget.All, -item_price[8]);
                             }
                             else
                             {
