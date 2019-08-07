@@ -8,7 +8,8 @@ public class EndingScensTrainSpawn : MonoBehaviour {
     public GameObject trianPrefab;
     public int trainNum = 3; // 기차 생성 개수
     public float trainGap = 13f;// 기차 간격
-    
+
+    public GameObject ExitGameWindow;
 
     void newtrain(int n)
     {
@@ -27,11 +28,27 @@ public class EndingScensTrainSpawn : MonoBehaviour {
     void Start () {
         trainNum = TrainGameManager.instance.trainindex;
         newtrain(trainNum);
+        StartCoroutine(ExitGame());
+
     }
     void Update(){
 
         transform.Translate(0.3f, 0, 0);
 
+    }
+
+    IEnumerator ExitGame()
+    {
+        yield return new WaitForSeconds(3.0f);
+
+        while (true)
+        {
+            if (!ExitGameWindow.active)
+            {
+                ExitGameWindow.SetActive(true);
+            }
+            yield return new WaitForSeconds(5.0f);
+        }
     }
 
 }
