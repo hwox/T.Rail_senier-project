@@ -145,8 +145,8 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         {
             playerListController.playerList[i].player.DownSize();
             playerListController.playerList[i].player.SetTrainPlayer(i);
-            playerListController.playerList[i].player.Where_Floor = 1;
-            playerListController.playerList[i].player.AxeActive();
+            playerListController.playerList[i].player_floor_minji = 1;
+            playerListController.playerList[i].AxeActive();
             //Debug.Log("id : " + (i) + "  floor : " + playerListController.playerList[i].player.Where_Floor);
 
             // 승객을 태우기 위해서 호출하는 함수
@@ -210,11 +210,11 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
             playerListController.playerList[i].MCam_Ctrl.inTrain();
             //playerListController.playerList[i].stair_down = true;
 
-            if (playerListController.playerList[i].player.Where_Train - 1 >= 0)
-                TrainGameManager.instance.TrainCtrl.trainscript[playerListController.playerList[i].player.Where_Train - 1].Ceiling_OnOff(false);
+            if (playerListController.playerList[i].player_where_minji - 1 >= 0)
+                TrainGameManager.instance.TrainCtrl.trainscript[playerListController.playerList[i].player_where_minji - 1].Ceiling_OnOff(false);
 
-            playerListController.playerList[i].player.Where_Floor = 4;
-            playerListController.playerList[i].player.AxeActive();
+            playerListController.playerList[i].player_floor_minji = 4;
+            playerListController.playerList[i].AxeActive();
 
             //photonView.RPC("setPlayerInStationState", RpcTarget.All, i);
         }
@@ -249,7 +249,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         MCam_Ctrl.Change_floor(5);
         for (int i = 0; i < playerListController.playerList.Count; ++i)
         {
-            playerListController.playerList[i].player.Where_Floor = 5;
+            playerListController.playerList[i].player_floor_minji = 5;
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + TrainGameManager.instance.Ending_Stage);
 
@@ -270,13 +270,13 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
                 TrainGameManager.instance.SoundManager.TrainDriving_Sound_Play();
                 tempOn = true;
             }
-            Debug.Log("여기");
+            //Debug.Log("여기");
 
         }
         else if (NextStage >= GameValue.Stage1Index && NextStage < GameValue.Stage2Index)
         {
             TrainGameManager.instance.Stage = 2;
-            Debug.Log("여여기");
+            //Debug.Log("여여기");
         }
         else if (NextStage >= GameValue.Stage2Index && NextStage < GameValue.Stage3Index)
         {

@@ -32,8 +32,8 @@ public class Player_Actor : Move_Actor {
         {
             Directions[i] = 1;
         }
-       Where_Train = 1;
-       Where_Floor = 1; // 처음에는 1층, 1번째칸에 존재하니까 
+       //Where_Train = 1;
+       //Where_Floor = 1; // 처음에는 1층, 1번째칸에 존재하니까 
 
     }
 
@@ -216,17 +216,6 @@ public class Player_Actor : Move_Actor {
         position = new Pos(-1 * n* 2, 3.8f, -2.5f);
     }
 
-    public void AxeActive()
-    {
-        if (Where_Floor == 4)
-        {
-            axe.SetActive(true);
-        }
-        else
-        {
-            axe.SetActive(false);
-        }
-    }
-
+   
 
 }

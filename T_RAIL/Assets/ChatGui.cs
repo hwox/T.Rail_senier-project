@@ -260,17 +260,17 @@ public void OnDestroy()
 		//}
 
         //현재 채널이 프라이빗 채널인지 
-		//bool doingPrivateChat = this.chatClient.PrivateChannels.ContainsKey(this.selectedChannelName);
+		bool doingPrivateChat = this.chatClient.PrivateChannels.ContainsKey(this.selectedChannelName);
 		string privateChatTarget = string.Empty;
-		//if (doingPrivateChat)
-		//{
-		//	// the channel name for a private conversation is (on the client!!) always composed of both user's IDs: "this:remote"
-		//	// so the remote ID is simple to figure out
-        //
-		//	string[] splitNames = this.selectedChannelName.Split(new char[] { ':' });
-		//	privateChatTarget = splitNames[1];
-		//}
-		//UnityEngine.Debug.Log("selectedChannelName: " + selectedChannelName + " doingPrivateChat: " + doingPrivateChat + " privateChatTarget: " + privateChatTarget);
+		if (doingPrivateChat)
+		{
+			// the channel name for a private conversation is (on the client!!) always composed of both user's IDs: "this:remote"
+			// so the remote ID is simple to figure out
+        
+			string[] splitNames = this.selectedChannelName.Split(new char[] { ':' });
+			privateChatTarget = splitNames[1];
+		}
+		UnityEngine.Debug.Log("selectedChannelName: " + selectedChannelName + " doingPrivateChat: " + doingPrivateChat + " privateChatTarget: " + privateChatTarget);
 
 
 		//if (inputLine[0].Equals('\\'))
@@ -354,11 +354,11 @@ public void OnDestroy()
 		//}
 		//else
 		{
-			//if (doingPrivateChat)
-			//{
-			//	this.chatClient.SendPrivateMessage(privateChatTarget, inputLine);
-			//}
-			//else
+			if (doingPrivateChat)
+			{
+				this.chatClient.SendPrivateMessage(privateChatTarget, inputLine);
+			}
+			else
 			{
                 Debug.Log("selectedChannelName" + selectedChannelName);
                 this.chatClient.PublishMessage(this.selectedChannelName, inputLine);
@@ -491,32 +491,41 @@ public void OnDestroy()
 		}
 	}
 
-	public void OnPrivateMessage(string sender, object message, string channelName)
-	{
-		// as the ChatClient is buffering the messages for you, this GUI doesn't need to do anything here
-		// you also get messages that you sent yourself. in that case, the channelName is determinded by the target of your msg
-		this.InstantiateChannelButton(channelName);
+	//public void OnPrivateMessage(string sender, object message, string channelName)
+	//{
+	//	// as the ChatClient is buffering the messages for you, this GUI doesn't need to do anything here
+	//	// you also get messages that you sent yourself. in that case, the channelName is determinded by the target of your msg
+	//	this.InstantiateChannelButton(channelName);
+    //
+	//	byte[] msgBytes = message as byte[];
+	//	if (msgBytes != null)
+	//	{
+	//		Debug.Log("Message with byte[].Length: "+ msgBytes.Length);
+	//	}
+	//	if (this.selectedChannelName.Equals(channelName))
+	//	{
+	//	    this.ShowChannel(channelName);
+	//	}
+	//}
 
-		byte[] msgBytes = message as byte[];
-		if (msgBytes != null)
-		{
-			Debug.Log("Message with byte[].Length: "+ msgBytes.Length);
-		}
-		if (this.selectedChannelName.Equals(channelName))
-		{
-		    this.ShowChannel(channelName);
-		}
-	}
+    public void OnPrivateMessage(string sender, object message, string channelName)
+    {
+        ChatChannel ch = this.chatClient.PrivateChannels[channelName];
+        foreach (object msg in ch.Messages)
+        {
+            Console.WriteLine(msg);
+        }
+    }
 
-	/// <summary>
-	/// New status of another user (you get updates for users set in your friends list).
-	/// </summary>
-	/// <param name="user">Name of the user.</param>
-	/// <param name="status">New status of that user.</param>
-	/// <param name="gotMessage">True if the status contains a message you should cache locally. False: This status update does not include a
-	/// message (keep any you have).</param>
-	/// <param name="message">Message that user set.</param>
-	public void OnStatusUpdate(string user, int status, bool gotMessage, object message)
+    /// <summary>
+    /// New status of another user (you get updates for users set in your friends list).
+    /// </summary>
+    /// <param name="user">Name of the user.</param>
+    /// <param name="status">New status of that user.</param>
+    /// <param name="gotMessage">True if the status contains a message you should cache locally. False: This status update does not include a
+    /// message (keep any you have).</param>
+    /// <param name="message">Message that user set.</param>
+    public void OnStatusUpdate(string user, int status, bool gotMessage, object message)
 	{
 
 		Debug.LogWarning("status: " + string.Format("{0} is {1}. Msg:{2}", user, status, message));
