@@ -46,7 +46,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
             photonView.RPC("setRunMeterZero", RpcTarget.All);
             photonView.RPC("StationSceneLoad", RpcTarget.All);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha9))// 엔딩가기
+        if (Input.GetKeyDown(KeyCode.F9))// 엔딩가기
         {
             photonView.RPC("EndingSceneLoad_cheat", RpcTarget.All);
         }
