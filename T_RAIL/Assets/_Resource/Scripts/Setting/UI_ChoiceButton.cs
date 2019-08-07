@@ -42,6 +42,7 @@ public class UI_ChoiceButton : MonoBehaviourPunCallbacks
         //sofa.transform.parent = Train_Object;
 
         TrainGameManager.instance.SoundManager.Box_Sofa_instance_Sound_Play();
+       
 
         Hit_Object.SetActive(false);
         transform.GetChild(0).gameObject.SetActive(false); //ui버튼 들어있던 것 부모로 한번 더 감싸서 getchild추가
