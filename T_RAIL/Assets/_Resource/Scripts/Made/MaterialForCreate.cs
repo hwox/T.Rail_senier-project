@@ -27,6 +27,9 @@ public class MaterialForCreate : MonoBehaviourPunCallbacks
 
     int StorageIndex = 0;
     public int index = 0;
+
+    public int MaterialState;
+
     // Use this for initialization
     void Start()
     {
@@ -80,13 +83,21 @@ public class MaterialForCreate : MonoBehaviourPunCallbacks
                 if (allitem.UseInLeftHand == 1)
                 {
                     //ForMakeItem.Add(allitem.LeftHand_Pocket);
-                    transform.parent.parent.GetComponent<PhotonView>().RPC("putMakeInventory", RpcTarget.All ,1 , allitem.LeftHand_Pocket);
+                    if(MaterialState==1)
+                        transform.parent.parent.GetComponent<PhotonView>().RPC("putMakeInventory", RpcTarget.All ,1 , allitem.LeftHand_Pocket);
+                    else if(MaterialState ==2)
+                        transform.root.GetComponent<PhotonView>().RPC("putMakeInventory", RpcTarget.All, 1, allitem.LeftHand_Pocket);
+
                     allitem.UseLeftHandItem();
                 }
                 if (allitem.UseInRightHand == 1)
                 {
                     //ForMakeItem.Add(allitem.RightHand_Pocket);
-                    transform.parent.parent.GetComponent<PhotonView>().RPC("putMakeInventory", RpcTarget.All, 2,allitem.RightHand_Pocket);
+                    if (MaterialState == 1)
+                        transform.parent.parent.GetComponent<PhotonView>().RPC("putMakeInventory", RpcTarget.All, 2,allitem.RightHand_Pocket);
+                    else if (MaterialState == 2)
+                        transform.root.GetComponent<PhotonView>().RPC("putMakeInventory", RpcTarget.All, 2, allitem.RightHand_Pocket);
+
                     allitem.UseRightHandItem();
                 }
 

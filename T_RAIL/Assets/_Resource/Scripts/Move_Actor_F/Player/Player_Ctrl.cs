@@ -99,6 +99,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     // 자판기
     bool keydown = false;
 
+    public int player_floor_minji;
+    public int player_where_minji;
 
     /// ////////////////////////////////////////////////////////////////////////
 

@@ -31,7 +31,7 @@ public class CamCtrl : MonoBehaviour
 
     private void LateUpdate()
     {
-
+        
         float positionX = tr.position.x;
 
         switch (player_floor)
@@ -129,8 +129,6 @@ public class CamCtrl : MonoBehaviour
             this.GetComponent<Camera>().GetComponent<Mouse_Ctrl>().ThisCamSetOnOff(true);
             this.GetComponent<Camera>().enabled = true;
             Enemy_Appear_Cam.GetComponent<Camera>().enabled = false;
-
-
         }
     }
 
