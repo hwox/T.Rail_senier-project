@@ -346,6 +346,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (Input.GetKeyDown(KeyCode.V))
             {
+                TrainGameManager.instance.SoundManager.EggEat_Sound_Play();
                 TrainGameManager.instance.allitemCtrl.ItemGet_Random(other.gameObject.GetPhotonView().ViewID);
             }
         }
@@ -605,21 +606,17 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             {
                 if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
                 {
-
                     anim.SetBool("IsJump", false);
                     jump_now = true;
                 }
-
             }
         }
-
 
         // 카메라에 플레이어가 몇층에 있는지 전달 
         MCam_Ctrl.Change_floor(player.Where_Floor);
 
         switch (player.Where_Floor)
         {
-
             case 1:
                 // 1층에서 칸 이동이나 그런거할 떄
                 // 플레이어의 x좌표를 전달해줌(카메라 이동관련)
@@ -652,8 +649,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     //{
     //    playerListController.eachPlayerIn[who] = playerListController.playerList[who].player.Where_Train;
     //}
-
-
     //내 id를 알려주고 내 위치를 변경하라고 알려줌
     [PunRPC]
     public void changeMy_Where_Train(int playerID, int i)

@@ -12156,6 +12156,8 @@ MonoBehaviour:
   foot_Sound: {fileID: 0}
   SitMachineGun_Sound: {fileID: 0}
   TrainDriving_Sound: {fileID: 0}
+  ChickenDie_Sound: {fileID: 0}
+  HPIncrease_Sound: {fileID: 0}
 --- !u!1 &505996708
 GameObject:
   m_ObjectHideFlags: 0

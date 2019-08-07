@@ -25,9 +25,6 @@ public class MaterialForCreate : MonoBehaviourPunCallbacks
     int[] WhatInStorage; // 뭐가 자꾸 늘어나네 얘는 그 인덱스에 있는게 몇번째 아이템인ㄴ지
     Text[] StorageCount;
 
-    // Dictionary<int, int> Storage_test = new Dictionary<int, int>();
-    // 앞에는 index 뒤에는 count
-
     int StorageIndex = 0;
     public int index = 0;
     // Use this for initialization

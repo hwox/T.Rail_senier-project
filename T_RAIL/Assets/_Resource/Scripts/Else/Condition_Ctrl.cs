@@ -114,7 +114,7 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks
 
         int enemy_total = TrainGameManager.instance.totalkickoutEnemy;
 
-        if (enemy_total % 3 == 2)
+        if (enemy_total % 3 == 1)
         {
             // 기차 add함수 호출 
             TrainGameManager.instance.TrainCtrl.onTrainAddButtonClick();
@@ -134,11 +134,8 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks
         if (!TrainGameManager.instance.EnemyAppear && 
             TrainGameManager.instance.TrainCtrl.Run_Meter > 30.0f)
         {
-            Debug.Log("적 spawn 코루틴 동작중");
             int noiseSound = TrainGameManager.instance.Noise / TrainGameManager.instance.Noise_stat;
-
             int random = Random.Range(0, 250);
-            Debug.Log(random);
             if (random < noiseSound)
             {
                 // enemy 호출 함수

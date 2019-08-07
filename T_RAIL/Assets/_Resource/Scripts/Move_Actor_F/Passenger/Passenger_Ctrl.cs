@@ -257,7 +257,6 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
         }
 
         photonView.RPC("setHungryDisease", RpcTarget.All, pass.Hungry, pass.Disease);
-
         yield return new WaitForSeconds(2.5f);
 
         StartCoroutine(PassengerIsEffectedByEnvironment());
@@ -283,5 +282,18 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
     public int GetDisease()
     {
         return pass.Disease;
+    }
+
+    public void OnEnable()
+    {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
+        else
+        {
+            Debug.Log("큼");
+            StartCoroutine(PassengerIsEffectedByEnvironment());
+        }
     }
 }
