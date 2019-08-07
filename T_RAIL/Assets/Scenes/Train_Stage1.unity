@@ -13696,6 +13696,7 @@ MonoBehaviour:
   playerListController: {fileID: 342035268}
   Train_Ctrl: {fileID: 1304048000}
   egg: {fileID: 1536627581}
+  endingtrainparent: {fileID: 743498874}
 --- !u!114 &216123168
 MonoBehaviour:
   m_ObjectHideFlags: 0

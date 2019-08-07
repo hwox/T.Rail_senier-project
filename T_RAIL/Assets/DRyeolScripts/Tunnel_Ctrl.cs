@@ -69,8 +69,8 @@ public class Tunnel_Ctrl : MonoBehaviour {
 
     IEnumerator ShakeCamera()
     {
-        while (true)
-        {
+        for(int i=0;i<2;i++)
+        { 
             iTween.ShakeRotation(camera, iTween.Hash("time", 1.2f, "x", 0.5f));
             //iTween.ShakeRotation(camera, iTween.Hash("time", 1.2f, "z", 0.5f));
             yield return new WaitForSeconds(2.8f);

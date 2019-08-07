@@ -10,7 +10,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
     public playerListController_minj playerListController;
     public Train_Ctrl Train_Ctrl;
     public GameObject egg;
-
+    public GameObject endingtrainparent;
     bool TestMeterMode; // test용 모드위해 추가하는 거
 
     bool tempOn = false; //첫번째씬에서 켜는용
@@ -45,6 +45,10 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         {
             photonView.RPC("setRunMeterZero", RpcTarget.All);
             photonView.RPC("StationSceneLoad", RpcTarget.All);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha9))// 엔딩가기
+        {
+            photonView.RPC("EndingSceneLoad_cheat", RpcTarget.All);
         }
 
         if (Input.GetKeyDown(KeyCode.F10))
@@ -257,6 +261,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         for (int i = 0; i < playerListController.playerList.Count; ++i)
         {
             playerListController.playerList[i].player_floor_minji = 5;
+            playerListController.playerList[i].gameObject.SetActive(false);
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + TrainGameManager.instance.Ending_Stage);
         if (TrainGameManager.instance.EnemyAppear)
@@ -266,6 +271,39 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
 
         TrainGameManager.instance.Scene_state = 5;
     }
+
+
+    [PunRPC]
+    public void EndingSceneLoad_cheat()
+    {
+        Train_Ctrl.Hide();
+        MCam_Ctrl.EndingCam(true, 0);
+        MCam_Ctrl.Change_floor(5);
+        for (int i = 0; i < playerListController.playerList.Count; ++i)
+        {
+            playerListController.playerList[i].player_floor_minji = 5;
+            playerListController.playerList[i].gameObject.SetActive(false);
+        }
+        for (int i = 0; i < 13; i++)
+        {
+            TrainGameManager.instance.endingtrainM[i].SetActive(false);
+              TrainGameManager.instance.endingtrainM[i].transform.parent=endingtrainparent.transform;
+           
+        }
+        SceneManager.LoadScene(5+ TrainGameManager.instance.Ending_Stage);
+
+        if (TrainGameManager.instance.EnemyAppear)
+        {
+            TrainGameManager.instance.ConditionCtrl.EnemyDisappear(); // 적 사라지게
+        }
+
+        TrainGameManager.instance.Scene_state = 5;
+      
+       
+
+
+    }
+
 
     void NextStageCheck()
     {
