@@ -134,7 +134,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             player_floor_minji = 1;
             player_where_minji = 1;
 
-
         }
     }
 
@@ -657,12 +656,22 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     //}
     //내 id를 알려주고 내 위치를 변경하라고 알려줌
     [PunRPC]
-    public void changeMy_Where_Train(int playerID, int i)
+    public void changeMy_Where_Train(int viewID, int where)
     {
-        playerListController.playerList[playerID].player_where_minji = i;
-        playerListController.eachPlayerIn[playerID] = playerListController.playerList[playerID].player_where_minji;
+        for (int i = 0; i < playerListController.playerList.Count; ++i)
+        {
+            if (playerListController.playerList[i].photonView.ViewID == viewID)
+            {
+                playerListController.playerList[i].player_where_minji = where;
+                playerListController.eachPlayerIn[playerListController.playerList[i].GetComponent<PhotonView>().ViewID / 1000 - 1] = playerListController.playerList[i].player_where_minji;
+            }
+        }
+
+        //playerListController.playerList[playerID].player_where_minji = where;
+        //playerListController.eachPlayerIn[playerListController.playerList[playerID].GetComponent<PhotonView>().ViewID / 1000 - 1] = playerListController.playerList[playerID].player_where_minji;
 
         UIState_Ctrl.CallRPConTrainScrollBar();
+
         //UIState_Ctrl.onTrainScrollBar();
     }
     /// ////////////////////////////////////////////////////////////////////////
@@ -830,9 +839,10 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
     // 2층에 올라갔을 때의 키입력 함수
     void Player_key_floor2()
     {
+        WhereTrain_CalculPosition(player.position.x);
+
         if (!photonView.IsMine) return;
 
-        WhereTrain_CalculPosition(player.position.x);
         if (!stair_up && !stair_down)
         {
             // 그냥 2층으로 올라온 상태
@@ -1103,13 +1113,15 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         if (position > 7.0f)
         {
             player_where_minji = 0;
-            for (int i = 0; i < playerListController.playerList.Count; ++i)
-            {
-                if (photonView.ViewID == playerListController.playerList[i].photonView.ViewID)
-                {
-                    photonView.RPC("changeMy_Where_Train", RpcTarget.All, i, 0);
-                }
-            }
+            photonView.RPC("changeMy_Where_Train", RpcTarget.All, photonView.ViewID, 0);
+            //for (int i = 0; i < playerListController.playerList.Count; ++i)
+            //{
+            //
+            //    if (photonView.ViewID == playerListController.playerList[i].photonView.ViewID)
+            //    {
+            //        photonView.RPC("changeMy_Where_Train", RpcTarget.All, i, 0);
+            //    }
+            //}
         }
         else
         {
@@ -1117,13 +1129,16 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             {
                 if (((i * traindistance) + dist2) < position && ((i * traindistance) - dist2) > position)
                 {
-                    for (int j = 0; j < playerListController.playerList.Count; ++j)
-                    {
-                        if (photonView.ViewID == playerListController.playerList[j].photonView.ViewID)
-                        {
-                            photonView.RPC("changeMy_Where_Train", RpcTarget.All, j, i + 1);
-                        }
-                    }
+
+                    photonView.RPC("changeMy_Where_Train", RpcTarget.All, photonView.ViewID, i + 1);
+
+                    //for (int j = 0; j < playerListController.playerList.Count; ++j)
+                    //{
+                    //    if (photonView.ViewID == playerListController.playerList[j].photonView.ViewID)
+                    //    {
+                    //        photonView.RPC("changeMy_Where_Train", RpcTarget.All, j, i + 1);
+                    //    }
+                    //}
                 }
             }
         }
