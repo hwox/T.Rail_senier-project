@@ -49,16 +49,17 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
 
         if (Input.GetKeyDown(KeyCode.F10))
         {
-            TrainGameManager.instance.Ending_Stage = 1;
+            photonView.RPC("endingSetting", RpcTarget.All, 1);
         }
         if (Input.GetKeyDown(KeyCode.F11))
         {
-            TrainGameManager.instance.Ending_Stage = 2;
+            photonView.RPC("endingSetting", RpcTarget.All, 2);
         }
         if (Input.GetKeyDown(KeyCode.F12))
         {
-            TrainGameManager.instance.Ending_Stage = 3;
+            photonView.RPC("endingSetting", RpcTarget.All, 3);
         }
+
 
 
 
@@ -115,22 +116,27 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
             {
                 if (GameValue.NextStationMeter < Train_Ctrl.Run_Meter)
                 {
-                    EndingSceneLoad();
-                    TrainGameManager.instance.Scene_state = 5;
+                    photonView.RPC("EndingSceneLoad",RpcTarget.All);
+                    //TrainGameManager.instance.Scene_state = 5;  <-- 이거 if랑 else 둘다 있어서 그냥 EndingSceneLoad 함수 안에다가 집어넣음
                 }
             }
             else
             {
                 if (GameValue.TestMeter < Train_Ctrl.Run_Meter)
                 {
-                    EndingSceneLoad();
-                    TrainGameManager.instance.Scene_state = 5;
+                    photonView.RPC("EndingSceneLoad", RpcTarget.All);
+                    //TrainGameManager.instance.Scene_state = 5;
                 }
             }
 
         }
     }
 
+    [PunRPC]
+    public void endingSetting(int state)
+    {
+        TrainGameManager.instance.Ending_Stage = state;
+    }
 
     [PunRPC]
     public void SetTrainPlayer()// 기차로 갈때
@@ -242,7 +248,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
 
     }
 
-
+    [PunRPC]
     public void EndingSceneLoad()
     {
         Train_Ctrl.Hide();
@@ -258,6 +264,7 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
             TrainGameManager.instance.ConditionCtrl.EnemyDisappear(); // 적 사라지게
         }
 
+        TrainGameManager.instance.Scene_state = 5;
     }
 
     void NextStageCheck()
