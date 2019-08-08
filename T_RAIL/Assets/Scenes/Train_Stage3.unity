@@ -10796,7 +10796,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &441094001
 GameObject:
   m_ObjectHideFlags: 0
@@ -11751,6 +11751,11 @@ MonoBehaviour:
   foot_Sound: {fileID: 0}
   SitMachineGun_Sound: {fileID: 0}
   TrainDriving_Sound: {fileID: 0}
+  ChickenDie_Sound: {fileID: 0}
+  HPIncrease_Sound: {fileID: 0}
+  EggEat_Sound: {fileID: 0}
+  TrainWhistle_Sound: {fileID: 0}
+  Helicopter_Sound: {fileID: 0}
 --- !u!1 &503267036
 GameObject:
   m_ObjectHideFlags: 0
