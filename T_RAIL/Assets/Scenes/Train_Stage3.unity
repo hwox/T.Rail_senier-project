@@ -10887,7 +10887,7 @@ AudioListener:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 447855173}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &447855182
 Camera:
   m_ObjectHideFlags: 0
@@ -11416,7 +11416,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 497461284}
   m_Mesh: {fileID: 4300030, guid: ff6be967f2d20b149b9e96eb1915c4a6, type: 3}
-  Elephant_Sound: {fileID: 0}
 --- !u!1 &503267036
 GameObject:
   m_ObjectHideFlags: 0
@@ -24757,7 +24756,7 @@ Transform:
   m_LocalScale: {x: 0.15979512, y: 0.15979512, z: 0.109643586}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: -95.017, y: -145.424, z: 173.286}
 --- !u!1 &1068382340
 GameObject:
@@ -33461,7 +33460,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 8.13, y: 30.753, z: 2.006}
 --- !u!1 &1344922030
 GameObject:
