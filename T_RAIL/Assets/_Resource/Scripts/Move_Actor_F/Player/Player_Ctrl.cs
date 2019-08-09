@@ -32,20 +32,20 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
     public Transform LeftShoulder;
     public Transform RightShoulder;
-    Animator anim;
+    public Animator anim;
     Rigidbody ri;
     public Color hoverColor = Color.white;
     Highlighter highlighter;
 
 
     Transform Near_Object; // 사다리, 머신건 등 space_state로 할 모든 object담기
-    Transform gun_child; // 머신건.... 각도 회전하려면 밑에 자식 오브젝트 담아와야 돼서 총전용
-    MachineGun_Ctrl gun_ctrl; // 그 머신건에 달린 ctrl 스크립트. 머신건을 받아올 떄 마다 얘도 같이
+    public Transform gun_child; // 머신건.... 각도 회전하려면 밑에 자식 오브젝트 담아와야 돼서 총전용
+    public MachineGun_Ctrl gun_ctrl; // 그 머신건에 달린 ctrl 스크립트. 머신건을 받아올 떄 마다 얘도 같이
 
 
     float runTime; // 걷는 거 2초이상 달리기
 
-    bool stair_up; // 사다리 올라가고 있는 중
+    public bool stair_up; // 사다리 올라가고 있는 중
     public bool stair_down; // 사다리 내려가고 있는 중
     bool jump_now;
 
@@ -220,13 +220,15 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
             {
                 TrainGameManager.instance.highligh_state = (int)player_space_state.Machine_gun;
                 Near_Object = other.transform;
-                gun_child = other.transform.GetChild(0);
-                gun_ctrl = gun_child.GetComponent<MachineGun_Ctrl>();
+
+                photonView.RPC("setGunChild", RpcTarget.All, player_where_minji);
+
                 highlighter = Near_Object.GetComponent<Highlighter>();
                 TrainGameManager.instance.near_gun = true;
                 //  Push_Space_UI.SetActive(true);
                 //  Push_Space_UI.transform.position = MCam.WorldToScreenPoint(Near_Object.position) + new Vector3(-20, 130, 0);
             }
+
         }
         if (other.gameObject.layer.Equals(GameValue.statiopassenger_layer))
         {
@@ -273,6 +275,14 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
 
     }
+
+    [PunRPC]
+    void setGunChild(int where_train)
+    {
+        gun_child = TrainGameManager.instance.TrainCtrl.trainscript[where_train - 1].transform.GetChild(2).GetChild(0);
+        gun_ctrl = gun_child.GetComponent<MachineGun_Ctrl>();
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (!photonView.IsMine) return;
@@ -305,7 +315,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                         if (other.gameObject == TrainGameManager.instance.Station_PassengerManager[i])
                         {
                             photonView.RPC("passengerTouch", RpcTarget.All, i); //, eachPlayerIn[i]);
-                            StartCoroutine(CoinParticle(other.transform));
+                            photonView.RPC("startCoinParticle", RpcTarget.All, other.transform.position); //, eachPlayerIn[i]);
                             if (TrainGameManager.instance.near_stationpassenger)
                             {
                                 TrainGameManager.instance.highligh_state = 0;
@@ -413,6 +423,13 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
        // Debug.Log("GetPassengerCount " + TrainGameManager.instance.GetPassengerCount);
 
         TrainGameManager.instance.SoundManager.coin_Sound_Play();
+
+    }
+
+    [PunRPC]
+    public void startCoinParticle(Vector3 _pos)
+    {
+        StartCoroutine(CoinParticle(_pos));
 
     }
 
@@ -964,7 +981,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         if (m_CurrentLaunchForce >= m_MaxLaunchForce && !m_Fired)
         {
             m_CurrentLaunchForce = m_MaxLaunchForce;
-            Fire();
+            photonView.RPC("Fire", RpcTarget.All);
         }
         else if (Input.GetKeyDown(KeyCode.F))
         {
@@ -980,7 +997,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         }
         else if (Input.GetKeyUp(KeyCode.F) && !m_Fired)
         {
-            Fire();
+            photonView.RPC("Fire",RpcTarget.All);
             TrainGameManager.instance.SoundManager.Machine_Gun_Sound_Play();
         }
         // 카메라 조절은 마우스로
@@ -1042,6 +1059,7 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
 
     }
 
+    [PunRPC]
     void Fire()
     {
         m_Fired = false;
@@ -1210,14 +1228,14 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         //iTween.MoveTo(gameObject, iTween.Hash("path", iTweenPath.GetPath("New Path 1"), "time", 7));
     }
 
-    IEnumerator CoinParticle(Transform other)
+    IEnumerator CoinParticle(Vector3 other)
     {
         // Debug.Log("들어옴");
         GameObject Cp = TrainGameManager.instance.GetObject(8);
         Cp.SetActive(true);
         TrainGameManager.instance.GetComponent<PhotonView>().RPC("getCoin_RPC", RpcTarget.All, 10);
         //TrainGameManager.instance.CoinNum += 10;
-        Cp.transform.position = other.position;
+        Cp.transform.position = other;
         //  Cp.transform.Translate(Vector3.up);
         yield return new WaitForSeconds(3.0f);
         Cp.SetActive(false);

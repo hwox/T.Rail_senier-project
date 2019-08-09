@@ -28,7 +28,12 @@ public class Bullet_Ctrl : MonoBehaviour
 
     private void Start()
     {
-       // m_ChargeSpeed = (m_MaxLaunchForce - m_MinLaunchForce) / m_MaxChargeTime;
+        this.transform.localPosition = Vector3.zero;
+        this.gameObject.SetActive(false);
+        this.transform.parent = TrainGameManager.instance.gameObject.transform.GetChild(0);
+        TrainGameManager.instance.BulletManager.Add(this.gameObject);
+
+        // m_ChargeSpeed = (m_MaxLaunchForce - m_MinLaunchForce) / m_MaxChargeTime;
     }
 
     public void CallMoveCoroutin(float _value)
@@ -38,11 +43,7 @@ public class Bullet_Ctrl : MonoBehaviour
 
         rig.velocity = transform.forward * m_CurrentLaunchForce;
     }
-
-    private void OnDisable()
-    {
-
-    }
+    
 
     private void OnEnable()
     {
