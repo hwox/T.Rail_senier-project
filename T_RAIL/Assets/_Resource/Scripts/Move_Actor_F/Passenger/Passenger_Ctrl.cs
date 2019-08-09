@@ -292,7 +292,7 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
         }
         else
         {
-            Debug.Log("큼");
+            //Debug.Log("큼");
             StartCoroutine(PassengerIsEffectedByEnvironment());
         }
     }

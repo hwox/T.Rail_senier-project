@@ -1207,8 +1207,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                 if (playerListController.playerList[i].photonView.ViewID == viewID)
                 {
                     playerListController.playerList[i].player.HP -= _hp;
-                    Debug.Log("call view id : " + viewID);
-                    Debug.Log("call view id hp : " + playerListController.playerList[i].player.HP);
+                    //Debug.Log("call view id : " + viewID);
+                    //Debug.Log("call view id hp : " + playerListController.playerList[i].player.HP);
 
                     if (playerListController.playerList[i].player.HP >= 100)
                         playerListController.playerList[i].player.HP = 100;

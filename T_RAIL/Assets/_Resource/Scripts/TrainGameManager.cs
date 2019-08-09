@@ -225,7 +225,7 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
     }
     public void Error_print()
     {
-        Debug.Log("Error Somewhere");
+        //Debug.Log("Error Somewhere");
     }
 
     public void SetObject_List()
