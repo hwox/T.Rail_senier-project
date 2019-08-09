@@ -44,7 +44,7 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks
     private void Start()
     {
         if (!PhotonNetwork.IsMasterClient) return;
-        StartCoroutine(EnemyAppear_Condition());
+       // StartCoroutine(EnemyAppear_Condition());
     }
     public void onEnemyOnButton()
     {
@@ -132,21 +132,21 @@ public class Condition_Ctrl : MonoBehaviourPunCallbacks
     IEnumerator EnemyAppear_Condition()
     {
 
-        if (!TrainGameManager.instance.EnemyAppear && 
-            TrainGameManager.instance.TrainCtrl.Run_Meter > 30.0f)
-        {
-            int noiseSound = TrainGameManager.instance.Noise / TrainGameManager.instance.Noise_stat;
-            int random = Random.Range(0, 250);
-            if (random < noiseSound)
-            {
-                // enemy 호출 함수
-                onEnemyOnButton();
-                TrainGameManager.instance.EnemyAppear = true;
-            }
-        }
+        //if (!TrainGameManager.instance.EnemyAppear && 
+        //    TrainGameManager.instance.TrainCtrl.Run_Meter > 30.0f)
+        //{
+        //    int noiseSound = TrainGameManager.instance.Noise / TrainGameManager.instance.Noise_stat;
+        //    int random = Random.Range(0, 250);
+        //    if (random < noiseSound)
+        //    {
+        //        // enemy 호출 함수
+        //        onEnemyOnButton();
+        //        TrainGameManager.instance.EnemyAppear = true;
+        //    }
+        //}
         yield return new WaitForSeconds(5.0f);
 
-        StartCoroutine(EnemyAppear_Condition());
+        //StartCoroutine(EnemyAppear_Condition());
 
     }
 

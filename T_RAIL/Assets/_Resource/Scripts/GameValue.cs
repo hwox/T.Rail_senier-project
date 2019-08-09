@@ -92,7 +92,7 @@ static class GameValue
 
 
     // 다음역 까지의 거리
-    public const float NextStationMeter = 4000.0f; // 4km -> 기본속도 3기준 4분 // 4000인걸 1000으로 줄여놨음
+    public const float NextStationMeter = 2500.0f; // 4km -> 기본속도 3기준 4분 // 4000인걸 1000으로 줄여놨음
 
     public const float TestMeter = 300.0f;
 
