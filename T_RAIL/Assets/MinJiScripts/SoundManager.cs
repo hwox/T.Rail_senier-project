@@ -62,6 +62,7 @@ public class SoundManager : MonoBehaviourPunCallbacks
 
     public AudioClip TrainWhistle_Sound; // 엔딩에서 기차 달려갈 때
     public AudioClip Helicopter_Sound; // 엔딩_헬리콥터 소리 
+    public AudioClip Elephant_Sound; //코끼리 울음 소리
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -231,10 +232,19 @@ public class SoundManager : MonoBehaviourPunCallbacks
         Effect1_Source.clip = Helicopter_Sound;
         Effect1_Source.Play();
     }
+    public void Helicopter_Sound_Stop()
+    {
+        Effect1_Source.Stop();
+    }
 
     public void TrainWhistle_Sound_Play()
     {
         Effect2_Source.clip = TrainWhistle_Sound;
+        Effect2_Source.Play();
+    }
+    public void Elephant_Sound_Play()
+    {
+        Effect2_Source.clip = Elephant_Sound;
         Effect2_Source.Play();
     }
 }

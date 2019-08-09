@@ -298,8 +298,8 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
         }
 
         TrainGameManager.instance.Scene_state = 5;
-      
-       
+
+        TrainGameManager.instance.SoundManager.Helicopter_Sound_Stop();
 
 
     }
