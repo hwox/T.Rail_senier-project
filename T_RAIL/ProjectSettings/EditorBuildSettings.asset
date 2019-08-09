@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Train_Stage3.unity
     guid: 37c7db5851d11774fa80f227f32d5082
   - enabled: 1
-    path: Assets/Scenes/Ending_Stage(Happy).unity
+    path: Assets/Scenes/Ending_Stage(happy).unity
     guid: 9b2ea820b6554da429301e41a39a22f6
   - enabled: 1
     path: Assets/Scenes/Ending_Stage(Normal).unity
