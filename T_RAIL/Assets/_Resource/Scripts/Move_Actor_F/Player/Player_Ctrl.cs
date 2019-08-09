@@ -316,6 +316,8 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
                         {
                             photonView.RPC("passengerTouch", RpcTarget.All, i); //, eachPlayerIn[i]);
                             photonView.RPC("startCoinParticle", RpcTarget.All, other.transform.position); //, eachPlayerIn[i]);
+                            TrainGameManager.instance.GetComponent<PhotonView>().RPC("getCoin_RPC", RpcTarget.All, 10);
+
                             if (TrainGameManager.instance.near_stationpassenger)
                             {
                                 TrainGameManager.instance.highligh_state = 0;
@@ -1233,7 +1235,6 @@ public class Player_Ctrl : MonoBehaviourPunCallbacks, IPunObservable
         // Debug.Log("들어옴");
         GameObject Cp = TrainGameManager.instance.GetObject(8);
         Cp.SetActive(true);
-        TrainGameManager.instance.GetComponent<PhotonView>().RPC("getCoin_RPC", RpcTarget.All, 10);
         //TrainGameManager.instance.CoinNum += 10;
         Cp.transform.position = other;
         //  Cp.transform.Translate(Vector3.up);
