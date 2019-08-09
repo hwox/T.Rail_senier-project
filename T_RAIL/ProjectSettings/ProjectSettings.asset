@@ -668,9 +668,9 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 15843290-32da-4d9e-9bde-ccc1d9e40902
-  projectName: T_RAIL (1)
-  organizationId: popcorntree
+  cloudProjectId: 4d492c96-b516-49dd-a98b-dc4d69088c17
+  projectName: T_RAIL (2)
+  organizationId: v_vpollo-naver-com
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
