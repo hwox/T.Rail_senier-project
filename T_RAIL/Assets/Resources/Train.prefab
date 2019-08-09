@@ -5181,7 +5181,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1597046123888030
 GameObject:
   m_ObjectHideFlags: 1
@@ -12991,7 +12991,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents: []
   viewIdField: 0
-  InstantiationId: 6
+  InstantiationId: 16
   isRuntimeInstantiated: 0
 --- !u!114 &114006223000064142
 MonoBehaviour:
@@ -15328,7 +15328,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uBC15\uC2A4 \uC81C\uC791 \uD544\uC694 \uBB3C\uD488"
+  m_Text: "\uAE30\uCC28 \uC218\uB9AC \uD544\uC694 \uBB3C\uD488"
 --- !u!114 &114142209442642566
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16264,7 +16264,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uBC15\uC2A4 \uC81C\uC791 \uD544\uC694 \uBB3C\uD488"
+  m_Text: "\uAE30\uCC28 \uC218\uB9AC \uD544\uC694 \uBB3C\uD488"
 --- !u!114 &114191968580803110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16409,7 +16409,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents: []
   viewIdField: 0
-  InstantiationId: 9
+  InstantiationId: 19
   isRuntimeInstantiated: 0
 --- !u!114 &114195639452428162
 MonoBehaviour:
@@ -18537,7 +18537,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uBC15\uC2A4 \uC81C\uC791 \uD544\uC694 \uBB3C\uD488"
+  m_Text: "\uAE30\uCC28 \uC218\uB9AC \uD544\uC694 \uBB3C\uD488"
 --- !u!114 &114350988093960102
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19203,7 +19203,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents: []
   viewIdField: 0
-  InstantiationId: 7
+  InstantiationId: 17
   isRuntimeInstantiated: 0
 --- !u!114 &114399703189266968
 MonoBehaviour:
@@ -19814,7 +19814,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 11
+  InstantiationId: 13
   isRuntimeInstantiated: 0
 --- !u!114 &114456841073846486
 MonoBehaviour:
@@ -20043,7 +20043,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents: []
   viewIdField: 0
-  InstantiationId: 8
+  InstantiationId: 18
   isRuntimeInstantiated: 0
 --- !u!114 &114469299506676070
 MonoBehaviour:
@@ -21495,7 +21495,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents: []
   viewIdField: 0
-  InstantiationId: 13
+  InstantiationId: 15
   isRuntimeInstantiated: 0
 --- !u!114 &114562014728368282
 MonoBehaviour:
@@ -21993,7 +21993,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents: []
   viewIdField: 0
-  InstantiationId: 10
+  InstantiationId: 12
   isRuntimeInstantiated: 0
 --- !u!114 &114598859645292244
 MonoBehaviour:
@@ -23598,7 +23598,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 3
+  InstantiationId: 4
   isRuntimeInstantiated: 0
 --- !u!114 &114715263179480892
 MonoBehaviour:
@@ -24268,7 +24268,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114246163877717286}
   viewIdField: 0
-  InstantiationId: 4
+  InstantiationId: 5
   isRuntimeInstantiated: 0
 --- !u!114 &114767963880710806
 MonoBehaviour:
@@ -26241,7 +26241,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uBC15\uC2A4 \uC81C\uC791 \uD544\uC694 \uBB3C\uD488"
+  m_Text: "\uAE30\uCC28 \uC218\uB9AC \uD544\uC694 \uBB3C\uD488"
 --- !u!114 &114891509107061606
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26752,7 +26752,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 5
+  InstantiationId: 6
   isRuntimeInstantiated: 0
 --- !u!114 &114929157535397738
 MonoBehaviour:
@@ -27745,7 +27745,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents: []
   viewIdField: 0
-  InstantiationId: 12
+  InstantiationId: 14
   isRuntimeInstantiated: 0
 --- !u!114 &114987266359417000
 MonoBehaviour:
