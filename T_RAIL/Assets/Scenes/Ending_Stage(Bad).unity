@@ -9300,6 +9300,23 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 440307822}
   m_Mesh: {fileID: 4300026, guid: ff6be967f2d20b149b9e96eb1915c4a6, type: 3}
+--- !u!1 &440452602
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1062903656015190, guid: 223146ef5c19b9749ab6482c4f0e0768,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 499739212}
+  - component: {fileID: 499739214}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &447855173
 GameObject:
   m_ObjectHideFlags: 0
@@ -9962,6 +9979,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 484339400}
   m_Mesh: {fileID: 4300026, guid: 05ec857fcec5e19419448ea57aa4a57d, type: 3}
+  Elephant_Sound: {fileID: 0}
 --- !u!1 &503267036
 GameObject:
   m_ObjectHideFlags: 0
