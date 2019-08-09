@@ -46,6 +46,7 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
         if (HP <= 0)
         {
             photonView.RPC("chickenDeath_RPC", RpcTarget.All);
+            TrainGameManager.instance.GetComponent<PhotonView>().RPC("getCoin_RPC", RpcTarget.All, 10);
         }
     }
 
@@ -210,7 +211,7 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
         GameObject Cp = TrainGameManager.instance.GetObject(8);
         Cp.SetActive(true);
         Cp.transform.position = this.gameObject.transform.position;
-        TrainGameManager.instance.GetComponent<PhotonView>().RPC("getCoin_RPC", RpcTarget.All,10);
+        //TrainGameManager.instance.GetComponent<PhotonView>().RPC("getCoin_RPC", RpcTarget.All,10);
         //TrainGameManager.instance.CoinNum += 10;
         yield return new WaitForSeconds(2.5f);
         Cp.SetActive(false);
