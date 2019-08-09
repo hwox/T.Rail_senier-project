@@ -500,14 +500,14 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
 
         if (itemcase == 627)
         {
-            chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "돈이 충분하지 않습니다.");
+         //   chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "돈이 충분하지 않습니다.");
             TrainGameManager.instance.Notice_Someting("돈이 충분하지 않습니다.");
         }
     
 
         if (boxItem.Count == 0)
         {
-            chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "기차 내부에 박스가 없어서 아이템을 획득하지 못했습니다.");
+          //  chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "기차 내부에 박스가 없어서 아이템을 획득하지 못했습니다.");
             TrainGameManager.instance.Notice_Someting("기차 내부에 박스가 없어서 아이템을 획득하지 못했습니다.");
         }
         else
@@ -515,28 +515,36 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
             switch (itemcase)
             {
                 case 1:
-                    chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "아이템 [토마토 스프]를 획득했습니다.");
+                    // chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "아이템 [토마토 스프]를 획득했습니다.");
+                    TrainGameManager.instance.Notice_Someting("아이템 [토마토 스프]를 획득했습니다.");
                     break;
                 case 2:
-                    chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "아이템 [콩 스프]을 획득했습니다.");
+                    // chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "아이템 [콩 스프]을 획득했습니다.");
+                    TrainGameManager.instance.Notice_Someting("아이템 [콩 스프]을 획득했습니다.");
                     break;
                 case 3:
-                    chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "아이템 [치킨 스프]를 획득했습니다.");
+                    // chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "아이템 [치킨 스프]를 획득했습니다.");
+                    TrainGameManager.instance.Notice_Someting("아이템 [치킨 스프]를 획득했습니다.");
                     break;
                 case 4:
-                    chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "아이템 [망치]를 획득했습니다.");
+                    //   chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "아이템 [망치]를 획득했습니다.");
+                    TrainGameManager.instance.Notice_Someting("아이템 [망치]를 획득했습니다.");
                     break;
                 case 5:
-                    chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "아이템 [못]을 획득했습니다.");
+                    //   chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "아이템 [못]을 획득했습니다.");
+                    TrainGameManager.instance.Notice_Someting("아이템 [못]을 획득했습니다.");
                     break;
                 case 6:
-                    chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "아이템 [구급상자]를 획득했습니다.");
+                    //    chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "아이템 [구급상자]를 획득했습니다.");
+                    TrainGameManager.instance.Notice_Someting("아이템 [구급상자]를 획득했습니다.");
                     break;
                 case 7:
-                    chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "아이템 [나무판자]를 획득했습니다.");
+                    //   chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "아이템 [나무판자]를 획득했습니다.");
+                    TrainGameManager.instance.Notice_Someting("아이템 [나무판자]를 획득했습니다.");
                     break;
                 case 8:
-                    chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "아이템 [철판]을 획득했습니다.");
+                    // chatGui.chatClient.PublishMessage(chatGui.selectedChannelName, "아이템 [철판]을 획득했습니다.");
+                    TrainGameManager.instance.Notice_Someting("아이템 [철판]을 획득했습니다.");
                     break;
             }
         }
