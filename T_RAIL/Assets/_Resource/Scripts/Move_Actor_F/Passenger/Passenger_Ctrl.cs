@@ -233,27 +233,27 @@ public class Passenger_Ctrl : MonoBehaviourPunCallbacks
         if (random % 5 == 0)
         {
             // 3의 배수면
-            pass.Hungry += 10;
-            pass.Disease += 10;
+            pass.Hungry += 3;
+            pass.Disease += 3;
         }
         else if (random % 7 == 0)
         {
             // 5의 배수이면
-            pass.Disease += 10;
+            pass.Disease += 3;
         }
         else if (random % 9 == 0)
         {
             // 7의 배수이면
-            pass.Hungry += 10;
+            pass.Hungry += 3;
         }
         else if (random % 13 == 0)
         {
             // 만약에 13 배수면
-            pass.Hungry += 20;
+            pass.Hungry += 6;
         }
         else if (random % 17 == 0)
         {
-            pass.Disease += 20;
+            pass.Disease += 6;
         }
 
         photonView.RPC("setHungryDisease", RpcTarget.All, pass.Hungry, pass.Disease);

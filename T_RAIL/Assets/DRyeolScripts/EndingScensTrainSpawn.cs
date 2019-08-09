@@ -50,5 +50,13 @@ public class EndingScensTrainSpawn : MonoBehaviour {
             yield return new WaitForSeconds(5.0f);
         }
     }
-
+    public void Off_ExitWindow()
+    {
+        TrainGameManager.instance.SoundManager.onButtonClickSound();
+        ExitGameWindow.SetActive(false);
+    }
+    public void GameExit()
+    {
+        Application.Quit();
+    }
 }

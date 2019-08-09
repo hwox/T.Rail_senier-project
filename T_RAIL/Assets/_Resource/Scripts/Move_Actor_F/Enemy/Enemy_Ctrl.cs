@@ -125,7 +125,7 @@ public class Enemy_Ctrl : MonoBehaviourPunCallbacks
     [PunRPC]
     public void isAttackedByBullet()
     {
-        enemy.HP -= 10 * TrainGameManager.instance.Defence_stat;
+        enemy.HP -= 5 * TrainGameManager.instance.Defence_stat;
     }
 
     void Update()

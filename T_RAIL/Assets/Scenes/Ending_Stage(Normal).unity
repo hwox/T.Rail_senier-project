@@ -39237,6 +39237,26 @@ Prefab:
       propertyPath: m_FontData.m_FontStyle
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114703869732602402, guid: ff3a90e100d4dd84c825090c1b95c4ec,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 836537154}
+    - target: {fileID: 114703869732602402, guid: ff3a90e100d4dd84c825090c1b95c4ec,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GameExit
+      objectReference: {fileID: 0}
+    - target: {fileID: 114830391880388726, guid: ff3a90e100d4dd84c825090c1b95c4ec,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 836537154}
+    - target: {fileID: 114830391880388726, guid: ff3a90e100d4dd84c825090c1b95c4ec,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Off_ExitWindow
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff3a90e100d4dd84c825090c1b95c4ec, type: 2}
   m_IsPrefabAsset: 0
