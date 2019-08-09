@@ -269,11 +269,13 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
             switch (prefab_index)
             {
                 case (int)GameValue.prefab_list.bullet:
-                    GameObject obj = Instantiate(_obj);
-                    obj.transform.localPosition = Vector3.zero;
-                    obj.SetActive(false);
-                    obj.transform.parent = transform.GetChild(prefab_index);
-                    BulletManager.Add(obj); 
+                    if (!PhotonNetwork.IsMasterClient) return;
+                    GameObject obj = PhotonNetwork.Instantiate(_obj.name, new Vector3(0, 0, 0), _obj.transform.rotation, 0);
+
+                    //obj.transform.localPosition = Vector3.zero;
+                    //obj.SetActive(false);
+                    //obj.transform.parent = transform.GetChild(prefab_index);
+                    //BulletManager.Add(obj); 
                     break;
                 case (int)GameValue.prefab_list.passenger:
                     if (!PhotonNetwork.IsMasterClient) return;
@@ -332,11 +334,12 @@ public class TrainGameManager : MonoBehaviourPunCallbacks
                     //EggManager.Add(obj);
                     break;
                 case (int)GameValue.prefab_list.coinparticle:
-                    obj = Instantiate(_obj);
-                    obj.transform.localPosition = Vector3.zero;
-                    obj.SetActive(false);
-                    obj.transform.parent = transform.GetChild(prefab_index);
-                    CoinParticle.Add(obj);
+                    if (!PhotonNetwork.IsMasterClient) return;
+                    obj = PhotonNetwork.Instantiate(_obj.name, new Vector3(0, 0, 0), _obj.transform.rotation, 0);
+                    //obj.transform.localPosition = Vector3.zero;
+                    //obj.SetActive(false);
+                    //obj.transform.parent = transform.GetChild(prefab_index);
+                    //CoinParticle.Add(obj);
                     break;
                 case (int)GameValue.prefab_list.tomatosoup:
                     obj = Instantiate(_obj);

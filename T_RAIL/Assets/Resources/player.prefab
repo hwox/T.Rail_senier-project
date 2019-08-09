@@ -887,7 +887,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1014540451394702}
   m_LocalRotation: {x: -0, y: 0.6884226, z: -0, w: -0.7253098}
-  m_LocalPosition: {x: 5.26, y: 3.3, z: -7.64}
+  m_LocalPosition: {x: 0, y: 3.3, z: -7.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4379721805300126}
@@ -1267,6 +1267,8 @@ MonoBehaviour:
   LeftShoulder: {fileID: 4717284362421442}
   RightShoulder: {fileID: 4923651905822232}
   hoverColor: {r: 1, g: 1, b: 1, a: 1}
+  stair_down: 0
+  MCam_Ctrl: {fileID: 0}
   HP_UISlider: {fileID: 0}
   parti_player_move: {fileID: 1980584270595486, guid: 66df08d7c8d70a44d9d722aa67820eef,
     type: 2}
@@ -1275,7 +1277,8 @@ MonoBehaviour:
   axe: {fileID: 1457442970805264}
   playerListController: {fileID: 0}
   UIState_Ctrl: {fileID: 0}
-  whereIam: 0
+  player_floor_minji: 0
+  player_where_minji: 0
 --- !u!114 &114305680330118004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1327,7 +1330,7 @@ MonoBehaviour:
     SynchronizeType: 1
     Name: IsAttack
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: IsBeaten
   m_SynchronizeLayers:
   - SynchronizeType: 0

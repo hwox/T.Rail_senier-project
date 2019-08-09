@@ -19,7 +19,7 @@ public class Player_Actor : Move_Actor {
         {
             if (PhotonNetwork.PlayerList[i].NickName == PhotonNetwork.LocalPlayer.NickName)
             {
-                position = new Pos(-1 * i * 2, 3.8f, -2.5f);
+                position = new Pos(i , 3.8f, -2.5f);
             }
         }
 
@@ -207,13 +207,13 @@ public class Player_Actor : Move_Actor {
    }
     public void SetStationPlayer(int n)
     {
-        position = new Pos(-1 * n * 2, 1.78f, -2.5f);
+        position = new Pos(n, 1.78f, -2.5f);
         //position = new Pos(-1 * n * 2, 1.74f, -2.5f);
        
     }
     public void SetTrainPlayer(int n)
     {
-        position = new Pos(-1 * n* 2, 3.8f, -2.5f);
+        position = new Pos(n, 3.8f, -2.5f);
     }
 
    

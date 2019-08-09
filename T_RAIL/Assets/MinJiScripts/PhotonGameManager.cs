@@ -214,7 +214,7 @@ namespace Photon.Pun.Demo.Asteroids
             else
             {
                 int id = photonView.ViewID/1000;
-                PhotonNetwork.Instantiate(ourplayerPrefab.name, new Vector3(-1 * id * 2, 3.8f, -2.5f), Quaternion.Euler(0, 180, 0), 0);
+                PhotonNetwork.Instantiate(ourplayerPrefab.name, new Vector3(1 , 3.8f, -2.5f), Quaternion.Euler(0, 180, 0), 0);
             }
 
 

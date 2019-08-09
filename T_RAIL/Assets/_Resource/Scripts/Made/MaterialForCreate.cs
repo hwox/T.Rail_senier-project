@@ -82,26 +82,20 @@ public class MaterialForCreate : MonoBehaviourPunCallbacks
             {
                 if (allitem.UseInLeftHand == 1)
                 {
-                    //ForMakeItem.Add(allitem.LeftHand_Pocket);
-                    if(MaterialState==1)
-                        transform.parent.parent.GetComponent<PhotonView>().RPC("putMakeInventory", RpcTarget.All ,1 , allitem.LeftHand_Pocket);
-                    else if(MaterialState ==2)
-                        transform.root.GetComponent<PhotonView>().RPC("putMakeInventory", RpcTarget.All, 1, allitem.LeftHand_Pocket);
+                    photonView.RPC("putMakeInventory", RpcTarget.All, 1, allitem.LeftHand_Pocket);
 
                     allitem.UseLeftHandItem();
+                    photonView.RPC("DrawMaterialStorageImage", RpcTarget.All);
                 }
                 if (allitem.UseInRightHand == 1)
                 {
-                    //ForMakeItem.Add(allitem.RightHand_Pocket);
-                    if (MaterialState == 1)
-                        transform.parent.parent.GetComponent<PhotonView>().RPC("putMakeInventory", RpcTarget.All, 2,allitem.RightHand_Pocket);
-                    else if (MaterialState == 2)
-                        transform.root.GetComponent<PhotonView>().RPC("putMakeInventory", RpcTarget.All, 2, allitem.RightHand_Pocket);
+                    photonView.RPC("putMakeInventory", RpcTarget.All, 2, allitem.RightHand_Pocket);
 
                     allitem.UseRightHandItem();
+                    photonView.RPC("DrawMaterialStorageImage", RpcTarget.All);
                 }
 
-                DrawMaterialStorageImage();
+                //photonView.RPC("DrawMaterialStorageImage", RpcTarget.All, true);
             }
             else
             {
@@ -120,6 +114,24 @@ public class MaterialForCreate : MonoBehaviourPunCallbacks
 
     ////////////////////////////////////////////////////////////////////
 
+    [PunRPC]
+    void putMakeInventory(int _handnum, int _item)
+    {
+        switch (_handnum)
+        {
+            case 1:
+                Debug.LogError("왼손 : " + _item);
+                ForMakeItem.Add(_item);
+                break;
+
+            case 2:
+                Debug.LogError("오른손 : " + _item);
+                ForMakeItem.Add(_item);
+                break;
+        }
+    }
+
+    [PunRPC]
     void DrawMaterialStorageImage()
     {
         //int StorageIndex = 0;

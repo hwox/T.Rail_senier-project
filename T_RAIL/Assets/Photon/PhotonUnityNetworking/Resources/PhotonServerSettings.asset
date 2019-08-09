@@ -93,5 +93,8 @@ MonoBehaviour:
   - EndingSceneLoad
   - endingSetting
   - EndingSceneLoad_cheat
+  - DrawMaterialStorageImage
+  - setGunChild
+  - startCoinParticle
   DisableAutoOpenWizard: 1
   ShowSettings: 1

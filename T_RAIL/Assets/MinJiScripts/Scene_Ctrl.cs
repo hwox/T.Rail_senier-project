@@ -218,7 +218,9 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
             //Camera.main.gameObject.GetComponent<CamCtrl>().EnemyAppear_Cam(false, 0);
             playerListController.playerList[i].MCam_Ctrl.EnemyAppear_Cam(false, 0);
             playerListController.playerList[i].MCam_Ctrl.inTrain();
-            //playerListController.playerList[i].stair_down = true;
+            playerListController.playerList[i].stair_down = false;
+            playerListController.playerList[i].stair_up = false;
+            playerListController.playerList[i].anim.SetBool("UpToLadder", false);
 
             if (playerListController.playerList[i].player_where_minji - 1 >= 0)
                 TrainGameManager.instance.TrainCtrl.trainscript[playerListController.playerList[i].player_where_minji - 1].Ceiling_OnOff(false);
@@ -228,6 +230,8 @@ public class Scene_Ctrl : MonoBehaviourPunCallbacks
 
             //photonView.RPC("setPlayerInStationState", RpcTarget.All, i);
         }
+
+        TrainGameManager.instance.Scene_state = 2;
         TrainGameManager.instance.SoundManager.TrainDriving_Sound_Stop();
     }
 
