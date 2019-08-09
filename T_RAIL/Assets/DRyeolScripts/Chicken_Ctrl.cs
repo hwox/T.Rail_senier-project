@@ -46,7 +46,7 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
         if (HP <= 0)
         {
             photonView.RPC("chickenDeath_RPC", RpcTarget.All);
-            TrainGameManager.instance.CoinNum -= 10 ;
+            TrainGameManager.instance.CoinNum += 10 ;
         }
     }
 
