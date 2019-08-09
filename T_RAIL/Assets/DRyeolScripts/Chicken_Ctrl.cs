@@ -21,6 +21,10 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
 
     public GameObject particle;
 
+    public SkinnedMeshRenderer ChickenMaterial;
+
+    [SerializeField]
+    Material[] thismaterials;
     public void BeatenTrue()
     {
         Invoke("beatenTrueInvoke", 0.1f); 
@@ -76,6 +80,31 @@ public class Chicken_Ctrl : MonoBehaviourPunCallbacks
             NextDestNum = Random.Range(0, 10);
             float RSpeed = (Random.Range(0, 4));
             photonView.RPC("FindNextDest", RpcTarget.All ,NextDestNum, RSpeed);
+        }
+
+        thismaterials = ChickenMaterial.materials;
+    }
+
+    private void Update()
+    {
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("chicken_beaten") ||
+            anim.GetCurrentAnimatorStateInfo(0).IsName("chicken_attack"))
+        {
+            for (int i = 0; i < thismaterials.Length; i++)
+            {
+                //  int RandomColor = Random.Range(50, 100);
+                //Debug.Log(RandomColor);
+                Color newColor = new Color(Mathf.Clamp(Random.value, 0.5f, 1.0f), Mathf.Clamp(Random.value, 0.5f, 1.0f), Mathf.Clamp(Random.value, 0.5f, 1.0f), 1.0f);
+                thismaterials[i].SetColor("_OutlineColor", newColor);
+                thismaterials[i].SetFloat("_OutlineWidth", 1.1f);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < thismaterials.Length; i++)
+            {
+                thismaterials[i].SetFloat("_OutlineWidth", 1.0f);
+            }
         }
     }
 

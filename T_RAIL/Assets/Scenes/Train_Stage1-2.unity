@@ -6305,8 +6305,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a188e3148f62bdd459ab143e9edccf64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Setting_Window: {fileID: 0}
+  Exit_Window: {fileID: 0}
   Book_Window: {fileID: 0}
+  HandUI: {fileID: 0}
+  HPUI: {fileID: 0}
 --- !u!4 &128792407
 Transform:
   m_ObjectHideFlags: 0
@@ -24527,6 +24529,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy_Appear_Cam: {fileID: 0}
+  VendingMachineCam: {fileID: 0}
+  Ending_Camera: {fileID: 0}
 --- !u!114 &447855178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26439,13 +26443,37 @@ MonoBehaviour:
   Effect3_Source: {fileID: 139944446}
   UI1_Source: {fileID: 1519934640}
   UI2_Source: {fileID: 1487775896}
+  foot_Source: {fileID: 0}
+  TrainDriving_Source: {fileID: 0}
   buttonClickSound: {fileID: 8300000, guid: dff463d8e99364f4da0bc248929ea47c, type: 3}
   stage1BGM: {fileID: 8300000, guid: 775df7a216485fa4c833dfc1c51c75c6, type: 3}
-  Machine_Gun_Sound: {fileID: 8300000, guid: a44819b7e801cea40adc27634c0ef81c, type: 3}
-  InGameButtonSound: {fileID: 8300000, guid: db09ac3ff7c53944297f646c276d4fdd, type: 3}
   enemy_Sound: {fileID: 8300000, guid: 3828f76581d12854cbbc0e15cf76255f, type: 3}
   Train_Sound: {fileID: 8300000, guid: 02341fe39556af140976c0c2f03c927f, type: 3}
   enemy_attack_Sound: {fileID: 8300000, guid: 262653f519b002043aa6562c924e3750, type: 3}
+  stage2BGM: {fileID: 0}
+  stage3BGM: {fileID: 0}
+  Machine_Gun_Sound: {fileID: 8300000, guid: a44819b7e801cea40adc27634c0ef81c, type: 3}
+  InGameButtonSound: {fileID: 8300000, guid: db09ac3ff7c53944297f646c276d4fdd, type: 3}
+  Box_Sofa_instance_Sound: {fileID: 0}
+  train_Break_Sound: {fileID: 0}
+  train_Treat_Sound: {fileID: 0}
+  hunger_Treat_Sound: {fileID: 0}
+  disease_Treat_Sound: {fileID: 0}
+  coin_Sound: {fileID: 0}
+  buy_item_Sound: {fileID: 0}
+  passenger_die_Sound: {fileID: 0}
+  train_door_open_Sound: {fileID: 0}
+  ExitWindow_Sound: {fileID: 0}
+  ladder_Sound: {fileID: 0}
+  InvenOpen_Sound: {fileID: 0}
+  foot_Sound: {fileID: 0}
+  SitMachineGun_Sound: {fileID: 0}
+  TrainDriving_Sound: {fileID: 0}
+  ChickenDie_Sound: {fileID: 0}
+  HPIncrease_Sound: {fileID: 0}
+  EggEat_Sound: {fileID: 0}
+  TrainWhistle_Sound: {fileID: 0}
+  Helicopter_Sound: {fileID: 0}
 --- !u!1 &505675198
 GameObject:
   m_ObjectHideFlags: 0
@@ -59816,6 +59844,86 @@ Prefab:
         type: 2}
       propertyPath: InstantiationId
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114986586610241538, guid: 5d9648c5713c24c4ead0d991e0595880,
+        type: 2}
+      propertyPath: viewIdField
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114986586610241538, guid: 5d9648c5713c24c4ead0d991e0595880,
+        type: 2}
+      propertyPath: InstantiationId
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114598192225138928, guid: 5d9648c5713c24c4ead0d991e0595880,
+        type: 2}
+      propertyPath: viewIdField
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 114598192225138928, guid: 5d9648c5713c24c4ead0d991e0595880,
+        type: 2}
+      propertyPath: InstantiationId
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 114558266504438622, guid: 5d9648c5713c24c4ead0d991e0595880,
+        type: 2}
+      propertyPath: viewIdField
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 114558266504438622, guid: 5d9648c5713c24c4ead0d991e0595880,
+        type: 2}
+      propertyPath: InstantiationId
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 114468389419795752, guid: 5d9648c5713c24c4ead0d991e0595880,
+        type: 2}
+      propertyPath: viewIdField
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 114468389419795752, guid: 5d9648c5713c24c4ead0d991e0595880,
+        type: 2}
+      propertyPath: InstantiationId
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 114453309450264696, guid: 5d9648c5713c24c4ead0d991e0595880,
+        type: 2}
+      propertyPath: viewIdField
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 114453309450264696, guid: 5d9648c5713c24c4ead0d991e0595880,
+        type: 2}
+      propertyPath: InstantiationId
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 114397561143930350, guid: 5d9648c5713c24c4ead0d991e0595880,
+        type: 2}
+      propertyPath: viewIdField
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114397561143930350, guid: 5d9648c5713c24c4ead0d991e0595880,
+        type: 2}
+      propertyPath: InstantiationId
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114193628287899584, guid: 5d9648c5713c24c4ead0d991e0595880,
+        type: 2}
+      propertyPath: viewIdField
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 114193628287899584, guid: 5d9648c5713c24c4ead0d991e0595880,
+        type: 2}
+      propertyPath: InstantiationId
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 114006080729857412, guid: 5d9648c5713c24c4ead0d991e0595880,
+        type: 2}
+      propertyPath: viewIdField
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 114006080729857412, guid: 5d9648c5713c24c4ead0d991e0595880,
+        type: 2}
+      propertyPath: InstantiationId
+      value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d9648c5713c24c4ead0d991e0595880, type: 2}
@@ -108104,6 +108212,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UsableStatus: {fileID: 0}
+  SpeedTxt: {fileID: 0}
+  NoiseTxt: {fileID: 0}
+  DefencTxt: {fileID: 0}
+  Speed_DrawingStatus: {fileID: 0}
+  Noise_DrawingStatus: {fileID: 0}
+  Defence_DrawingStatus: {fileID: 0}
 --- !u!114 &2140476041
 MonoBehaviour:
   m_ObjectHideFlags: 0

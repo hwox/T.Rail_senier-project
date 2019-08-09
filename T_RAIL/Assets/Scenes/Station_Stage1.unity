@@ -5170,7 +5170,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &442980003
 RectTransform:
@@ -8467,6 +8467,16 @@ Prefab:
     - target: {fileID: 4021591779953622, guid: 966acac2c0c477543b668b08405c79df, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.8088741
+      objectReference: {fileID: 0}
+    - target: {fileID: 114377312259654590, guid: 966acac2c0c477543b668b08405c79df,
+        type: 2}
+      propertyPath: viewIdField
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 114377312259654590, guid: 966acac2c0c477543b668b08405c79df,
+        type: 2}
+      propertyPath: InstantiationId
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 966acac2c0c477543b668b08405c79df, type: 2}
@@ -13885,6 +13895,16 @@ Prefab:
     - target: {fileID: 1628420903821140, guid: 966acac2c0c477543b668b08405c79df, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114377312259654590, guid: 966acac2c0c477543b668b08405c79df,
+        type: 2}
+      propertyPath: viewIdField
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 114377312259654590, guid: 966acac2c0c477543b668b08405c79df,
+        type: 2}
+      propertyPath: InstantiationId
+      value: 29
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 966acac2c0c477543b668b08405c79df, type: 2}

@@ -912,6 +912,8 @@ MonoBehaviour:
   live: 1
   HP: 5
   particle: {fileID: 1901820397346754, guid: 7a3d6f94859f82e4eba23e2cb36aeed1, type: 2}
+  ChickenMaterial: {fileID: 137607044800937176}
+  thismaterials: []
 --- !u!114 &114525504603560274
 MonoBehaviour:
   m_ObjectHideFlags: 1
