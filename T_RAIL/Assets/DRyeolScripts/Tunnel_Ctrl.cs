@@ -50,7 +50,7 @@ public class Tunnel_Ctrl : MonoBehaviour {
 
     IEnumerator ElephantfootOut()
     {
-        
+        TrainGameManager.instance.SoundManager.Elephant_Sound_Play();
         yield return new WaitForSeconds(3.0f);
 
 
