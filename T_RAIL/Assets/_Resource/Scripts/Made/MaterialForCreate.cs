@@ -44,6 +44,14 @@ public class MaterialForCreate : MonoBehaviourPunCallbacks
             Storage[i] = gameObject.transform.GetChild(i).GetChild(0).gameObject;
             StorageCount[i] = gameObject.transform.GetChild(i).GetChild(1).GetChild(0).GetComponent<Text>();
         }
+
+
+        //for (int i = 0; i < ForMakeItem.Count; ++i)
+        //    photonView.RPC("StartDrawMaterialStorageImage", RpcTarget.All, i+1, ForMakeItem[i]);
+
+        for (int i = 0; i < ForMakeItem.Count; ++i)
+            StartDrawMaterialStorageImage(i + 1, ForMakeItem[i]);
+
     }
 
 
@@ -138,15 +146,19 @@ public class MaterialForCreate : MonoBehaviourPunCallbacks
         bool Enable = false;
         index = 0;
 
+        if (ForMakeItem.Count == 0) return;
+
         for (int i = 0; i < 6; i++)
         {
-            if (WhatInStorage[i].Equals(ForMakeItem[ForMakeItem.Count - 1]))
+            if (WhatInStorage[i] == (ForMakeItem[ForMakeItem.Count - 1]))
             {
                 // count-1값이 제일 마지막에 들어온 값일거니끼ㅏ
                 Enable = true;
                 index = i;
                 break;
             }
+            if (Enable)
+                break;
         }
         ItemCount[ForMakeItem[ForMakeItem.Count - 1] - 1] += 1;
 
@@ -170,8 +182,51 @@ public class MaterialForCreate : MonoBehaviourPunCallbacks
             Storage[StorageIndex].GetComponent<Image>().sprite = allitem.NullImage;
 
         }
+    }
+
+    //[PunRPC]
+    void StartDrawMaterialStorageImage(int Count, int itemNum)
+    {
+        //int StorageIndex = 0;
+        bool Enable = false;
+        index = 0;
+
+        if (Count == 0) return;
+
+        for (int i = 0; i < 6; i++)
+        {
+            if (WhatInStorage[i] == itemNum)
+            {
+                // count-1값이 제일 마지막에 들어온 값일거니끼ㅏ
+                Enable = true;
+                index = i;
+                break;
+            }
+            if (Enable)
+                break;
+        }
+        ItemCount[ForMakeItem[Count - 1] - 1] += 1;
+
+        if (Enable)
+        {
+            StorageCount[index].text = ItemCount[ForMakeItem[Count - 1] - 1].ToString();
+        }
+        else if (!Enable)
+        {
+            // 겹치는거없어
+            // 이미지 띄우기
+            WhatInStorage[StorageIndex] = ForMakeItem[Count - 1];
+            Storage[StorageIndex].GetComponent<Image>().sprite = allitem.ItemImage[ForMakeItem[Count - 1] - 1];
+            StorageCount[StorageIndex].text = ItemCount[ForMakeItem[Count - 1] - 1].ToString();
+            StorageIndex += 1;
+        }
 
 
+        for (int j = StorageIndex; j < 6; j++)
+        {
+            Storage[StorageIndex].GetComponent<Image>().sprite = allitem.NullImage;
+
+        }
     }
 
     public bool IsBoxMakeEnable()

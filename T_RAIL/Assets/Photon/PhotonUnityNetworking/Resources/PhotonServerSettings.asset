@@ -96,5 +96,6 @@ MonoBehaviour:
   - DrawMaterialStorageImage
   - setGunChild
   - startCoinParticle
+  - StartDrawMaterialStorageImage
   DisableAutoOpenWizard: 1
   ShowSettings: 1
