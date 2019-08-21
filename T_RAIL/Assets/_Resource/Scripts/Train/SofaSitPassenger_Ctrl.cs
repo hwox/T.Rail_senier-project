@@ -21,7 +21,19 @@ public class SofaSitPassenger_Ctrl : MonoBehaviour
 
     }
 
+    public InSofaPassenger SofaInformationOnTheTrain(int Tindex, int index)
+    {
+        for (int i = 0; i < passengers.Count; i++)
+        {
+            if (passengers[i].WhereTrain.Equals(Tindex) && passengers[i].WhereIndex.Equals(index))
+            {
+                return passengers[i];
+            }
 
+        }
+
+        return null;
+    }
 
     public void AddedSofa(InSofaPassenger insofa)
     {

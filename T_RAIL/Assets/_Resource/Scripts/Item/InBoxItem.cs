@@ -40,6 +40,9 @@ public class InBoxItem : MonoBehaviourPunCallbacks
 
     public GameObject particle;
 
+    public int WhereTrain;// UI 하려고 만들어봄
+    public int WhereIndex;
+
     void Start()
     {
         ItemImages = new Image[8];
@@ -105,10 +108,14 @@ public class InBoxItem : MonoBehaviourPunCallbacks
         TrainGameManager.instance.NowItemUIUsable = true;
     }
 
-
+    public void WhereisBoxLocation(int _index)
+    {
+        WhereTrain = this.gameObject.transform.root.GetComponent<Train_Object>().GetIndex();
+        WhereIndex = _index;
+    }
     private void OnTriggerEnter(Collider other)
     {
-       
+
         if (other.CompareTag("DragItem"))
         {
             // 원래 손->박스를 위한 충돌내용이 여기 있어야 하지만
@@ -257,7 +264,7 @@ public class InBoxItem : MonoBehaviourPunCallbacks
             if (!allitem.ItemBoxToHand)
             {
                 // 아이템 안갖다넣음 그래서 이미지 null 아니고 그대로 있는거
-                ItemImages[clickUI].sprite = allitem.ItemImage[clickUI_image-1];
+                ItemImages[clickUI].sprite = allitem.ItemImage[clickUI_image - 1];
 
                 allitem.ItemBoxToHand = false;
             }

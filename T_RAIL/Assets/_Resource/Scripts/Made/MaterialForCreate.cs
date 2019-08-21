@@ -128,12 +128,12 @@ public class MaterialForCreate : MonoBehaviourPunCallbacks
         switch (_handnum)
         {
             case 1:
-                Debug.LogError("왼손 : " + _item);
+              //  Debug.LogError("왼손 : " + _item);
                 ForMakeItem.Add(_item);
                 break;
 
             case 2:
-                Debug.LogError("오른손 : " + _item);
+              //  Debug.LogError("오른손 : " + _item);
                 ForMakeItem.Add(_item);
                 break;
         }

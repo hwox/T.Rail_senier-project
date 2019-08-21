@@ -61,6 +61,20 @@ public class AllItem_Ctrl : MonoBehaviourPunCallbacks
      //  RightUIImage = ItemInhand.transform.GetChild(1).GetChild(0).gameObject;
     }
 
+    public InBoxItem BoxInformationOnTheTrain(int Tindex, int index)
+    {
+        for(int i = 0; i < boxItem.Count; i++)
+        {
+            if(boxItem[i].WhereTrain.Equals(Tindex) && boxItem[i].WhereIndex.Equals(index))
+            {
+                return boxItem[i];
+            }
+
+        }
+
+        return null;
+    }
+
     public void AddedItemBox(InBoxItem inbox)
     {
         boxItem.Add(inbox);

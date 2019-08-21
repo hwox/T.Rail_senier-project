@@ -172,6 +172,10 @@ public class Train_Object : MonoBehaviourPunCallbacks
     {
         index = _index;
     }
+    public int GetIndex()
+    {
+        return index;
+    }
     void CoroutineCallTimeSet(bool _Position_Set_Go)
     {
         // position_set_go를 넣을거임
@@ -310,11 +314,13 @@ public class Train_Object : MonoBehaviourPunCallbacks
                     _obj.transform.localPosition = new Vector3(GameValue.T_ObjectX, GameValue.T_Sofa_ObjectY, GameValue.T_ObjectZ[_whatnumber]);
                     _obj.transform.Rotate(0, 0, -90);
                     _obj.GetComponent<InSofaPassenger>().ActiveThisSofa();
+                    _obj.GetComponent<InSofaPassenger>().WhereisSofaLocation(_whatnumber);
                     break;
                 case 2:
                     // 박스 
                     _obj.transform.localPosition = new Vector3(GameValue.T_ObjectX, GameValue.T_Box_ObjectY, GameValue.T_ObjectZ[_whatnumber]);
                     _obj.GetComponent<InBoxItem>().ActiveThisBox();
+                    _obj.GetComponent<InBoxItem>().WhereisBoxLocation(_whatnumber);
                     _obj.SetActive(true);
                     break;
 

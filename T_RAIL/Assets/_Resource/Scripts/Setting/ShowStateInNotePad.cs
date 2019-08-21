@@ -12,8 +12,14 @@ public class ShowStateInNotePad : MonoBehaviour
     public Sprite[] HumanImage;
     public Sprite[] Heart;
 
+    public GameObject Title;
+    public GameObject PrevButton;
+    public GameObject NextButton;
+
     public GameObject[] PassengerState;
     public GameObject[] ItemBoxState;
+    public GameObject[] NoUseState;
+    public GameObject[] InSofaNoPassenger;
     public GameObject Line; // 선 구분하는 line들
     public GameObject PageX; // 기차가 안붙어있어서 UI 를 확인할수 없음
     public Text WhereTrainText;// 몇번째칸인지 써져있는 text
@@ -34,6 +40,7 @@ public class ShowStateInNotePad : MonoBehaviour
     {
         TrainObject = new int[4];
         TrainCtrl = TrainGameManager.instance.TrainCtrl;
+        TrainInformationIndex = -1;
     }
 
     //// Update is called once per frame
@@ -44,49 +51,70 @@ public class ShowStateInNotePad : MonoBehaviour
 
     public void NextTrainInformation()
     {
+        Title.SetActive(false);
         if (TrainInformationIndex < 12)
         {
+            PrevButton.GetComponent<Button>().interactable = true;
             TrainInformationIndex += 1;
             WhereTrainText.text = TrainIndexText[TrainInformationIndex];
+            AllStateOff();
             ChangeTrainIndex();
+        }
+        else
+        {
+            NextButton.GetComponent<Button>().interactable = false;
         }
 
     }
     public void PrevTrainInformation()
     {
+        Title.SetActive(false);
+
         if (TrainInformationIndex > 0)
         {
-
             TrainInformationIndex -= 1;
             WhereTrainText.text = TrainIndexText[TrainInformationIndex];
+            AllStateOff();
             ChangeTrainIndex();
+        }
+        else
+        {
+            PrevButton.GetComponent<Button>().interactable = false;
         }
 
     }
     public void OpenNotePad()
     {
         UsingNotePad = true;
+        // InitNotePadSetting();
+        TrainInformationIndex = -1;
+        Title.SetActive(true);
+
+        Line.SetActive(false);
         StartCoroutine(StateInformationRenewal());
+        PageX.SetActive(false);
     }
     public void CloseNotePad()
     {
         UsingNotePad = false;
+        TrainInformationIndex = -1;
+        WhereTrainText.text = " ";
+        PrevButton.GetComponent<Button>().interactable = false;
+        AllStateOff();
+        Line.SetActive(false);
         StopCoroutine(StateInformationRenewal());
     }
 
-    void ChangeTrainIndex()
+    public void ChangeTrainIndex()
     {
-        // 여기 true는 index가 총 기차 길이를 초과하지 않았을 때
-        // Traininformationindex는 0부터 시작
-        // trainindex는 1부터 시작(train의 count로 index에 넣고있음)
-        if (TrainInformationIndex < TrainGameManager.instance.trainindex)
+        if (TrainInformationIndex < TrainGameManager.instance.trainindex && TrainInformationIndex != -1)
         {
+            Debug.Log(TrainInformationIndex);
             Line.SetActive(true);
             PageX.SetActive(false);
-           // WhereTrainText.text = TrainIndexText[TrainInformationIndex];
+
 
             Train_Object train = TrainCtrl.trainscript[TrainInformationIndex];
-
 
             for (int i = 0; i < 4; i++)
             {
@@ -97,7 +125,7 @@ public class ShowStateInNotePad : MonoBehaviour
                     switch (TrainObject[i])
                     {
                         case 1:
-                            
+
                             PassengerState[i].SetActive(true);
                             PassengerStateSetting(i);
                             //소파
@@ -115,6 +143,7 @@ public class ShowStateInNotePad : MonoBehaviour
                 {
                     // 안쓰고 있음 
                     TrainObject[i] = 0;
+                    NoUseState[i].SetActive(true);
                 }
             }
         }
@@ -133,33 +162,55 @@ public class ShowStateInNotePad : MonoBehaviour
 
     void ItemBoxInformationSetting(int index)
     {
+        // 들어오는 인덱스는 그냥 몇번째 위치에 있는지인데...
         int[] item = new int[6];
         AllItem_Ctrl allitem = TrainGameManager.instance.allitemCtrl;
+        InBoxItem box = allitem.BoxInformationOnTheTrain(TrainInformationIndex + 1, index);
+
         for (int i = 0; i < 6; i++)
         {
-            item[i] = allitem.boxItem[index].HaveItemInfo[i];
+            item[i] = box.HaveItemInfo[i];
 
             if (item[i] != 0)
             {
-                ItemBoxState[i].transform.GetChild(i).GetComponent<Image>().sprite = allitem.ItemImage[item[i]];
+                ItemBoxState[index].transform.GetChild(i).GetComponent<Image>().sprite = allitem.ItemImage[item[i] - 1];
             }
             else
             {
-                ItemBoxState[i].transform.GetChild(i).GetComponent<Image>().sprite = allitem.NullImage;
+                ItemBoxState[index].transform.GetChild(i).GetComponent<Image>().sprite = allitem.NullImage;
             }
 
         }
     }
     void PassengerStateSetting(int index)
     {
-        int hungry = TrainGameManager.instance.SofaSitPassengerCtrl.passengers[index].GetThisPassengerHungry();
-        int disease = TrainGameManager.instance.SofaSitPassengerCtrl.passengers[index].GetThisPassengerHungry();
+        SofaSitPassenger_Ctrl sofactrl = TrainGameManager.instance.SofaSitPassengerCtrl;
+        InSofaPassenger sofa = sofactrl.SofaInformationOnTheTrain(TrainInformationIndex + 1, index);
 
-        PassengerState[index].transform.GetChild(0).GetComponent<Slider>().value = (float)(hungry / 100);
-        PassengerState[index].transform.GetChild(1).GetComponent<Image>().sprite = DiseaseHeartSprite(disease);
-        PassengerState[index].transform.GetChild(1).GetChild(0).GetComponent<Text>().text = disease.ToString();
-        PassengerState[index].transform.GetChild(2).GetComponent<Image>().sprite = GetHumanProfileSprite(index);
 
+        if (sofa != null)
+        {
+            if (sofa.NowSit)
+            {
+                int hungry = sofa.GetThisPassengerHungry();
+                int disease = sofa.GetThisPassengerDisease();
+
+                PassengerState[index].transform.GetChild(0).GetComponent<Slider>().value = (float)(hungry / 100);
+                PassengerState[index].transform.GetChild(1).GetComponent<Image>().sprite = DiseaseHeartSprite(disease);
+                PassengerState[index].transform.GetChild(1).GetChild(0).GetComponent<Text>().text = disease.ToString();
+                PassengerState[index].transform.GetChild(2).GetComponent<Image>().sprite = GetHumanProfileSprite(index);
+            }
+            else
+            {
+                PassengerState[index].SetActive(false);
+                InSofaNoPassenger[index].SetActive(true);
+            }
+        }
+        else
+        {
+            PassengerState[index].SetActive(false);
+            InSofaNoPassenger[index].SetActive(true);
+        }
     }
     Sprite DiseaseHeartSprite(int count)
     {
@@ -201,6 +252,10 @@ public class ShowStateInNotePad : MonoBehaviour
         {
             ItemBoxState[i].SetActive(false);
             PassengerState[i].SetActive(false);
+            NoUseState[i].SetActive(false);
+
+            InSofaNoPassenger[i].SetActive(false);
+            Line.SetActive(false);
         }
     }
     // 코루틴으로 state계속 불리는거 
@@ -209,24 +264,30 @@ public class ShowStateInNotePad : MonoBehaviour
     {
         // 얘는 먼저 실행시킨적이 없는데 스스로 혼자 실행되면서 null ref 오류가 뜸
         // 왜? 그리고 trainctrl도 null 뜨는데
-        yield return new WaitForSeconds(5.0f);
+        Debug.Log("start");
+        yield return new WaitForSeconds(1.0f);
+        Debug.Log("runtime end");
         while (UsingNotePad)
         {
-            for (int i = 0; i < 4; i++)
+            if (TrainInformationIndex < TrainGameManager.instance.trainindex && TrainInformationIndex != -1)
             {
-                switch (TrainObject[i])
+                Debug.Log("Coroutine Working");
+                for (int i = 0; i < 4; i++)
                 {
-                    case 1:
-                        PassengerStateSetting(i);
-                        break;
-                    case 2:
-                        ItemBoxInformationSetting(i);
-                        break;
-                    default:
-                        break;
+                    switch (TrainObject[i])
+                    {
+                        case 1:
+                            PassengerStateSetting(i);
+                            break;
+                        case 2:
+                            ItemBoxInformationSetting(i);
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(0.5f);
         }
 
     }

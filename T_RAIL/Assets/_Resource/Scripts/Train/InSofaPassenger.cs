@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class InSofaPassenger : MonoBehaviourPunCallbacks  {
+public class InSofaPassenger : MonoBehaviourPunCallbacks
+{
 
 
     //Sofa에 달려있는 스크립트인데 
@@ -14,13 +15,15 @@ public class InSofaPassenger : MonoBehaviourPunCallbacks  {
 
     public bool NowSit; // 현재 승객이 앉아있는지?
 
-    [SerializeField]
-    //  AllItem_Ctrl allitem;
     SofaSitPassenger_Ctrl sitpassenger;
     GameObject NowSitPassengerObject;
     int thisSofaIndex;
 
     public GameObject particle;
+
+
+    public int WhereTrain;
+    public int WhereIndex;
 
     private void Start()
     {
@@ -39,6 +42,12 @@ public class InSofaPassenger : MonoBehaviourPunCallbacks  {
     {
         sitpassenger.DeletedSofa(thisSofaIndex);
         thisSofaIndex = -99; // 일단 어떻게 사용할지 몰라서 쓰레기값 넣어주기 
+    }
+
+    public void WhereisSofaLocation(int _index)
+    {
+        WhereTrain = this.gameObject.transform.root.GetComponent<Train_Object>().GetIndex();
+        WhereIndex = _index;
     }
 
     public int GetThisPassengerHungry()
@@ -65,7 +74,7 @@ public class InSofaPassenger : MonoBehaviourPunCallbacks  {
         // 포지션 기본값은 혀재 ㅇㅣ 오브젝트에서 받아와야지
         NowSitPassengerObject.transform.localPosition = new Vector3(0, 0.01f, 0.0085f);
 
-      
+
         NowSit = true;
 
     }
