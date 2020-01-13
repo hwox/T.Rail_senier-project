@@ -1,2 +1,3 @@
 # T.Rail
-T.Rail 졸작과 공부
+
+https://www.youtube.com/watch?v=5nk4rqoMNCY&t=34s
